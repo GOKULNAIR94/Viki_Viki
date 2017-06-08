@@ -47,6 +47,7 @@ restService.post('/inputmsg', function(req, res) {
           jsonQuery('items[* '+ query +']["Remaining Budget"]', {
             data: content
           }).value;
+          console.log( "Output : " + output);
           if( output.length == 1 ){
             console.log( "Output : " + output);
             speech = "The remaining YTD Budget for Entertainment is " + output + "$. Is there anything else I can help you with?"
