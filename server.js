@@ -44,7 +44,7 @@ restService.post('/inputmsg', function(req, res) {
         var query = "Period=" + Period + " & Month=" + Month;
         console.log( "query : " + query );
         var output =
-          jsonQuery('items[* '+ query +']["Remaining Budget"]', {
+          jsonQuery('items[* '+ query +'][Remaining Budget]', {
             data: content
           }).value;
           console.log( "Output : " + output);
