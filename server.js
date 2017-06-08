@@ -19,6 +19,7 @@ var dateperiod = '';
 var Month = '';
 
 var speech = '';
+var query = '';
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -41,7 +42,17 @@ restService.post('/inputmsg', function(req, res) {
         content = fs.readFileSync('data.json', 'utf8');
         console.log( "Content : " + content);
         content = JSON.parse(content);
-        var query = "Market=" + Market + " & Period=" + Period + " & Month=" + Month;
+        
+        if( Market != "Global" ){
+          query = "Market=" + Market + " & ";
+        }
+        if( Period == "MTD" ){
+          query = query + "Period=" + Period + " & Month=" + Month;
+        }
+        else{
+          query = "Month < " + Month;
+        }
+
         console.log( "query : " + query );
         var output =
           jsonQuery('items[* '+ query +'][Remaining Budget]', {
