@@ -26,7 +26,7 @@ restService.post('/inputmsg', function(req, res) {
     Market = req.body.result.parameters.Market;
     Period = req.body.result.parameters.Period;
     dateperiod = req.body.result.parameters.dateperiod;
-    Month = dateperiod.split(" ")[1];
+    Month = dateperiod.split("/")[1];
 
     console.log( "intentName : " + intentName );
     console.log( "Market : " + Market );
