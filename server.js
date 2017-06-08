@@ -58,7 +58,7 @@ restService.post('/inputmsg', function(req, res) {
             fyStartDate = arr[0] + "-0" + 4 + "-" + 1;
           }
           else{
-            fyStartDate = (parseInt(arr[0]) - 1) + "-" + 4 + "-" + 1;
+            fyStartDate = (parseInt(arr[0]) - 1) + "-0" + 4 + "-" + 1;
           }
           console.log( "fyStartDate : " + fyStartDate);
           query = query + "Month >= " + fyStartDate + " & Month <= " + Month;
