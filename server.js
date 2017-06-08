@@ -52,7 +52,17 @@ restService.post('/inputmsg', function(req, res) {
           //query = query + "Period=" + Period + " & Month=" + Month;
         }
         else{
-          query = query + "Month <= " + Month;
+          var fyStartDate ="";
+          var arr = Month.split("-");
+          if( arr[1] >= 4 ){
+            fyStartDate = arr[0] + "-" + 4 + "-" + 1;
+          }
+          else{
+            fyStartDate = (parseInt(arr[0]) - 1) + "-" + 4 + "-" + 1;
+          }
+          console.log( "fyStartDate : " + fyStartDate);
+          query = query + "Month >= " + fyStartDate + " & Month <= " + Month;
+          }
         }
 
         console.log( "query : " + query );
