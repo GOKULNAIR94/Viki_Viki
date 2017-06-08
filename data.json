@@ -3,7 +3,6 @@
     [
       {
             "Entertainment" : "Entertainment",
-            "Period" : "MTD",
             "Month" : "2017-05-31",
             "Market" : "West Region",
             "Remaining Budget" : "10000",
@@ -11,7 +10,6 @@
       },
       {
             "Entertainment" : "Entertainment",
-            "Period" : "MTD",
             "Month" : "2017-05-31",
             "Market" : "East Region",
             "Remaining Budget" : "20000",
@@ -19,7 +17,6 @@
       },
       {
             "Entertainment" : "Entertainment",
-            "Period" : "MTD",
             "Month" : "2017-04-30",
             "Market" : "West Region",
             "Remaining Budget" : "30000",
@@ -27,7 +24,6 @@
       },
       {
             "Entertainment" : "Entertainment",
-            "Period" : "MTD",
             "Month" : "2017-05-31",
             "Market" : "South Region",
             "Remaining Budget" : "40000",
@@ -35,11 +31,24 @@
       },
       {
             "Entertainment" : "Entertainment",
-            "Period" : "MTD",
             "Month" : "2017-03-31",
             "Market" : "West Region",
             "Remaining Budget" : "50000",
             "Expense" : "55000"
+      },
+      {
+            "Entertainment" : "Entertainment",
+            "Month" : "2016-03-31",
+            "Market" : "West Region",
+            "Remaining Budget" : "60000",
+            "Expense" : "66000"
+      },
+      {
+            "Entertainment" : "Entertainment",
+            "Month" : "2016-02-31",
+            "Market" : "West Region",
+            "Remaining Budget" : "60000",
+            "Expense" : "66000"
       }
     ]
 }
