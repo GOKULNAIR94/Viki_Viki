@@ -8,7 +8,7 @@
             "Period" : "MTD",
             "Market" : "West Region",
             "Remaining Budget" : "111",
-            "Expense" : "11",
+            "Expense" : "11"
       },
       {
             "Entertainment" : "Entertainment",
@@ -17,7 +17,7 @@
             "Period" : "MTD",
             "Market" : "East Region",
             "Remaining Budget" : "222",
-            "Expense" : "22",
+            "Expense" : "22"
       },
       {
             "Entertainment" : "Entertainment",
@@ -26,7 +26,7 @@
             "Period" : "MTD",
             "Market" : "West Region",
             "Remaining Budget" : "333",
-            "Expense" : "33",
+            "Expense" : "33"
       },
       {
             "Entertainment" : "Entertainment",
@@ -35,7 +35,7 @@
             "Period" : "MTD",
             "Market" : "South Region",
             "Remaining Budget" : "444",
-            "Expense" : "44",
+            "Expense" : "44"
       },
       {
             "Entertainment" : "Entertainment",
@@ -44,7 +44,7 @@
             "Period" : "MTD",
             "Market" : "West Region",
             "Remaining Budget" : "555",
-            "Expense" : "55",
+            "Expense" : "55"
       }
     ]
 }
