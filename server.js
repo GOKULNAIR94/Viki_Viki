@@ -13,15 +13,16 @@ restService.use(bodyParser.json());
 var jsonQuery = require('json-query');
 
 
-var Market = '';
-var Period = '';
-var dateperiod = '';
-var Month = '';
-
-var speech = '';
-var query = '';
 
 restService.post('/inputmsg', function(req, res) {
+
+  var Market = '';
+  var Period = '';
+  var dateperiod = '';
+  var Month = '';
+
+  var speech = '';
+  var query = '';
 
     var intentName = req.body.result.metadata.intentName;
     Market = req.body.result.parameters.Market;
