@@ -37,7 +37,7 @@ restService.post('/inputmsg', function(req, res) {
     var content;
     try
     {
-      if(intentName == 'ReadCSV' ){
+      if(intentName == 'Budget' ){
         content = fs.readFileSync('data.json', 'utf8');
         console.log( "Content : " + content);
         content = JSON.parse(content);
