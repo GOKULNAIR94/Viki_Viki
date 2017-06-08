@@ -50,7 +50,7 @@ restService.post('/inputmsg', function(req, res) {
           query = query + "Period=" + Period + " & Month=" + Month;
         }
         else{
-          query = "Month < " + Month;
+          query = "Month <= " + Month;
         }
 
         console.log( "query : " + query );
