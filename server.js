@@ -52,7 +52,7 @@ restService.post('/inputmsg', function(req, res) {
           //query = query + "Period=" + Period + " & Month=" + Month;
         }
         else{
-          query = "Month <= " + Month;
+          query = query + "Month <= " + Month;
         }
 
         console.log( "query : " + query );
@@ -78,6 +78,48 @@ restService.post('/inputmsg', function(req, res) {
             }
             console.log( "Sum : " + sum);
             speech = "The remaining YTD Budget for Entertainment is " + sum + "$. Is there anything else I can help you with?"
+          }
+          return res.json({
+              speech: speech,
+              displayText: speech,
+              //source: 'webhook-OSC-oppty'
+          })
+      }
+
+      if(intentName == 'Expense' ){
+        content = fs.readFileSync('data.json', 'utf8');
+        console.log( "Content : " + content);
+        content = JSON.parse(content);
+        
+        query = "Month = " + Month;
+
+        if( Market != "Global" ){
+          query = query + " & Market =" + Market;
+        }
+
+        console.log( "query : " + query );
+        var output =
+          jsonQuery('items[* '+ query +'][Expense]', {
+            data: content
+          }).value;
+          console.log( "Output : " + output);
+          console.log( "Output Length : " + output.length);
+          if( output.length == 0 ){
+            speech = "No records found."
+          }
+            if( output.length == 1 ){
+            console.log( "Output : " + output);
+            speech = "The Entertainment expense for $market is " + output + "$. Is there anything else I can help you with?"
+          }
+          if( output.length > 1 )
+          {
+            var sum = 0;
+            for(var i =0; i < output.length; i++)
+            {
+              sum = sum + parseFloat(output[i]);
+            }
+            console.log( "Sum : " + sum);
+            speech = "The Entertainment expense for $market is " + sum + "$. Is there anything else I can help you with?"
           }
           return res.json({
               speech: speech,
