@@ -61,6 +61,9 @@ restService.post('/inputmsg', function(req, res) {
           }).value;
           console.log( "Output : " + output);
           if( output.length == 1 ){
+            speech = "No records found."
+          }
+            if( output.length == 1 ){
             console.log( "Output : " + output);
             speech = "The remaining YTD Budget for Entertainment is " + output + "$. Is there anything else I can help you with?"
           }
