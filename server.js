@@ -60,7 +60,8 @@ restService.post('/inputmsg', function(req, res) {
             data: content
           }).value;
           console.log( "Output : " + output);
-          if( output.length == 1 ){
+          console.log( "Output Length : " + output.length);
+          if( output.length == 0 ){
             speech = "No records found."
           }
             if( output.length == 1 ){
