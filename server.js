@@ -48,7 +48,8 @@ restService.post('/inputmsg', function(req, res) {
           query = "Market=" + Market + " & ";
         }
         if( Period == "MTD" ){
-          query = query + "Period=" + Period + " & Month=" + Month;
+          query = query + "Month=" + Month;
+          //query = query + "Period=" + Period + " & Month=" + Month;
         }
         else{
           query = "Month <= " + Month;
