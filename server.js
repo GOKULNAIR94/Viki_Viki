@@ -119,7 +119,7 @@ restService.post('/inputmsg', function(req, res) {
           }
             if( output.length == 1 ){
             console.log( "Output : " + output);
-            speech = "The Entertainment expense for $market is " + output + "$. Is there anything else I can help you with?"
+            speech = "The Entertainment expense for " + Market + " is " + output + "$. Is there anything else I can help you with?"
           }
           if( output.length > 1 )
           {
@@ -129,7 +129,7 @@ restService.post('/inputmsg', function(req, res) {
               sum = sum + parseFloat(output[i]);
             }
             console.log( "Sum : " + sum);
-            speech = "The Entertainment expense for $market is " + sum + "$. Is there anything else I can help you with?"
+            speech = "The Entertainment expense for " + Market + " is " + sum + "$. Is there anything else I can help you with?"
           }
           return res.json({
               speech: speech,
