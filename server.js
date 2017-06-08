@@ -41,7 +41,7 @@ restService.post('/inputmsg', function(req, res) {
         content = fs.readFileSync('data.json', 'utf8');
         console.log( "Content : " + content);
         content = JSON.parse(content);
-        var query = "Market=" + Market + " & Period=" + Period + "& Month=" + Month;
+        var query = "Market=" + Market + " & Period=" + Period + " & Month=" + Month;
         console.log( "query : " + query );
         var output =
           jsonQuery('items[* '+ query +']["Remaining Budget"]', {
