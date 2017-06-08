@@ -55,7 +55,7 @@ restService.post('/inputmsg', function(req, res) {
           var fyStartDate ="";
           var arr = Month.split("-");
           if( arr[1] >= 4 ){
-            fyStartDate = arr[0] + "-" + 4 + "-" + 1;
+            fyStartDate = arr[0] + "-0" + 4 + "-" + 1;
           }
           else{
             fyStartDate = (parseInt(arr[0]) - 1) + "-" + 4 + "-" + 1;
