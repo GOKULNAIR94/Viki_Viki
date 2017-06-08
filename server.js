@@ -15,7 +15,7 @@ var jsonQuery = require('json-query');
 
 var Market = '';
 var Period = '';
-var date-period = '';
+var dateperiod = '';
 var Month = '';
 
 var speech = '';
@@ -25,13 +25,13 @@ restService.post('/inputmsg', function(req, res) {
     var intentName = req.body.result.metadata.intentName;
     Market = req.body.result.parameters.Market;
     Period = req.body.result.parameters.Period;
-    date-period = req.body.result.parameters.date-period;
-    Month = date-period.split(" ")[1];
+    dateperiod = req.body.result.parameters.dateperiod;
+    Month = dateperiod.split(" ")[1];
 
     console.log( "intentName : " + intentName );
     console.log( "Market : " + Market );
     console.log( "Period : " + Period );
-    console.log( "date-period : " + date-period );
+    console.log( "dateperiod : " + dateperiod );
     console.log( "Month : " + Month );
 
     var content;
