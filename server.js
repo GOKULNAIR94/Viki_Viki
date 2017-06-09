@@ -25,7 +25,7 @@ restService.post('/inputmsg', function(req, res) {
   var query = '';
 
   //req =  JSON.parse(content);
-    console.log( "Req : " + JSON.stringify(req.body) );
+    console.log( "Req : " + JSON.stringify(req) );
 
     var intentName = req.body.result.metadata.intentName;
     Market = req.body.result.parameters.Market;
