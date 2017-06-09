@@ -23,7 +23,7 @@ restService.post('/inputmsg', function(req, res) {
 
   var speech = '';
   var query = '';
-
+  req =  JSON.parse(req );
     console.log( "Req : " + req );
 
     var intentName = req.body.result.metadata.intentName;
