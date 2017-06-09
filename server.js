@@ -24,7 +24,7 @@ restService.post('/inputmsg', function(req, res) {
   var speech = '';
   var query = '';
 
-    console.log( "Req : " + JSON.stringify(req) );
+    console.log( "Req : " + req );
 
     var intentName = req.body.result.metadata.intentName;
     Market = req.body.result.parameters.Market;
