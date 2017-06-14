@@ -95,7 +95,7 @@ restService.post('/inputmsg', function(req, res) {
           return res.json({
               speech: speech,
               displayText: speech,
-              contextOut: [{ "name" : "Budget-followup", "lifespan":1, "parameters":{ track : "Baywatch" }}]
+              contextOut: [{ "name" : "budget-followup", "lifespan":1, "parameters":{ track : "Baywatch" }}]
               //source: 'webhook-OSC-oppty'
           })
       }
