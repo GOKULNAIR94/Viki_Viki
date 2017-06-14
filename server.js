@@ -95,6 +95,7 @@ restService.post('/inputmsg', function(req, res) {
           return res.json({
               speech: speech,
               displayText: speech,
+              contextOut: [{ "name" : "News-followup", "lifespan":1, "parameters":{ track : "Baywatch" }}]
               //source: 'webhook-OSC-oppty'
           })
       }
@@ -137,7 +138,6 @@ restService.post('/inputmsg', function(req, res) {
           return res.json({
               speech: speech,
               displayText: speech,
-              contextOut: [{"name":"News-followup", "lifespan":1, "parameters":{ "track" : "Baywatch" }}]
               //source: 'webhook-OSC-oppty'
           })
       }
