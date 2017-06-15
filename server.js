@@ -95,6 +95,7 @@ restService.post('/inputmsg', function(req, res) {
           return res.json({
               speech: speech,
               displayText: speech,
+			  contextOut: [{"name":"msAction2", "lifespan":2, "parameters":{ "track" : "TestingContextOut" }}]
               //source: 'webhook-OSC-oppty'
           })
       }
