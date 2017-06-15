@@ -92,58 +92,11 @@ restService.post('/inputmsg', function(req, res) {
             console.log( "Sum : " + sum);
             speech = "The remaining YTD Budget for Entertainment is " + sum + "$. Is there anything else I can help you with?"
           }
-		  
-		  if( req.body.result.metadata.intentName == "Budget - news" ){
-			  varHost = 'vikinews.herokuapp.com';
-			  varPath = '/inputmsg';
-			  
-			  req.body.result.contexts[0].parameters.track == "Apple";
-			  
-			  var newoptions = {
-			  host: varHost,
-			  path: varPath,
-			  data: req.body,
-			  method:'POST',
-			  headers: {
-				'Content-Type': 'application/json'
-			  }
-			};
-		var post_req = http.request(newoptions, function(response) {
-			  response.on('data', function (chunk) {
-				body += chunk;
-			  });
-			  response.on('end', function() {
-				  console.log( "Body : " + body );
-				  try
-				  {
-					console.log("All set!");
-				  }
-				  catch(e){
-					speech = "Error occured!";
-					return res.json({
-					  speech: speech,
-					  displayText: speech
-					})
-				  }
-			  })
-			  }).on('error', function(e){
-			  speech = "Error occured!";
-				return res.json({
-				  speech: speech,
-				  displayText: speech
-				})
-			});
-			post_req.write(JSON.stringify(req.body));
-			post_req.end();
-			  
-		  }
-		  else{
-			  return res.json({
-				  speech: speech,
-				  displayText: speech,
-				  //source: 'webhook-OSC-oppty'
-			  })
-		  }
+          return res.json({
+              speech: speech,
+              displayText: speech,
+              //source: 'webhook-OSC-oppty'
+          })
       }
 
       if(intentName == 'Expense' ){
