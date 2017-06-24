@@ -15,6 +15,8 @@ module.exports = function(req, res) {
   var attrib = req.body.result.parameters['DCP_AttribsGeneral'];
   
   var query = "Name=" + Name ;
+  console.log("query :" + query);
+  console.log("attrib :" + attrib);
   var output =
           jsonQuery('[* '+ query +']'+'['+ attrib +']', {
             data: content
