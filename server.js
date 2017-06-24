@@ -13,6 +13,7 @@ restService.use(bodyParser.json());
 var jsonQuery = require('json-query');
 
 
+var EmpData = require("./empdata");
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -140,6 +141,11 @@ restService.post('/inputmsg', function(req, res) {
               //source: 'webhook-OSC-oppty'
           })
       }
+      if(intentName == 'EmployeeData' ){
+        EmpData(req, res, function(result) {
+          console.log("Login Called");
+        });
+      } 
 
       // if(intentName == 'WriteCSV' ){
       //   content = fs.readFileSync('data.json', 'utf8');
