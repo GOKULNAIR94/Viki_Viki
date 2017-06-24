@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "Bill Kane",
+    "Job Title": "Sales Lead",
+    "Department Description": "Sales",
+    "Work Location": "Los Angeles",
+    "Hire Date": 42905
+  },
+  {
+    "Name": "Mitchel Clark",
+    "Job Title": "Commercial Manager",
+    "Department Description": "Commercial",
+    "Work Location": "Denver",
+    "Hire Date": 42907
+  },
+  {
+    "Name": "Keith O'Connor",
+    "Job Title": "Sales Manager",
+    "Department Description": "Sales",
+    "Work Location": "Houston",
+    "Hire Date": 42906
+  },
+  {
+    "Name": "John Carter",
+    "Job Title": "Operations Analyst",
+    "Department Description": "Operations",
+    "Work Location": "San Diego",
+    "Hire Date": 42905
+  },
+  {
+    "Name": "Doug Forman",
+    "Job Title": "HR Executive",
+    "Department Description": "Human Resources",
+    "Work Location": "Denver",
+    "Hire Date": 42907
+  }
+]

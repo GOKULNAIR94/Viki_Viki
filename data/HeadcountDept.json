@@ -1,0 +1,26 @@
+[
+  {
+    "Department": "Human Resources",
+    "Headcount": 64
+  },
+  {
+    "Department": "Sales",
+    "Headcount": 123
+  },
+  {
+    "Department": "Commercial",
+    "Headcount": 76
+  },
+  {
+    "Department": "Operations",
+    "Headcount": 98
+  },
+  {
+    "Department": "Engineering",
+    "Headcount": 114
+  },
+  {
+    "Department": "Total",
+    "Headcount": 475
+  }
+]
