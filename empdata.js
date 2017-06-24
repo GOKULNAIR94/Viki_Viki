@@ -18,7 +18,7 @@ module.exports = function(req, res) {
   console.log("query :" + query);
   console.log("attrib :" + attrib);
   var output =
-          jsonQuery('[* '+ query +']'+'['+ attrib +']', {
+          jsonQuery('items[* '+ query +']'+'['+ attrib +']', {
             data: content
           }).value;
   console.log("output :" + output);

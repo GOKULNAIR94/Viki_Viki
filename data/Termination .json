@@ -1,37 +1,40 @@
-[
-  {
-    "Name": "shaun Tait",
-    "Job Title": "Sales Lead",
-    "Department Description": "Sales",
-    "Work Location": "Los Angeles",
-    "Termination Date": 42905
-  },
-  {
-    "Name": "Michael McDermott",
-    "Job Title": "Commercial Manager",
-    "Department Description": "Commercial",
-    "Work Location": "Denver",
-    "Termination Date": 42907
-  },
-  {
-    "Name": "Clive Richards",
-    "Job Title": "Sales Manager",
-    "Department Description": "Sales",
-    "Work Location": "Houston",
-    "Termination Date": 42906
-  },
-  {
-    "Name": "Emma Watson",
-    "Job Title": "Operations Analyst",
-    "Department Description": "Operations",
-    "Work Location": "San Diego",
-    "Termination Date": 42905
-  },
-  {
-    "Name": "Kenny Benjamin",
-    "Job Title": "HR Executive",
-    "Department Description": "Human Resources",
-    "Work Location": "Denver",
-    "Termination Date": 42907
-  }
-]
+{
+  "items" :  
+    [
+    {
+      "Name": "shaun Tait",
+      "Job Title": "Sales Lead",
+      "Department Description": "Sales",
+      "Work Location": "Los Angeles",
+      "Termination Date": 42905
+    },
+    {
+      "Name": "Michael McDermott",
+      "Job Title": "Commercial Manager",
+      "Department Description": "Commercial",
+      "Work Location": "Denver",
+      "Termination Date": 42907
+    },
+    {
+      "Name": "Clive Richards",
+      "Job Title": "Sales Manager",
+      "Department Description": "Sales",
+      "Work Location": "Houston",
+      "Termination Date": 42906
+    },
+    {
+      "Name": "Emma Watson",
+      "Job Title": "Operations Analyst",
+      "Department Description": "Operations",
+      "Work Location": "San Diego",
+      "Termination Date": 42905
+    },
+    {
+      "Name": "Kenny Benjamin",
+      "Job Title": "HR Executive",
+      "Department Description": "Human Resources",
+      "Work Location": "Denver",
+      "Termination Date": 42907
+    }
+  ]
+}
