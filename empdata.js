@@ -25,8 +25,13 @@ module.exports = function(req, res) {
   if( output.length == 0 ){
     speech = "No records found.";
   }
-  else
-   speech = output;
+  else{
+    if( output.length == 1 ){
+      speech = output[0];
+    }
+  }
+   
+  
   return res.json({
     speech: speech,
     displayText: speech,
