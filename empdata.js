@@ -4,7 +4,7 @@ module.exports = function(req, res) {
   var jsonQuery = require('json-query');
 
   var content;
-
+  var speech;
   content = fs.readFileSync('./data/EmployeeData.json', 'utf8');
   console.log("Content : " + content);
   content = JSON.parse(content);
@@ -18,13 +18,18 @@ module.exports = function(req, res) {
   console.log("query :" + query);
   console.log("attrib :" + attrib);
   var output =
-          jsonQuery('items[* '+ query +']'+'['+ attrib +']', {
+          jsonQuery('[* '+ query +']'+'['+ attrib +']', {
             data: content
           }).value;
   console.log("output :" + output);
+  if( output.length == 0 ){
+    speech = "No records found.";
+  }
+  else
+   speech = output;
   return res.json({
-    speech: output,
-    displayText: output,
+    speech: speech,
+    displayText: speech,
     //source: 'webhook-OSC-oppty'
   })
 
