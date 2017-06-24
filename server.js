@@ -29,21 +29,23 @@ restService.post('/inputmsg', function(req, res) {
     console.log( "Req : " + JSON.stringify(req.body) );
 
     var intentName = req.body.result.metadata.intentName;
-    Market = req.body.result.parameters.Market;
-    Period = req.body.result.parameters.Period;
-    dateperiod = req.body.result.parameters.dateperiod;
-    Month = dateperiod.split("/")[1];
-
-    console.log( "intentName : " + intentName );
-    console.log( "Market : " + Market );
-    console.log( "Period : " + Period );
-    console.log( "dateperiod : " + dateperiod );
-    console.log( "Month : " + Month );
+    
 
     var content;
     try
     {
       if(intentName == 'Budget' ){
+        Market = req.body.result.parameters.Market;
+        Period = req.body.result.parameters.Period;
+        dateperiod = req.body.result.parameters.dateperiod;
+        Month = dateperiod.split("/")[1];
+
+        console.log( "intentName : " + intentName );
+        console.log( "Market : " + Market );
+        console.log( "Period : " + Period );
+        console.log( "dateperiod : " + dateperiod );
+        console.log( "Month : " + Month );
+
         content = fs.readFileSync('data.json', 'utf8');
         console.log( "Content : " + content);
         content = JSON.parse(content);
@@ -101,6 +103,18 @@ restService.post('/inputmsg', function(req, res) {
       }
 
       if(intentName == 'Expense' ){
+        Market = req.body.result.parameters.Market;
+        Period = req.body.result.parameters.Period;
+        dateperiod = req.body.result.parameters.dateperiod;
+        Month = dateperiod.split("/")[1];
+
+        console.log( "intentName : " + intentName );
+        console.log( "Market : " + Market );
+        console.log( "Period : " + Period );
+        console.log( "dateperiod : " + dateperiod );
+        console.log( "Month : " + Month );
+        
+        
         content = fs.readFileSync('data.json', 'utf8');
         console.log( "Content : " + content);
         content = JSON.parse(content);
