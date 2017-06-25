@@ -7,23 +7,40 @@ module.exports = function(req, res) {
   var speech;
   var intentName = req.body.result.metadata.intentName;
 
-  var Name = req.body.result.contexts[0].parameters['Name.original'];
-  var attrib = req.body.result.parameters['DCP_AttribsGeneral'];
+  var Name = "";
+  var attrib = "";
 
-  var filePath = "./data/EmployeeData.json";
+  var filePath = "";
+  var query = "";
+
   if( intentName == "DCP - EmployeeData" ) 
   {
-    content = fs.readFileSync( filePath, 'utf8' );
-    console.log("Content : " + content);
-    
-    var query = "Name=" + Name ;
-    console.log("query :" + query);
-    console.log("attrib :" + attrib);
-
-    content = JSON.parse(content);
-    console.log("Content :" + JSON.stringify(content));
+    Name = req.body.result.contexts[0].parameters['Name.original']
+    attrib = req.body.result.parameters['DCP_AttribsGeneral']
+    filePath = "./data/EmployeeData.json";
+    query = "Name=" + Name ;
   }
+
+  if( intentName == "DCP - EmployeeData" ) 
+  {
+    filePath = "./data/EmployeeData.json";
+    return res.json({
+    speech: "Cool",
+    displayText: "Cool",
+    //source: 'webhook-OSC-oppty'
+  })
+  }
+
+  content = fs.readFileSync( filePath, 'utf8' );
+  console.log("Content : " + content);
   
+  
+  console.log("query :" + query);
+  console.log("attrib :" + attrib);
+
+  content = JSON.parse(content);
+  console.log("Content :" + JSON.stringify(content));
+
   var output =
           jsonQuery('[* '+ query +']'+'['+ attrib +']', {
             data: content
