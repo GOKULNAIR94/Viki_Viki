@@ -5,26 +5,31 @@ module.exports = function(req, res) {
 
   var content;
   var speech;
-  
+  var intentName = req.body.result.metadata.intentName;
+
   var Name = req.body.result.contexts[0].parameters['Name.original'];
   var attrib = req.body.result.parameters['DCP_AttribsGeneral'];
 
   var filePath = "./data/EmployeeData.json";
-  content = fs.readFileSync( filePath, 'utf8' );
-  console.log("Content : " + content);
-  content = JSON.parse(content);
+  if( intentName == "DCP - EmployeeData" ) 
+  {
+    content = fs.readFileSync( filePath, 'utf8' );
+    console.log("Content : " + content);
+    
+    var query = "Name=" + Name ;
+    console.log("query :" + query);
+    console.log("attrib :" + attrib);
 
-  console.log("Content :" + JSON.stringify(content));
+    content = JSON.parse(content);
+    console.log("Content :" + JSON.stringify(content));
+  }
   
-  var query = "Name=" + Name ;
-  console.log("query :" + query);
-  console.log("attrib :" + attrib);
-
   var output =
           jsonQuery('[* '+ query +']'+'['+ attrib +']', {
             data: content
           }).value;
   console.log("output :" + output);
+
   if( output.length == 0 ){
     speech = "No records found.";
   }
