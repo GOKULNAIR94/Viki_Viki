@@ -13,7 +13,7 @@ restService.use(bodyParser.json());
 var jsonQuery = require('json-query');
 
 
-var EmpData = require("./empdata");
+var DCPData = require("./dcpdata");
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -155,9 +155,9 @@ restService.post('/inputmsg', function(req, res) {
               //source: 'webhook-OSC-oppty'
           })
       }
-      if(intentName == 'DCP - EmployeeData' ){
-        EmpData(req, res, function(result) {
-          console.log("Login Called");
+      if( intentName.indexOf( "DCP -" ) == 0 ){
+        DCPData(req, res, function(result) {
+          console.log("EmpData Called");
         });
       } 
 
