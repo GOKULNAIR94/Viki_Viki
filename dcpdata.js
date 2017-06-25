@@ -21,14 +21,10 @@ module.exports = function(req, res) {
     query = "Name=" + Name ;
   }
 
-  if( intentName == "DCP - EmployeeData" ) 
+  if( intentName == "DCP - HireTerm" ) 
   {
     filePath = "./data/EmployeeData.json";
-    return res.json({
-    speech: "Cool",
-    displayText: "Cool",
-    //source: 'webhook-OSC-oppty'
-  })
+    if(  )
   }
 
   content = fs.readFileSync( filePath, 'utf8' );
