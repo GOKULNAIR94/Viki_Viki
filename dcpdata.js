@@ -5,18 +5,21 @@ module.exports = function(req, res) {
 
   var content;
   var speech;
-  content = fs.readFileSync('./data/EmployeeData.json', 'utf8');
+  
+  var Name = req.body.result.contexts[0].parameters['Name.original'];
+  var attrib = req.body.result.parameters['DCP_AttribsGeneral'];
+
+  var filePath = "./data/EmployeeData.json";
+  content = fs.readFileSync( filePath, 'utf8' );
   console.log("Content : " + content);
   content = JSON.parse(content);
 
   console.log("Content :" + JSON.stringify(content));
   
-  var Name = req.body.result.contexts[0].parameters['Name.original'];
-  var attrib = req.body.result.parameters['DCP_AttribsGeneral'];
-  
   var query = "Name=" + Name ;
   console.log("query :" + query);
   console.log("attrib :" + attrib);
+
   var output =
           jsonQuery('[* '+ query +']'+'['+ attrib +']', {
             data: content
