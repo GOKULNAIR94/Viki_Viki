@@ -85,12 +85,8 @@ module.exports = function(req, res) {
       else
           if(output.length > 1){
               if( countFlag == 1 ){
-                  var sum = 0;
-                    for(var i =0; i < output.length; i++)
-                    {
-                      sum = sum + parseFloat(output[i]);
-                    } 
-                  speech = sum + " " + attribOG + " " + dateperiodOG + ".";
+                  
+                  speech = output.length + " " + attribOG + " " + dateperiodOG + ".";
               }
               else{
                   speech = "More than one record found.";
