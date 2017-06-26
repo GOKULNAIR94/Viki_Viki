@@ -33,7 +33,9 @@ module.exports = function(req, res) {
         query = "Name=" + Name ;
     }
     else{
-        attrib = "Name"
+        attrib = "Name";
+        countFlag = 1;
+
         var dateperiod = req.body.result.parameters.dateperiod;
         dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
         var StartDate = dateperiod.split("/")[0];
