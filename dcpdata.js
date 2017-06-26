@@ -9,7 +9,7 @@ module.exports = function(req, res) {
 
   var Name = "";
   var attrib = "";
-    var dateperiodOG = "";
+    var HireTermOG = "";
     var attribOG = "";
     var countFlag = 0;
 
@@ -17,7 +17,7 @@ module.exports = function(req, res) {
   var query = "";
 
     attrib = req.body.result.parameters['DCP_AttribsGeneral'];
-  attribOG = req.body.result.contexts[0].parameters['DCP_AttribsGeneral.original'];
+  HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
     if( intentName == "DCP - EmployeeData" ) 
   {
     Name = req.body.result.contexts[0].parameters['Name.original'];
@@ -86,7 +86,7 @@ module.exports = function(req, res) {
           if(output.length > 1){
               if( countFlag == 1 ){
                   
-                  speech = output.length + " " + attribOG + " " + dateperiodOG + ".";
+                  speech = output.length + " " + HireTermOG + " " + dateperiodOG + ".";
               }
               else{
                   speech = "More than one record found.";
