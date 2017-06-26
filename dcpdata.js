@@ -28,11 +28,12 @@ module.exports = function(req, res) {
   if( intentName == "DCP - HireTerm" ) 
   {
     
-    if( attrib != null){
+    if( attrib != null && attrib != "" ){
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name=" + Name ;
     }
     else{
+        attrib = "Name"
         var dateperiod = req.body.result.parameters.dateperiod;
         dateperiodOG = req.body.result.contexts[0].parameters['date-period.original'];
         var StartDate = dateperiod.split("/")[0];
