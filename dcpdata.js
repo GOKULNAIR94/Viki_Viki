@@ -35,7 +35,7 @@ module.exports = function(req, res) {
     else{
         attrib = "Name"
         var dateperiod = req.body.result.parameters.dateperiod;
-        dateperiodOG = req.body.result.contexts[0].parameters['date-period.original'];
+        dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
         var StartDate = dateperiod.split("/")[0];
         var EndDate = dateperiod.split("/")[1];
         
