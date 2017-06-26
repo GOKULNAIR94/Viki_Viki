@@ -39,11 +39,11 @@ module.exports = function(req, res) {
         var EndDate = dateperiod.split("/")[1];
         
         if( req.body.result.parameters['HireTerm'] == "Hire"){
-            query = "Hire Date>=" + StartDate "& Hire Date<=" + EndDate;
+            query = "Hire Date>=" + StartDate + "& Hire Date<=" + EndDate;
         }
 
         if( req.body.result.parameters['HireTerm'] == "Term"){
-            query = "Termination Date>=" + StartDate "& Termination Date<=" + EndDate;
+            query = "Termination Date>=" + StartDate + "& Termination Date<=" + EndDate;
         }
     }
       
