@@ -32,6 +32,10 @@ module.exports = function(req, res) {
     if( attrib != null && attrib != "" ){
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name=" + Name ;
+        if( attrib = "Hire Date" )
+           filePath = "./data/Hire.json"; 
+        if( attrib = "Termination Date" )
+            filePath = "./data/Termination .json";
     }
     else{
         attrib = "Name";
