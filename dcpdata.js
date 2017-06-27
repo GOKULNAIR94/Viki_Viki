@@ -17,6 +17,7 @@ module.exports = function(req, res) {
   var query = "";
 
     attrib = req.body.result.parameters['DCP_AttribsGeneral'];
+  console.log("attrib :" + attrib);
   HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
     if( intentName == "DCP - EmployeeData" ) 
   {
@@ -64,7 +65,6 @@ module.exports = function(req, res) {
   
   
   console.log("query :" + query);
-  console.log("attrib :" + attrib);
 
   content = JSON.parse(content);
   console.log("Content :" + JSON.stringify(content));
