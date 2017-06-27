@@ -18,7 +18,7 @@ module.exports = function(req, res) {
 
     attrib = req.body.result.parameters['DCP_AttribsGeneral'];
   console.log("attrib :" + attrib);
-  HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
+  
     if( intentName == "DCP - EmployeeData" ) 
   {
     Name = req.body.result.contexts[0].parameters['Name.original'];
@@ -39,7 +39,7 @@ module.exports = function(req, res) {
 
   if( intentName == "DCP - HireTerm" ) 
   {
-    
+    HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
     if( attrib != null && attrib != "" ){
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name = " + Name ;
