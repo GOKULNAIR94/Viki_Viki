@@ -31,9 +31,9 @@ module.exports = function(req, res) {
       //attrib = "Headcount";
     filePath = "./data/Headcount.json";
       if( req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != "" )
-        query = "Department = " + ED_Dept ;
+        query = "Department = " + req.body.result.parameters.ED_Dept ;
       if( req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != "" )
-        query = "Location = " + ED_WorkLocation ;
+        query = "Location = " + req.body.result.parameters.ED_WorkLocation ;
       
   }
 
