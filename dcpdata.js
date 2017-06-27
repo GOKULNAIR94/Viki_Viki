@@ -74,7 +74,7 @@ module.exports = function(req, res) {
     if (intentName == "DCP - WorklistApproval") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         filePath = "./data/WorklistApproval.json";
-        query = "Name = " + Name;
+        query = "Employee = " + Name;
         attrib = "Details";
     }
 
