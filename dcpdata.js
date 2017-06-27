@@ -98,7 +98,7 @@ module.exports = function(req, res) {
         speech = "No records found.";
     } else {
         if( intentName == "DCP - WorklistApproval"){
-            speech = "There are " + (i+1) + " approval(s) pending. ";
+            speech = "There are " + output.length + " approval(s) pending. ";
             for( var i = 0; i < output.length; i++){
                 speech = speech + "\n " + (i+1) + ". " + output[i] + ".";
             }
