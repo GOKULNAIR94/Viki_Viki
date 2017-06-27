@@ -23,7 +23,7 @@ module.exports = function(req, res) {
   {
     Name = req.body.result.contexts[0].parameters['Name.original'];
     filePath = "./data/EmployeeData.json";
-    query = "Name=" + Name ;
+    query = "Name = " + Name ;
   }
 
   if( intentName == "DCP - HireTerm" ) 
@@ -31,7 +31,7 @@ module.exports = function(req, res) {
     
     if( attrib != null && attrib != "" ){
         Name = req.body.result.contexts[0].parameters['Name.original'];
-        query = "Name=" + Name ;
+        query = "Name = " + Name ;
         if( attrib = "Hire Date" )
            filePath = "./data/Hire.json"; 
         if( attrib = "Termination Date" )
