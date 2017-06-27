@@ -25,6 +25,17 @@ module.exports = function(req, res) {
     filePath = "./data/EmployeeData.json";
     query = "Name = " + Name ;
   }
+    
+    if( intentName == "DCP - HeadCount" ) 
+  {
+      attrib = "Headcount";
+    filePath = "./data/Headcount.json";
+      if( req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != "" )
+        query = "Department = " + ED_Dept ;
+      if( req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != "" )
+        query = "Location = " + ED_WorkLocation ;
+      
+  }
 
   if( intentName == "DCP - HireTerm" ) 
   {
@@ -35,7 +46,7 @@ module.exports = function(req, res) {
         if( attrib = "Hire Date" )
            filePath = "./data/Hire.json"; 
         if( attrib = "Termination Date" )
-            filePath = "./data/Termination .json";
+            filePath = "./data/Termination.json";
     }
     else{
         attrib = "Name";
@@ -60,7 +71,7 @@ module.exports = function(req, res) {
     }
       
     if( req.body.result.parameters['HireTerm'] == "Term"){
-        filePath = "./data/Termination .json";
+        filePath = "./data/Termination.json";
     }
   }
 

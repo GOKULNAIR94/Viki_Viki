@@ -21,7 +21,23 @@
       "Headcount": 114
     },
     {
-      "Department": "Total",
-      "Headcount": 475
+      "Location": "Denver",
+      "Headcount": 123
+    },
+    {
+      "Location": "Houston",
+      "Headcount": 114
+    },
+    {
+      "Location": "Los Angeles",
+      "Headcount": 98
+    },
+    {
+      "Location": "San Diego",
+      "Headcount": 76
+    },
+    {
+      "Location": "New york",
+      "Headcount": 64
     }
   ]
