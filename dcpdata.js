@@ -79,9 +79,10 @@ module.exports = function(req, res) {
            if (output.length == 1) {
                 speech = output[0];
             } else
-                speech = "More than one record found.";
-            }
+            if (output.length > 1) {
+                    speech = "More than one record found.";
            }
+        }
             
     }
 
