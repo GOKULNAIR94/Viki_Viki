@@ -2,9 +2,7 @@ module.exports = function(req, res) {
 
     var fs = require('fs');
     var jsonQuery = require('json-query');
-    
-    var DCPHireTerm = require("./dcpHireTerm");
-    
+
     var content;
     var speech;
     var intentName = req.body.result.metadata.intentName;
@@ -21,33 +19,38 @@ module.exports = function(req, res) {
     attrib = req.body.result.parameters['DCP_AttribsGeneral'];
     console.log("attrib :" + attrib);
 
-    if ( intentName == "DCP - EmployeeData" || intentName == "DCP - EmployeeData - custom" ) {
+    HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
+    if (attrib != null && attrib != "") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
-        filePath = "./data/EmployeeData.json";
         query = "Name = " + Name;
+        if (attrib = "Hire Date")
+            filePath = "./data/Hire.json";
+        if (attrib = "Termination Date")
+            filePath = "./data/Termination.json";
+    } else {
+        attrib = "Name";
+        countFlag = 1;
+
+        var dateperiod = req.body.result.parameters.dateperiod;
+        dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
+        var StartDate = dateperiod.split("/")[0];
+        var EndDate = dateperiod.split("/")[1];
+
+        if (req.body.result.parameters['HireTerm'] == "Hire") {
+            query = "Hire Date >= " + StartDate + " & Hire Date <= " + EndDate;
+        }
+
+        if (req.body.result.parameters['HireTerm'] == "Term") {
+            query = "Termination Date >= " + StartDate + " & Termination Date <= " + EndDate;
+        }
     }
 
-    if (intentName == "DCP - HeadCount") {
-        //attrib = "Headcount";
-        filePath = "./data/Headcount.json";
-        if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != "")
-            query = "Department = " + req.body.result.parameters.ED_Dept;
-        if (req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != "")
-            query = "Location = " + req.body.result.parameters.ED_WorkLocation;
-
+    if (req.body.result.parameters['HireTerm'] == "Hire") {
+        filePath = "./data/Hire.json";
     }
 
-    if (intentName == "DCP - HireTerm") {
-        DCPHireTerm(req, res, function(result) {
-          console.log("EmpData Called");
-        });
-    }
-    
-    if (intentName == "DCP - WorklistApproval") {
-        Name = req.body.result.contexts[0].parameters['Name.original'];
-        filePath = "./data/WorklistApproval.json";
-        query = "Employee = " + Name;
-        attrib = "Details";
+    if (req.body.result.parameters['HireTerm'] == "Term") {
+        filePath = "./data/Termination.json";
     }
 
 
