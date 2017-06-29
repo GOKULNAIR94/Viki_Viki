@@ -50,6 +50,7 @@ module.exports = function(req, res) {
     if (intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
         DCPHireTerm(req, res, function(result) {
           console.log("EmpData Called");
+            speech = result.speech;
             return res.json({
                 speech: speech,
                 displayText: speech,
