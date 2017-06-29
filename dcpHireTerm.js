@@ -72,26 +72,15 @@ module.exports = function(req, res) {
     if (output.length == 0) {
         speech = "No records found.";
     } else {
-        if( intentName == "DCP - WorklistApproval"){
-            speech = "There are " + output.length + " approval(s) pending. ";
+        if( intentName == "DCP - HireTerm - list"){
+            speech = "The " + HireTermOG + " " + dateperiodOG + "are : ";
             for( var i = 0; i < output.length; i++){
                 speech = speech + "\n " + (i+1) + ". " + output[i] + ".";
             }
         }
         else{
-           if (output.length == 1) {
-                speech = output[0];
-            } else
-            if (output.length > 1) {
-                if (countFlag == 1) {
-
-                    speech = output.length + " " + HireTermOG + " " + dateperiodOG + ".";
-                } else {
-                    speech = "More than one record found.";
-                }
-            }
-           }
-            
+            speech = output.length + " " + HireTermOG + " " + dateperiodOG + ".";
+        }            
     }
 
 

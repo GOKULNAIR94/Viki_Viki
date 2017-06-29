@@ -37,7 +37,7 @@ module.exports = function(req, res) {
 
     }
 
-    if (intentName == "DCP - HireTerm") {
+    if (intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
         DCPHireTerm(req, res, function(result) {
           console.log("EmpData Called");
         });
