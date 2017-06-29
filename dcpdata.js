@@ -79,13 +79,7 @@ module.exports = function(req, res) {
            if (output.length == 1) {
                 speech = output[0];
             } else
-            if (output.length > 1) {
-                if (countFlag == 1) {
-
-                    speech = output.length + " " + HireTermOG + " " + dateperiodOG + ".";
-                } else {
-                    speech = "More than one record found.";
-                }
+                speech = "More than one record found.";
             }
            }
             
