@@ -19,7 +19,7 @@ module.exports = function(req, res) {
     attrib = req.body.result.parameters['DCP_AttribsGeneral'];
     console.log("attrib :" + attrib);
 
-    if (intentName == "DCP - EmployeeData") {
+    if ( intentName == "DCP - EmployeeData" || intentName == "DCP - EmployeeData - custom" ) {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         filePath = "./data/EmployeeData.json";
         query = "Name = " + Name;
