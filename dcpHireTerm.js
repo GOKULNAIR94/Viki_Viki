@@ -17,15 +17,15 @@ module.exports = function(req, res) {
     var query = "";
 
     attrib = req.body.result.contexts[0].parameters['DCP_AttribsGeneral'];
-    console.log("attrib :" + attrib);
+    
 
     HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
     if (attrib != null && attrib != "") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name = " + Name;
-        if (attrib = "Hire Date")
+        if ( HireTerm == "Hire" )
             filePath = "./data/Hire.json";
-        if (attrib = "Termination Date")
+        if ( HireTerm == "Term" )
             filePath = "./data/Termination.json";
     } else {
         attrib = "Name";
@@ -37,7 +37,7 @@ module.exports = function(req, res) {
         var StartDate = dateperiod.split("/")[0];
         var EndDate = dateperiod.split("/")[1];
 
-        if ( HireTerm == "Hire") {
+        if ( HireTerm == "Hire" ) {
             query = "Hire Date >= " + StartDate + " & Hire Date <= " + EndDate;
         }
 
@@ -68,8 +68,11 @@ module.exports = function(req, res) {
         jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
             data: content
         }).value;
-    console.log("output :" + output);
+    
+    console.log("output 123123 :" + output);
     console.log("intentNameintentName :" + intentName);
+    console.log("attrib :" + attrib);
+    
     if (output.length == 0) {
         speech = "No records found.";
     } else {
