@@ -37,11 +37,7 @@ module.exports = function(req, res) {
 
     }
 
-    if (intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
-        DCPHireTerm(req, res, function(result) {
-          console.log("EmpData Called");
-        });
-    }
+    
     
     if (intentName == "DCP - WorklistApproval") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
@@ -51,46 +47,53 @@ module.exports = function(req, res) {
     }
 
 
-    content = fs.readFileSync(filePath, 'utf8');
-    console.log("Content : " + content);
-
-
-    console.log("query :" + query);
-
-    content = JSON.parse(content);
-    console.log("Content :" + JSON.stringify(content));
-
-    var output =
-        jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
-            data: content
-        }).value;
-    console.log("output :" + output);
-
-    if (output.length == 0) {
-        speech = "No records found.";
-    } else {
-        if( intentName == "DCP - WorklistApproval"){
-            speech = "There are " + output.length + " approval(s) pending. ";
-            for( var i = 0; i < output.length; i++){
-                speech = speech + "\n " + (i+1) + ". " + output[i] + ".";
-            }
-        }
-        else{
-           if (output.length == 1) {
-                speech = output[0];
-            } else
-            if (output.length > 1) {
-                    speech = "More than one record found.";
-           }
-        }
-            
+    if (intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
+        DCPHireTerm(req, res, function(result) {
+          console.log("EmpData Called");
+        });
     }
+    else{
+       content = fs.readFileSync(filePath, 'utf8');
+        console.log("Content : " + content);
 
 
-    return res.json({
-        speech: speech,
-        displayText: speech,
-        //source: 'webhook-OSC-oppty'
-    })
+        console.log("query :" + query);
+
+        content = JSON.parse(content);
+        console.log("Content :" + JSON.stringify(content));
+
+        var output =
+            jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
+                data: content
+            }).value;
+        console.log("output :" + output);
+
+        if (output.length == 0) {
+            speech = "No records found.";
+        } else {
+            if( intentName == "DCP - WorklistApproval"){
+                speech = "There are " + output.length + " approval(s) pending. ";
+                for( var i = 0; i < output.length; i++){
+                    speech = speech + "\n " + (i+1) + ". " + output[i] + ".";
+                }
+            }
+            else{
+               if (output.length == 1) {
+                    speech = output[0];
+                } else
+                if (output.length > 1) {
+                        speech = "More than one record found.";
+               }
+            }
+
+        }
+
+
+        return res.json({
+            speech: speech,
+            displayText: speech,
+            //source: 'webhook-OSC-oppty'
+        })
+       }
 
 }
