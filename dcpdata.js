@@ -50,6 +50,11 @@ module.exports = function(req, res) {
     if (intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
         DCPHireTerm(req, res, function(result) {
           console.log("EmpData Called");
+            return res.json({
+                speech: speech,
+                displayText: speech,
+                //source: 'webhook-OSC-oppty'
+            })
         });
     }
     else{
