@@ -30,26 +30,27 @@ module.exports = function(req, res) {
     } else {
         attrib = "Name";
         countFlag = 1;
+        var HireTerm = req.body.result.contexts[0].parameters['HireTerm'];
 
-        var dateperiod = req.body.result.parameters.dateperiod;
+        var dateperiod = req.body.result.contexts[0].parameters.dateperiod;
         dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
         var StartDate = dateperiod.split("/")[0];
         var EndDate = dateperiod.split("/")[1];
 
-        if (req.body.result.parameters['HireTerm'] == "Hire") {
+        if ( HireTerm == "Hire") {
             query = "Hire Date >= " + StartDate + " & Hire Date <= " + EndDate;
         }
 
-        if (req.body.result.parameters['HireTerm'] == "Term") {
+        if ( HireTerm == "Term") {
             query = "Termination Date >= " + StartDate + " & Termination Date <= " + EndDate;
         }
     }
 
-    if (req.body.result.parameters['HireTerm'] == "Hire") {
+    if ( HireTerm == "Hire") {
         filePath = "./data/Hire.json";
     }
 
-    if (req.body.result.parameters['HireTerm'] == "Term") {
+    if ( HireTerm == "Term") {
         filePath = "./data/Termination.json";
     }
 
