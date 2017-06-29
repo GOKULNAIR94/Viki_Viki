@@ -69,7 +69,7 @@ module.exports = function(req, res) {
             data: content
         }).value;
     console.log("output :" + output);
-
+    console.log("intentNameintentName :" + intentName);
     if (output.length == 0) {
         speech = "No records found.";
     } else {
