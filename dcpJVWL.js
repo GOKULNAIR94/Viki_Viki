@@ -37,7 +37,7 @@ module.exports = function(req, res) {
                         data: content
                     }).value;
                 }
-                speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".\n Posted date is :" + posteddate;
+                speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
             }
         } else
             if (output.length > 1) {
