@@ -21,7 +21,7 @@ module.exports = function(req, res) {
     console.log("Content :" + JSON.stringify(content));
 
     var output =
-        jsonQuery('[* ' + query + ']' + '[' + attrib,POSTED_DATE + ']', {
+        jsonQuery('[* ' + query + ']' + '[' + attrib+ ',POSTED_DATE ]', {
             data: content
         }).value;
     
