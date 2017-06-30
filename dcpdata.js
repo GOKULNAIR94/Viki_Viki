@@ -30,7 +30,7 @@ module.exports = function(req, res) {
     if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
         attrib = "Headcount";
         filePath = "./data/Headcount.json";
-        if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != "")
+        if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != ""){
             query = "Department = " + req.body.result.parameters.ED_Dept;
             HeadCountQuery = req.body.result.parameters.ED_Dept;
         }
