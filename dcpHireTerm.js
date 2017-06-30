@@ -79,7 +79,11 @@ module.exports = function(req, res) {
             }
         }
         else{
-            speech = output.length + " " + HireTermOG + " " + dateperiodOG + ".";
+            if( intentName == "DCP - HireTerm - list - attrib"){
+                speech = "The " + attrib + " of " + Name + " is " + output + ".";
+            }
+            else
+                speech = output.length + " " + HireTermOG + " " + dateperiodOG + ".";
         }            
     }
 
