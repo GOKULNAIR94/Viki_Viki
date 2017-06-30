@@ -17,7 +17,7 @@ module.exports = function(req, res) {
 
     var filePath = "";
     var query = "";
-
+    var HeadCountQuery = "";
     attrib = req.body.result.parameters['DCP_AttribsGeneral'];
     console.log("attrib :" + attrib);
 
@@ -27,13 +27,19 @@ module.exports = function(req, res) {
         query = "Name = " + Name;
     }
 
-    if (intentName == "DCP - HeadCount") {
-        //attrib = "Headcount";
+    if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
+        attrib = "Headcount";
         filePath = "./data/Headcount.json";
         if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != "")
             query = "Department = " + req.body.result.parameters.ED_Dept;
-        if (req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != "")
+            HeadCountQuery = req.body.result.parameters.ED_Dept;
+        }
+            
+        if (req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != ""){
             query = "Location = " + req.body.result.parameters.ED_WorkLocation;
+            HeadCountQuery = req.body.result.parameters.ED_WorkLocation;
+        }
+            
 
     }
 
@@ -47,7 +53,7 @@ module.exports = function(req, res) {
     }
 
 
-    if (intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
+    if ( intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
         DCPHireTerm(req, res, function(result) {
           console.log("EmpData Called");
             speech = result.speech;
@@ -85,7 +91,12 @@ module.exports = function(req, res) {
             }
             else{
                if (output.length == 1) {
-                    speech = output[0];
+                   if ( intentName.indexOf( "DCPDCP - EmployeeData" ) == 0 ){
+                       speech = "The " + attrib + " of " + Name + " is " + output[0] + ".";
+                   }
+                   if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
+                       speech = "The Headcount of " + HeadCountQuery + " is " + output[0] + ".";
+                   }
                 } else
                 if (output.length > 1) {
                         speech = "More than one record found.";
