@@ -21,16 +21,17 @@ module.exports = function(req, res) {
     console.log("Content :" + JSON.stringify(content));
 
     var output =
-        jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
+        jsonQuery('[* ' + query + ']' + '[' + attrib,POSTED_DATE + ']', {
             data: content
         }).value;
     
+    console.log("output :" + output );
     if (output.length == 0) {
         speech = "No records found.";
     } else {
         if (output.length == 1) {
             if ( intentName.indexOf( "DCP - JRNL" ) == 0 ){
-                speech = "The " + attrib + " of journel" + jrnlId + " is " + output + ".";
+                speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".";
             }
         } else
             if (output.length > 1) {
