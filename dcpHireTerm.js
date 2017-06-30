@@ -73,7 +73,7 @@ module.exports = function(req, res) {
         speech = "No records found.";
     } else {
         if (intentName == "DCP - HireTerm - list") {
-            speech = "The " + HireTermOG + " " + dateperiodOG + "are : ";
+            speech = "The " + HireTermOG + " " + dateperiodOG + " are : ";
             for (var i = 0; i < output.length; i++) {
                 speech = speech + "\n " + (i + 1) + ". " + output[i] + ".";
             }
