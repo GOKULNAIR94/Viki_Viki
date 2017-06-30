@@ -105,7 +105,7 @@ module.exports = function(req, res) {
             }
             else{
                if (output.length == 1) {
-                   if ( intentName.indexOf( "DCPDCP - EmployeeData" ) == 0 ){
+                   if ( intentName.indexOf( "DCP - EmployeeData" ) == 0 ){
                        speech = "The " + attrib + " of " + Name + " is " + output[0] + ".";
                    }
                    if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
