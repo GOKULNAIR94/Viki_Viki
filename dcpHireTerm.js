@@ -79,7 +79,7 @@ module.exports = function(req, res) {
             }
         }
         else{
-            if( intentName == "DCP - HireTerm - list - attrib"){
+            if( intentName == "DCP - HireTerm - list - attrib" || intentName == "DCP - HireTerm - list - attrib - custom"){
                 speech = "The " + attrib + " of " + Name + " is " + output + ".";
             }
             else
