@@ -23,6 +23,8 @@ module.exports = function(req, res) {
     if (attrib != null && attrib != "") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name = " + Name;
+            console.log("HireTerm  Here is debuuger: " + HireTerm);
+
         if ( HireTerm == "Hire" )
             filePath = "./data/Hire.json";
         if ( HireTerm == "Term" )
