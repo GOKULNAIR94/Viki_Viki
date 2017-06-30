@@ -9,6 +9,7 @@ module.exports = function(req, res) {
 
     var Name = "";
     var attrib = "";
+    var HireTerm = "";
     var HireTermOG = "";
     var attribOG = "";
     var countFlag = 0;
@@ -20,19 +21,21 @@ module.exports = function(req, res) {
     
 
     HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
+    HireTerm = req.body.result.contexts[0].parameters['HireTerm'];
+    if ( HireTerm == "Hire" )
+        filePath = "./data/Hire.json";
+    if ( HireTerm == "Term" )
+        filePath = "./data/Termination.json";
     if (attrib != null && attrib != "") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name = " + Name;
             console.log("HireTerm  Here is debuuger: " + HireTerm);
 
-        if ( HireTerm == "Hire" )
-            filePath = "./data/Hire.json";
-        if ( HireTerm == "Term" )
-            filePath = "./data/Termination.json";
+
     } else {
         attrib = "Name";
         countFlag = 1;
-        var HireTerm = req.body.result.contexts[0].parameters['HireTerm'];
+        
 
         var dateperiod = req.body.result.contexts[0].parameters.dateperiod;
         dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
@@ -47,15 +50,6 @@ module.exports = function(req, res) {
             query = "Termination Date >= " + StartDate + " & Termination Date <= " + EndDate;
         }
     }
-
-    if ( HireTerm == "Hire") {
-        filePath = "./data/Hire.json";
-    }
-
-    if ( HireTerm == "Term") {
-        filePath = "./data/Termination.json";
-    }
-
 
     content = fs.readFileSync(filePath, 'utf8');
     console.log("Content : " + content);
