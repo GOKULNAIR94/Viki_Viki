@@ -18,7 +18,7 @@ module.exports = function(req, res) {
     content = fs.readFileSync(filePath, 'utf8');
 
     content = JSON.parse(content);
-    console.log("Content :" + JSON.stringify(content));
+    //console.log("Content :" + JSON.stringify(content));
 
     var output =
         jsonQuery('[* ' + query + ']' + '[' + attrib+ ',POSTED_DATE ]', {
