@@ -12,6 +12,7 @@ module.exports = function(req, res) {
     var filePath = "";
     var query = "";
     
+    filePath = "./data/JournalTable.json";
     query = "JOURNAL_ID = " + jrnlId;
     
     content = fs.readFileSync(filePath, 'utf8');
