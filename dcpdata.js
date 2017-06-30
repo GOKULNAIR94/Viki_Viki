@@ -78,7 +78,7 @@ module.exports = function(req, res) {
         });
     }
     
-    if ( intentName.indexOf( "DCP - HireTerm" ) != 0 &&  intentName.indexOf( "DCP - JRNL" ) != 0 ){
+    if ( intentName.indexOf( "DCP - EmployeeData" ) == 0 &&  intentName.indexOf( "DCP - WorklistApproval" ) == 0 &&  intentName.indexOf( "DCP - HeadCount" ) == 0){
        content = fs.readFileSync(filePath, 'utf8');
         console.log("Content : " + content);
 
