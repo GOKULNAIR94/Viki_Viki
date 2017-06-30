@@ -25,7 +25,9 @@ module.exports = function(req, res) {
         filePath = "./data/Hire.json";
     if (HireTerm == "Term")
         filePath = "./data/Termination.json";
-    if (attrib != null && attrib != "") {
+    
+    
+    if ( intentName.indexOf( "DCP - HireTerm - list - attrib" ) == 0 ) {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         query = "Name = " + Name;
         console.log("HireTerm  Here is debuuger: " + HireTerm);
