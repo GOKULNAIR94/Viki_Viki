@@ -36,7 +36,7 @@ module.exports = function(req, res) {
                         jsonQuery('[* ' + query + ']' + '[POSTED_DATE]', {
                         data: content
                     }).value;
-                    speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
+                    speech = "The status of journel " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
                 }
                 
                 if( output == "Error"){
@@ -44,10 +44,10 @@ module.exports = function(req, res) {
                         jsonQuery('[* ' + query + ']' + '[ERROR]', {
                         data: content
                     }).value;
-                    speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".\n Reason is : " + errormsg;
+                    speech = "The status of journel " + jrnlId + " is " + output + ".\n Reason is : " + errormsg;
                 }
                 if( output == "New"){
-                    speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".";
+                    speech = "The status of journel " + jrnlId + " is " + output + ".";
                 }
                 
             }
