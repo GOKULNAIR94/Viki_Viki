@@ -4,6 +4,7 @@ module.exports = function(req, res) {
     var jsonQuery = require('json-query');
     
     var DCPHireTerm = require("./dcpHireTerm");
+    var DCPJVWL = require("./dcpJVWL");
     
     var content;
     var speech;
@@ -64,7 +65,20 @@ module.exports = function(req, res) {
             })
         });
     }
-    else{
+    
+    if ( intentName.indexOf( "DCP - JRNL" ) == 0 ) {
+        DCPJVWL(req, res, function(result) {
+          console.log("JRNL Called");
+            speech = result.speech;
+            return res.json({
+                speech: speech,
+                displayText: speech,
+                //source: 'webhook-OSC-oppty'
+            })
+        });
+    }
+    
+    if ( intentName.indexOf( "DCP - HireTerm" ) != 0 &&  intentName.indexOf( "DCP - JRNL" ) != 0 ){
        content = fs.readFileSync(filePath, 'utf8');
         console.log("Content : " + content);
 
