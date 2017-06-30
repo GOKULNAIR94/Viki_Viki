@@ -21,7 +21,7 @@ module.exports = function(req, res) {
     //console.log("Content :" + JSON.stringify(content));
 
     var output =
-        jsonQuery('[* ' + query + ']' + '[' + attrib+ ',POSTED_DATE ]', {
+        jsonQuery('[* ' + query + ']' + '[' + attrib+ ']', {
             data: content
         }).value;
     
@@ -31,7 +31,13 @@ module.exports = function(req, res) {
     } else {
         if (output.length == 1) {
             if ( intentName.indexOf( "DCP - JRNL" ) == 0 ){
-                speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".";
+                if( output == "Posted"){
+                   var posteddate =
+                        jsonQuery('[* ' + query + ']' + '[POSTED_DATE]', {
+                        data: content
+                    }).value;
+                }
+                speech = "The " + attrib + " of journel " + jrnlId + " is " + output + ".\n Posted date is :" + posteddate;
             }
         } else
             if (output.length > 1) {
