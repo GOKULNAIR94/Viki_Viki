@@ -19,10 +19,11 @@ module.exports = function(req, res) {
     var filePath = "";
     var query = "";
     var HeadCountQuery = "";
-    attrib = req.body.result.parameters['DCP_AttribsGeneral'];
-    console.log("attrib :" + attrib);
+    
+    
 
     if ( intentName == "DCP - EmployeeData" || intentName == "DCP - EmployeeData - custom" ) {
+        attrib = req.body.result.parameters['DCP_AttribsGeneral'];
         Name = req.body.result.contexts[0].parameters['Name.original'];
         filePath = "./data/EmployeeData.json";
         query = "Name = " + Name;
@@ -93,6 +94,7 @@ module.exports = function(req, res) {
 
         content = JSON.parse(content);
         console.log("Content :" + JSON.stringify(content));
+        console.log("attrib :" + attrib);
 
         var output =
             jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
