@@ -28,6 +28,12 @@ module.exports = function(req, res) {
         query = "Name = " + Name;
     }
 
+    if ( intentName.indexOf( "DCP - Voucher" ) == 0 ) {
+        attrib = req.body.result.contexts[0].parameters['VouchAttrib'];
+        filePath = "./data/VoucherTable.json";
+        query = "VOUCHER_ID = " + req.body.result.contexts[0].parameters['VOUCHER_ID'];
+    }
+
     if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
         attrib = "Headcount";
         filePath = "./data/Headcount.json";
@@ -110,6 +116,9 @@ module.exports = function(req, res) {
                    }
                    if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
                        speech = "The Headcount of " + HeadCountQuery + " is " + output[0] + ".";
+                   }
+                   if ( intentName.indexOf( "DCP - Voucher" ) == 0 ) {
+                       speech = "The Status of " + req.body.result.contexts[0].parameters['VOUCHER_ID'] + " is " + output[0] + ".";
                    }
                 } else
                 if (output.length > 1) {
