@@ -183,8 +183,8 @@ module.exports = function(req, res) {
                                    var TRANS_DATE = jsonQuery('[ ' + query + ']' + '[TRANS_DATE]', {
                                                         data: content
                                                     }).value;
-                                   console.log( " TRANS_DATE : " + TRANS_DATE );
-                                    if ( TRANS_DATE.length == 1 ) {
+                                   console.log( " TRANS_DATE Length : " + TRANS_DATE.length );
+                                    if ( INSTANCEID ) {
                                         speech = "Instance Id : " + INSTANCEID +
                                            ",\n Transaction Id : " + TRANSACTIONID +
                                            ",\n Event Name : " + EVENTNAME +
