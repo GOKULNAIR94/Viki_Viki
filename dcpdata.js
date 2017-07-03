@@ -151,7 +151,9 @@ module.exports = function(req, res) {
                                speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                            }
                            else{
-                               speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + Math.max(output);
+                               var minFullDate = new Date(Math.min.apply(null,output));
+                               var minDate = "" + (dDate.getMonth()+1) + "/" + dDate.getDate() +  "/" +dDate.getFullYear();
+                               speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + minDate;
                            }
                        }
                    }
