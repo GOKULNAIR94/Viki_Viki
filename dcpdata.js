@@ -129,7 +129,7 @@ module.exports = function(req, res) {
             else{
                 if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
                        if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
-                           speech = "The " + attrib + " of " + Name + " is " + output[0] + ".";
+                           speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                        }
                        else{
                            speech = "There are " + output.length + " voucher(s) awaiting approval.";
@@ -139,7 +139,7 @@ module.exports = function(req, res) {
                {
                    if (output.length == 1) {
                        if ( intentName.indexOf( "DCP - EmployeeData" ) == 0 ){
-                           speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
+                           speech = "The " + attrib + " of " + Name + " is " + output[0] + ".";
                        }
                        if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
                            speech = "The Headcount of " + HeadCountQuery + " is " + output[0] + ".";
