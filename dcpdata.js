@@ -154,9 +154,8 @@ module.exports = function(req, res) {
                                var minFullDate = new Date(Math.min.apply(null,output));
                                console.log( "minFullDate : " + minFullDate );
                                var dates = [];
-                                for(var i =0; i<arr.length; i++ ){
-                                    alert("i = " + arr[i]);
-                                    dates.push(new Date(arr[i]));
+                                for(var i =0; i< output.length; i++ ){
+                                    dates.push(new Date( output[i] ) );
                                 }
                                var minFullDate=new Date(Math.min.apply(null,dates));
                                var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
