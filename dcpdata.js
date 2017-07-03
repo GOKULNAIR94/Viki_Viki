@@ -38,6 +38,7 @@ module.exports = function(req, res) {
     if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
         filePath = "./data/WLTable.json";
         if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
+            Name = req.body.result.contexts[0].parameters['INSTANCEID'];
             attrib = req.body.result.contexts[0].parameters['WLAttrib'];
             attribOG = req.body.result.contexts[0].parameters['WLAttrib.original'];
             query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
