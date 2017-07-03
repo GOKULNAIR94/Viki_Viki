@@ -40,8 +40,8 @@ module.exports = function(req, res) {
         
         if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
             var dDate = new Date();
-            var date = dDate.today().subtract(30, 'days');
-            speech = "Date : " + date;
+            dDate.setDate(d.getDate() - 30);
+            speech = "Date : " + dDate;
         }
         else{
             if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
