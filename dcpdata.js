@@ -146,7 +146,6 @@ module.exports = function(req, res) {
                     else{
                            if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
                                var TransDate = new Date(output[0]);
-                               TransDate = TransDate - 30;
                                speech = "The " + attribOG + " of " + Name + " is " + TransDate + ".";
                            }
                            else{
