@@ -165,7 +165,7 @@ module.exports = function(req, res) {
                                
                                //var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
                                if( intentName == "DCP - WLTable - custom-2"){
-                                   query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
+                                   query = "BUSPROCNAME = DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
                                    console.log("The Query" + query);
 
                                    var INSTANCEID = jsonQuery('[ ' + query + ']' + '[INSTANCEID]', {
