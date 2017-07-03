@@ -40,7 +40,7 @@ module.exports = function(req, res) {
         
         if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
             var dDate = new Date();
-            dDate.setDate(d.getDate() - 30);
+            dDate.setDate(dDate.getDate() - 30);
             speech = "Date : " + dDate;
         }
         else{
