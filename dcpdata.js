@@ -39,7 +39,7 @@ module.exports = function(req, res) {
         filePath = "./data/WLTable.json";
         
         if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
-            var dDate = new Date("01/01/2017");
+            var dDate = new Date("01/05/2017");
             //dDate.setDate(dDate.getDate() - 30);
             speech = "Date : " + dDate;
             attrib = "TRANS_DATE";
