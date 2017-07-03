@@ -130,7 +130,8 @@ module.exports = function(req, res) {
             else{
                 if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
                        if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
-                           var TransDate = new Date(output[0]);
+                           var dateSplit = output[0].split('/');
+                           var TransDate = new Date( dateSplit[1], dateSplit[0], dateSplit[2] );
                            speech = "The " + attribOG + " of " + Name + " is " + TransDate + ".";
                        }
                        else{
