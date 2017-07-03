@@ -43,7 +43,7 @@ module.exports = function(req, res) {
             dDate.setDate(dDate.getDate() - 30);
             speech = "Date : " + dDate;
             attrib = "INSTANCEID";
-            var strDate = "" + (dDate.getMonth()+1) + "/" + dDate.getFullYear() +  "/" +dDate.getFullYear();
+            var strDate = "" + (dDate.getMonth()+1) + "/" + dDate.getDate() +  "/" +dDate.getFullYear();
             query = "TRANS_DATE < 1/1/2017";// + strDate;
         }
         else{
