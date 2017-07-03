@@ -156,7 +156,14 @@ module.exports = function(req, res) {
                                     dates.push(new Date( output[i] ) );
                                 }
                                var minFullDate=new Date(Math.min.apply(null,dates));
-                               var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
+                               
+                               
+                                var day = ( minFullDate.getDate() < 10 )? "0" + minFullDate.getDate() : minFullDate.getDate();
+                                var month = ( (minFullDate.getMonth()+1) < 10 )? "0" + (minFullDate.getMonth()+1) : (minFullDate.getMonth()+1);
+                                var minDate = "" + month + "/" + day +  "/" +minFullDate.getFullYear();
+                               
+                               
+                               //var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
                                if( intentName == "DCP - WLTable - custom-2"){
                                    query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
                                    console.log("The Query" + query);
