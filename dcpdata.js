@@ -39,7 +39,8 @@ module.exports = function(req, res) {
         filePath = "./data/WLTable.json";
         
         if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
-            var date = Date.today().subtract(30, 'days');
+            var dDate = new Date(),
+            var date = dDate.today().subtract(30, 'days');
             speech = "Date : " + date;
         }
         else{
