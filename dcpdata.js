@@ -44,7 +44,7 @@ module.exports = function(req, res) {
             speech = "Date : " + dDate;
             attrib = "INSTANCEID";
             var strDate = "" + (dDate.getMonth()+1) + "/" + dDate.getFullYear() +  "/" +dDate.getFullYear();
-            query = "TRANS_DATE < 2/10/2017";// + strDate;
+            query = "TRANS_DATE < 1/5/2017";// + strDate;
         }
         else{
             if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
