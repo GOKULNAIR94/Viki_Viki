@@ -120,7 +120,10 @@ module.exports = function(req, res) {
                        speech = "The Headcount of " + HeadCountQuery + " is " + output[0] + ".";
                    }
                    if ( intentName.indexOf( "DCP - Voucher" ) == 0 ) {
-                       speech = "The Voucher " + req.body.result.contexts[0].parameters['VOUCHER_ID'] + " is " + output[0] + ".";
+                       if( output[0] == "Pending Approval" )
+                           speech = "The Voucher " + req.body.result.contexts[0].parameters['VOUCHER_ID'] + " is " is awaiting approval.";
+                       else
+                           speech = "The Voucher " + req.body.result.contexts[0].parameters['VOUCHER_ID'] + " is " + output[0] + ".";
                    }
                 } else
                 if (output.length > 1) {
