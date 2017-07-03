@@ -43,7 +43,9 @@ module.exports = function(req, res) {
             //dDate.setDate(dDate.getDate() - 30);
             speech = "Date : " + dDate;
             attrib = "TRANS_DATE";
-            var strDate = "" + (dDate.getMonth()+1) + "/" + dDate.getDate() +  "/" +dDate.getFullYear();
+            var day = ( dDate.getDate() < 10 )? "0" + dDate.getDate() : dDate.getDate();
+            var month = ( (dDate.getMonth()+1) < 10 )? "0" + (dDate.getMonth()+1) : (dDate.getMonth()+1);
+            var strDate = "" + month + "/" + day +  "/" +dDate.getFullYear();
             query = "TRANS_DATE < " + strDate;
         }
         else{
