@@ -157,7 +157,42 @@ module.exports = function(req, res) {
                                 }
                                var minFullDate=new Date(Math.min.apply(null,dates));
                                var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
-                               speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + minDate;
+                               if( intentName == "DCP - WLTable - custom-2"){
+                                   query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL && TRANS_DATE = " + minDate;
+                                   console.log("The Query" + query);
+
+                                   var INSTANCEID = jsonQuery('[ ' + query + ']' + '[INSTANCEID]', {
+                                                    data: content
+                                                }).value;
+                                   var TRANSACTIONID = jsonQuery('[ ' + query + ']' + '[TRANSACTIONID]', {
+                                                        data: content
+                                                    }).value;
+                                   var EVENTNAME = jsonQuery('[ ' + query + ']' + '[EVENTNAME]', {
+                                                        data: content
+                                                    }).value;
+                                   var WORKLISTNAME = jsonQuery('[ ' + query + ']' + '[WORKLISTNAME]', {
+                                                        data: content
+                                                    }).value;
+                                   var TRANS_DATE = jsonQuery('[ ' + query + ']' + '[TRANS_DATE]', {
+                                                        data: content
+                                                    }).value;
+                                    if ( output.length == 1 ) {
+                                        speech = "Instance Id : " + INSTANCEID +
+                                           ",\n Transaction Id : " + TRANSACTIONID +
+                                           ",\n Event Name : " + EVENTNAME +
+                                           ",\n Worklist Name : " + WORKLISTNAME +
+                                           "\n Transaction Date : " + TRANS_DATE + ".";
+                                    }
+                                   else{
+                                       speech = "Something went wrong!";
+                                   }
+
+                                   
+                               }
+                               else{
+                                   speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + minDate;
+                               }
+                               
                            }
                        }
                    }
