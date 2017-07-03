@@ -140,13 +140,18 @@ module.exports = function(req, res) {
             }
             else{
                 if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
-                       if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
-                           var TransDate = new Date(output[0]);
-                           TransDate = TransDate - 30;
-                           speech = "The " + attribOG + " of " + Name + " is " + TransDate + ".";
-                       }
-                       else{
-                           speech = "There are " + output.length + " voucher(s) awaiting approval.";
+                    if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
+                        speech = "There are " + output.length + " voilating SLA.";
+                    }
+                    else{
+                           if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
+                               var TransDate = new Date(output[0]);
+                               TransDate = TransDate - 30;
+                               speech = "The " + attribOG + " of " + Name + " is " + TransDate + ".";
+                           }
+                           else{
+                               speech = "There are " + output.length + " voucher(s) awaiting approval.";
+                           }
                        }
                    }
                 else
