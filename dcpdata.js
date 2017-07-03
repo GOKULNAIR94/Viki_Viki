@@ -151,7 +151,7 @@ module.exports = function(req, res) {
                                speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                            }
                            else{
-                               speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + output.min();
+                               speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + Math.max(output);
                            }
                        }
                    }
