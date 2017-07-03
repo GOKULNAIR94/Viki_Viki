@@ -39,8 +39,8 @@ module.exports = function(req, res) {
         filePath = "./data/WLTable.json";
         
         if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
-            var dDate = new Date("01/05/2017");
-            //dDate.setDate(dDate.getDate() - 30);
+            var dDate = new Date();
+            dDate.setDate(dDate.getDate() - 30);
             speech = "Date : " + dDate;
             attrib = "TRANS_DATE";
             var day = ( dDate.getDate() < 10 )? "0" + dDate.getDate() : dDate.getDate();
@@ -151,8 +151,6 @@ module.exports = function(req, res) {
                                speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                            }
                            else{
-                               var minFullDate = new Date(Math.min.apply(null,output));
-                               console.log( "minFullDate : " + minFullDate );
                                var dates = [];
                                 for(var i =0; i< output.length; i++ ){
                                     dates.push(new Date( output[i] ) );
