@@ -56,7 +56,7 @@ module.exports = function(req, res) {
                 query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
             }
             else{
-                attrib = "INSTANCEID";
+                attrib = "TRANS_DATE";
                 query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL";
             }
         }
@@ -143,7 +143,7 @@ module.exports = function(req, res) {
             else{
                 if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
                     if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
-                        speech = "There are " + output.length + " voilating SLA.";
+                        speech = "There are " + output.length + " vouchers voilating SLA.";
                     }
                     else{
                            if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
@@ -151,7 +151,7 @@ module.exports = function(req, res) {
                                speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                            }
                            else{
-                               speech = "There are " + output.length + " voucher(s) awaiting approval.";
+                               speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + output.min();
                            }
                        }
                    }
