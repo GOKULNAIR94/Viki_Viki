@@ -114,7 +114,7 @@ module.exports = function(req, res) {
     
     if ( intentName.indexOf( "DCP - EmployeeData" ) == 0 ||  intentName.indexOf( "DCP - WorklistApproval" ) == 0 ||  intentName.indexOf( "DCP - HeadCount" ) == 0 || intentName.indexOf( "DCP - Voucher" ) == 0 || intentName.indexOf( "DCP - WLTable" ) == 0){
        content = fs.readFileSync(filePath, 'utf8');
-        console.log("Content : " + content);
+        //console.log("Content : " + content);
 
 
         console.log("query :" + query);
