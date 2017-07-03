@@ -44,7 +44,7 @@ module.exports = function(req, res) {
             speech = "Date : " + dDate;
             attrib = "INSTANCEID";
             var strDate = "" + (dDate.getMonth()+1) + "/" + dDate.getFullYear() +  "/" +dDate.getFullYear();
-            query = "TRANS_DATE < " + strDate;
+            query = "TRANS_DATE < 2/10/2017";// + strDate;
         }
         else{
             if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
@@ -146,7 +146,7 @@ module.exports = function(req, res) {
                     else{
                            if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
                                var TransDate = new Date(output[0]);
-                               speech = "The " + attribOG + " of " + Name + " is " + TransDate + ".";
+                               speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                            }
                            else{
                                speech = "There are " + output.length + " voucher(s) awaiting approval.";
