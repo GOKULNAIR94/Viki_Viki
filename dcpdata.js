@@ -39,12 +39,12 @@ module.exports = function(req, res) {
         filePath = "./data/WLTable.json";
         
         if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
-            var dDate = new Date();
-            dDate.setDate(dDate.getDate() - 30);
+            var dDate = new Date("01/05/2017");
+            //dDate.setDate(dDate.getDate() - 30);
             speech = "Date : " + dDate;
             attrib = "TRANS_DATE";
             var strDate = "" + (dDate.getMonth()+1) + "/" + dDate.getDate() +  "/" +dDate.getFullYear();
-            query = "TRANS_DATE < 01/02/2017";// + strDate;
+            query = "TRANS_DATE < " + strDate;
         }
         else{
             if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
