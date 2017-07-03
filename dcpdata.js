@@ -34,6 +34,20 @@ module.exports = function(req, res) {
         filePath = "./data/VoucherTable.json";
         query = "VOUCHER_ID = " + req.body.result.contexts[0].parameters['VOUCHER_ID'];
     }
+    
+    if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
+        filePath = "./data/WLTable.json";
+        if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
+            attrib = req.body.result.contexts[0].parameters['WLAttrib'];
+            query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
+        }
+        else{
+            attrib = "INSTANCEID";
+            query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL";
+        }
+            
+        
+    }
 
     if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
         attrib = "Headcount";
@@ -124,6 +138,15 @@ module.exports = function(req, res) {
                            speech = "The Voucher " + req.body.result.contexts[0].parameters['VOUCHER_ID'] + " is " is awaiting approval.";
                        else
                            speech = "The Voucher " + req.body.result.contexts[0].parameters['VOUCHER_ID'] + " is " + output[0] + ".";
+                   }
+                   
+                   if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
+                       if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
+                           speech = "The " + attrib + " of " + Name + " is " + output[0] + ".";
+                       }
+                       else{
+                           speech = "There are " + output.length + " voucher(s) awaiting approval.";
+                       }
                    }
                 } else
                 if (output.length > 1) {
