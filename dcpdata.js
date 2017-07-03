@@ -39,6 +39,7 @@ module.exports = function(req, res) {
         filePath = "./data/WLTable.json";
         if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
             attrib = req.body.result.contexts[0].parameters['WLAttrib'];
+            attribOG = req.body.result.contexts[0].parameters['WLAttrib.original'];
             query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
         }
         else{
@@ -138,7 +139,7 @@ module.exports = function(req, res) {
                {
                    if (output.length == 1) {
                        if ( intentName.indexOf( "DCP - EmployeeData" ) == 0 ){
-                           speech = "The " + attrib + " of " + Name + " is " + output[0] + ".";
+                           speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                        }
                        if ( intentName.indexOf( "DCP - HeadCount" ) == 0 ) {
                            speech = "The Headcount of " + HeadCountQuery + " is " + output[0] + ".";
