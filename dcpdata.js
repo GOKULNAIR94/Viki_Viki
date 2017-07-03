@@ -185,8 +185,8 @@ module.exports = function(req, res) {
                                                     }).value;
                                    
                                     if ( TRANS_DATE.length > 0 ) {
-                                        speech = "Instance Id : " + INSTANCEID +
-                                           ",\n Transaction Id : " + TRANSACTIONID +
+                                        speech = "The Instance Id of the voucher is : " + INSTANCEID +
+                                           ",\n and few more details: \nTransaction Id : " + TRANSACTIONID +
                                            ",\n Event Name : " + EVENTNAME +
                                            ",\n Worklist Name : " + WORKLISTNAME +
                                            "\n Transaction Date : " + TRANS_DATE + ".";
