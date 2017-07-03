@@ -189,7 +189,7 @@ module.exports = function(req, res) {
                                            ",\n and few more details: \nTransaction Id : " + TRANSACTIONID +
                                            ",\n Event Name : " + EVENTNAME +
                                            ",\n Worklist Name : " + WORKLISTNAME +
-                                           "\n Transaction Date : " + TRANS_DATE + ".";
+                                           ",\n Transaction Date : " + TRANS_DATE + ".";
                                     }
                                    else{
                                        speech = "Something went wrong!";
