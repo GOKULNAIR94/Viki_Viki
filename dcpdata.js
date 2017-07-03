@@ -143,7 +143,7 @@ module.exports = function(req, res) {
             else{
                 if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
                     if ( intentName.indexOf( "DCP - WLTable - SLA" ) == 0 ) {
-                        speech = "There are " + output.length + " vouchers voilating SLA.";
+                        speech = "There are " + output.length + " vouchers violating SLA.";
                     }
                     else{
                            if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
