@@ -153,6 +153,12 @@ module.exports = function(req, res) {
                            else{
                                var minFullDate = new Date(Math.min.apply(null,output));
                                console.log( "minFullDate : " + minFullDate );
+                               var dates = [];
+                                for(var i =0; i<arr.length; i++ ){
+                                    alert("i = " + arr[i]);
+                                    dates.push(new Date(arr[i]));
+                                }
+                               var minFullDate=new Date(Math.min.apply(null,dates));
                                var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
                                speech = "There are " + output.length + " voucher(s) awaiting approval. The earliest transaction date is " + minDate;
                            }
