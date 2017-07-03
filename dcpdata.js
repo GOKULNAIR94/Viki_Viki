@@ -130,9 +130,8 @@ module.exports = function(req, res) {
             else{
                 if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
                        if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
-                           var dateSplit = output[0].split('/');
-                           var TransDate = new Date( dateSplit[1], dateSplit[0], dateSplit[2] );
-                           speech = "The " + attribOG + " of " + Name + " is " + TransDate + ".";
+                           var TransDate = new Date(output[0]);
+                           speech = "The " + attribOG + " of " + Name + " is " + output[0] + ".";
                        }
                        else{
                            speech = "There are " + output.length + " voucher(s) awaiting approval.";
