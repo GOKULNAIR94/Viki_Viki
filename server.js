@@ -160,19 +160,6 @@ restService.post('/inputmsg', function(req, res) {
           console.log("EmpData Called");
         });
       } 
-
-      // if(intentName == 'WriteCSV' ){
-      //   content = fs.readFileSync('data.json', 'utf8');
-      //   console.log( "Content : " + content);
-      //   content = JSON.parse(content);
-      //   content.items[0]["Location"] = "Mahape";
-      //   content.items[0]["cadre"] = "A12";
-      //   content = JSON.stringify( content, null, 2);
-      //   fs.writeFile('data.json', content, function(){
-      //     console.log("All set...");
-      //   });
-      // }
-       
     }
     catch(e)
     {

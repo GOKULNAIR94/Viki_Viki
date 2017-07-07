@@ -167,29 +167,47 @@ module.exports = function(req, res) {
                                if( intentName == "DCP - WLTable - custom-2"){
                                    query = "BUSPROCNAME = DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
                                    console.log("The Query" + query);
+                                   var output = {
+                                       "key" : "value"
+                                   };
 
-                                   var INSTANCEID = jsonQuery('[ ' + query + ']' + '[INSTANCEID]', {
-                                                    data: content
-                                                }).value;
-                                   var TRANSACTIONID = jsonQuery('[ ' + query + ']' + '[TRANSACTIONID]', {
-                                                        data: content
-                                                    }).value;
-                                   var EVENTNAME = jsonQuery('[ ' + query + ']' + '[EVENTNAME]', {
-                                                        data: content
-                                                    }).value;
-                                   var WORKLISTNAME = jsonQuery('[ ' + query + ']' + '[WORKLISTNAME]', {
-                                                        data: content
-                                                    }).value;
-                                   var TRANS_DATE = jsonQuery('[ ' + query + ']' + '[TRANS_DATE]', {
-                                                        data: content
-                                                    }).value;
+                                   for(var i = 0; i < content.length; i++)
+                                    {
+                                      if( content[i].BUSPROCNAME == 'DCP_VOUCHER_APPROVAL'  && content[i].TRANS_DATE == minDate )
+                                      {
+                                          output.INSTANCEID = content[i].INSTANCEID;
+                                          output.TRANSACTIONID = content[i].TRANSACTIONID;
+                                          output.EVENTNAME = content[i].EVENTNAME;
+                                          output.WORKLISTNAME = content[i].WORKLISTNAME;
+                                          output.TRANS_DATE = content[i].TRANS_DATE;
+                                          break;
+                                      }
+                                    }
+
+
+
+//                                   var INSTANCEID = jsonQuery('[ ' + query + ']' + '[INSTANCEID]', {
+//                                                    data: content
+//                                                }).value;
+//                                   var TRANSACTIONID = jsonQuery('[ ' + query + ']' + '[TRANSACTIONID]', {
+//                                                        data: content
+//                                                    }).value;
+//                                   var EVENTNAME = jsonQuery('[ ' + query + ']' + '[EVENTNAME]', {
+//                                                        data: content
+//                                                    }).value;
+//                                   var WORKLISTNAME = jsonQuery('[ ' + query + ']' + '[WORKLISTNAME]', {
+//                                                        data: content
+//                                                    }).value;
+//                                   var TRANS_DATE = jsonQuery('[ ' + query + ']' + '[TRANS_DATE]', {
+//                                                        data: content
+//                                                    }).value;
                                    
-                                    if ( TRANS_DATE.length > 0 ) {
-                                        speech = "The Instance Id of the voucher is : " + INSTANCEID +
-                                           ",\n and few more details: \nTransaction Id : " + TRANSACTIONID +
-                                           ",\n Event Name : " + EVENTNAME +
-                                           ",\n Worklist Name : " + WORKLISTNAME +
-                                           ",\n Transaction Date : " + TRANS_DATE + ".";
+                                    if ( output.length > 0 ) {
+                                        speech = "The Instance Id of the voucher is : " + output.INSTANCEID +
+                                           ",\n and few more details: \nTransaction Id : " + output.TRANSACTIONID +
+                                           ",\n Event Name : " + output.EVENTNAME +
+                                           ",\n Worklist Name : " + output.WORKLISTNAME +
+                                           ",\n Transaction Date : " + output.TRANS_DATE + ".";
                                     }
                                    else{
                                        speech = "Something went wrong!";
