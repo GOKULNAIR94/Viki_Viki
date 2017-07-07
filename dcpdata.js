@@ -119,13 +119,15 @@ module.exports = function(req, res) {
         //console.log("Content : " + content);
 
 
-        console.log("query :" + query);
+        
 
         content = JSON.parse(content);
-        console.log("Content :" + JSON.stringify(content));
+        //console.log("Content :" + JSON.stringify(content));
+        console.log("query :" + query);
         console.log("attrib :" + attrib);
 
         var output = [];
+        console.log("Eval :" +  eval(query.toLowerCase()));
         for(var i = 0; i < content.length; i++){
             if( eval(query.toLowerCase()) ){
                 output.add( content[i][attrib] );
