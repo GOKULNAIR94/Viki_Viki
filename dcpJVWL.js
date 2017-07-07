@@ -38,7 +38,7 @@ module.exports = function(req, res) {
                 speech = "The status of journal " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
             }
             if( output == "Error"){
-                var posteddate = content[i]["ERROR"];
+                var errormsg = content[i]["ERROR"];
                 speech = "The status of journal " + jrnlId + " is " + output + ".\n Reason is : " + errormsg;
             }
             if( output == "New"){
