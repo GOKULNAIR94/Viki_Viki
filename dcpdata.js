@@ -168,7 +168,7 @@ module.exports = function(req, res) {
                                    query = "BUSPROCNAME = DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
                                    query = "console.log(' Evalled The Query' + query);";
                                    eval(query);
-                                   console.log("The Query :" + query);
+                                   //console.log("The Query :" + query);
                                    var output = {
                                        "key" : "value"
                                    };
