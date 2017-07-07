@@ -29,7 +29,7 @@ module.exports = function(req, res) {
     
     if ( intentName.indexOf( "DCP - HireTerm - list - attrib" ) == 0 ) {
         Name = req.body.result.contexts[0].parameters['Name.original'];
-        //query = "Name = " + Name;
+        
         query = [{
             "key" : "Name",
             "opt" : "==",
@@ -49,7 +49,7 @@ module.exports = function(req, res) {
         var EndDate = dateperiod.split("/")[1];
 
         if (HireTerm == "Hire") {
-            //query = "Hire Date >= " + StartDate + " & Hire Date <= " + EndDate;
+            
             query = [{
                 "key" : "Hire Date",
                 "opt" : ">=",
@@ -64,7 +64,7 @@ module.exports = function(req, res) {
         }
 
         if (HireTerm == "Term") {
-            //query = "Termination Date >= " + StartDate + " & Termination Date <= " + EndDate;
+            
             query = [{
                 "key" : "Termination Date",
                 "opt" : ">=",

@@ -13,7 +13,7 @@ module.exports = function(req, res) {
     var query = "";
     
     filePath = "./data/JournalTable.json";
-    //query = "JOURNAL_ID = " + jrnlId;
+    
     query = [{
                 "key" : "JOURNAL_ID",
                 "opt" : "==",

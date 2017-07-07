@@ -26,7 +26,7 @@ module.exports = function(req, res) {
         attrib = req.body.result.parameters['DCP_AttribsGeneral'];
         Name = req.body.result.contexts[0].parameters['Name.original'];
         filePath = "./data/EmployeeData.json";
-        query = "Name = " + Name;
+        
         query = [{
             "key" : "Name",
             "opt" : "==",
@@ -37,7 +37,6 @@ module.exports = function(req, res) {
     if ( intentName.indexOf( "DCP - Voucher" ) == 0 ) {
         attrib = req.body.result.contexts[0].parameters['VouchAttrib'];
         filePath = "./data/VoucherTable.json";
-        query = "VOUCHER_ID = " + req.body.result.contexts[0].parameters['VOUCHER_ID'];
         query = [{
             "key" : "VOUCHER_ID",
             "opt" : "==",
@@ -61,14 +60,14 @@ module.exports = function(req, res) {
                 "opt" : "<",
                 "value" : strDate
             }];
-            //query = "TRANS_DATE < " + strDate;
+            
         }
         else{
             if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
                 Name = req.body.result.contexts[0].parameters['INSTANCEID'];
                 attrib = req.body.result.contexts[0].parameters['WLAttrib'];
                 attribOG = req.body.result.contexts[0].parameters['WLAttrib.original'];
-                //query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
+
                 query = [{
                     "key" : "INSTANCEID",
                     "opt" : "==",
@@ -77,7 +76,7 @@ module.exports = function(req, res) {
             }
             else{
                 attrib = "TRANS_DATE";
-                //query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL";
+                
                 query = [{
                     "key" : "BUSPROCNAME",
                     "opt" : "==",
@@ -93,7 +92,7 @@ module.exports = function(req, res) {
         attrib = "Headcount";
         filePath = "./data/Headcount.json";
         if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != ""){
-            //query = "Department = " + req.body.result.parameters.ED_Dept;
+            
             query = [{
                 "key" : "Department",
                 "opt" : "==",
@@ -103,7 +102,6 @@ module.exports = function(req, res) {
         }
             
         if (req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != ""){
-            query = "Location = " + req.body.result.parameters.ED_WorkLocation;
             query = [{
                 "key" : "Location",
                 "opt" : "==",
@@ -120,7 +118,12 @@ module.exports = function(req, res) {
     if (intentName == "DCP - WorklistApproval") {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         filePath = "./data/WorklistApproval.json";
-        query = "Employee = " + Name;
+        
+        query = [{
+            "key" : "Employee",
+            "opt" : "==",
+            "value" : Name
+        }];
         attrib = "Details";
     }
 
@@ -170,10 +173,7 @@ module.exports = function(req, res) {
                 console.log("output :" + output);
             }
         }
-        
-//            jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
-//                data: content
-//            }).value;
+
         console.log("output :" + output);
 
         if (output.length == 0) {
@@ -210,9 +210,8 @@ module.exports = function(req, res) {
                                
                                //var minDate = "" + (minFullDate.getMonth()+1) + "/" + minFullDate.getDate() +  "/" + minFullDate.getFullYear();
                                if( intentName == "DCP - WLTable - custom-2"){
-                                   //query = "BUSPROCNAME = DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
-                                   eval(query.toLowerCase());
-                                   //console.log("The Query :" + query);
+
+                                   
                                    var output = {
                                        "key" : "value"
                                    };
