@@ -167,6 +167,7 @@ module.exports = function(req, res) {
             console.log( "The String : " + theString );
             if( eval( theString ) ){
                 output.push( content[i][attrib] );
+                console.log("output :" + output);
             }
         }
         
