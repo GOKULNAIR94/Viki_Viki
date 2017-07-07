@@ -27,12 +27,22 @@ module.exports = function(req, res) {
         Name = req.body.result.contexts[0].parameters['Name.original'];
         filePath = "./data/EmployeeData.json";
         query = "Name = " + Name;
+        query = [{
+            "key" : "Name",
+            "opt" : "==",
+            "value" : Name
+        }];
     }
 
     if ( intentName.indexOf( "DCP - Voucher" ) == 0 ) {
         attrib = req.body.result.contexts[0].parameters['VouchAttrib'];
         filePath = "./data/VoucherTable.json";
         query = "VOUCHER_ID = " + req.body.result.contexts[0].parameters['VOUCHER_ID'];
+        query = [{
+            "key" : "VOUCHER_ID",
+            "opt" : "==",
+            "value" : req.body.result.contexts[0].parameters['VOUCHER_ID']
+        }];
     }
     
     if ( intentName.indexOf( "DCP - WLTable" ) == 0 ) {
@@ -46,23 +56,33 @@ module.exports = function(req, res) {
             var day = ( dDate.getDate() < 10 )? "0" + dDate.getDate() : dDate.getDate();
             var month = ( (dDate.getMonth()+1) < 10 )? "0" + (dDate.getMonth()+1) : (dDate.getMonth()+1);
             var strDate = "" + month + "/" + day +  "/" +dDate.getFullYear();
-            query = "TRANS_DATE < " + strDate;
+            query = [{
+                "key" : "TRANS_DATE",
+                "opt" : "<",
+                "value" : strDate
+            }];
+            //query = "TRANS_DATE < " + strDate;
         }
         else{
             if( req.body.result.contexts[0].parameters['WLAttrib'] != "" && req.body.result.contexts[0].parameters['WLAttrib'] != null ){
                 Name = req.body.result.contexts[0].parameters['INSTANCEID'];
                 attrib = req.body.result.contexts[0].parameters['WLAttrib'];
                 attribOG = req.body.result.contexts[0].parameters['WLAttrib.original'];
-                query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
+                //query = "INSTANCEID = " + req.body.result.contexts[0].parameters['INSTANCEID'];
+                query = [{
+                    "key" : "INSTANCEID",
+                    "opt" : "==",
+                    "value" : req.body.result.contexts[0].parameters['INSTANCEID']
+                }];
             }
             else{
                 attrib = "TRANS_DATE";
-                query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL";
-                query = {
+                //query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL";
+                query = [{
                     "key" : "BUSPROCNAME",
                     "opt" : "==",
-                    "value" : "DCP_VOUCHER_APPROVAL",
-                }
+                    "value" : "DCP_VOUCHER_APPROVAL"
+                }];
             }
         }
             
@@ -73,12 +93,22 @@ module.exports = function(req, res) {
         attrib = "Headcount";
         filePath = "./data/Headcount.json";
         if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != ""){
-            query = "Department = " + req.body.result.parameters.ED_Dept;
+            //query = "Department = " + req.body.result.parameters.ED_Dept;
+            query = [{
+                "key" : "Department",
+                "opt" : "==",
+                "value" : req.body.result.parameters.ED_Dept
+            }];
             HeadCountQuery = req.body.result.parameters.ED_Dept;
         }
             
         if (req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != ""){
             query = "Location = " + req.body.result.parameters.ED_WorkLocation;
+            query = [{
+                "key" : "Location",
+                "opt" : "==",
+                "value" : req.body.result.parameters.ED_WorkLocation
+            }];
             HeadCountQuery = req.body.result.parameters.ED_WorkLocation;
         }
             
@@ -133,7 +163,7 @@ module.exports = function(req, res) {
 
         var output = [];
         for(var i = 0; i < content.length; i++){
-            theString = "'" + content[i][query.key].toLowerCase() + "' " + query.opt + " '" +  query.value.toLowerCase() + "'";
+            theString = "'" + content[i][query[0].key].toLowerCase() + "' " + query[0].opt + " '" +  query[0].value.toLowerCase() + "'";
             console.log( "The String : " + theString );
             if( eval( theString ) ){
                 output.push( content[i][attrib] );
