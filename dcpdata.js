@@ -163,7 +163,7 @@ module.exports = function(req, res) {
 
         var output = [];
         for(var i = 0; i < content.length; i++){
-            theString = "'" + content[i][query[0].key].toLowerCase() + "' " + query[0].opt + " '" +  query[0].value.toLowerCase() + "'";
+            theString = '"' + content[i][query[0].key].toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toLowerCase() + '"';
             console.log( "The String : " + theString );
             if( eval( theString ) ){
                 output.push( content[i][attrib] );
