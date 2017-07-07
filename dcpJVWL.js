@@ -32,8 +32,8 @@ module.exports = function(req, res) {
         console.log( "The String : " + theString );
         if( eval( theString ) ){
             output.push( content[i][attrib] );
-            console.log("output :" + output);
-            if ( output[0] == "Posted" ){
+            console.log("output : " + output);
+            if ( output == "Posted" ){
                 var posteddate = content[i][POSTED_DATE];
                 speech = "The status of journal " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
             }
