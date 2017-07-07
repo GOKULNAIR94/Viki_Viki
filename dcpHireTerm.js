@@ -29,7 +29,12 @@ module.exports = function(req, res) {
     
     if ( intentName.indexOf( "DCP - HireTerm - list - attrib" ) == 0 ) {
         Name = req.body.result.contexts[0].parameters['Name.original'];
-        query = "Name = " + Name;
+        //query = "Name = " + Name;
+        query = [{
+            "key" : "Name",
+            "opt" : "==",
+            "value" : Name
+        }];
         console.log("HireTerm  Here is debuuger: " + HireTerm);
 
 
@@ -44,11 +49,33 @@ module.exports = function(req, res) {
         var EndDate = dateperiod.split("/")[1];
 
         if (HireTerm == "Hire") {
-            query = "Hire Date >= " + StartDate + " & Hire Date <= " + EndDate;
+            //query = "Hire Date >= " + StartDate + " & Hire Date <= " + EndDate;
+            query = [{
+                "key" : "Hire Date",
+                "opt" : ">=",
+                "value" : StartDate
+            },
+            {
+                "conj" : "&&",
+                "key" : "Hire Date",
+                "opt" : "<=",
+                "value" : EndDate
+            }];
         }
 
         if (HireTerm == "Term") {
-            query = "Termination Date >= " + StartDate + " & Termination Date <= " + EndDate;
+            //query = "Termination Date >= " + StartDate + " & Termination Date <= " + EndDate;
+            query = [{
+                "key" : "Termination Date",
+                "opt" : ">=",
+                "value" : StartDate
+            },
+            {
+                "conj" : "&&",
+                "key" : "Termination Date",
+                "opt" : "<=",
+                "value" : EndDate
+            }];
         }
     }
 
@@ -60,10 +87,24 @@ module.exports = function(req, res) {
     content = JSON.parse(content);
     console.log("Content :" + JSON.stringify(content));
 
-    var output =
-        jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
-            data: content
-        }).value;
+    var output = [];
+    for(var i = 0; i < content.length; i++){
+        theString = "";
+        for( var j=0; j< query.length; j++ ){
+            if( j >0 )
+                theString = theString + " " + query[j].conj + " ";
+            
+            theString = theString + ' "' + content[i][query[j].key].toLowerCase() + '"' + query[j].opt + '"' +  query[j].value.toLowerCase() + '" ';
+        
+        }
+        
+        console.log( "The String : " + theString );
+        
+        if( eval( theString ) ){
+            output.push( content[i][attrib] );
+            console.log("output :" + output);
+        }
+    }
 
     console.log("output 123123 :" + output);
     console.log("intentNameintentName :" + intentName);
