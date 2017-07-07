@@ -132,7 +132,6 @@ module.exports = function(req, res) {
         console.log("attrib :" + attrib);
 
         var output = [];
-        console.log("Eval :" +  eval(query.toLowerCase()));
         for(var i = 0; i < content.length; i++){
             theString = "" + content[i][query.key].toLowerCase() + " " + query.opt + " " +  query.value.toLowerCase() + "";
             if( eval( theString ) ){
