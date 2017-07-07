@@ -136,7 +136,7 @@ module.exports = function(req, res) {
             theString = "'" + content[i][query.key].toLowerCase() + "' " + query.opt + " '" +  query.value.toLowerCase() + "'";
             console.log( "theString : " + theString );
             if( eval( theString ) ){
-                output.add( content[i][attrib] );
+                output.push( content[i][attrib] );
             }
         }
         
