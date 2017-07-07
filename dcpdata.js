@@ -58,6 +58,11 @@ module.exports = function(req, res) {
             else{
                 attrib = "TRANS_DATE";
                 query = "BUSPROCNAME = " + "DCP_VOUCHER_APPROVAL";
+                query = {
+                    "key" : "BUSPROCNAME",
+                    "opt" : "==",
+                    "value" : "DCP_VOUCHER_APPROVAL",
+                }
             }
         }
             
@@ -129,7 +134,8 @@ module.exports = function(req, res) {
         var output = [];
         console.log("Eval :" +  eval(query.toLowerCase()));
         for(var i = 0; i < content.length; i++){
-            if( eval(query.toLowerCase()) ){
+            theString = "" + content[i][query.key].toLowerCase() + " " + query.opt + " " +  query.value.toLowerCase() + "";
+            if( eval( theString ) ){
                 output.add( content[i][attrib] );
             }
         }
