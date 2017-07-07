@@ -13,48 +13,43 @@ module.exports = function(req, res) {
     var query = "";
     
     filePath = "./data/JournalTable.json";
-    query = "JOURNAL_ID = " + jrnlId;
+    //query = "JOURNAL_ID = " + jrnlId;
+    query = [{
+                "key" : "JOURNAL_ID",
+                "opt" : "==",
+                "value" : jrnlId
+            }];
+    
     
     content = fs.readFileSync(filePath, 'utf8');
 
     content = JSON.parse(content);
     //console.log("Content :" + JSON.stringify(content));
 
-    var output =
-        jsonQuery('[* ' + query + ']' + '[' + attrib+ ']', {
-            data: content
-        }).value;
-    
+    var output = [];
+    for(var i = 0; i < content.length; i++){
+        theString = '"' + content[i][query[0].key].toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toLowerCase() + '"';
+        console.log( "The String : " + theString );
+        if( eval( theString ) ){
+            output.push( content[i][attrib] );
+            console.log("output :" + output);
+            if ( output[0] == "Posted" ){
+                var posteddate = content[i][POSTED_DATE];
+                speech = "The status of journal " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
+            }
+            if( output == "Error"){
+                var posteddate = content[i][ERROR];
+                speech = "The status of journal " + jrnlId + " is " + output + ".\n Reason is : " + errormsg;
+            }
+            if( output == "New"){
+                speech = "The status of journal " + jrnlId + " is " + output + ".";
+            }
+        }
+    }
     console.log("output :" + output );
+    
     if (output.length == 0) {
         speech = "No records found.";
-    } else {
-        if (output.length == 1) {
-            if ( intentName.indexOf( "DCP - JRNL" ) == 0 ){
-                if( output == "Posted"){
-                   var posteddate =
-                        jsonQuery('[* ' + query + ']' + '[POSTED_DATE]', {
-                        data: content
-                    }).value;
-                    speech = "The status of journal " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
-                }
-                
-                if( output == "Error"){
-                   var errormsg =
-                        jsonQuery('[* ' + query + ']' + '[ERROR]', {
-                        data: content
-                    }).value;
-                    speech = "The status of journal " + jrnlId + " is " + output + ".\n Reason is : " + errormsg;
-                }
-                if( output == "New"){
-                    speech = "The status of journal " + jrnlId + " is " + output + ".";
-                }
-                
-            }
-        } else
-            if (output.length > 1) {
-                speech = "More than one record found.";
-            }
     }
     
     return res.json({
