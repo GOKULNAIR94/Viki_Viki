@@ -202,7 +202,7 @@ module.exports = function(req, res) {
 //                                                        data: content
 //                                                    }).value;
                                    
-                                    if ( output.length > 0 ) {
+                                    if ( output.INSTANCEID != null ) {
                                         speech = "The Instance Id of the voucher is : " + output.INSTANCEID +
                                            ",\n and few more details: \nTransaction Id : " + output.TRANSACTIONID +
                                            ",\n Event Name : " + output.EVENTNAME +
