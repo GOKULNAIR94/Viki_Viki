@@ -33,12 +33,12 @@ module.exports = function(req, res) {
         if( eval( theString ) ){
             output.push( content[i][attrib] );
             console.log("output : " + output);
-            if ( output == "Posted" ){
-                var posteddate = content[i][POSTED_DATE];
+            if ( output  == "Posted" ){
+                var posteddate = content[i]["POSTED_DATE"];
                 speech = "The status of journal " + jrnlId + " is " + output + ".\n Posted date is : " + posteddate;
             }
             if( output == "Error"){
-                var posteddate = content[i][ERROR];
+                var posteddate = content[i]["ERROR"];
                 speech = "The status of journal " + jrnlId + " is " + output + ".\n Reason is : " + errormsg;
             }
             if( output == "New"){
