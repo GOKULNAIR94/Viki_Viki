@@ -125,10 +125,16 @@ module.exports = function(req, res) {
         console.log("Content :" + JSON.stringify(content));
         console.log("attrib :" + attrib);
 
-        var output =
-            jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
-                data: content
-            }).value;
+        var output = [];
+        for(var i = 0; i < content.length; i++){
+            if( eval(query.toLowerCase()) ){
+                output.add( content[i][attrib] );
+            }
+        }
+        
+//            jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
+//                data: content
+//            }).value;
         console.log("output :" + output);
 
         if (output.length == 0) {
@@ -167,7 +173,7 @@ module.exports = function(req, res) {
                                if( intentName == "DCP - WLTable - custom-2"){
                                    query = "BUSPROCNAME = DCP_VOUCHER_APPROVAL & TRANS_DATE = " + minDate;
                                    query = "console.log(' Evalled The Query' + query);";
-                                   eval(query);
+                                   eval(query.toLowerCase());
                                    //console.log("The Query :" + query);
                                    var output = {
                                        "key" : "value"
