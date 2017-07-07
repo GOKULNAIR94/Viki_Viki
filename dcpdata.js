@@ -134,9 +134,10 @@ module.exports = function(req, res) {
         var output = [];
         for(var i = 0; i < content.length; i++){
             theString = "" + content[i][query.key].toLowerCase() + " " + query.opt + " " +  query.value.toLowerCase() + "";
-            if( eval( theString ) ){
-                output.add( content[i][attrib] );
-            }
+            console.log( "theString : " + theString );
+//            if( eval( theString ) ){
+//                output.add( content[i][attrib] );
+//            }
         }
         
 //            jsonQuery('[* ' + query + ']' + '[' + attrib + ']', {
