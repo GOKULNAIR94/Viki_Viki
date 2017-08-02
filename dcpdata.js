@@ -94,7 +94,7 @@ module.exports = function(req, res) {
         if (req.body.result.parameters.ED_Dept != null && req.body.result.parameters.ED_Dept != ""){
             
             query = [{
-                "key" : "Department",
+                "key" : "query",
                 "opt" : "==",
                 "value" : req.body.result.parameters.ED_Dept
             }];
@@ -103,7 +103,7 @@ module.exports = function(req, res) {
             
         if (req.body.result.parameters.ED_WorkLocation != null && req.body.result.parameters.ED_WorkLocation != ""){
             query = [{
-                "key" : "Location",
+                "key" : "query",
                 "opt" : "==",
                 "value" : req.body.result.parameters.ED_WorkLocation
             }];
