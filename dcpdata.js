@@ -171,6 +171,8 @@ module.exports = function(req, res) {
             if( eval( theString ) ){
                 output.push( content[i][attrib] );
                 console.log("output :" + output);
+                if ( intentName.indexOf( "DCP - HeadCount" ) == 0 )
+                    break;
             }
         }
 
