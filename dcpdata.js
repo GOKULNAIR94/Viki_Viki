@@ -166,6 +166,8 @@ module.exports = function(req, res) {
 
         var output = [];
         for(var i = 0; i < content.length; i++){
+            console.log( "Type : " + typeof (content[i][query[0].key]) );
+            
             theString = '"' + content[i][query[0].key].toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toLowerCase() + '"';
             console.log( "The String : " + theString );
             if( eval( theString ) ){
