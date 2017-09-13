@@ -162,7 +162,7 @@ console.log( "intentName THIS : " + intentName );
           console.log("EmpData Called");
         });
       }
-      if( intentName.indexOf( "ADS_" ) == 0 ){
+      if( intentName.indexOf( "ADS_" ) == 0 && intentName != 'ADS_HyperionReport' ){
         ADSData(req, res, function(result) {
           console.log("ADSData Called");
         });
