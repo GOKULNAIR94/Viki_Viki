@@ -18,9 +18,11 @@
   "homepage": "https://github.com/GOKULNAIR94/gbot#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "bunyan": "^1.8.12",
     "express": "^4.15.3",
     "fast-csv": "^2.4.0",
     "json-query": "^2.2.2",
+    "nodemailer": "^4.1.0",
     "request": "^2.76.0"
   },
   "devDependencies": {},
