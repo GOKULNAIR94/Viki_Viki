@@ -51,7 +51,13 @@ module.exports = function(req, res) {
     var output = [];
     for(var i = 0; i < content.length; i++){
 
-        theString = '"' + content[i][query[0].key].toString().toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toString().toLowerCase() + '"';
+        if ( intentName != "ADS_SNIncidents_list" ) {
+            theString = '"' + content[i][query[0].key].toString().toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toString().toLowerCase() + '"';
+        }
+        else{
+            theString = '"' + content[i][query[0].key].toString().toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toString().toLowerCase() + '"';
+            theString = theString + ' && ' + '"' + content[i][Assigned to] + '" == David Loo';
+        }
         console.log( "The String : " + theString );
         if( eval( theString ) ){
             output.push( content[i] );
@@ -81,10 +87,13 @@ module.exports = function(req, res) {
                 
         }
         else{
-            speech = "List of incidents : "+ os.EOL;
-            for(var i = 0; i < output.length; i++){
-                speech = speech + " " + (i+1) + " - " + output[i]["Number"] + "." + os.EOL;
+            if ( intentName == "ADS_SNIncidents_list" ) {
+                speech = "List of incidents : "+ os.EOL;
+                for(var i = 0; i < output.length; i++){
+                    speech = speech + " " + (i+1) + " - " + output[i]["Number"] + "." + os.EOL;
+                }
             }
+            
         }
     }
     
