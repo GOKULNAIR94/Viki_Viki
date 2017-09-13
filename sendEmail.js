@@ -32,7 +32,7 @@ var intent_name = req.body.result.metadata.intentName;
         
         console.log(speech);
         console.log('SMTP Configured');
-        fs.readFile("./PTVPLAN_PPCMRC_ReconReport.pdf", function (err, data) {
+        fs.readFile("./DepartmentalExpenses_Corporate_Report.pdf", function (err, data) {
                 // Message object
                 let message = {
                     from:'VIKI <reachme@kaaman.onmicrosoft.com>',
@@ -40,11 +40,11 @@ var intent_name = req.body.result.metadata.intentName;
                     to: to_email,
 
                     // Subject of the message
-                    subject: 'PTV Plan Recon Report', //
+                    subject: 'Departmental Expenses Corporate Report', //
 
                     // HTML body
                     html: '<p><b>Hello Kaaman,</b></p>' +
-                        '<p>Attached is the PTV Plan Recon Report as Requested.</p>' + 
+                        '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' + 
                         '<p>Thanks,<br><b>Viki</b></p>',
 
                     // Apple Watch specific HTML body
@@ -52,7 +52,7 @@ var intent_name = req.body.result.metadata.intentName;
 
                     //An array of attachments
                     attachments: 
-                    [{'filename': 'PTVPLAN_PPCMRC_ReconReport.pdf', 'content': data}]
+                    [{'filename': 'DepartmentalExpenses_Corporate_Report.pdf', 'content': data}]
 
                 };
 
