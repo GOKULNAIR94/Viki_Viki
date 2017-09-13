@@ -17,6 +17,67 @@ var intentName = req.body.result.metadata.intentName;
      }
         });
     
+    if(intentName == 'ADS_AdhocData' ){
+        
+        var to_email =  "Kaaman.agarwal@lntinfotech.com";
+        var targetApp = req.body.result.parameters.targetApp;
+        var sourceApp = req.body.result.parameters.sourceApp;
+        var scenario = req.body.result.parameters.scenario;
+    
+    
+    
+        var speech = "Jobs has been triggered to push the data for the current year FY17 from "+ sourceApp + " to " + targetApp + " for the Scenario " + scenario + ". This is the job ID JB76278124. You will receive a data push completion email in approx 10 mins.";
+        
+        console.log(speech);
+        console.log('SMTP Configured');
+        
+        let message = {
+                    from:'VIKI <reachme@kaaman.onmicrosoft.com>',
+                    // Comma separated list of recipients
+                    to: to_email,
+
+                    // Subject of the message
+                    subject: 'Adhoc Data push completion notification!', //
+
+                    // HTML body
+                    html: '<p><b>Hello Kaaman,</b></p>' +
+                        '<p>Adhoc Data Push from '+ sourceApp + ' to ' + targetApp + ' for the ' + scenario + ' scenario is completed.</p>' + 
+                        '<p>Thanks,<br><b>Viki</b></p>',
+
+                    // Apple Watch specific HTML body
+                    watchHtml: '<b>Hello</b> to myself'
+
+                };
+
+                transporter.verify(function(error, success) {
+                   if (error) {
+                        console.log(error);
+                   } else {
+                        console.log('Server is ready to take our messages');
+                   }
+                });
+
+                console.log('Sending Mail');
+        setTimeout(function(){    
+                    transporter.sendMail(message, (error, info) => {
+                    if (error) {
+                        console.log('Error occurred');
+                        console.log(error.message);
+                        return;
+                    }
+                    console.log('Message sent successfully!');
+                    console.log('Server responded with "%s"', info.response);
+                    transporter.close();
+                });
+                        return res.json
+                        ({
+                            speech: speech ,
+                            displayText: speech,
+                            source: 'webhook-OSC-oppty'
+                        });
+                }, 5000);   
+      }
+    
     if(intentName == 'ADS_HyperionReport' ){
         var to_email = req.body.result.parameters.emailaddress;
         var reportName = req.body.result.parameters.reportName;
@@ -88,65 +149,6 @@ var intentName = req.body.result.metadata.intentName;
     
     
     
-    if(intentName == 'ADS_AdhocData' ){
-        
-        var to_email =  "Kaaman.agarwal@lntinfotech.com";
-        var targetApp = req.body.result.parameters.targetApp;
-        var sourceApp = req.body.result.parameters.sourceApp;
-        var scenario = req.body.result.parameters.scenario;
     
-    
-    
-        var speech = "Jobs has been triggered to push the data for the current year FY17 from "+ sourceApp + " to " + targetApp + " for the Scenario " + scenario + ". This is the job ID JB76278124. You will receive a data push completion email in approx 10 mins.";
-        
-        console.log(speech);
-        console.log('SMTP Configured');
-        
-        let message = {
-                    from:'VIKI <reachme@kaaman.onmicrosoft.com>',
-                    // Comma separated list of recipients
-                    to: to_email,
-
-                    // Subject of the message
-                    subject: 'Adhoc Data push completion notification!', //
-
-                    // HTML body
-                    html: '<p><b>Hello Kaaman,</b></p>' +
-                        '<p>Adhoc Data Push from '+ sourceApp + ' to ' + targetApp + ' for the ' + scenario + ' scenario is completed.</p>' + 
-                        '<p>Thanks,<br><b>Viki</b></p>',
-
-                    // Apple Watch specific HTML body
-                    watchHtml: '<b>Hello</b> to myself'
-
-                };
-
-                transporter.verify(function(error, success) {
-                   if (error) {
-                        console.log(error);
-                   } else {
-                        console.log('Server is ready to take our messages');
-                   }
-                });
-
-                console.log('Sending Mail');
-        setTimeout(function(){    
-                    transporter.sendMail(message, (error, info) => {
-                    if (error) {
-                        console.log('Error occurred');
-                        console.log(error.message);
-                        return;
-                    }
-                    console.log('Message sent successfully!');
-                    console.log('Server responded with "%s"', info.response);
-                    transporter.close();
-                });
-                        return res.json
-                        ({
-                            speech: speech ,
-                            displayText: speech,
-                            source: 'webhook-OSC-oppty'
-                        });
-                }, 5000);   
-      }
     
 }
