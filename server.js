@@ -28,11 +28,11 @@ restService.post('/inputmsg', function(req, res) {
   var query = '';
 
   //req =  JSON.parse(content);
-    console.log( "Req : " + JSON.stringify(req.body) );
+    //console.log( "Req : " + JSON.stringify(req.body) );
 
     var intentName = req.body.result.metadata.intentName;
     
-
+console.log( "intentName THIS : " + intentName );
     var content;
     try
     {
@@ -42,7 +42,7 @@ restService.post('/inputmsg', function(req, res) {
         dateperiod = req.body.result.parameters.dateperiod;
         Month = dateperiod.split("/")[1];
 
-        console.log( "intentName : " + intentName );
+        
         console.log( "Market : " + Market );
         console.log( "Period : " + Period );
         console.log( "dateperiod : " + dateperiod );
