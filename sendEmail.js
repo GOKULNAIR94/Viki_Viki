@@ -146,7 +146,7 @@ var intentName = req.body.result.metadata.intentName;
                             displayText: speech,
                             source: 'webhook-OSC-oppty'
                         });
-                }, 5000);   
+                }, 10000);   
       }
     
 }
