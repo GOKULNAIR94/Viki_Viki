@@ -59,17 +59,17 @@ module.exports = function(req, res) {
         if( output.length == 1 ){
             speech = "Details of incident : " + number + ": " + os.EOL;
             
-            if( output[0][Opened] != null )
-                speech = speech + "Opened date : " + output[0][Opened] + "." + os.EOL; 
+            if( output[0]["Opened"] != null )
+                speech = speech + "Opened date : " + output[0]["Opened"] + "." + os.EOL; 
             
-            if( output[0][State] != null )
-                speech = speech + "Status : " + output[0][State] + "." + os.EOL; 
+            if( output[0]["State"] != null )
+                speech = speech + "Status : " + output[0]["State"] + "." + os.EOL; 
             
-            if( output[0][Short description] != null )
-                speech = speech + "Description : " + output[0][Short description] + "." + os.EOL; 
+            if( output[0]["Short description"] != null )
+                speech = speech + "Description : " + output[0]["Short description"] + "." + os.EOL; 
             
-            if( output[0][Comments and Work notes] != null )
-                speech = speech + "Notes : " + output[0][Comments and Work notes] + "." + os.EOL;
+            if( output[0]["Comments and Work notes"] != null )
+                speech = speech + "Notes : " + output[0]["Comments and Work notes"] + "." + os.EOL;
                 
         }
     }
