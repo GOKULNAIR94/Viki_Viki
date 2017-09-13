@@ -116,7 +116,7 @@ var intentName = req.body.result.metadata.intentName;
                         '<p>Thanks,<br><b>Viki</b></p>',
 
                     // Apple Watch specific HTML body
-                    watchHtml: '<b>Hello</b> to myself',
+                    watchHtml: '<b>Hello</b> to myself'
 
                 };
 
