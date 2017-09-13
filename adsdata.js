@@ -56,7 +56,7 @@ module.exports = function(req, res) {
         }
         else{
             theString = '"' + content[i][query[0].key].toString().toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toString().toLowerCase() + '"';
-            theString = theString + ' && ' + '"' + content[i]["Assigned to"] + '" == David Loo';
+            theString = theString + ' && ' + '"' + content[i]["Assigned to"] + '" == "David Loo"';
         }
         console.log( "The String : " + theString );
         if( eval( theString ) ){
