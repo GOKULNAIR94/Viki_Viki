@@ -16,7 +16,7 @@ module.exports = function(req, res) {
     var filePath = "";
     var query = "";
     var HeadCountQuery = "";
-    
+    var os = require('os');
     
 
     if ( intentName == "ADS_SNIncident" ) {
@@ -46,10 +46,8 @@ module.exports = function(req, res) {
         theString = '"' + content[i][query[0].key].toString().toLowerCase() + '"' + query[0].opt + '"' +  query[0].value.toString().toLowerCase() + '"';
         console.log( "The String : " + theString );
         if( eval( theString ) ){
-            output.push( content[i][attrib] );
+            output.push( content[i] );
             console.log("output :" + output);
-            if ( intentName.indexOf( "DCP - HeadCount" ) == 0 )
-                break;
         }
     }
     
@@ -59,7 +57,20 @@ module.exports = function(req, res) {
     }
     else{
         if( output.length == 1 ){
-            speech = "The " + attrib + " of incident" + number + " is " + output[0] + ".";
+            speech = "Details of incident : " + number + ": " + os.EOL;
+            
+            if( output[0][Opened] != null )
+                speech = speech + "Opened date : " + output[0][Opened] + "." + os.EOL; 
+            
+            if( output[0][State] != null )
+                speech = speech + "Status : " + output[0][State] + "." + os.EOL; 
+            
+            if( output[0][Short description] != null )
+                speech = speech + "Description : " + output[0][Short description] + "." + os.EOL; 
+            
+            if( output[0][Comments and Work notes] != null )
+                speech = speech + "Notes : " + output[0][Comments and Work notes] + "." + os.EOL;
+                
         }
     }
     
