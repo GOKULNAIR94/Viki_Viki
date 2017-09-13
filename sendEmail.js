@@ -77,7 +77,7 @@ var intentName = req.body.result.metadata.intentName;
                         });
                 }, 5000);   
       }
-    else
+    
     if(intentName == 'ADS_HyperionReport' ){
         var to_email = req.body.result.parameters.emailaddress;
         var reportName = req.body.result.parameters.reportName;
