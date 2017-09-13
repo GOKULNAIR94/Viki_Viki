@@ -15,7 +15,7 @@ var jsonQuery = require('json-query');
 
 var DCPData = require("./dcpdata");
 var ADSData = require("./adsdata");
-
+var SendEmail = require("./sendEmail");
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -165,6 +165,11 @@ restService.post('/inputmsg', function(req, res) {
       if( intentName.indexOf( "ADS_" ) == 0 ){
         ADSData(req, res, function(result) {
           console.log("ADSData Called");
+        });
+      }
+      if(intentName == 'ADS_HyperionReport' ){
+        SendEmail(req, res, function(result) {
+          console.log("SendEmail Called");
         });
       } 
         
