@@ -32,6 +32,13 @@ module.exports = function(req, res) {
             "value" : number
         }];
     }
+    if ( intentName == "ADS_SNIncidents_list" ) {
+        query = [{
+            "key" : "Active",
+            "opt" : "==",
+            "value" : true
+        }];
+    }
     
     content = fs.readFileSync(filePath, 'utf8');
     content = JSON.parse(content);
@@ -71,6 +78,12 @@ module.exports = function(req, res) {
             if( output[0]["Comments and Work notes"] != null && output[0]["Comments and Work notes"] != "" )
                 speech = speech + "Notes : " + output[0]["Comments and Work notes"] + "." + os.EOL;
                 
+        }
+        else{
+            speech = "List of incidents : "+ os.EOL;
+            for(var i = 0; i < output.length; i++){
+                speech = speech + " " + (i+1) + " - " + output[i][Number] + "." + os.EOL;
+            }
         }
     }
     
