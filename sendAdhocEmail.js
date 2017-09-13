@@ -74,6 +74,6 @@ var intent_name = req.body.result.metadata.intentName;
                             displayText: speech,
                             source: 'webhook-OSC-oppty'
                         });
-                }, 5000);  
+                }, 4000);  
 
 }
