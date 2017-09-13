@@ -44,7 +44,7 @@ module.exports = function(req, res) {
     content = fs.readFileSync(filePath, 'utf8');
     content = JSON.parse(content);
     
-    console.log("Content :" + JSON.stringify(content));
+    //console.log("Content :" + JSON.stringify(content));
     console.log("query :" + query);
     console.log("attrib :" + attrib);
     
@@ -61,11 +61,11 @@ module.exports = function(req, res) {
         console.log( "The String : " + theString );
         if( eval( theString ) ){
             output.push( content[i] );
-            console.log("output :" + output);
+            //console.log("output :" + output);
         }
     }
     
-    console.log("output :" + output);
+    //console.log("output :" + output);
     if (output.length == 0) {
         speech = "No records found.";
     }
