@@ -28,14 +28,14 @@ var intent_name = req.body.result.metadata.intentName;
     
     
     
-        var speech = reportName + ' ' + scenario +' - ' + chartfield + ' (' + yearName +') has been emailed to '+ to_email +'. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
+        var speech = 'Report : ' + reportName + ' ' + scenario +' - ' + chartfield + ' (' + yearName +') has been emailed to '+ to_email +'. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
         
         console.log(speech);
         console.log('SMTP Configured');
         fs.readFile("./PTVPLAN_PPCMRC_ReconReport.pdf", function (err, data) {
                 // Message object
                 let message = {
-                    from:'JARVIS <reachme@kaaman.onmicrosoft.com>',
+                    from:'VIKI <reachme@kaaman.onmicrosoft.com>',
                     // Comma separated list of recipients
                     to: to_email,
 
