@@ -83,7 +83,7 @@ module.exports = function(req, res) {
         else{
             speech = "List of incidents : "+ os.EOL;
             for(var i = 0; i < output.length; i++){
-                speech = speech + " " + (i+1) + " - " + output[i][Number] + "." + os.EOL;
+                speech = speech + " " + (i+1) + " - " + output[i]["Number"] + "." + os.EOL;
             }
         }
     }
