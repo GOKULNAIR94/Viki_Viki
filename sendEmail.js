@@ -90,7 +90,7 @@ var intentName = req.body.result.metadata.intentName;
     
     if(intentName == 'ADS_AdhocData' ){
         
-        var to_email =  "Gokul.nair@lntinfotech.com"; // "Kaaman.agarwal@lntinfotech.com";
+        var to_email =  "Kaaman.agarwal@lntinfotech.com";
         var targetApp = req.body.result.parameters.targetApp;
         var sourceApp = req.body.result.parameters.sourceApp;
         var scenario = req.body.result.parameters.scenario;
