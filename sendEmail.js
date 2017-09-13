@@ -24,6 +24,8 @@ var intent_name = req.body.result.metadata.intentName;
         var sourceApp = req.body.result.parameters.sourceApp;
         var version = req.body.result.parameters.version;
         var currency = req.body.result.parameters["currency-name"];
+    var projects = req.body.result.parameters["projects"];
+    
     
     
         var speech = reportName + ' ' + scenario +' - ' + chartfield + ' (' + yearName +') has been emailed to '+ to_email +'. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
