@@ -28,7 +28,7 @@ var intent_name = req.body.result.metadata.intentName;
     
     
     
-        var speech = 'Report : ' + reportName + ' ' + scenario +' - ' + chartfield + ' (' + yearName +') has been emailed to '+ to_email +'. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
+        var speech = 'Report : ' + reportName + ' for ' + projects +' - ' + chartfield + ' (' + yearName +') has been emailed to '+ to_email +'. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
         
         console.log(speech);
         console.log('SMTP Configured');
