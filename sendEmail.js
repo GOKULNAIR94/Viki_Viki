@@ -19,7 +19,7 @@ var intentName = req.body.result.metadata.intentName;
     
     if(intentName == 'ADS_AdhocData' ){
         
-        var to_email =  "Kaaman.agarwal@lntinfotech.com";
+        var to_email = "Gokul.Nair@lntinfotech.com"; // "Kaaman.agarwal@lntinfotech.com";
         var targetApp = req.body.result.parameters.targetApp;
         var sourceApp = req.body.result.parameters.sourceApp;
         var scenario = req.body.result.parameters.scenario;
@@ -77,7 +77,7 @@ var intentName = req.body.result.metadata.intentName;
                         });
                 }, 5000);   
       }
-    
+    else
     if(intentName == 'ADS_HyperionReport' ){
         var to_email = req.body.result.parameters.emailaddress;
         var reportName = req.body.result.parameters.reportName;
