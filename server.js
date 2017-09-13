@@ -14,6 +14,8 @@ var jsonQuery = require('json-query');
 
 
 var DCPData = require("./dcpdata");
+var ADSData = require("./adsdata");
+
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -159,7 +161,13 @@ restService.post('/inputmsg', function(req, res) {
         DCPData(req, res, function(result) {
           console.log("EmpData Called");
         });
+      }
+      if( intentName.indexOf( "ADS_" ) == 0 ){
+        ADSData(req, res, function(result) {
+          console.log("ADSData Called");
+        });
       } 
+        
     }
     catch(e)
     {
