@@ -162,7 +162,7 @@ console.log( "intentName THIS : " + intentName );
           console.log("EmpData Called");
         });
       }
-      if( intentName.indexOf( "ADS_" ) == 0 && intentName != 'ADS_HyperionReport' ){
+      if( intentName.indexOf( "ADS_" ) == 0 && intentName != 'ADS_HyperionReport' && intentName != 'ADS_AdhocData' ){
         ADSData(req, res, function(result) {
           console.log("ADSData Called");
         });
@@ -171,7 +171,12 @@ console.log( "intentName THIS : " + intentName );
         SendEmail(req, res, function(result) {
           console.log("SendEmail Called");
         });
-      } 
+      }
+    if(intentName == 'ADS_AdhocData' ){
+        SendEmail(req, res, function(result) {
+          console.log("SendEmail Called");
+        });
+      }
         
     }
     catch(e)
