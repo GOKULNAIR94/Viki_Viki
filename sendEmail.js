@@ -129,7 +129,8 @@ var intentName = req.body.result.metadata.intentName;
                 });
 
                 console.log('Sending Mail');
-                transporter.sendMail(message, (error, info) => {
+        setTimeout(function(){    
+                    transporter.sendMail(message, (error, info) => {
                     if (error) {
                         console.log('Error occurred');
                         console.log(error.message);
@@ -145,6 +146,7 @@ var intentName = req.body.result.metadata.intentName;
                             displayText: speech,
                             source: 'webhook-OSC-oppty'
                         });
+                }, 5000);   
       }
     
 }
