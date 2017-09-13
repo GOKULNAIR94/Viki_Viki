@@ -16,6 +16,7 @@ var jsonQuery = require('json-query');
 var DCPData = require("./dcpdata");
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
+var sendAdhocEmail = require("./sendAdhocEmail");
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -173,7 +174,7 @@ console.log( "intentName THIS : " + intentName );
         });
       }
     if(intentName == 'ADS_AdhocData' ){
-        SendEmail(req, res, function(result) {
+        sendAdhocEmail(req, res, function(result) {
           console.log("SendEmail Called");
         });
       }
