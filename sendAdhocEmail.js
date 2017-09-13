@@ -18,7 +18,7 @@ var intent_name = req.body.result.metadata.intentName;
         });
         
         
-        var to_email = "Gokul.Nair@lntinfotech.com"; // "Kaaman.agarwal@lntinfotech.com";
+        var to_email = "Kaaman.Agarwal@lntinfotech.com"; 
         var targetApp = req.body.result.parameters.targetApp;
         var sourceApp = req.body.result.parameters.sourceApp;
         var scenario = req.body.result.parameters.scenario;
@@ -34,6 +34,8 @@ var intent_name = req.body.result.metadata.intentName;
                     from:'VIKI <reachme@kaaman.onmicrosoft.com>',
                     // Comma separated list of recipients
                     to: to_email,
+            
+                    cc: "Gokul.Nair@lntinfotech.com",
 
                     // Subject of the message
                     subject: 'Adhoc Data push completion notification!', //
