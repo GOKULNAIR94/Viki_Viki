@@ -19,8 +19,8 @@ module.exports = function(req, res) {
     var os = require('os');
     
 
-    if ( intentName == "ADS_SNIncident" ) {
-        attrib = req.body.result.parameters['ADS_attrib'];
+    if ( intentName == "ADS_SNIncident" || intentName == "ADS_SNIncidents_list - custom"  ) {
+        //attrib = req.body.result.parameters['ADS_attrib'];
         
         number = req.body.result.parameters['Number'];
         
