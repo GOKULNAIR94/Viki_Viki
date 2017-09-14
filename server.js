@@ -157,7 +157,7 @@ restService.post('/inputmsg', function(req, res) {
             });
         }
 
-        if (intentName.indexOf("ADS_") == 0 && intentName != 'ADS_HyperionReport' && intentName != 'ADS_AdhocData') {
+        if (intentName.indexOf("ADS_SNIncident") == 0 ) {
             ADSData(req, res, function(result) {
                 console.log("ADSData Called");
             });
