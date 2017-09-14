@@ -1,4 +1,4 @@
-module.exports = function(req, res) {
+module.exports = function(req, resp) {
     var https = require('https');
     var fs = require('fs');
     var jsonQuery = require('json-query');
@@ -46,12 +46,12 @@ module.exports = function(req, res) {
                 var incDesc = output.customFields.c.description;
                 var incPrior = output.customFields.c.priority.lookupName;
                 var incStatus = output.statusWithType.status.lookupName;
-                output.subject;
+                var incSubject = output.subject;
                 
                 
                 
-                if ( output.subject != null && output.subject != "")
-                    speech = speech + "Subject : " + output.subject + "." + os.EOL;
+                if ( incSubject != null && incSubject != "")
+                    speech = speech + "Subject : " + incSubject + "." + os.EOL;
 
                 if ( incStatus != null && incStatus != "")
                     speech = speech + "Status : " + incStatus + "." + os.EOL;
@@ -62,9 +62,7 @@ module.exports = function(req, res) {
                 if ( incDesc != null && incDesc != "")
                     speech = speech + "Notes : " + incDesc + "." + os.EOL;
 
-                //response.json(responseObject);
-                //console.log(responseObject);
-                return res.json({
+                return resp.json({
                     speech: speech,
                     displayText: speech,
                     //source: 'webhook-OSC-oppty'
