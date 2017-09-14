@@ -1,4 +1,4 @@
-module.exports = function(ticket, res) {
+module.exports = function(ticket, response) {
 
     var https = require('https');
     var speech = "";
