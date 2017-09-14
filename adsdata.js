@@ -4,7 +4,7 @@ module.exports = function(req, resp) {
     var jsonQuery = require('json-query');
 
     var content;
-    var speech;
+    var speech = "";
     var intentName = req.body.result.metadata.intentName;
 
     var Name = "";
