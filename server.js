@@ -17,6 +17,7 @@ var DCPData = require("./dcpdata");
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
 var sendAdhocEmail = require("./sendAdhocEmail");
+var createTicket = require("./createTicket");
 
 restService.post('/inputmsg', function(req, res) {
 
@@ -164,9 +165,44 @@ restService.post('/inputmsg', function(req, res) {
         }
         if (intentName.indexOf("ADS_GLData") == 0 ) {
             console.log("ADS_GLData Called");
-//            ADSData(req, res, function(result) {
-//                
-//            });
+            var app = req.body.result.parameters['ADS_AdhocData'];
+            var reportYear = req.body.result.parameters['reportYear'];
+            var reportScenario = req.body.result.parameters['reportScenario'];
+            var subject = req.body.result.parameters['subject'];
+            var priority = req.body.result.parameters['ADS_RN_Priority'];
+            var description = req.body.result.parameters['description'];
+            
+            var ticket = {
+                "primaryContact":
+                {
+                "id": 60
+                },
+
+                "assignedTo": {
+                    "staffGroup": {
+                        "lookupName": "Admin"
+                    }
+                },
+                "customFields": {
+                    "c": {
+                        "description": description,
+                        "priority": {
+                            "lookupName": description
+                        }
+                    }
+                },
+
+
+                "statusWithType": {
+                    "status": {
+                        "lookupName": "Unresolved"
+                    }
+                },
+                "subject": "GL data is missing in "+ app +" for "+ reportYear +" for "+ reportScenario +" scenario"
+            };
+            createTicket(ticket, res, function(result) {
+                console.log("Ticket created");
+            });
         }
         if (intentName == 'ADS_HyperionReport') {
             SendEmail(req, res, function(result) {
