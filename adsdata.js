@@ -53,9 +53,16 @@ module.exports = function(req, resp) {
                 console.log("Body : " + body);
                 output = JSON.parse(body);
                 
+                for(var i = 0; i < output.items.length; i++){
+                    speech = speech + "Incident : " + output.items[i].id + "." + os.EOL;
+                }
                 
-                //var incDesc = output.customFields.c.description;
                 
+                return resp.json({
+                    speech: speech,
+                    displayText: speech,
+                    //source: 'webhook-OSC-oppty'
+                });
                 
                 
                 
