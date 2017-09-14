@@ -22,6 +22,7 @@ module.exports = function(req, resp) {
     if ( intentName == "ADS_SNIncidents_list") {
         
         qPriotity = req.body.result.parameters['ADS_RN_Priority'];
+        console.log("qPriotity : " + qPriotity);
         var qPath ="";
         if( qPriotity == "open"){
             qPath = "/services/rest/connect/latest/incidents?q=statusWithType.status.lookupName='Unresolved'";
@@ -31,7 +32,7 @@ module.exports = function(req, resp) {
         }
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
-        console.log("qPriotity : " + qPriotity);
+        
         
         var options = {
             host: 'ntinfotech--tst.custhelp.com',
