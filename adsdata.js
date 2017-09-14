@@ -24,10 +24,10 @@ module.exports = function(req, resp) {
         qPriotity = req.body.result.parameters['ADS_RN_Priority'];
         var qPath ="";
         if( qPriotity == "open"){
-            qPath = "services/rest/connect/latest/incidents?q=statusWithType.status.lookupName='Unresolved'";
+            qPath = "/services/rest/connect/latest/incidents?q=statusWithType.status.lookupName='Unresolved'";
         }
         else{
-            qPath = "services/rest/connect/latest/incidents?q=customFields.c.priority.lookupName='" + qPriotity + "'";
+            qPath = "/services/rest/connect/latest/incidents?q=customFields.c.priority.lookupName='" + qPriotity + "'";
         }
         
         var options = {
@@ -37,7 +37,7 @@ module.exports = function(req, resp) {
                 'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
             }
         };
-        console.log("Here intentName : " + intentName);
+        console.log("List intentName : " + intentName);
         var output;
         var r = https.get(options, function(res) {
             var body = "";
