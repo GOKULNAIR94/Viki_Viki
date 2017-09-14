@@ -1,5 +1,5 @@
 module.exports = function(req, res) {
-
+    var https = require('https');
     var fs = require('fs');
     var jsonQuery = require('json-query');
 
