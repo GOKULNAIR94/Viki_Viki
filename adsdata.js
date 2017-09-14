@@ -27,7 +27,7 @@ module.exports = function(req, resp) {
             qPath = "/services/rest/connect/latest/incidents?q=statusWithType.status.lookupName='Unresolved'";
         }
         else{
-            qPath = "/services/rest/connect/latest/incidents?q=customFields.c.priority.lookupName='" + qPriotity + "'";
+            qPath = "/services/rest/connect/latest/incidents?q=customFields.c.priority.lookupName='" + encodeURIComponent(qPriotity) + "'";
         }
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
@@ -35,7 +35,7 @@ module.exports = function(req, resp) {
         
         var options = {
             host: 'ntinfotech--tst.custhelp.com',
-            path: encodeURIComponent(qPath),
+            path: qPath,
             headers: {
                 'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
             }
