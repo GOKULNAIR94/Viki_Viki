@@ -187,7 +187,7 @@ restService.post('/inputmsg', function(req, res) {
                     "c": {
                         "description": description,
                         "priority": {
-                            "lookupName": description
+                            "lookupName": priority
                         }
                     }
                 },
