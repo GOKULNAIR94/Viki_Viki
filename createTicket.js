@@ -1,6 +1,6 @@
 module.exports = function(ticket, response) {
 
-    var https = require('http');
+    var https = require('https');
     var speech = "";
     console.log( "ticket : " + JSON.stringify(ticket));
     
@@ -10,7 +10,7 @@ module.exports = function(ticket, response) {
         method: 'POST',
         headers: {
             'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
             'Cache-Control': 'no-cache'
         }
     };
