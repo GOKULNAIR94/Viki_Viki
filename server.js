@@ -155,13 +155,24 @@ restService.post('/inputmsg', function(req, res) {
             });
         }
 
-        if (intentName.indexOf("ADS_") == 0 ) {
+        if (intentName.indexOf("ADS_") == 0 && intentName != 'ADS_HyperionReport' && intentName != 'ADS_AdhocData') {
             ADSData(req, res, function(result) {
                 console.log("ADSData Called");
             });
         }
 
-        
+        var SendEmail = require("./sendEmail");
+        var sendAdhocEmail = require("./sendAdhocEmail");
+        if (intentName == 'ADS_HyperionReport') {
+            SendEmail(req, res, function(result) {
+                console.log("SendEmail Called");
+            });
+        }
+        if (intentName == 'ADS_AdhocData') {
+            sendAdhocEmail(req, res, function(result) {
+                console.log("SendEmail Called");
+            });
+        }
 
     } catch (e) {
         console.log("Error : " + e);
