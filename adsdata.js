@@ -29,6 +29,9 @@ module.exports = function(req, resp) {
         else{
             qPath = "/services/rest/connect/latest/incidents?q=customFields.c.priority.lookupName='" + qPriotity + "'";
         }
+        console.log("List intentName : " + intentName);
+        console.log("qPath : " + qPath);
+        console.log("qPriotity : " + qPriotity);
         
         var options = {
             host: 'ntinfotech--tst.custhelp.com',
@@ -37,7 +40,7 @@ module.exports = function(req, resp) {
                 'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
             }
         };
-        console.log("List intentName : " + intentName);
+        
         var output;
         var r = https.get(options, function(res) {
             var body = "";
