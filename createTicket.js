@@ -10,7 +10,7 @@ module.exports = function(ticket, response) {
         method: 'POST',
         headers: {
             'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
-//            'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Cache-Control': 'no-cache'
         }
     };
@@ -35,6 +35,6 @@ module.exports = function(ticket, response) {
     }).on('error', function(e) {
         console.error(e);
     });
-//    post_req.write(JSON.stringify(ticket));
+    post_req.write(JSON.stringify(ticket));
     post_req.end();
 }
