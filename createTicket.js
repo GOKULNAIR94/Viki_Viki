@@ -6,10 +6,14 @@ module.exports = function(ticket, response) {
     
     var newoptions = {
         host: 'ntinfotech--tst.custhelp.com',
-        path: '/services/rest/connect/latest/incidents/',
+        path: '/services/rest/connect/latest/incidents',
         method: 'POST',
         headers: {
-            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
+            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
+            'Content-Type' : 'application/json',
+            'Connection': 'Keep-Alive'
+
+
         }
     };
     
