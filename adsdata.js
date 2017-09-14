@@ -31,7 +31,7 @@ module.exports = function(req, res) {
             }
         };
         console.log("Here intentName : " + intentName);
-        var responseObject;
+        var output;
         var r = https.get(options, function(res) {
             var body = "";
 
@@ -40,20 +40,42 @@ module.exports = function(req, res) {
             });
             res.on('end', function() {
                 console.log("Body : " + body);
-                responseObject = JSON.parse(body);
+                output = JSON.parse(body);
+                
+                
+                var incDesc = output.customFields.c.description;
+                var incPrior = output.customFields.c.priority.lookupName;
+                var incStatus = output.statusWithType.status.lookupName;
+                output.subject;
+                
+                
+                
+                if ( output.subject != null && output.subject != "")
+                    speech = speech + "Subject : " + output.subject + "." + os.EOL;
+
+                if ( incStatus != null && incStatus != "")
+                    speech = speech + "Status : " + incStatus + "." + os.EOL;
+
+                if ( incPrior != null && incPrior != "")
+                    speech = speech + "Priority : " + incPrior + "." + os.EOL;
+
+                if ( incDesc != null && incDesc != "")
+                    speech = speech + "Notes : " + incDesc + "." + os.EOL;
+
                 //response.json(responseObject);
                 //console.log(responseObject);
+                return res.json({
+                    speech: speech,
+                    displayText: speech,
+                    //source: 'webhook-OSC-oppty'
+                });
 
             })
         }).on('error', function(e) {
             console.error(e);
         });
 
-        return res.json({
-            speech: speech,
-            displayText: speech,
-            //source: 'webhook-OSC-oppty'
-        });
+        
 
     }
 }
