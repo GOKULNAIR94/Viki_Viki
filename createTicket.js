@@ -1,6 +1,6 @@
 module.exports = function(ticket, response) {
 
-    var https = require('https');
+    var https = require('http');
     var speech = "";
     console.log( "ticket : " + JSON.stringify(ticket));
     
@@ -35,14 +35,6 @@ module.exports = function(ticket, response) {
     }).on('error', function(e) {
         console.error(e);
     });
-    post_req.write(JSON.stringify(
-        {
-        "primaryContact":
-            {
-            "id": 2
-            },
-        "subject": "FishPhone not working"
-        }
-    ));
+    post_req.write(JSON.stringify(ticket));
     post_req.end();
 }
