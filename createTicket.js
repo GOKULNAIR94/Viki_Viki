@@ -11,7 +11,7 @@ module.exports = function(ticket, res) {
         method: 'POST',
         headers: {
             'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
-            'Content-Type': 'application/json'
+//            'Content-Type': 'application/json'
         }
     };
     
