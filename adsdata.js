@@ -35,7 +35,7 @@ module.exports = function(req, resp) {
         
         var options = {
             host: 'ntinfotech--tst.custhelp.com',
-            path: qPath,
+            path: encodeURIComponent(qPath),
             headers: {
                 'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
             }
