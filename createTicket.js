@@ -7,7 +7,6 @@ module.exports = function(ticket, response) {
     var newoptions = {
         host: 'ntinfotech--tst.custhelp.com',
         path: '/services/rest/connect/latest/incidents/',
-        data: ticket,
         method: 'POST',
         headers: {
             'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
@@ -36,6 +35,6 @@ module.exports = function(ticket, response) {
     }).on('error', function(e) {
         console.error(e);
     });
-    post_req.write(JSON.stringify(ticket));
+//    post_req.write(JSON.stringify(ticket));
     post_req.end();
 }
