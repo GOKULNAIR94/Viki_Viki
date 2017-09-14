@@ -30,6 +30,7 @@ module.exports = function(req, res) {
                 'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
             }
         };
+        console.log("Here intentName : " + intentName);
         var responseObject;
         var r = https.get(options, function(res) {
             var body = "";
@@ -38,7 +39,7 @@ module.exports = function(req, res) {
                 body += data;
             });
             res.on('end', function() {
-                console.log(body);
+                console.log("Body : " + body);
                 responseObject = JSON.parse(body);
                 //response.json(responseObject);
                 //console.log(responseObject);
