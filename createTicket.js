@@ -36,6 +36,6 @@ module.exports = function(ticket, res) {
     }).on('error', function(e) {
         console.error(e);
     });
-    post_req.write(JSON.stringify(ticket));
+    post_req.write(ticket);
     post_req.end();
 }
