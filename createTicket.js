@@ -9,9 +9,7 @@ module.exports = function(ticket, response) {
         path: '/services/rest/connect/latest/incidents/',
         method: 'POST',
         headers: {
-            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Cache-Control': 'no-cache'
+            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
         }
     };
     
