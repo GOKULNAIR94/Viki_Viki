@@ -9,17 +9,14 @@ module.exports = function(ticket, response) {
         path: '/services/rest/connect/latest/incidents',
         method: 'POST',
         headers: {
-            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0',
-            'Content-Type' : 'application/json',
-            'Connection': 'Keep-Alive'
-
-
+            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
         }
     };
     
-    var body = "";
+    
     var responseObject;
     var post_req = https.request(newoptions, function(res) {
+        var body = "";
         res.on('data', function(chunk) {
             console.log('Response: ' + chunk);
             body = body + chunk;
