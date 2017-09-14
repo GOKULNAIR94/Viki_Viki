@@ -162,6 +162,12 @@ restService.post('/inputmsg', function(req, res) {
                 console.log("ADSData Called");
             });
         }
+        if (intentName.indexOf("ADS_GLData") == 0 ) {
+            console.log("ADS_GLData Called");
+//            ADSData(req, res, function(result) {
+//                
+//            });
+        }
         if (intentName == 'ADS_HyperionReport') {
             SendEmail(req, res, function(result) {
                 console.log("SendEmail Called");
