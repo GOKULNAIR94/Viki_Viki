@@ -3,6 +3,7 @@ module.exports = function( ticket, res ) {
     console.log("ticket : " + JSON.stringify(ticket));
 
     var request = require("request");
+    var output;
 
     var options = {
         method: 'POST',
@@ -19,7 +20,8 @@ module.exports = function( ticket, res ) {
         if (error) throw new Error(error);
 
         console.log(body);
-        var tId = body.id;
+        output = JSON.parse(body);
+        var tId = output.id;
         speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id : " + tId;
         return res.json({
             speech: speech,
