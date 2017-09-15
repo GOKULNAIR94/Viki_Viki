@@ -19,8 +19,9 @@ module.exports = function( ticket, res ) {
     request(options, function(error, response, body) {
         if (error) throw new Error(error);
 
-        console.log(body);
+        
         output = JSON.parse(body);
+        console.log(output.id);
         var tId = output.id;
         speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id : " + tId;
         return res.json({
