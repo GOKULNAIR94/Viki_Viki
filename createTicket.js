@@ -19,7 +19,13 @@ module.exports = function(ticket, response) {
         if (error) throw new Error(error);
 
         console.log(body);
-        response.json(body);
+        var tId = body.id;
+        speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id : " + tId;
+        return res.json({
+            speech: speech,
+            displayText: speech,
+            //source: 'webhook-OSC-oppty'
+        })
     });
 
 }
