@@ -1,7 +1,5 @@
 module.exports = function(ticket, response) {
 
-    var http = require('https');
-    
     console.log("ticket : " + JSON.stringify(ticket));
 
     var request = require("request");
