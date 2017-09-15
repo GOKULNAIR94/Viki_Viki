@@ -1,39 +1,35 @@
 module.exports = function(ticket, response) {
 
-    var https = require('https');
+    var http = require('https');
     var speech = "";
     console.log( "ticket : " + JSON.stringify(ticket));
     
-    var newoptions = {
-        host: 'ntinfotech--tst.custhelp.com',
-        path: '/services/rest/connect/latest/incidents',
-        method: 'POST',
-        headers: {
-            'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
-        }
+    var options = {
+      "method": "POST",
+      "hostname": "ntinfotech--tst.custhelp.com",
+      "port": null,
+      "path": "/services/rest/connect/latest/incidents/",
+      "headers": {
+        "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
+        "cache-control": "no-cache",
+        "postman-token": "0f6c028e-bdc2-ecff-3b65-da4e82a4acd5"
+      }
     };
     
     
-    var responseObject;
-    var post_req = https.request(newoptions, function(res) {
-        var body = "";
-        res.on('data', function(chunk) {
-            console.log('Response: ' + chunk);
-            body = body + chunk;
-        });
-        res.on('end', function() {
-            console.log( "Body : " + body);
-//            responseObject = JSON.parse(body);
-//            speech = "Ok! I will put in a ticket in ServiceNow for the Hyperion Support Team to look into this. Please specify the priority!";
-//            return res.json({
-//                speech: speech,
-//                displayText: speech,
-//                //source: 'webhook-OSC-oppty'
-//            })
-        })
-    }).on('error', function(e) {
-        console.error(e);
+    var req = http.request(options, function (res) {
+      var chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
     });
-    post_req.write(JSON.stringify(ticket));
-    post_req.end();
+
+    req.write("{\r\n    \"primaryContact\": {\r\n        \"id\": 60\r\n    },\r\n    \"assignedTo\": {\r\n        \"staffGroup\": {\r\n            \"lookupName\": \"Admin\"\r\n        }\r\n    },\r\n    \"customFields\": {\r\n        \"c\": {\r\n            \"description\": \"no\",\r\n            \"priority\": {\r\n                \"lookupName\": \"1 - High\"\r\n            }\r\n        }\r\n    },\r\n    \"statusWithType\": {\r\n        \"status\": {\r\n            \"lookupName\": \"Unresolved\"\r\n        }\r\n    },\r\n    \"subject\": \"GL data is missing in FinRpt for 2017 for Actuals scenario 1\"\r\n}");
+    req.end();
 }
