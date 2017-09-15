@@ -203,6 +203,14 @@ restService.post('/inputmsg', function(req, res) {
             };
             createTicket(ticket, res, function(result) {
                 console.log("Ticket created");
+                
+                var tId = result.id;
+                speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id : " + tId;
+                return res.json({
+                    speech: speech,
+                    displayText: speech,
+                    //source: 'webhook-OSC-oppty'
+                })
             });
         }
         if (intentName == 'ADS_HyperionReport') {
