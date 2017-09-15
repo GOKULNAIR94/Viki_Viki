@@ -12,7 +12,7 @@ module.exports = function(ticket, response) {
             'cache-control': 'no-cache',
             authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
         },
-        body: ticket
+        body: JSON.stringify(ticket)
     };
 
     request(options, function(error, response, body) {
