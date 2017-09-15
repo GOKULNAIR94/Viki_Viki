@@ -1,4 +1,4 @@
-module.exports = function( ticket, res, response ) {
+module.exports = function( ticket, res ) {
 
     console.log("ticket : " + JSON.stringify(ticket));
 

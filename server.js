@@ -201,7 +201,7 @@ restService.post('/inputmsg', function(req, res) {
                 },
                 "subject": "GL data is missing in "+ app +" for "+ reportYear +" for "+ reportScenario +" scenario"
             };
-            createTicket(ticket, res, function(result) {
+            createTicket(ticket, res, function() {
                 console.log("Ticket created");
             });
         }
