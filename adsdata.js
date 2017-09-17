@@ -55,7 +55,7 @@ module.exports = function(req, resp) {
                 output = JSON.parse(body);
                 
                 for(var i = 0; i < output.items.length; i++){
-                    speech = speech + "Incident : " + output.items[i].id + ": " + output.items[i].subject + " " + os.EOL;
+                    speech = speech + "Incident " + output.items[i].id + ": " + output.items[i].subject + ". " + os.EOL;
                 }
                 
                 
