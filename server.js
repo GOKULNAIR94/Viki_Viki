@@ -163,17 +163,33 @@ restService.post('/inputmsg', function(req, res) {
                 console.log("ADSData Called");
             });
         }
-        if (intentName.indexOf("ADS_GLData") == 0 ) {
+        if (intentName.indexOf("ADS_GLData") == 0 || intentName == 'Hyperion ADS - Smart View - 2016 - yes' ) {
+            var subject = "";
+            var priority;
+            var description;
+            var ticket;
+                
+            if( intentName.indexOf("ADS_GLData") == 0 ){
+                console.log("ADS_GLData Called");
+                var app = req.body.result.parameters['ADS_AdhocData'];
+                var reportYear = req.body.result.parameters['reportYear'];
+                var reportScenario = req.body.result.parameters['reportScenario'];
+                
+                priority = req.body.result.parameters['ADS_RN_Priority'];
+                description = req.body.result.parameters['description'];  
+                subject = "GL data is missing in "+ app +" for "+ reportYear +" for "+ reportScenario +" scenario";
+                speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id: ";
+                
+            }
+            if( intentName == 'Hyperion ADS - Smart View - 2016 - yes' ){
+                priority = req.body.result.parameters['ADS_RN_Priority'];
+                description = req.body.result.parameters['description'];  
+                subject = "Smart View Add-In disappers in Excel 2016";
+                
+                speech = "Sure. I have put in a Service Now ticket for a support professional to help you with the MS Office. Here is your ticket number: ";
+            } 
             
-            console.log("ADS_GLData Called");
-            var app = req.body.result.parameters['ADS_AdhocData'];
-            var reportYear = req.body.result.parameters['reportYear'];
-            var reportScenario = req.body.result.parameters['reportScenario'];
-            var subject = req.body.result.parameters['subject'];
-            var priority = req.body.result.parameters['ADS_RN_Priority'];
-            var description = req.body.result.parameters['description'];
-            
-            var ticket = {
+            ticket = {
                 "primaryContact":
                 {
                 "id": 60
@@ -199,11 +215,18 @@ restService.post('/inputmsg', function(req, res) {
                         "lookupName": "Unresolved"
                     }
                 },
-                "subject": "GL data is missing in "+ app +" for "+ reportYear +" for "+ reportScenario +" scenario"
+                "subject": subject
             };
-            createTicket(ticket, res, function() {
-                console.log("Ticket created");
+            createTicket(ticket, res, function( tId ) {
+                speech = speech + tId + ".";
+                console.log("Ticket created : " + speech);
+                return res.json({
+                    speech: speech,
+                    displayText: speech,
+                    //source: 'webhook-OSC-oppty'
+                })
             });
+        
         }
         if (intentName == 'ADS_HyperionReport') {
             SendEmail(req, res, function(result) {
