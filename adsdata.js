@@ -26,10 +26,10 @@ module.exports = function(req, resp) {
         console.log("qPriotity : " + qPriotity);
         var qPath ="";
         if( qPriotity == "open"){
-            qPath = "/services/rest/connect/latest/incidents?q=statusWithType.status.lookupName='Unresolved'";
+            qPath = "/services/rest/connect/latest/incidents?fields=subject&q=statusWithType.status.lookupName='Unresolved'";
         }
         else{
-            qPath = "/services/rest/connect/latest/incidents?q=customFields.c.priority.lookupName='" + encodeURIComponent(qPriotity) + "'";
+            qPath = "/services/rest/connect/latest/incidents?fields=subject&q=customFields.c.priority.lookupName='" + encodeURIComponent(qPriotity) + "'";
         }
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
@@ -55,7 +55,7 @@ module.exports = function(req, resp) {
                 output = JSON.parse(body);
                 
                 for(var i = 0; i < output.items.length; i++){
-                    speech = speech + "Incident : " + output.items[i].id + "." + os.EOL;
+                    speech = speech + "Incident : " + output.items[i].id + ": " + output.items[i].subject + " " + os.EOL;
                 }
                 
                 
