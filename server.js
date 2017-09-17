@@ -181,7 +181,7 @@ restService.post('/inputmsg', function(req, res) {
                 speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id: ";
                 
             }
-            if( intentName.indexOf("Hyperion ADS - Smart View -") ){
+            if( intentName.indexOf("Hyperion ADS - Smart View -") == 0 ){
                 console.log("Hyperion ADS - Smart View Called");
                 priority = req.body.result.parameters['ADS_RN_Priority'];
                 description = req.body.result.parameters['description'];
@@ -222,7 +222,7 @@ restService.post('/inputmsg', function(req, res) {
                 },
                 "subject": subject
             };
-            createTicket(ticket, res, function( tId ) {
+            createTicket( ticket, function( tId ) {
                 speech = speech + tId + ".";
                 console.log("Ticket created : " + speech);
                 return res.json({
