@@ -163,7 +163,7 @@ restService.post('/inputmsg', function(req, res) {
                 console.log("ADSData Called");
             });
         }
-        if (intentName.indexOf("ADS_GLData") == 0 || intentName == 'Hyperion ADS - Smart View - 2016 - yes' ) {
+        if (intentName.indexOf("ADS_GLData") == 0 || intentName.indexOf("Hyperion ADS - Smart View -") ) {
             var subject = "";
             var priority;
             var description;
@@ -181,10 +181,14 @@ restService.post('/inputmsg', function(req, res) {
                 speech = "I have put in a ticket in servicenow for the hyperion support team to look into this. You will be notified once data been restored. Here's the ticket number for reference: Incident Id: ";
                 
             }
-            if( intentName == 'Hyperion ADS - Smart View - 2016 - yes' ){
+            if( intentName.indexOf("Hyperion ADS - Smart View -") ){
                 priority = req.body.result.parameters['ADS_RN_Priority'];
-                description = req.body.result.parameters['description'];  
-                subject = "Smart View Add-In disappers in Excel 2016";
+                description = req.body.result.parameters['description'];
+                if( intentName == 'Hyperion ADS - Smart View - 2016 - yes' )
+                    subject = "Smart View Add-In disappers in Excel 2016";
+                
+                if( intentName == 'Hyperion ADS - Smart View - 2013 - no - yes' )
+                    subject = "Smart View Add-In disappers in Excel 2013.";
                 
                 speech = "Sure. I have put in a Service Now ticket for a support professional to help you with the MS Office. Here is your ticket number: ";
             } 
