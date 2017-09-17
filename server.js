@@ -163,7 +163,7 @@ restService.post('/inputmsg', function(req, res) {
                 console.log("ADSData Called");
             });
         }
-        if (intentName.indexOf("ADS_GLData") == 0 || intentName.indexOf("Hyperion ADS - Smart View -") ) {
+        if (intentName.indexOf("ADS_GLData") == 0 || intentName.indexOf("Hyperion ADS - Smart View -") == 0 ) {
             var subject = "";
             var priority;
             var description;
