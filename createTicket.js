@@ -4,6 +4,7 @@ module.exports = function( ticket, callback ) {
 
     var request = require("request");
     var output;
+    var varAuth = 'Basic cHBhdGthcjpsbnRMTlQxMjM0';
 
     var options = {
         method: 'POST',
@@ -11,7 +12,7 @@ module.exports = function( ticket, callback ) {
         headers: {
             'postman-token': '2e164913-425e-4d15-e09a-5d479d31c1d5',
             'cache-control': 'no-cache',
-            authorization: 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
+            authorization: varAuth
         },
         body: JSON.stringify(ticket)
     };

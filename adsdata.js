@@ -18,6 +18,7 @@ module.exports = function(req, resp) {
     var HeadCountQuery = "";
     var os = require('os');
     var qPriotity;
+    var varAuth = 'Basic cHBhdGthcjpsbnRMTlQxMjM0';
     
     if ( intentName == "ADS_SNIncidents_list") {
         
@@ -38,7 +39,7 @@ module.exports = function(req, resp) {
             host: 'ntinfotech--tst.custhelp.com',
             path: qPath,
             headers: {
-                'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
+                'Authorization': varAuth
             }
         };
         
@@ -100,7 +101,7 @@ module.exports = function(req, resp) {
             host: 'ntinfotech--tst.custhelp.com',
             path: '/services/rest/connect/latest/incidents/' + number,
             headers: {
-                'Authorization': 'Basic cHBhdGthcjpsbnRMTlQxMjM0'
+                'Authorization': varAuth
             }
         };
         console.log("Here intentName : " + intentName);
