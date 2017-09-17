@@ -182,6 +182,7 @@ restService.post('/inputmsg', function(req, res) {
                 
             }
             if( intentName.indexOf("Hyperion ADS - Smart View -") ){
+                console.log("Hyperion ADS - Smart View Called");
                 priority = req.body.result.parameters['ADS_RN_Priority'];
                 description = req.body.result.parameters['description'];
                 if( intentName == 'Hyperion ADS - Smart View - 2016 - yes' )

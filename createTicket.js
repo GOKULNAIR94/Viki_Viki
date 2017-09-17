@@ -1,6 +1,6 @@
 module.exports = function( ticket, callback ) {
 
-    console.log("ticket : " + JSON.stringify(ticket));
+    console.log("Crete Tkt: ticket : " + JSON.stringify(ticket));
 
     var request = require("request");
     var output;
