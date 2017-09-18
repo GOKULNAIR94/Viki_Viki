@@ -163,12 +163,27 @@ restService.post('/inputmsg', function(req, res) {
                 console.log("ADSData Called");
             });
         }
-        if (intentName.indexOf("ADS_GLData") == 0 || intentName.indexOf("Hyperion ADS - Smart View -") == 0 ) {
+        if (intentName.indexOf("ADS_GLData") == 0 || intentName.indexOf("Hyperion ADS - Smart View -") == 0 || intentName == 'Hyperion - no - yes' ) {
             var subject = "";
             var priority;
             var description;
             var ticket;
+            
+            if( intentName == 'Hyperion - no - yes' ){
                 
+                priority = req.body.result.parameters['ADS_RN_Priority'];
+                description = req.body.result.parameters['description'];
+                
+                var errormessage = req.body.result.parameters['errormessage'];
+                var appName = req.body.result.parameters['appName'];
+                var connType = req.body.result.parameters['connType'];
+                
+                subject = "Unable to connect to smart view.\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType + ".";
+                description = description + "\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType;
+                
+                speech = "Ok. I have documented all that we spoke in a ticket on Service now. An engineer will get in touch with you at the earliest. Anytime you need a status on this ticket please reach out to me. Here's your ticket number: ";
+            }
+            
             if( intentName.indexOf("ADS_GLData") == 0 ){
                 console.log("ADS_GLData Called");
                 var app = req.body.result.parameters['ADS_AdhocData'];
