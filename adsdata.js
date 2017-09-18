@@ -29,7 +29,12 @@ module.exports = function(req, resp) {
             qPath = "/services/rest/connect/latest/incidents?fields=subject&q=statusWithType.status.lookupName='Unresolved'";
         }
         else{
-            qPath = "/services/rest/connect/latest/incidents?fields=subject&q=customFields.c.priority.lookupName='" + encodeURIComponent(qPriotity) + "'%20AND%20statusWithType.status.lookupName='Unresolved'";
+            if( qPriotity == "closed"){
+                qPath = "/services/rest/connect/latest/incidents?fields=subject&q=statusWithType.status.lookupName='Solved'";
+            }
+            else{
+                qPath = "/services/rest/connect/latest/incidents?fields=subject&q=customFields.c.priority.lookupName='" + encodeURIComponent(qPriotity) + "'%20AND%20statusWithType.status.lookupName='Unresolved'";
+            }
         }
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
