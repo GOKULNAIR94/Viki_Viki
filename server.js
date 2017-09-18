@@ -183,7 +183,7 @@ restService.post('/inputmsg', function(req, res) {
                 }
                 
                 
-                subject = "Unable to connect to smart view. Error message : " + errormessage + "Application : " + appName + "Connection : " + connType + ".";
+                subject = "Unable to connect to smart view. Error message : " + errormessage + ". Application : " + appName + ". Connection : " + connType + ".";
                 description = description + "\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType;
                 
                 speech = "Ok. I have documented all that we spoke in a ticket on Service now. An engineer will get in touch with you at the earliest. Anytime you need a status on this ticket please reach out to me. Here's your ticket number: ";
