@@ -174,9 +174,9 @@ restService.post('/inputmsg', function(req, res) {
                 priority = req.body.result.parameters['ADS_RN_Priority'];
                 description = req.body.result.parameters['description'];
                 
-                var errormessage = req.body.result.parameters['errormessage'];
-                var appName = req.body.result.parameters['appName'];
-                var connType = req.body.result.parameters['connType'];
+                var errormessage = req.body.result.contexts[0].parameters['errormessage'];
+                var appName = req.body.result.contexts[0].parameters['appName'];
+                var connType = req.body.result.contexts[0].parameters['connType'];
                 
                 subject = "Unable to connect to smart view.\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType + ".";
                 description = description + "\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType;
