@@ -174,11 +174,16 @@ restService.post('/inputmsg', function(req, res) {
                 priority = req.body.result.parameters['ADS_RN_Priority'];
                 description = req.body.result.parameters['description'];
                 
-                var errormessage = req.body.result.contexts[0].parameters['errormessage'];
-                var appName = req.body.result.contexts[0].parameters['appName'];
-                var connType = req.body.result.contexts[0].parameters['connType'];
+                for(var i=0; i <=3; i++){
+                    var errormessage = req.body.result.contexts[i].parameters['errormessage'];
+                    var appName = req.body.result.contexts[i].parameters['appName'];
+                    var connType = req.body.result.contexts[i].parameters['connType'];
+                    if( errormessage != null || appName != null )
+                        break;
+                }
                 
-                subject = "Unable to connect to smart view.\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType + ".";
+                
+                subject = "Unable to connect to smart view. Error message : " + errormessage + "Application : " + appName + "Connection : " + connType + ".";
                 description = description + "\nError message : " + errormessage + "\nApplication : " + appName + "\nConnection : " + connType;
                 
                 speech = "Ok. I have documented all that we spoke in a ticket on Service now. An engineer will get in touch with you at the earliest. Anytime you need a status on this ticket please reach out to me. Here's your ticket number: ";
