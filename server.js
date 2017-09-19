@@ -219,6 +219,9 @@ restService.post('/inputmsg', function(req, res) {
                 {
                 "id": 60
                 },
+                "channel": {
+			        "id": 8
+			    },
 
                 "assignedTo": {
                     "staffGroup": {
