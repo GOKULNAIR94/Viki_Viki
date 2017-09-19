@@ -217,7 +217,7 @@ restService.post('/inputmsg', function(req, res) {
             ticket = {
                 "primaryContact":
                 {
-                "id": 60
+                "id": 59
                 },
                 "channel": {
 			        "id": 8
