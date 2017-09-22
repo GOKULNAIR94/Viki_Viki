@@ -41,7 +41,7 @@ module.exports = function(req, res) {
         subject: 'Adhoc Data push completion notification!', //
 
         // HTML body
-        html: '<p><b>Hello Kaaman,</b></p>' +
+        html: '<p><b>Hello,</b></p>' +
             '<p>Adhoc Data Push from ' + sourceApp + ' to ' + targetApp + ' for the ' + scenario + ' scenario is completed.</p>' +
             '<p>Thanks,<br><b>Viki</b></p>',
 

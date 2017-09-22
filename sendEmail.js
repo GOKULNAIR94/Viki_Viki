@@ -43,7 +43,7 @@ module.exports = function(req, res) {
             subject: 'Departmental Expenses Corporate Report', //
 
             // HTML body
-            html: '<p><b>Hello Kaaman,</b></p>' +
+            html: '<p><b>Hello,</b></p>' +
                 '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
                 '<p>Thanks,<br><b>Viki</b></p>',
 
