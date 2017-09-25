@@ -13,7 +13,6 @@ restService.use(bodyParser.json());
 var jsonQuery = require('json-query');
 
 
-
 var DCPData = require("./dcpdata");
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
@@ -21,7 +20,6 @@ var sendAdhocEmail = require("./sendAdhocEmail");
 var createTicket = require("./createTicket");
 
 restService.post('/inputmsg', function(req, res) {
-    var Query = require("./query");
 
     var Market = '';
     var Period = '';

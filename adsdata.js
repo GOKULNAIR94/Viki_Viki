@@ -2,6 +2,8 @@ module.exports = function(req, resp) {
     var https = require('https');
     var fs = require('fs');
     var jsonQuery = require('json-query');
+    
+    var Query = require("./query");
 
     var content;
     var speech = "";
