@@ -8,13 +8,14 @@ module.exports = function(req, resp) {
 
     var os = require('os');
     var qPriotity;
-    var varAuth = 'Basic cHBhdGthcjpsbnRMTlQxMjM0';
+    
+    var qPath ="";
     
     if ( intentName == "ADS_SNIncidents_list") {
         
         qPriotity = req.body.result.parameters['ADS_RN_Priority'];
         console.log("qPriotity : " + qPriotity);
-        var qPath ="";
+        
         if( qPriotity == "open"){
             qPath = "/services/rest/connect/latest/incidents?fields=subject&q=statusWithType.status.lookupName='Unresolved'";
         }
@@ -28,16 +29,41 @@ module.exports = function(req, resp) {
         }
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
-        
+        var suggests = [];
         Query( qPath, req, resp, function( output ){
             for(var i = 0; i < output.items.length; i++){
                 speech = speech + "Incident " + output.items[i].lookupName + ": " + output.items[i].subject + ". " + os.EOL;
+                if ( output.items[i].lookupName != null &&  output.items[i].lookupName != "") {
+                    suggests.push({
+                        "title": "Incident " + output.items[i].lookupName
+                    })
+                }
             }
             resp.json({
                 speech: speech,
                 displayText: speech,
-                //source: 'webhook-OSC-oppty'
+                data: {
+                    google: {
+                        'expectUserResponse': true,
+                        'isSsml': false,
+                        'noInputPrompts': [],
+                        'richResponse': {
+                            'items': [{
+                                'simpleResponse': {
+                                    'textToSpeech': speech,
+                                    'displayText': speech
+                                }
+                            }],
+                            "suggestions": suggests
+                        }
+                    }
+                }
             });
+//            resp.json({
+//                speech: speech,
+//                displayText: speech,
+//                //source: 'webhook-OSC-oppty'
+//            });
         });
         
     }
@@ -46,7 +72,7 @@ module.exports = function(req, resp) {
     if (intentName == "ADS_SNIncident" || intentName == "ADS_SNIncidents_list - custom") {
         //attrib = req.body.result.parameters['ADS_attrib'];
 
-        number = req.body.result.parameters['Number'];
+        var number = req.body.result.parameters['Number'];
         qPath = "/services/rest/connect/latest/incidents?fields=subject&q=lookupName='"+ number +"'"
         Query( qPath, req, resp, function( result ){
             if( result.items.length > 0 ){
