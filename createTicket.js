@@ -22,7 +22,8 @@ module.exports = function( ticket, callback ) {
 
         output = JSON.parse(body);
         console.log(output.id);
-        return callback( output.id );
+        console.log(output.lookupName);
+        return callback( output.lookupName );
     });
 
 }

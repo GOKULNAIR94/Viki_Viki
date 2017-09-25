@@ -39,61 +39,70 @@ module.exports = function(req, resp) {
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
         
-        
-        var options = {
-            host: 'ntinfotech--tst.custhelp.com',
-            path: qPath,
-            headers: {
-                'Authorization': varAuth
+        Query( qString, req, res, function( output ){
+            for(var i = 0; i < output.items.length; i++){
+                speech = speech + "Incident " + output.items[i].lookupName + ": " + output.items[i].subject + ". " + os.EOL;
             }
-        };
-        
-        var output;
-        var r = https.get(options, function(res) {
-            var body = "";
-
-            res.on('data', function(data) {
-                body += data;
+            resp.json({
+                speech: speech,
+                displayText: speech,
+                //source: 'webhook-OSC-oppty'
             });
-            res.on('end', function() {
-                console.log("Body : " + body);
-                output = JSON.parse(body);
-                
-                for(var i = 0; i < output.items.length; i++){
-                    speech = speech + "Incident " + output.items[i].id + ": " + output.items[i].subject + ". " + os.EOL;
-                }
-                
-                
-                return resp.json({
-                    speech: speech,
-                    displayText: speech,
-                    //source: 'webhook-OSC-oppty'
-                });
-                
-                
-                
-//                if ( incSubject != null && incSubject != "")
-//                    speech = speech + "Subject : " + incSubject + "." + os.EOL;
+        });
+//        var options = {
+//            host: 'ntinfotech--tst.custhelp.com',
+//            path: qPath,
+//            headers: {
+//                'Authorization': varAuth
+//            }
+//        };
+//        
+//        var output;
+//        var r = https.get(options, function(resp) {
+//            var body = "";
 //
-//                if ( incStatus != null && incStatus != "")
-//                    speech = speech + "Status : " + incStatus + "." + os.EOL;
-//
-//                if ( incPrior != null && incPrior != "")
-//                    speech = speech + "Priority : " + incPrior + "." + os.EOL;
-//
-//                if ( incDesc != null && incDesc != "")
-//                    speech = speech + "Notes : " + incDesc + "." + os.EOL;
-//
+//            resp.on('data', function(data) {
+//                body += data;
+//            });
+//            resp.on('end', function() {
+//                console.log("Body : " + body);
+//                output = JSON.parse(body);
+//                
+//                for(var i = 0; i < output.items.length; i++){
+//                    speech = speech + "Incident " + output.items[i].lookupName + ": " + output.items[i].subject + ". " + os.EOL;
+//                }
+//                
+//                
 //                return resp.json({
 //                    speech: speech,
 //                    displayText: speech,
 //                    //source: 'webhook-OSC-oppty'
 //                });
-
-            })
-        }).on('error', function(e) {
-            console.error(e);
-        });
+//                
+//                
+//                
+////                if ( incSubject != null && incSubject != "")
+////                    speech = speech + "Subject : " + incSubject + "." + os.EOL;
+////
+////                if ( incStatus != null && incStatus != "")
+////                    speech = speech + "Status : " + incStatus + "." + os.EOL;
+////
+////                if ( incPrior != null && incPrior != "")
+////                    speech = speech + "Priority : " + incPrior + "." + os.EOL;
+////
+////                if ( incDesc != null && incDesc != "")
+////                    speech = speech + "Notes : " + incDesc + "." + os.EOL;
+////
+////                return resp.json({
+////                    speech: speech,
+////                    displayText: speech,
+////                    //source: 'webhook-OSC-oppty'
+////                });
+//
+//            })
+//        }).on('error', function(e) {
+//            console.error(e);
+//        });
         
     }
 
@@ -102,30 +111,70 @@ module.exports = function(req, resp) {
         //attrib = req.body.result.parameters['ADS_attrib'];
 
         number = req.body.result.parameters['Number'];
-        var options = {
-            host: 'ntinfotech--tst.custhelp.com',
-            path: '/services/rest/connect/latest/incidents/' + number,
-            headers: {
-                'Authorization': varAuth
-            }
-        };
-        console.log("Here intentName : " + intentName);
-        var output;
-        var r = https.get(options, function(res) {
-            var body = "";
+        
+        Query( qString, req, res, function( result ){
+            if( result.items.length > 0 ){
+                qString = result.items[0].id;
+                Query( qString, req, res, function( output ){
+                    var incDesc = output.customFields.c.description;
+                    var incPrior = output.customFields.c.priority.lookupName;
+                    var incStatus = output.statusWithType.status.lookupName;
+                    var incSubject = output.subject;
+                    
+                    if ( incSubject != null && incSubject != "")
+                        speech = speech + "Subject : " + incSubject + "." + os.EOL;
 
-            res.on('data', function(data) {
-                body += data;
-            });
-            res.on('end', function() {
-                console.log("Body : " + body);
-                output = JSON.parse(body);
-                
-                
-                var incDesc = output.customFields.c.description;
-                var incPrior = output.customFields.c.priority.lookupName;
-                var incStatus = output.statusWithType.status.lookupName;
-                var incSubject = output.subject;
+                    if ( incStatus != null && incStatus != "")
+                        speech = speech + "Status : " + incStatus + "." + os.EOL;
+
+                    if ( incPrior != null && incPrior != "")
+                        speech = speech + "Priority : " + incPrior + "." + os.EOL;
+
+                    if ( incDesc != null && incDesc != "")
+                        speech = speech + "Notes : " + incDesc + "." + os.EOL;
+                    
+                    resp.json({
+                        speech: speech,
+                        displayText: speech,
+                        //source: 'webhook-OSC-oppty'
+                    });
+                });
+            }
+            else{
+                //console.log( "combObj 2: " + JSON.stringify(combObj) );
+                speech = "No records found! Please check the Incident Number and try again!"
+                resp.json({
+                    speech: speech,
+                    displayText: speech,
+                    //source: 'webhook-OSC-oppty'
+                });
+            }
+
+        });
+//        var options = {
+//            host: 'ntinfotech--tst.custhelp.com',
+//            path: '/services/rest/connect/latest/incidents/' + number,
+//            headers: {
+//                'Authorization': varAuth
+//            }
+//        };
+//        console.log("Here intentName : " + intentName);
+//        var output;
+//        var r = https.get(options, function(res) {
+//            var body = "";
+//
+//            res.on('data', function(data) {
+//                body += data;
+//            });
+//            res.on('end', function() {
+//                console.log("Body : " + body);
+//                output = JSON.parse(body);
+//                
+//                
+//                var incDesc = output.customFields.c.description;
+//                var incPrior = output.customFields.c.priority.lookupName;
+//                var incStatus = output.statusWithType.status.lookupName;
+//                var incSubject = output.subject;
                 
                 
                 
@@ -141,16 +190,16 @@ module.exports = function(req, resp) {
                 if ( incDesc != null && incDesc != "")
                     speech = speech + "Notes : " + incDesc + "." + os.EOL;
 
-                return resp.json({
-                    speech: speech,
-                    displayText: speech,
-                    //source: 'webhook-OSC-oppty'
-                });
-
-            })
-        }).on('error', function(e) {
-            console.error(e);
-        });
+//                return resp.json({
+//                    speech: speech,
+//                    displayText: speech,
+//                    //source: 'webhook-OSC-oppty'
+//                });
+//
+//            })
+//        }).on('error', function(e) {
+//            console.error(e);
+//        });
 
         
 
