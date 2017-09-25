@@ -41,7 +41,7 @@ module.exports = function(req, resp) {
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
         
-        Query( qPath, req, res, function( output ){
+        Query( qPath, req, resp, function( output ){
             for(var i = 0; i < output.items.length; i++){
                 speech = speech + "Incident " + output.items[i].lookupName + ": " + output.items[i].subject + ". " + os.EOL;
             }
@@ -114,10 +114,10 @@ module.exports = function(req, resp) {
 
         number = req.body.result.parameters['Number'];
         qPath = "/services/rest/connect/latest/incidents?fields=subject&q=lookupName='"+ number +"'"
-        Query( qPath, req, res, function( result ){
+        Query( qPath, req, resp, function( result ){
             if( result.items.length > 0 ){
                 qPath = "/services/rest/connect/latest/incidents/" + result.items[0].id;
-                Query( qPath, req, res, function( output ){
+                Query( qPath, req, resp, function( output ){
                     var incDesc = output.customFields.c.description;
                     var incPrior = output.customFields.c.priority.lookupName;
                     var incStatus = output.statusWithType.status.lookupName;
