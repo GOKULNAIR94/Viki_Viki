@@ -12,6 +12,7 @@ restService.use(bodyParser.json());
 
 var jsonQuery = require('json-query');
 
+var Query = require("./query");
 
 var DCPData = require("./dcpdata");
 var ADSData = require("./adsdata");
