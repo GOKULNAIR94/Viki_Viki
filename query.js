@@ -5,7 +5,7 @@ module.exports = function ( qString, req, resp, callback){
       "method": "GET",
       "hostname": "ntinfotech--tst.custhelp.com",
       "port": null,
-      "path": "/services/rest/connect/latest/incidents/" + qString, //customFields.CO.Serial_Number%3D'C355'%20AND%20statusWithType.status.lookupName%3D'Solved'
+      "path": qString, //customFields.CO.Serial_Number%3D'C355'%20AND%20statusWithType.status.lookupName%3D'Solved'
       "headers": {
         "authorization": "Basic cHBhdGthcjpsbnRMTlQxMjM0",
         "cache-control": "no-cache"

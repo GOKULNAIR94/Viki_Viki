@@ -39,7 +39,7 @@ module.exports = function(req, resp) {
         console.log("List intentName : " + intentName);
         console.log("qPath : " + qPath);
         
-        Query( qString, req, res, function( output ){
+        Query( qPath, req, res, function( output ){
             for(var i = 0; i < output.items.length; i++){
                 speech = speech + "Incident " + output.items[i].lookupName + ": " + output.items[i].subject + ". " + os.EOL;
             }
@@ -111,11 +111,11 @@ module.exports = function(req, resp) {
         //attrib = req.body.result.parameters['ADS_attrib'];
 
         number = req.body.result.parameters['Number'];
-        
-        Query( qString, req, res, function( result ){
+        qPath = "/services/rest/connect/latest/incidents?fields=subject&q=lookupName='"+ number +"'"
+        Query( qPath, req, res, function( result ){
             if( result.items.length > 0 ){
-                qString = result.items[0].id;
-                Query( qString, req, res, function( output ){
+                qPath = "/services/rest/connect/latest/incidents/" + result.items[0].id;
+                Query( qPath, req, res, function( output ){
                     var incDesc = output.customFields.c.description;
                     var incPrior = output.customFields.c.priority.lookupName;
                     var incStatus = output.statusWithType.status.lookupName;
