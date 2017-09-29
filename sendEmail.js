@@ -16,23 +16,57 @@ module.exports = function(req, res) {
             pass: 'K@agar55wal'
         }
     });
-    var to_email = req.body.result.parameters.emailaddress;
-    var reportName = req.body.result.parameters.reportName;
-    var chartfield = req.body.result.parameters.chartfield;
-    var yearName = req.body.result.parameters.reportYear;
-    var scenario = req.body.result.parameters.reportScenario;
-    var sourceApp = req.body.result.parameters.sourceApp;
-    var version = req.body.result.parameters.version;
-    var currency = req.body.result.parameters["currency-name"];
-    var projects = req.body.result.parameters["projects"];
+    var to_email = "";       
+    var reportName =  "";      
+    var yearName =  "";
+    var speech = "";
+    var body = "";
+    var file = "";
+    var subject = "";
 
 
-
-    var speech = 'Report : ' + reportName + ' for ' + projects + ' - ' + chartfield + ' (' + yearName + ') has been emailed to ' + to_email + '. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
+    if( intentName == 'ADS_HyperionReport' ){
+        to_email = req.body.result.parameters.emailaddress;
+        reportName = req.body.result.parameters.reportName;
+        yearName = req.body.result.parameters.reportYear;
+        
+        var chartfield = req.body.result.parameters.chartfield;
+        var scenario = req.body.result.parameters.reportScenario;
+        var sourceApp = req.body.result.parameters.sourceApp;
+        var version = req.body.result.parameters.version;
+        var currency = req.body.result.parameters["currency-name"];
+        var projects = req.body.result.parameters["projects"];
+        
+        speech = 'Report : ' + reportName + ' for ' + projects + ' - ' + chartfield + ' (' + yearName + ') has been emailed to ' + to_email + '. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
+        file = "DepartmentalExpenses_Corporate_Report.pdf";
+        body = '<p><b>Hello,</b></p>' +
+                    '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
+                    '<p>Thanks,<br><b>Viki</b></p>';
+        subject = 'Departmental Expenses Corporate Report';
+    }else{
+        if( intentName == 'reporting' ){
+            to_email = req.body.result.parameters.email;
+            reportName = req.body.result.parameters.reportName;
+            yearName = req.body.result.parameters.year;
+            
+            var scenario = req.body.result.parameters.reportScenario;
+            var sourceApp = req.body.result.parameters.applicationsforReport;
+            
+            speech = "Reconcilition report " + scenario +" - PTVPLAN and PPCMRC ( " + yearName + " ) has been emailed to " + to_email + ". Please give a few minutes for the email to arrive in your inbox. Is there anything elseI can help you with?";
+            file = "PTVPLAN_PPCMRC_ReconReport.pdf";
+            body = '<p><b>Hello,</b></p>' +
+                        '<p>Attached is the PTVPLAN and PPCMRC Reconcilition report as Requested.</p>' +
+                        '<p>Thanks,<br><b>Viki</b></p>';
+            subject = 'Reconcilition report: Budget - PTVPLAN and PPCMRC';
+        }
+    }
+    
+    
+    
 
     console.log(speech);
     console.log('SMTP Configured');
-    fs.readFile("./DepartmentalExpenses_Corporate_Report.pdf", function(err, data) {
+    fs.readFile("./" + file, function(err, data) {
         // Message object
         let message = {
             from: 'VIKI <reachme@kaaman.onmicrosoft.com>',
@@ -40,19 +74,17 @@ module.exports = function(req, res) {
             to: to_email,
 
             // Subject of the message
-            subject: 'Departmental Expenses Corporate Report', //
+            subject: subject, //
 
             // HTML body
-            html: '<p><b>Hello,</b></p>' +
-                '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
-                '<p>Thanks,<br><b>Viki</b></p>',
+            html: body,
 
             // Apple Watch specific HTML body
             watchHtml: '<b>Hello</b> to myself',
 
             //An array of attachments
             attachments: [{
-                'filename': 'DepartmentalExpenses_Corporate_Report.pdf',
+                'filename': file,
                 'content': data
             }]
 

@@ -256,7 +256,7 @@ restService.post('/inputmsg', function(req, res) {
             });
         
         }
-        if (intentName == 'ADS_HyperionReport') {
+        if (intentName == 'ADS_HyperionReport' || intentName == 'reporting') {
             SendEmail(req, res, function(result) {
                 console.log("SendEmail Called");
             });
