@@ -5,8 +5,8 @@ module.exports = function(req, res) {
     const restService = express();
     const bodyParser = require('body-parser');
     var fs = require('fs');
-    var intent_name = req.body.result.metadata.intentName;
-    console.log(intent_name);
+    var intentName = req.body.result.metadata.intentName;
+    console.log( "Intent : " + intentName );
     console.log("Inside");
     // Create a SMTP transporter object
     let transporter = nodemailer.createTransport({
