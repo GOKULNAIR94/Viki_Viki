@@ -16,7 +16,7 @@ module.exports = function(req, res ) {
             }
             else{
                 for(var i = 0; i < result.items.length; i++){
-                    speech = speech + " " + (i+1) + ". " + result.OrganizationName + ".\n";
+                    speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
 
                 }  
             }
