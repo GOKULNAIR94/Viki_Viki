@@ -19,12 +19,12 @@ module.exports = function(req, res ) {
                 for(var i = 0; i < result.items.length; i++){
                     speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
                     suggests.push({
-                        "title": result.items[i].ActivityNumber
+                        "title": result.items[i].OrganizationName
                     })
 
                 }  
             }
-            console.log(" speech : " + speech);
+            console.log(" SOURCE***********\n : " + req.body.originalRequest.source );
             
             if (req.body.originalRequest.source == "google") {
                 res.json({
