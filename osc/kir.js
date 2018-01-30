@@ -19,7 +19,7 @@ module.exports = function(req, res ) {
                 for(var i = 0; i < result.items.length; i++){
                     speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
                     suggests.push({
-                        "title": resObj.items[i].ActivityNumber
+                        "title": result.items[i].ActivityNumber
                     })
 
                 }  
