@@ -5,6 +5,7 @@ module.exports = function(req, res ) {
     var qString = "";
     var loginEncoded = "";
     var speech = "";
+    var suggests = [];
     
     if ( intentName == "KIR_Partners" ) {
         
@@ -17,15 +18,42 @@ module.exports = function(req, res ) {
             else{
                 for(var i = 0; i < result.items.length; i++){
                     speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
+                    suggests.push({
+                        "title": resObj.items[i].ActivityNumber
+                    })
 
                 }  
             }
             console.log(" speech : " + speech);
-            return res.json({
-                speech: speech,
-                displayText: speech,
-                //source: 'webhook-OSC-oppty'
-            })
+            
+            if (req.body.originalRequest.source == "google") {
+                res.json({
+                    speech: speech,
+                    displayText: speech,
+                    //contextOut : [{"name":"oppty-followup","lifespan":5,"parameters":{"objType":"activities"}}],
+                    data: {
+                        google: {
+                            'expectUserResponse': true,
+                            'isSsml': false,
+                            'noInputPrompts': [],
+                            'richResponse': {
+                                'items': [{
+                                    'simpleResponse': {
+                                        'textToSpeech': speech,
+                                        'displayText': speech
+                                    }
+                                }],
+                                "suggestions": suggests
+                            }
+                        }
+                    }
+                });
+            }else{
+                res.json({
+                    speech: speech,
+                    displayText: speech
+                });
+            }
         });
         
     }
