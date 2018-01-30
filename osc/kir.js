@@ -8,11 +8,18 @@ module.exports = function(req, res ) {
     
     if ( intentName == "KIR_Partners" ) {
         
-        qString = "/salesApi/resources/latest/partners";
+        qString = "/salesApi/resources/latest/partners?onlyData=true";
         
         Query( qString, loginEncoded, req, res, function(result) {
-            
-            speech = JSON.stringify(result);
+            if( result.items.length <= 0 ){
+                speech = "No records found";
+            }
+            else{
+                for(var i = 0; i < result.items.length; i++){
+                    speech = speech + " " + (i+1) + ". " + result.OrganizationName + ".\n";
+
+                }  
+            }
             console.log(" speech : " + speech);
             return res.json({
                 speech: speech,
