@@ -14,6 +14,7 @@ var jsonQuery = require('json-query');
 
 
 var DCPData = require("./dcpdata");
+var KIR = require("./osc/kir");
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
 var sendAdhocEmail = require("./sendAdhocEmail");
@@ -264,6 +265,12 @@ restService.post('/inputmsg', function(req, res) {
         if (intentName == 'ADS_AdhocData') {
             sendAdhocEmail(req, res, function(result) {
                 console.log("SendEmail Called");
+            });
+        }
+        
+        if (intentName.indexOf("KIR_") == 0 ){
+            KIR(req, res, function(result) {
+                console.log("KIR Called");
             });
         }
 
