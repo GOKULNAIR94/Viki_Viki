@@ -6,10 +6,12 @@ module.exports = function ( req, res, callback){
     var suggests = [{"title": "Show me Opportunities"}];
     var suggPatners = [];
     var intentName = req.body.result.metadata.intentName;
-    for (var key in req){
-        var value = req[key];
-        console.log("BHaiii : " + key );//JSON.stringify(key)
-      }
+    
+//    for (var key in req){
+//        var value = req[key];
+//        console.log("BHaiii : " + key );//JSON.stringify(key)
+//    }
+    console.log("BHaiii : " + req[body] );//JSON.stringify(key)
     
     
     qString = "/salesApi/resources/latest/partners?onlyData=true";
