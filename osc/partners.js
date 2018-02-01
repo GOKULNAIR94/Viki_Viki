@@ -28,7 +28,7 @@ module.exports = function ( req, res, callback){
                     suggPatners.push({
                         "title": result.items[i].OrganizationName
                     });
-                    var contextOut= [{"name":"__KIR_Partners_opty","lifespan":5,"parameters":{"suggPatners":suggPatners}}];
+                    var contextOut= [{"name":"aaa__KIR_Partners_opty","lifespan":5,"parameters":{"suggPatners":suggPatners}}];
 
                 }  
             }
