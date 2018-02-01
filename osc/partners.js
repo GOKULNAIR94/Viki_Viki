@@ -8,7 +8,7 @@ module.exports = function ( req, res, callback){
     var intentName = req.body.result.metadata.intentName;
     
     qString = "/salesApi/resources/latest/partners?onlyData=true";
-        
+        console.log("intentName partenres.js :" + intentName);
     Query( qString, loginEncoded, req, res, function(result) {
         
         if( intentName == "KIR_Partners" ){
