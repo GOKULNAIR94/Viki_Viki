@@ -43,7 +43,7 @@ module.exports = function ( req, res, callback){
                 
                 for (var key in req.body.originalRequest.contexts){
                     if( key.name == "CO_KIR_Partners_opty" ){
-                        suggPatners = key.parameters.suggPatners;
+                        suggPatners = req.body.originalRequest.contexts[key].parameters.suggPatners;
                         console.log("suggPatners yay " + suggPatners);
                     }
                 }
