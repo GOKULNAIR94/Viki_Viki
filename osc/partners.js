@@ -1,7 +1,7 @@
 module.exports = function(req, res, callback) {
     var SendResponse = require("./sendResponse");
     var Query = require("./query");
-    var Update = require("./update");
+
     var loginEncoded = "",
         qString = "";
     var speech = "";
