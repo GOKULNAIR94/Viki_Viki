@@ -58,7 +58,7 @@ module.exports = function ( req, res, callback){
         else{
             if( intentName == "KIR_Partners_opty_quote" ){
                 var optyName = req.body.result.contexts[0].parameters["optyName.original"];
-                qString = "salesApi/resources/latest/Quote_c?q=OpportunityName_c="+ encodeURIComponent(optyName);
+                qString = "/salesApi/resources/latest/Quote_c?q=OpportunityName_c="+ encodeURIComponent(optyName);
 
                 Query( qString, loginEncoded, req, res, function(result) {
                     if( result.items.length <= 0 ){
