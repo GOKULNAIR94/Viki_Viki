@@ -30,6 +30,7 @@ module.exports = function ( req, res, callback){
         }
         else{
             if( intentName == "KIR_Partners_opty" ){
+                speech="Select Partner:";
                 console.log("KIR_Partners_opty! : suggPatners " + suggPatners);
                 SendResponse( speech, suggPatners, req, res, function(){
                     console.log("Finished!");
