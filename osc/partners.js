@@ -23,6 +23,7 @@ module.exports = function ( req, res, callback){
                     })
 
                 }  
+                speech = speech + "Select Partner to get list of associated Opportunities: "; 
             }
             SendResponse( speech, suggests, req, res, function(){
                 console.log("Finished!");
@@ -46,12 +47,38 @@ module.exports = function ( req, res, callback){
                             "title": result.items[i].Name
                         })
 
-                    }  
+                    }
+                    speech = speech + "Select Opportunities for Quote: ";
                 }
                 SendResponse( speech, suggests, req, res, function(){
                     console.log("Finished!");
                 });
             });
+        }
+        else{
+            if( intentName == "KIR_Partners_opty_quote" ){
+                var optyName = req.body.result.contexts[0].parameters["optyName.original"];
+                qString = "salesApi/resources/latest/Quote_c?q=OpportunityName_c="+ encodeURIComponent(optyName);
+
+                Query( qString, loginEncoded, req, res, function(result) {
+                    if( result.items.length <= 0 ){
+                        speech = "No records found";
+                    }
+                    else{
+                        for(var i = 0; i < result.items.length; i++){
+                            speech = speech + " " + (i+1) + ". " + result.items[i].Name + ".\n";
+                            suggests.push({
+                                "title": result.items[i].Name
+                            })
+
+                        }
+                        speech = speech + "Select Quate for Order: ";
+                    }
+                    SendResponse( speech, suggests, req, res, function(){
+                        console.log("Finished!");
+                    });
+                });
+            }
         }
     }
 
