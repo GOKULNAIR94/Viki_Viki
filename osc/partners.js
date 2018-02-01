@@ -28,7 +28,7 @@ module.exports = function ( req, res, callback){
                     suggPatners.push({
                         "title": result.items[i].OrganizationName
                     });
-                    var contextOut= [{"name":"KIR_Partners_opty","lifespan":5,"parameters":{"suggPatners":"suggPatners"}}];
+                    var contextOut= [{"name":"__KIR_Partners_opty","lifespan":5,"parameters":{"suggPatners":suggPatners}}];
 
                 }  
             }
@@ -40,6 +40,8 @@ module.exports = function ( req, res, callback){
             if( intentName == "KIR_Partners_opty" ){
                 speech="Select Partner:";
                 console.log("KIR_Partners_opty! : suggPatners " + suggPatners);
+                suggPatners = req.body.originalRequest.contexts[0].parameters.suggPatners;
+                contextOut = [];
                 SendResponse( speech, suggPatners, contextOut, req, res, function(){
                     console.log("Finished!");
                 });
