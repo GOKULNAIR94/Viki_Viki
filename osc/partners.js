@@ -30,6 +30,9 @@ module.exports = function ( req, res, callback){
         }
         else{
             if( intentName == "KIR_Partners_opty" ){
+                SendResponse( speech, suggPatners, req, res, function(){
+                    console.log("Finished!");
+                });
                 
             }
         }
