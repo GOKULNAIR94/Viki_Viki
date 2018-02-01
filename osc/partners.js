@@ -1,4 +1,4 @@
-module.exports = function ( req, resp, callback){ 
+module.exports = function ( req, res, callback){ 
     var SendResponse = require("./sendResponse");
     var Query = require("./query");
     var loginEncoded="", qString="";
