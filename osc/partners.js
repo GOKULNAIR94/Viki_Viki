@@ -21,7 +21,7 @@ module.exports = function ( req, res, callback){
 
                 }  
             }
-            SendResponse( speech, suggests, function(){
+            SendResponse( speech, suggests, req, res, function(){
                 console.log("Finished!");
             });
             
