@@ -45,12 +45,13 @@ module.exports = function ( req, res, callback){
                     if( key.name == "CO_KIR_Partners_opty" ){
                         suggPatners = req.body.originalRequest.contexts[key].parameters.suggPatners;
                         console.log("suggPatners yay " + suggPatners);
+                        contextOut = [];
+                        SendResponse( speech, suggPatners, contextOut, req, res, function(){
+                            console.log("Finished!");
+                        });
                     }
                 }
-                contextOut = [];
-                SendResponse( speech, suggPatners, contextOut, req, res, function(){
-                    console.log("Finished!");
-                });
+                
                 
             }
         }
