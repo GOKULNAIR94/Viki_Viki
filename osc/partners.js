@@ -84,8 +84,8 @@ module.exports = function(req, res, callback) {
                         if (result.items.length <= 0) {
                             speech = "No records found";
                         } else {
-                            speech = speech + "Name: " + result.items[0].RecordName + ", \nAmount : " + result.items[0].Amount_c + ",\nAccount: " + result.items[0].Account_c + ",\n Contact : " + result.items[0].Contact_c + ".";
-                            var generate = "Generate Order. Id : " + result.items[0].Id;
+                            speech = speech + "Name: " + result.items[0].RecordName + ", \nAmount : " + result.items[0].Amount_c + ",\nAccount: " + result.items[0].Account_c + ",\nContact : " + result.items[0].Contact_c + ".";
+                            var generate = "Generate Order. Id : " + result.items[0].Id + "";
                             suggests = [{
                                 "title": generate
                             }, {
