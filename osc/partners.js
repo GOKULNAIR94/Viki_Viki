@@ -66,13 +66,13 @@ module.exports = function ( req, res, callback){
                     }
                     else{
                         for(var i = 0; i < result.items.length; i++){
-                            speech = speech + " " + (i+1) + ". " + result.items[i].Name + ".\n";
+                            speech = speech + " " + (i+1) + ". " + result.items[i].RecordName + ", Amount : " + result.items[i].Amount_c + ".\n";
                             suggests.push({
-                                "title": result.items[i].Name
+                                "title": result.items[i].RecordName
                             })
 
                         }
-                        speech = speech + "Select Quate for Order: ";
+                        speech = speech + "Select Quote for more details: ";
                     }
                     SendResponse( speech, suggests, req, res, function(){
                         console.log("Finished!");
