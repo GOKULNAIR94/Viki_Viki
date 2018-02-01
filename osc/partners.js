@@ -32,6 +32,7 @@ module.exports = function ( req, res, callback){
         if( intentName == "KIR_Partners_opty" ){
             var partnerName = req.body.result.contexts[0].parameters["partnerName.original"];
             qString = "/salesApi/resources/latest/opportunities?onlyData=true&q=PrimaryPartnerOrgPartyName="+ encodeURIComponent(partnerName);
+            
             Query( qString, loginEncoded, req, res, function(result) {
                 if( result.items.length <= 0 ){
                     speech = "No records found";
