@@ -11,27 +11,25 @@ module.exports = function ( req, res, callback){
         
     Query( qString, loginEncoded, req, res, function(result) {
         
-        if( result.items.length <= 0 ){
-            speech = "No records found";
-        }
-        else{
-            for(var i = 0; i < result.items.length; i++){
-                speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
-                suggPatners.push({
-                    "title": result.items[i].OrganizationName
-                })
-
-            }  
-        }
-        
-        
         if( intentName == "KIR_Partners" ){
+            if( result.items.length <= 0 ){
+                speech = "No records found";
+            }
+            else{
+                for(var i = 0; i < result.items.length; i++){
+                    speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
+                    suggPatners.push({
+                        "title": result.items[i].OrganizationName
+                    })
+
+                }  
+            }
             SendResponse( speech, suggests, req, res, function(){
                 console.log("Finished!");
             });
         }
         else{
-            if( intentName == "KIR_Partners1" ){
+            if( intentName == "KIR_Partners_opty" ){
                 
             }
         }
