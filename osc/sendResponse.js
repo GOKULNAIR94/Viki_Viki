@@ -1,10 +1,10 @@
-module.exports = function ( speech, suggests, req, res, callback){ 
+module.exports = function ( speech, suggests, contextOut, req, res, callback){ 
 
     if (req.body.originalRequest.source == "google") {
                 res.json({
                     speech: speech,
                     displayText: speech,
-                    //contextOut : [{"name":"oppty-followup","lifespan":5,"parameters":{"objType":"activities"}}],
+                    contextOut : contextOut,
                     data: {
                         google: {
                             'expectUserResponse': true,
