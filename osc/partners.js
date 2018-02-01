@@ -40,18 +40,18 @@ module.exports = function ( req, res, callback){
             if( intentName == "KIR_Partners_opty" ){
                 speech="Select Partner:";
 
-                
-                for (var key in req.body.originalRequest.contexts){
-                    if( key.name == "CO_KIR_Partners_opty" ){
-                        suggPatners = req.body.originalRequest.contexts[key].parameters.suggPatners;
+                var obj = req.body.originalRequest.contexts;
+                for (var cont in obj ){
+                    if( cont.name == "CO_KIR_Partners_opty" ){
+                        suggPatners = obj[cont].parameters.suggPatners;
                         console.log("suggPatners yay " + suggPatners);
-                        contextOut = [];
-                        SendResponse( speech, suggPatners, contextOut, req, res, function(){
-                            console.log("Finished!");
-                        });
+                        
                     }
                 }
-                
+                contextOut = [];
+                SendResponse( speech, suggPatners, contextOut, req, res, function(){
+                    console.log("Finished!");
+                });
                 
             }
         }
