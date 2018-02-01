@@ -3,7 +3,7 @@ module.exports = function ( req, res, callback){
     var Query = require("./query");
     var loginEncoded="", qString="";
     var speech="";
-    var suggests = {};
+    var suggests = [];
     
 
     qString = "/salesApi/resources/latest/partners?onlyData=true";
