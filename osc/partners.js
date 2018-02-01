@@ -6,7 +6,12 @@ module.exports = function ( req, res, callback){
     var suggests = [{"title": "Show me Opportunities"}];
     var suggPatners = [];
     var intentName = req.body.result.metadata.intentName;
-    console.log("BHaiii : " + JSON.stringify(req) );
+    while( req.hasNext() ) {
+        String key = (String)req.next();
+        console.log("BHaiii : " + key );//JSON.stringify(key)
+    }
+    
+    
     qString = "/salesApi/resources/latest/partners?onlyData=true";
         console.log("intentName partenres.js :" + intentName);
     Query( qString, loginEncoded, req, res, function(result) {
