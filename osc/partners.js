@@ -66,7 +66,7 @@ module.exports = function ( req, res, callback){
                     }
                     else{
                         for(var i = 0; i < result.items.length; i++){
-                            speech = speech + " " + (i+1) + ". " + result.items[i].RecordName + ", Amount : " + result.items[i].Amount_c + ".\n";
+                            speech = speech + " " + (i+1) + ". " + result.items[i].RecordName + ", \n Amount : " + result.items[i].Amount_c + ".\n";
                             suggests.push({
                                 "title": result.items[i].RecordName
                             })
@@ -78,6 +78,38 @@ module.exports = function ( req, res, callback){
                         console.log("Finished!");
                     });
                 });
+            }
+            else{
+                if( intentName == "KIR_Partners_opty_quote_details" ){
+                    var quoteName = req.body.result.contexts[0].parameters["quoteName.original"];
+                    qString = "/salesApi/resources/latest/Quote_c?q=RecordName="+ quoteName;
+
+                    Query( qString, loginEncoded, req, res, function(result) {
+                        if( result.items.length <= 0 ){
+                            speech = "No records found";
+                        }
+                        else{
+                            speech = speech + "Name: " + result.items[i].RecordName + ", \nAmount : " + result.items[i].Amount_c + ",\nAccount: " + result.items[i].Account_c + ",\n Contact : " + result.items[i].Contact_c + ".";
+                            suggests = [{"title": "Generate Order"}, {"title": "View Orders"}]
+                        }
+                        SendResponse( speech, suggests, req, res, function(){
+                            console.log("Finished!");
+                        });
+                    });
+                }
+                else{
+                    if( intentName == "KIR_Partners_opty_quote_convert" ){
+                        var quoteName = req.body.result.contexts[0].parameters["quoteName"];
+                        qString = "/salesApi/resources/latest/Quote_c?q=RecordName="+ encodeURIComponent(quoteName);
+                        
+                        speech = "Order generated";
+                        suggests = [];
+                        SendResponse( speech, suggests, req, res, function(){
+                            console.log("Finished!");
+                        });
+                        
+                    }
+                }
             }
         }
     }
