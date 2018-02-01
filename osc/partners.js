@@ -41,11 +41,11 @@ module.exports = function ( req, res, callback){
                 speech="Select Partner:";
 
                 var obj = req.body.originalRequest.contexts;
-                for (var cont in obj ){
-                    if( cont.name == "CO_KIR_Partners_opty" ){
-                        suggPatners = obj[cont].parameters.suggPatners;
+                for ( var i=0; i< obj.length; i++ ){
+                    if( obj[i].name == "CO_KIR_Partners_opty" ){
+                        suggPatners = obj[i].parameters.suggPatners;
                         console.log("suggPatners yay " + suggPatners);
-                        
+                        break;
                     }
                 }
                 contextOut = [];
