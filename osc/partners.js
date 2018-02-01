@@ -88,7 +88,7 @@ module.exports = function(req, res, callback) {
                             var generate = "Generate Order. Id : " + result.items[0].Id + "";
                             console.log("Gen : " + generate);
                             suggests = [{
-                                "title": generate
+                                "title": "'"+generate +"'"
                             }, {
                                 "title": "View Orders"
                             }]
