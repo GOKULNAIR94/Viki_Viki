@@ -5,10 +5,12 @@ module.exports = function ( req, res, callback){
     var speech="";
     var suggests = [];
     var intentName = req.body.result.metadata.intentName;
-    
+    var qString="";
 
-    qString = "/salesApi/resources/latest/partners?onlyData=true";
+    
     if( intentName == "KIR_Partners" ){
+        
+        qString = "/salesApi/resources/latest/partners?onlyData=true";
         Query( qString, loginEncoded, req, res, function(result) {
             if( result.items.length <= 0 ){
                 speech = "No records found";
