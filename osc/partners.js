@@ -3,63 +3,28 @@ module.exports = function ( req, res, callback){
     var Query = require("./query");
     var loginEncoded="", qString="";
     var speech="";
-    var suggests = [{"title": "Show me Opportunities"}];
-    var suggPatners = [];
-    var intentName = req.body.result.metadata.intentName;
+    var suggests = [];
     
-//    for (var key in req){
-//        var value = req[key];
-//        console.log("BHaiii : " + key );//JSON.stringify(key)
-//    }
-    console.log("BHaiii : " + JSON.stringify(req["body"]) );
-    
-    
-    qString = "/salesApi/resources/latest/partners?onlyData=true";
-        console.log("intentName partenres.js :" + intentName);
-    Query( qString, loginEncoded, req, res, function(result) {
-        
-        if( intentName == "KIR_Partners" ){
-            if( result.items.length <= 0 ){
-                speech = "No records found";
-            }
-            else{
-                for(var i = 0; i < result.items.length; i++){
-                    speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
-                    suggPatners.push({
-                        "title": result.items[i].OrganizationName
-                    });
-                    var contextOut= [{"name":"CO_KIR_Partners_opty","lifespan":5,"parameters":{"suggPatners":suggPatners}}];
 
-                }  
-            }
-            SendResponse( speech, suggests, contextOut, req, res, function(){
-                console.log("Finished!");
-            });
+    qString = "/salesApi/resources/latest/partners?onlyData=true";
+        
+    Query( qString, loginEncoded, req, res, function(result) {
+        if( result.items.length <= 0 ){
+            speech = "No records found";
         }
         else{
-            if( intentName == "KIR_Partners_opty" ){
-                speech="Select Partner:";
+            for(var i = 0; i < result.items.length; i++){
+                speech = speech + " " + (i+1) + ". " + result.items[i].OrganizationName + ".\n";
+                suggests.push({
+                    "title": result.items[i].OrganizationName
+                })
 
-                var obj = req.body.originalRequest.contexts;
-                for ( var i=0; i< obj.length; i++ ){
-                    if( obj[i].name == "CO_KIR_Partners_opty" ){
-                        suggPatners = obj[i].parameters.suggPatners;
-                        console.log("suggPatners yay " + suggPatners);
-                        break;
-                    }
-                }
-                contextOut = [];
-                SendResponse( speech, suggPatners, contextOut, req, res, function(){
-                    console.log("Finished!");
-                });
-                
-            }
+            }  
         }
-        
-            
+        SendResponse( speech, suggests, req, res, function(){
+            console.log("Finished!");
+        });
 
     });
-
-    
     
 }

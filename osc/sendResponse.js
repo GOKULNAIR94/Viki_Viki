@@ -1,10 +1,10 @@
-module.exports = function ( speech, suggests, contextOut, req, res, callback){ 
+module.exports = function ( speech, suggests, req, res, callback){ 
 
     if (req.body.originalRequest.source == "google") {
                 res.json({
                     speech: speech,
                     displayText: speech,
-                    contextOut : contextOut,
+                    //contextOut : contextOut,
                     data: {
                         google: {
                             'expectUserResponse': true,
