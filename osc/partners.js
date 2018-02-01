@@ -1,7 +1,10 @@
 module.exports = function ( req, resp, callback){ 
     var SendResponse = require("./sendResponse");
+    var Query = require("./query");
+    var loginEncoded="", qString="";
     var speech="";
     var suggests = {};
+    
 
     qString = "/salesApi/resources/latest/partners?onlyData=true";
         

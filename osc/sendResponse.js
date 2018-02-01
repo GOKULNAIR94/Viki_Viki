@@ -1,6 +1,5 @@
 module.exports = function ( speech, suggests, req, resp, callback){ 
 
-
     if (req.body.originalRequest.source == "google") {
                 res.json({
                     speech: speech,
