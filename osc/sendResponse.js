@@ -1,4 +1,4 @@
-module.exports = function ( speech, suggests, req, resp, callback){ 
+module.exports = function ( speech, suggests, req, res, callback){ 
 
     if (req.body.originalRequest.source == "google") {
                 res.json({
