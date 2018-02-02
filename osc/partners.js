@@ -94,7 +94,7 @@ module.exports = function(req, res, callback) {
                                 "title": "View Orders"
                             }];
                             contextOut = [{
-                                "name": "quoteId",
+                                "name": "quoteid",
                                 "lifespan": 5,
                                 "parameters": {
                                     "quoteId": result.items[0].Id
@@ -113,7 +113,7 @@ module.exports = function(req, res, callback) {
                         
                         for( var key in array ){
                             console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
-                            if( array[key].name == "quoteId"){
+                            if( array[key].name == "quoteid"){
                                 quoteId = array[key].parameters["quoteId"];
                                 console.log("quoteId : " + quoteId);
                                 break;
