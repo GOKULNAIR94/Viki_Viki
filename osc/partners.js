@@ -111,7 +111,7 @@ module.exports = function(req, res, callback) {
                         var quoteId = ""; //req.body.result.contexts[3].parameters["quoteId"];
                         for( var key in req.body.result.contexts ){
                             if( req.body.result.contexts[key].name == "quoteId"){
-                                quoteId = req.body.result.contexts[3].parameters["quoteId"];
+                                quoteId = req.body.result.contexts[key].parameters["quoteId"];
                                 break;
                             }
                                 
