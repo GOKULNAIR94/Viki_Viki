@@ -105,7 +105,7 @@ module.exports = function(req, res, callback) {
                         });
                     });
                 } else {
-                    if (intentName == "KIR_Partners_opty_quote_convert") {
+                    if (intentName == "KIR_Partners_opty_quote_details_convert") {
                         var quoteId = req.body.result.contexts[3].parameters["quoteId"];
                         console.log("quoteId : " + quoteId);
                         console.log("**************************\nReq : " + JSON.stringify(req.body) + "\n**************");
