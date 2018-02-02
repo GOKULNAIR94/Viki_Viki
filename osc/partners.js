@@ -26,7 +26,7 @@ module.exports = function(req, res, callback) {
                 }
                 speech = speech + "Select Partner to get list of associated Opportunities: ";
             }
-            SendResponse(speech, suggests, req, res, function() {
+            SendResponse(speech, suggests, contextOut, req, res, function() {
                 console.log("Finished!");
             });
 
@@ -49,7 +49,7 @@ module.exports = function(req, res, callback) {
                     }
                     speech = speech + "Select Opportunities for Quote: ";
                 }
-                SendResponse(speech, suggests, req, res, function() {
+                SendResponse(speech, suggests, contextOut, req, res, function() {
                     console.log("Finished!");
                 });
             });
@@ -71,7 +71,7 @@ module.exports = function(req, res, callback) {
                         }
                         speech = speech + "Select Quote for more details: ";
                     }
-                    SendResponse(speech, suggests, req, res, function() {
+                    SendResponse(speech, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
                     });
                 });
@@ -87,18 +87,19 @@ module.exports = function(req, res, callback) {
                             speech = speech + "Name: " + result.items[0].RecordName + ", \nAmount : " + result.items[0].Amount_c + ",\nAccount: " + result.items[0].Account_c + ",\nContact : " + result.items[0].Contact_c + ".";
 
                             suggests = [{
-                                "title": '"Generate Order. Id : ' + result.items[0].Id +'"'
+                                "title": '"Generate Order'
                             }, {
                                 "title": "View Orders"
-                            }]
+                            }];
+                            contextOut : [{"name":"quoteId","lifespan":5,"parameters":{"quoteId":result.items[0].RecordName}}],
                         }
-                        SendResponse(speech, suggests, req, res, function() {
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
                     });
                 } else {
                     if (intentName == "KIR_Partners_opty_quote_convert") {
-                        var quoteId = req.body.result.contexts[0].parameters["quoteId"];
+                        var quoteId = req.body.result.contexts[3].parameters["quoteId"];
                         console.log("quoteId : " + quoteId);
 
                         var options = {
@@ -130,7 +131,7 @@ module.exports = function(req, res, callback) {
                                     speech = "Error occured";
                                 suggests = [];
                                 
-                                SendResponse(speech, suggests, req, res, function() {
+                                SendResponse(speech, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });
 
