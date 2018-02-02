@@ -143,8 +143,9 @@ module.exports = function(req, res, callback) {
 
                             resHttp.on("end", function() {
                                 var body = Buffer.concat(chunks);
-                                console.log(body.statusCode);
-                                if (body.statusCode == 200 || body.statusCode == 201) {
+                                var resObj = JSON.parse(body);
+                                console.log( resObj.statusCode );
+                                if ( resObj.statusCode == 200 || resObj.statusCode == 201) {
                                     speech = "Order generated";
 
                                 } else
