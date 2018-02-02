@@ -144,7 +144,7 @@ module.exports = function(req, res, callback) {
                             resHttp.on("end", function() {
                                 
                                 console.log( resHttp.statusCode );
-                                console.log( "Res" + JSON.stringify(resHttp) );
+                                
                                 if ( resHttp.statusCode == 200 || resHttp.statusCode == 201) {
                                     speech = "Order generated";
 
