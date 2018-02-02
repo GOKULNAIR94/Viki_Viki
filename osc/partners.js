@@ -108,12 +108,13 @@ module.exports = function(req, res, callback) {
                     if (intentName == "KIR_Partners_opty_quote_convert") {
                         var quoteId = req.body.result.contexts[3].parameters["quoteId"];
                         console.log("quoteId : " + quoteId);
+                        console.log("**************************\nReq : " + JSON.stringify(req.body) + "\n**************");
 
                         var options = {
                             "method": "POST",
                             "hostname": "acs.crm.ap2.oraclecloud.com",
                             "port": null,
-                            "path": "/salesApi/resources/latest/Quote_c/300000008928353",
+                            "path": "/salesApi/resources/latest/Quote_c/" + quoteId,
                             "headers": {
                                 "content-type": "application/vnd.oracle.adf.action+json",
                                 "authorization": "Basic TG50MDAxOmxudExOVDJLMTZfMQ=="
