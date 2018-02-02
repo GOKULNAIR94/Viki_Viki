@@ -110,9 +110,10 @@ module.exports = function(req, res, callback) {
                         
                         var quoteId = ""; //req.body.result.contexts[3].parameters["quoteId"];
                         var array = req.body.result.contexts;
-                        console.log("**************************\narray : " + array);
+                        
                         for( var key in array ){
                             if( array[key].name == "quoteId"){
+                                console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
                                 quoteId = array[key].parameters["quoteId"];
                                 console.log("quoteId : " + quoteId);
                                 break;
