@@ -90,8 +90,6 @@ module.exports = function(req, res, callback) {
 
                             suggests = [{
                                 "title": "Generate Order"
-                            }, {
-                                "title": "View Orders"
                             }];
                             contextOut = [{
                                 "name": "quoteid",
