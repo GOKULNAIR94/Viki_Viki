@@ -107,7 +107,15 @@ module.exports = function(req, res, callback) {
                     });
                 } else {
                     if (intentName == "KIR_Partners_opty_quote_details_convert") {
-                        var quoteId = req.body.result.contexts[3].parameters["quoteId"];
+                        
+                        var quoteId = ""; //req.body.result.contexts[3].parameters["quoteId"];
+                        for( var key in req.body.result.contexts ){
+                            if( req.body.result.contexts[key].name == "quoteId"){
+                                quoteId = req.body.result.contexts[3].parameters["quoteId"];
+                                break;
+                            }
+                                
+                        }
                         console.log("quoteId : " + quoteId);
                         console.log("**************************\nReq : " + JSON.stringify(req.body) + "\n**************");
 
