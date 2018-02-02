@@ -112,8 +112,8 @@ module.exports = function(req, res, callback) {
                         var array = req.body.result.contexts;
                         
                         for( var key in array ){
+                            console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
                             if( array[key].name == "quoteId"){
-                                console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
                                 quoteId = array[key].parameters["quoteId"];
                                 console.log("quoteId : " + quoteId);
                                 break;
