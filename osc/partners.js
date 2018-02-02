@@ -88,7 +88,7 @@ module.exports = function(req, res, callback) {
                             speech = speech + "Name: " + result.items[0].RecordName + ", \nAmount : " + result.items[0].Amount_c + ",\nAccount: " + result.items[0].Account_c + ",\nContact : " + result.items[0].Contact_c + ".";
 
                             suggests = [{
-                                "title": '"Generate Order'
+                                "title": "Generate Order"
                             }, {
                                 "title": "View Orders"
                             }];
