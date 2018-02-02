@@ -6,6 +6,7 @@ module.exports = function(req, res, callback) {
         qString = "";
     var speech = "";
     var suggests = [];
+    var contextOut = [];
     var intentName = req.body.result.metadata.intentName;
     var qString = "";
 
@@ -91,7 +92,7 @@ module.exports = function(req, res, callback) {
                             }, {
                                 "title": "View Orders"
                             }];
-                            contextOut : [{"name":"quoteId","lifespan":5,"parameters":{"quoteId":result.items[0].RecordName}}],
+                            contextOut = [{"name":"quoteId","lifespan":5,"parameters":{"quoteId": result.items[0].Id }}],
                         }
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
