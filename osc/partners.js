@@ -142,11 +142,10 @@ module.exports = function(req, res, callback) {
                             });
 
                             resHttp.on("end", function() {
-                                var body = Buffer.concat(chunks);
-                                console.log( "Body : " + body );
-                                var resObj = JSON.parse(body);
-                                console.log( resObj.statusCode );
-                                if ( resObj.statusCode == 200 || resObj.statusCode == 201) {
+                                
+                                console.log( resHttp.statusCode );
+                                console.log( "Res" + JSON.stringify(resHttp) );
+                                if ( resHttp.statusCode == 200 || resHttp.statusCode == 201) {
                                     speech = "Order generated";
 
                                 } else
