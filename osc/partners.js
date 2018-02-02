@@ -130,14 +130,14 @@ module.exports = function(req, res, callback) {
                             }
                         };
 
-                        var req = http.request(options, function(res) {
+                        var reqHttp = http.request(options, function(resHttp) {
                             var chunks = [];
 
-                            res.on("data", function(chunk) {
+                            resHttp.on("data", function(chunk) {
                                 chunks.push(chunk);
                             });
 
-                            res.on("end", function() {
+                            resHttp.on("end", function() {
                                 var body = Buffer.concat(chunks);
                                 console.log(body.statusCode);
                                 if (body.statusCode == 200 || body.statusCode == 201) {
@@ -145,6 +145,7 @@ module.exports = function(req, res, callback) {
 
                                 } else
                                     speech = "Error occured";
+                                
                                 suggests = [];
 
                                 SendResponse(speech, suggests, contextOut, req, res, function() {
@@ -153,8 +154,8 @@ module.exports = function(req, res, callback) {
 
                             });
                         });
-                        req.write("{\n\t\"name\" : \"CreateOrder\"\n}");
-                        req.end();
+                        reqHttp.write("{\n\t\"name\" : \"CreateOrder\"\n}");
+                        reqHttp.end();
 
 
                     }
