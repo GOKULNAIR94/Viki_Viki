@@ -92,7 +92,13 @@ module.exports = function(req, res, callback) {
                             }, {
                                 "title": "View Orders"
                             }];
-                            contextOut = [{"name":"quoteId","lifespan":5,"parameters":{"quoteId": result.items[0].Id }}],
+                            contextOut = [{
+                                "name": "quoteId",
+                                "lifespan": 5,
+                                "parameters": {
+                                    "quoteId": result.items[0].Id
+                                }
+                            }];
                         }
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
@@ -124,14 +130,13 @@ module.exports = function(req, res, callback) {
                             res.on("end", function() {
                                 var body = Buffer.concat(chunks);
                                 console.log(body.statusCode);
-                                if( body.statusCode == 200 || body.statusCode == 201 ){
+                                if (body.statusCode == 200 || body.statusCode == 201) {
                                     speech = "Order generated";
-                                
-                                }
-                                else
+
+                                } else
                                     speech = "Error occured";
                                 suggests = [];
-                                
+
                                 SendResponse(speech, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });
