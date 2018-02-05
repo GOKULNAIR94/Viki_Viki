@@ -152,7 +152,7 @@ module.exports = function(req, res, callback) {
                                 }
                             }
                         }
-                    }
+                    };
                     res.json(returnJson);
                 });
                 break;
