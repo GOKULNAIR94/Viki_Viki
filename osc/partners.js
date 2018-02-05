@@ -102,7 +102,7 @@ module.exports = function(req, res, callback) {
                     if (result.items.length <= 0) {
                         speech = "No records found";
                     } else {
-                        speech = speech + "Name: " + result.items[0].RecordName + ", \nAmount : " + result.items[0].Amount_c + ",\nAccount: " + result.items[0].Account_c + ",\nContact : " + result.items[0].Contact_c + ".\n Here's the link to the Quote report: \n https://acs.bi.ap2.oraclecloud.com/analytics/saw.dll?Go&path=%2Fshared%2FCustom%2FKirloskar_Demo%2FOrder%20Report&Options=rmf&Action=Navigate&P0=1&P1=eq&P2=Quote_c.RecordName&P3=" + result.items[0].RecordName;
+                        speech = speech + "Name: " + result.items[0].RecordName + ", \nAmount : " + result.items[0].Amount_c + ",\nAccount: " + result.items[0].Account_c + ",\nContact : " + result.items[0].Contact_c + ".\n";
 
                         suggests = [{
                             "title": "Send me email"
@@ -117,9 +117,43 @@ module.exports = function(req, res, callback) {
                             }
                         }];
                     }
-                    SendResponse(speech, suggests, contextOut, req, res, function() {
-                        console.log("Finished!");
-                    });
+                    returnJson = {
+                        speech: speech,
+                        displayText: speech,
+                        contextOut : contextOut,
+                        data : {
+                            google: {
+                                'expectUserResponse': true,
+                                'isSsml': false,
+                                'noInputPrompts': [],
+                                'richResponse': {
+                                    'items': [{
+                                            'simpleResponse': {
+                                                'textToSpeech': speech,
+                                                'displayText': speech
+                                            }
+                                        },
+                                        {
+                                            'basicCard': {
+                                                'title': '',
+                                                "image": {
+                                                    "url": "",
+                                                    "accessibilityText": ""
+                                                },
+                                                'buttons': [{
+                                                    'title': "Here's the link to the Quote report:\n",
+                                                    'openUrlAction': {
+                                                        'url': "https://acs.bi.ap2.oraclecloud.com/analytics/saw.dll?Go&path=%2Fshared%2FCustom%2FKirloskar_Demo%2FOrder%20Report&Options=rmf&Action=Navigate&P0=1&P1=eq&P2=Quote_c.RecordName&P3=" + result.items[0].RecordName;
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                    res.json(returnJson);
                 });
                 break;
 
