@@ -68,23 +68,31 @@ module.exports = function(req, res, callback) {
                 break;
             }
             
-        case (intentName == "EPM_Jobs - custom"):
+        case (intentName == "EPM_Jobs - custom" || intentName == "EPM_JobStatus"  ):
             {
-                var array = req.body.result.contexts;
-                var jobId = "";        
-                for( var key in array ){
-                    console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
-                    if( array[key].name == "jobid"){
-                        jobId = array[key].parameters["jobid"];
-                        break;
-                    } 
+                var jobId = ""; 
+                if( intentName == "EPM_Jobs - custom" ){
+                    var array = req.body.result.contexts;
+                           
+                    for( var key in array ){
+                        console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
+                        if( array[key].name == "jobid"){
+                            jobId = array[key].parameters["jobid"];
+                            break;
+                        } 
+                    }
                 }
+                else
+                    if(intentName == "EPM_JobStatus"){
+                        jobId = req.body.result.parameters.jobid;
+                    }
+                
                 console.log("jobid : " + jobId);
                 qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs/" + jobId;
                 body = "";
                 Get( qString, body, req, res, function(result) {
                     try{
-                      speech = "Job Status has been updated to " + result.descriptiveStatus + ".";
+                      speech = "Status of job ( Id: " + jobId + " ) is " + result.descriptiveStatus + ".";
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
