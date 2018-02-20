@@ -23,7 +23,7 @@ module.exports = function(req, res, callback) {
                 //    body = "mdxQuery=SELECT {[Period].[BegBalance]} ON COLUMNS, {[Account].[ASP]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[FY17],[Scenario].[Current],[Version].[Working],[Entity].[000],[Product].[P_000])";
                 Query( qString, body, req, res, function(result) {
                     try{
-                      speech = speech + "Thank you Viki = " + result.rows[0].data[0];
+                      speech = "The " + req.body.result.contexts[0].parameters["epm_account.original"]  + " for " + req.body.result.contexts[0].parameters["Period.original"]  + "  " + req.body.result.contexts[0].parameters["epm_year.original"] + "  is " + result.rows[0].data[0];
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
