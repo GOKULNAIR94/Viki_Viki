@@ -22,7 +22,7 @@ module.exports = function ( qString, body, req, resp, callback){
 
       res.on("end", function () {
           try{
-              //console.log("Body : " + responseString);
+              console.log("Body : " + responseString);
               resObj = JSON.parse(responseString);
               callback( resObj );
           }

@@ -10,7 +10,9 @@ module.exports = function(req, res, callback) {
     var intentName = req.body.result.metadata.intentName;
     var qString = "";
     
-    var body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.year + "],[Scenario].[" + req.body.result.parameters.scenario + "],[Version].[" + req.body.result.parameters.version + "],[Entity].[" + req.body.result.parameters.entity + "],[Product].[" + req.body.result.parameters.product + "])";
+    var body = "";
+    //body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.year + "],[Scenario].[" + req.body.result.parameters.scenario + "],[Version].[" + req.body.result.parameters.version + "],[Entity].[" + req.body.result.parameters.entity + "],[Product].[" + req.body.result.parameters.product + "])";
+    body = "mdxQuery=SELECT {[Period].[BegBalance]} ON COLUMNS, {[Account].[ASP]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[FY17],[Scenario].[Current],[Version].[Working],[Entity].[000],[Product].[P_000])";
 
     switch (true) {
         case (intentName == "EPM_MDXQuery"):
