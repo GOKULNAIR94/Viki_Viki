@@ -26,7 +26,7 @@ module.exports = function(req, res, callback) {
                 
                 Query( qString, body, req, res, function(result) {
                     try{
-                      speech = "The " + req.body.result.contexts[0].parameters["epm_account.original"]  + " for " + req.body.result.contexts[0].parameters["Period.original"]  + "  " + req.body.result.contexts[0].parameters["epm_year.original"] + "  is " + result.rows[0].data[0];
+                      speech = "The " + req.body.result.contexts[0].parameters["epm_account.original"]  + " for " + req.body.result.contexts[0].parameters["Period.original"]  + "  " + req.body.result.contexts[0].parameters["epm_year.original"] + "  is $" + result.rows[0].data[0].toFixed(2);
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
