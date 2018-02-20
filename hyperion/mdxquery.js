@@ -19,8 +19,7 @@ module.exports = function(req, res, callback) {
             {
                 qString = "/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1";
                 Query( qString, body, req, res, function(result) {
-                    
-                    speech = speech + "Thank you Viki =" + req.body.result.parameters.account;
+                    speech = speech + "Thank you Viki = " + result.rows[0].data[0];
                     SendResponse(speech, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
                     });

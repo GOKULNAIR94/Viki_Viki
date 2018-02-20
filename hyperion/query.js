@@ -15,25 +15,23 @@ module.exports = function ( qString, body, req, resp, callback){
     };
 
     var req = http.request(options, function (res) {
-      var chunks = [];
+      var chunks = [],resObj;
 
       res.on("data", function (chunk) {
         chunks.push(chunk);
       });
 
       res.on("end", function () {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
-//          try{
-//              console.log("Body : " + responseString);
-//              resObj = JSON.parse(responseString);
-//              callback( resObj );
-//          }
-//          catch(e){
-//              resp.json({
-//                message : "Error: " + e 
-//            });
-//          }
+          try{
+              var body = Buffer.concat(chunks);
+              resObj = JSON.parse(body.toString());
+              callback( resObj );
+          }
+          catch(e){
+              resp.json({
+                message : "Error: " + e 
+            });
+          }
       });
     });
 
