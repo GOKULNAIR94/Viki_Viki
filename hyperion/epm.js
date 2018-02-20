@@ -1,6 +1,7 @@
 module.exports = function(req, res, callback) {
     var SendResponse = require("./sendResponse");
     var Query = require("./query");
+    var Get = require("./get");
     var http = require("https");
 
     var qString = "";
@@ -43,6 +44,45 @@ module.exports = function(req, res, callback) {
                 qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs";
                 body = "jobType=CUBE_REFRESH&jobName=RefreshCube";
                 Query( qString, body, req, res, function(result) {
+                    try{
+                      speech = "Job Status has been updated to " + result.descriptiveStatus + ".";
+                        contextOut = [{
+                                "name": "jobid",
+                                "lifespan": 1,
+                                "parameters": {
+                                    "jobid": result.jobId
+                                }
+                            }];
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                  }
+                  catch(e){
+                      resp.json({
+                        message : "Error: " + e 
+                    });
+                  }
+                    
+
+                });
+                break;
+            }
+            
+        case (intentName == "EPM_Jobs - custom"):
+            {
+                var array = req.body.result.contexts;
+                var jobId = "";        
+                for( var key in array ){
+                    console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
+                    if( array[key].name == "jobid"){
+                        jobId = array[key].parameters["jobid"];
+                        break;
+                    } 
+                }
+                console.log("jobid : " + jobId);
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs/" + jobId;
+                body = "";
+                Get( qString, body, req, res, function(result) {
                     try{
                       speech = "Job Status has been updated to " + result.descriptiveStatus + ".";
                         SendResponse(speech, suggests, contextOut, req, res, function() {

@@ -15,7 +15,7 @@ var jsonQuery = require('json-query');
 
 var DCPData = require("./dcpdata");
 var KIR = require("./osc/kir");
-var MDX = require("./hyperion/mdxquery");
+var EPM = require("./hyperion/epm");
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
 var sendAdhocEmail = require("./sendAdhocEmail");
@@ -276,8 +276,8 @@ restService.post('/inputmsg', function(req, res) {
         }
         
         if (intentName.indexOf("EPM_") == 0 ){
-            MDX(req, res, function(result) {
-                console.log("MDX Called");
+            EPM(req, res, function(result) {
+                console.log("EPM Called");
             });
         }
 
