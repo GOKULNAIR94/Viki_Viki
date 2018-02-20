@@ -32,7 +32,7 @@ module.exports = function(req, res, callback) {
                         });
                   }
                   catch(e){
-                      resp.json({
+                      res.json({
                         message : "Error: " + e 
                     });
                   }
@@ -61,7 +61,7 @@ module.exports = function(req, res, callback) {
                         });
                   }
                   catch(e){
-                      resp.json({
+                      res.json({
                         message : "Error: " + e 
                     });
                   }
@@ -101,7 +101,7 @@ module.exports = function(req, res, callback) {
                         });
                   }
                   catch(e){
-                      resp.json({
+                      res.json({
                         message : "Error: " + e 
                     });
                   }
