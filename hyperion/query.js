@@ -24,6 +24,7 @@ module.exports = function ( qString, body, req, resp, callback){
       res.on("end", function () {
           try{
               var body = Buffer.concat(chunks);
+              console.log(body.toString());
               resObj = JSON.parse(body.toString());
               callback( resObj );
           }
