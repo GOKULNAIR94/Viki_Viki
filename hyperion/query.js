@@ -34,5 +34,7 @@ module.exports = function ( qString, body, req, resp, callback){
           }
       });
     });
+
+    req.write(body);
     req.end();
 }
