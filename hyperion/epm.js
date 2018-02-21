@@ -28,12 +28,8 @@ module.exports = function(req, res, callback) {
                 Query( qString, body, req, res, function(result) {
                     try{
 //                      speech = "The " + req.body.result.contexts[0].parameters["epm_account.original"]  + " for " + req.body.result.contexts[0].parameters["Period.original"]  + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(result.rows[0].data[0]).toFixed(2);
-
-                        
-
-
-                        speech = "The " + req.body.result.contexts[0].parameters["epm_account.original"]  + " for " + req.body.result.contexts[0].parameters["Period.original"]  + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(result.rows[0].data[0]).toFixed(2);
                         speech = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " – " + req.body.result.parameters.epm_account + " (Version: " + req.body.result.parameters.epm_version + ", Scenario: " + req.body.result.parameters.epm_scenario + ") for " + toTitleCase(req.body.result.contexts[0].parameters["Period.original"]) + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(parseFloat(result.rows[0].data[0]).toFixed(2)).toLocaleString() + ". \nIs there anything else I can help you with?"
+                        
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -57,7 +53,8 @@ module.exports = function(req, res, callback) {
                 body = "jobType=CUBE_REFRESH&jobName=RefreshCube";
                 Query( qString, body, req, res, function(result) {
                     try{
-                      speech = "Job Status has been updated to " + result.descriptiveStatus + ".\nJob Id: " + result.jobId + "";
+                      //speech = "Job Status has been updated to " + result.descriptiveStatus + ".\nJob Id: " + result.jobId + ".";
+                      speech = "Job Id: " + result.jobId + " submitted for Cube Refresh (Application – Vision) with a current status of " + result.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
                         contextOut = [{
                                 "name": "jobid",
                                 "lifespan": 1,
