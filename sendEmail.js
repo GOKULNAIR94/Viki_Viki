@@ -52,7 +52,7 @@ module.exports = function(req, res) {
             var scenario = req.body.result.parameters.reportScenario;
             var sourceApp = req.body.result.parameters.applicationsforReport;
             
-            speech = "Reconcilition report " + scenario +" - PTVPLAN and PPCMRC ( " + yearName + " ) has been emailed to " + to_email + ". Please give a few minutes for the email to arrive in your inbox. Is there anything elseI can help you with?";
+            speech = "Reconcilition report " + scenario +" - PTVPLAN and PPCMRC ( " + yearName + " ) has been emailed to " + to_email + ". Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?";
             file = "PTVPLAN_PPCMRC_ReconReport.pdf";
             body = '<p><b>Hello,</b></p>' +
                         '<p>Attached is the PTVPLAN and PPCMRC Reconcilition report as Requested.</p>' +
