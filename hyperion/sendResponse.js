@@ -25,7 +25,8 @@ module.exports = function ( speech, suggests, contextOut, req, res, callback){
             }else{
                 res.json({
                     speech: speech,
-                    displayText: speech
+                    displayText: speech,
+                    contextOut : contextOut
                 });
             }
 }
