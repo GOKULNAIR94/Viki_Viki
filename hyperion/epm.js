@@ -12,7 +12,7 @@ module.exports = function(req, res, callback) {
     var qString = "";
     
     var body = "";
-    
+    console.log("Result : " + JSON.stringify(req.body.result));
 
 
     switch (true) {
