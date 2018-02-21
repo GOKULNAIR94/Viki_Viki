@@ -33,7 +33,7 @@ module.exports = function(req, res, callback) {
 
 
                         speech = "The " + req.body.result.contexts[0].parameters["epm_account.original"]  + " for " + req.body.result.contexts[0].parameters["Period.original"]  + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(result.rows[0].data[0]).toFixed(2);
-                        speech = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " – " + req.body.result.parameters.epm_account + " (Version – " + req.body.result.parameters.epm_version + ", Scenario - " + req.body.result.parameters.epm_scenario + ") for " + toTitleCase(req.body.result.contexts[0].parameters["Period.original"]) + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(parseFloat(result.rows[0].data[0]).toFixed(2)).toLocaleString() + ". Is there anything else I can help you with?"
+                        speech = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " – " + req.body.result.parameters.epm_account + " (Version: " + req.body.result.parameters.epm_version + ", Scenario: " + req.body.result.parameters.epm_scenario + ") for " + toTitleCase(req.body.result.contexts[0].parameters["Period.original"]) + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(parseFloat(result.rows[0].data[0]).toFixed(2)).toLocaleString() + ". \nIs there anything else I can help you with?"
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
