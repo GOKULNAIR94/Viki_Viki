@@ -23,7 +23,8 @@
     "fast-csv": "^2.4.0",
     "json-query": "^2.2.2",
     "nodemailer": "^4.1.0",
-    "request": "^2.76.0"
+    "request": "^2.76.0",
+    "titlecase": "^1.1.2"
   },
   "devDependencies": {},
   "description": ""
