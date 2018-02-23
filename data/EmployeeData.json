@@ -1,0 +1,66 @@
+
+  [
+    {
+      "Name": "Kate Thomson",
+      "Job Title": "HR Business Partner",
+      "Department Description": "Human Resources",
+      "Work Location": "Denver",
+      "Leave Balance": 2
+    },
+    {
+      "Name": "Brian Tait",
+      "Job Title": "Programmer Analyst",
+      "Department Description": "ERP Applications",
+      "Work Location": "Denver",
+      "Leave Balance": 13
+    },
+    {
+      "Name": "Keith Matthews",
+      "Job Title": "Sales Lead",
+      "Department Description": "Sales",
+      "Work Location": "Houston",
+      "Leave Balance": 12
+    },
+    {
+      "Name": "James Parker",
+      "Job Title": "Commercial Manager",
+      "Department Description": "Commercial",
+      "Work Location": "Los Angeles",
+      "Leave Balance": 6
+    },
+    {
+      "Name": "Diane Baxter",
+      "Job Title": "Sales Manager",
+      "Department Description": "Sales",
+      "Work Location": "Los Angeles",
+      "Leave Balance": 3
+    },
+    {
+      "Name": "William Vaughan",
+      "Job Title": "Operations Analyst",
+      "Department Description": "Operations",
+      "Work Location": "Denver",
+      "Leave Balance": 8
+    },
+    {
+      "Name": "Kyle O'Connor",
+      "Job Title": "Operations Manager",
+      "Department Description": "Operations",
+      "Work Location": "Houston",
+      "Leave Balance": 10
+    },
+    {
+      "Name": "John Carter",
+      "Job Title": "Intern",
+      "Department Description": "Engineering",
+      "Work Location": "San Diego",
+      "Leave Balance": 15
+    },
+    {
+      "Name": "Doug Forman",
+      "Job Title": "HR Executive",
+      "Department Description": "Human Resources",
+      "Work Location": "Denver",
+      "Leave Balance": 6
+    }
+  ]

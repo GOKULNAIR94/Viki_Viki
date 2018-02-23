@@ -1,0 +1,38 @@
+
+    [
+    {
+      "Name": "shaun Tait",
+      "Job Title": "Sales Lead",
+      "Department Description": "Sales",
+      "Work Location": "Los Angeles",
+      "Termination Date": "2017-06-19"
+    },
+    {
+      "Name": "Michael McDermott",
+      "Job Title": "Commercial Manager",
+      "Department Description": "Commercial",
+      "Work Location": "Denver",
+      "Termination Date": "2017-06-21"
+    },
+    {
+      "Name": "Clive Richards",
+      "Job Title": "Sales Manager",
+      "Department Description": "Sales",
+      "Work Location": "Houston",
+      "Termination Date": "2017-06-20"
+    },
+    {
+      "Name": "Emma Watson",
+      "Job Title": "Operations Analyst",
+      "Department Description": "Operations",
+      "Work Location": "San Diego",
+      "Termination Date": "2017-06-19"
+    },
+    {
+      "Name": "Kenny Benjamin",
+      "Job Title": "HR Executive",
+      "Department Description": "Human Resources",
+      "Work Location": "Denver",
+      "Termination Date": "2017-06-21"
+    }
+  ]
