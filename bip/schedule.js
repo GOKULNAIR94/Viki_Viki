@@ -114,7 +114,7 @@ module.exports = function ( req, resp, callback){
         "reportRequest":
         {
           "attributeFormat" :"HTML",     
-          "reportAbsolutePath" :"/Custom/BIPTest/Tickets.xdo"
+          "reportAbsolutePath" :"/Custom/TestDM_g.xdo"
             },
         "userID" : "LNT001",
         "password" : "lntLNT2K16_1"
