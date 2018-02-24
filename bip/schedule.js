@@ -20,15 +20,15 @@ module.exports = function ( req, resp, callback){
         notifyWhenSkipped :"TRUE",
         notifyWhenSuccess :"TRUE",
         notifyWhenWarning :"TRUE",    
-        repeatCount :0,
-        repeatInterval :0,
+        repeatCount :"0",
+        repeatInterval :"0",
         saveDataOption :"TRUE",
         saveOutputOption :"TRUE",
         scheduleBurstringOption :"FALSE",
         scheduleBurstingOption :"FALSE",
         schedulePublicOption :"TRUE",
         startDate :"2016-01-29",
-        useUTF8Option :true,
+        useUTF8Option :"TRUE",
         userJobDesc :"My Template Test",
         userJobName :"MyJob1111",
         deliveryChannels:
@@ -46,7 +46,7 @@ module.exports = function ( req, resp, callback){
               emailSubject :"Opty Report",
               emailTo :"gokul.nair@lntinfotech.com",
               emailCC : "gokulgnair94@gmail.com",
-              emailAttachmentName :"My Opty Report",
+              emailAttachmentName :"My Opty Report"
             }
            
           }]
@@ -66,7 +66,7 @@ module.exports = function ( req, resp, callback){
                     [{ item: {
                         UIType :"Text",
                           dataType :"String",
-                          fieldSize : 20,
+                          fieldSize : "20",
                           label : "Record Id",
                           multiValuesAllowed : "FALSE",
                           name : "Id",
@@ -83,7 +83,7 @@ module.exports = function ( req, resp, callback){
                         item: {
                         UIType :"Text",
                           dataType :"String",
-                          fieldSize : 20,
+                          fieldSize : "20",
                           label : "Object Name",
                           multiValuesAllowed : "FALSE",
                           name : "Object_Name",
