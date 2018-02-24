@@ -1,43 +1,43 @@
  
   [
     {
-      "Department": "Human Resources",
+      "query": "Human Resources",
       "Headcount": 64
     },
     {
-      "Department": "Sales",
+      "query": "Sales",
       "Headcount": 123
     },
     {
-      "Department": "Commercial",
+      "query": "Commercial",
       "Headcount": 76
     },
     {
-      "Department": "Operations",
+      "query": "Operations",
       "Headcount": 98
     },
     {
-      "Department": "Engineering",
+      "query": "Engineering",
       "Headcount": 114
     },
     {
-      "Location": "Denver",
+      "query": "Denver",
       "Headcount": 123
     },
     {
-      "Location": "Houston",
+      "query": "Houston",
       "Headcount": 114
     },
     {
-      "Location": "Los Angeles",
+      "query": "Los Angeles",
       "Headcount": 98
     },
     {
-      "Location": "San Diego",
+      "query": "San Diego",
       "Headcount": 76
     },
     {
-      "Location": "New york",
+      "query": "New york",
       "Headcount": 64
     }
   ]
