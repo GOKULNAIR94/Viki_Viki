@@ -2,6 +2,7 @@ module.exports = function ( req, resp, callback){
     var soap = require('soap');
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/v2/ScheduleService?wsdl';
     var args = {
+        dataModelUrl :"/Custom/TestDM_g.xdm",
         "reportRequest" : {
 //            "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
             "reportAbsolutePath" : "Custom/TestDM_g.xdo"
