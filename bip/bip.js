@@ -1,5 +1,5 @@
 module.exports = function(req, res ) {
-    var RUN = require("./run");
+    var Run = require("./run");
     
     var intentName = req.body.result.metadata.intentName;
         
