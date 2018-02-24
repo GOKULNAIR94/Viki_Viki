@@ -5,7 +5,7 @@ module.exports = function ( req, resp, callback){
         dataModelUrl :"/Custom/TestDM_g.xdm",
         "reportRequest" : {
 //            "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
-            "reportAbsolutePath" : "Custom/TestDM_g.xdo"
+            "reportAbsolutePath" : "/Custom/TestDM_g.xdo"
         },
         "userID" : "LNT001",
         "password" : "lntLNT2K16_1"
