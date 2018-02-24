@@ -98,7 +98,7 @@ module.exports = function ( req, resp, callback){
                 }
             }
         }
-    }
+    };
     
     soap.createClient(url, function(err, client) {
 
