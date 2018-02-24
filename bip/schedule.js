@@ -102,7 +102,7 @@ module.exports = function ( req, resp, callback){
           [{
             item:
             {
-              emailBody :"Hello Gokul,\nSending you the report in the pdf format\n\nThanks and regards,\nOSC Team\n\n",
+              emailBody :"Hello Gokul",
               emailFrom :"gokul.nair@lntinfotech.com",
               emailServerName :"DefaultEmail",
               emailSubject :"Opty Report",
