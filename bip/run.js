@@ -2,20 +2,15 @@ module.exports = function ( req, resp, callback){
     var http = require("https");
     console.log("RUN 1");
     var soap = require('soap');
-    var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/v2/ReportService?wsdl';
-    var args = {};
-    var methodName = "runReport";
+    
+//    var methodName = "runReport";
     try{
-        soap.createClient(url, function( methodName, args, headers, req) {
-            client.addSoapHeader(args, function(err, result) {
-                return {
-                  Authorization: "Basic TE5UMDAxOmxudExOVDJLMTZfMQ=="
-                };
-
-            });
-            client.methodName(args, function(err, result) {
+        var soap = require('soap');
+        var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/v2/ReportService?wsdl';
+        var args = { Authorization: "Basic TE5UMDAxOmxudExOVDJLMTZfMQ=="};
+        soap.createClient(url, function(err, client) {
+            client.runReport(args, function(err, result) {
                 console.log(result);
-                callback(result);
             });
         });
     }
