@@ -106,7 +106,7 @@ module.exports = function ( req, resp, callback){
     
     soap.createClient(url, function(err, client) {
 
-        client.runReport(args, function(err, result) {
+        client.scheduleRequest(args, function(err, result) {
             console.log( result );
         });
     });
