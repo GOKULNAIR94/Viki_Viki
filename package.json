@@ -25,6 +25,7 @@
     "nodemailer": "^4.1.0",
     "request": "^2.76.0",
     "soap": "^0.23.0",
+    "strong-soap": "^1.5.0",
     "titlecase": "^1.1.2"
   },
   "devDependencies": {},
