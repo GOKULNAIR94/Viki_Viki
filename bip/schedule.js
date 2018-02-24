@@ -60,7 +60,7 @@ module.exports = function ( req, resp, callback){
           byPassCache :"TRUE",
           flattenXML : "FALSE",
           reportAbsolutePath :"/Custom/BIPTest/TestReport.xdo",  
-          sizeOfDataChunkDownload :-1,
+          sizeOfDataChunkDownload :"-1",
             parameterNameValues:{
                 listOfParamNameValues:
                     [{ item: {
