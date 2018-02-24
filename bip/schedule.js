@@ -34,9 +34,9 @@ module.exports = function ( req, resp, callback){
         deliveryChannels:
         {
           emailOptions:
-          {
+          [{
             item:
-            [{
+            {
 
               emailBody :"Hello,\nSending you the report in the pdf format\n\nThanks and regards,\nOSC Team\n\n",
 
@@ -47,8 +47,10 @@ module.exports = function ( req, resp, callback){
               emailTo :"gokul.nair@lntinfotech.com",
               emailCC : "gokulgnair94@gmail.com",
               emailAttachmentName :"My Opty Report",
-            }]
-          }
+            }
+           
+          }]
+        
         },
         reportRequest:
         {
@@ -60,8 +62,8 @@ module.exports = function ( req, resp, callback){
           reportAbsolutePath :"/Custom/BIPTest/TestReport.xdo",  
           sizeOfDataChunkDownload :-1,
             parameterNameValues:{
-                listOfParamNameValues:{
-                    item: [{
+                listOfParamNameValues:
+                    [{ item: {
                         UIType :"Text",
                           dataType :"String",
                           fieldSize : 20,
@@ -77,8 +79,8 @@ module.exports = function ( req, resp, callback){
                                 item:"300000006786070"
                             }]
                         }
-                    },
-                          {
+                    }},{ 
+                        item: {
                         UIType :"Text",
                           dataType :"String",
                           fieldSize : 20,
@@ -94,10 +96,12 @@ module.exports = function ( req, resp, callback){
                                 item:"Deals_c"
                             }]
                         }
-                    }]
+                    }}
+                    ]
+                    
                 }
             }
-        }
+        
     };
     
     soap.createClient(url, function(err, client) {
