@@ -1,6 +1,6 @@
 module.exports = function ( req, resp, callback){ 
     var http = require("https");
-    
+    console.LOG("RUN 1");
     var soap = require('soap');
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/v2/ReportService?wsdl';
     var args = {};
@@ -16,4 +16,5 @@ module.exports = function ( req, resp, callback){
             callback(result);
         });
     });
+    console.LOG("R 2");
 }
