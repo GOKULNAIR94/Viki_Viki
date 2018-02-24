@@ -89,13 +89,9 @@ module.exports = function ( req, resp, callback){
     
     var args = {
         dataModelUrl :"/Custom/TestDM_g.xdm",
-        endDate :"2018-03-10",   
         notificationTo :"gokul.nair@lntinfotech.com",
-        notifyWhenFailed :true,
         notifyWhenSuccess :true,
-        notifyWhenWarning :true,    
-        userJobDesc :"My Template Test",
-        userJobName :"MyJob1111",
+        notifyWhenWarning :true,
         deliveryChannels:
         {
           emailOptions:
@@ -115,10 +111,7 @@ module.exports = function ( req, resp, callback){
         },
         reportRequest:
         {
-          attributeCalendar :"Gregorian",
           attributeFormat :"HTML",     
-          byPassCache :true,
-          flattenXML : false,
           reportAbsolutePath :"/Custom/TestDM_g.xdo"
             },
         "userID" : "LNT001",
