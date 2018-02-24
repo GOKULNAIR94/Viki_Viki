@@ -30,7 +30,7 @@ module.exports = function ( req, resp, callback){
     soap.createClient(url, function(err, client) {
 //        client.setSecurity(new soap.BasicAuthSecurity('LNT001', 'lntLNT2K16_1'));
         client.runReport(args, function(err, result) {
-            console.log(result);
+            console.log(result.runReportReturn.reportBytes);
 //            var obj = JSON.parse( "{" + result + "}");
 //            console.log("result : " + result.body.req);
         });
