@@ -35,7 +35,8 @@ module.exports = function ( req, resp, callback){
       res.on("end", function () {
           console.log("Body : ");
           var body = Buffer.concat(chunks);
-          console.log(atob(body.toString()));
+          console.log(body.toString());
+//          console.log(atob(body.toString()));
       });
     });
 
