@@ -1,22 +1,3 @@
-//module.exports = function ( req, resp, callback){ 
-//    var soap = require('strong-soap').soap;
-//    // wsdl of the web service this client is going to invoke. For local wsdl you can use, url = './wsdls/stockquote.wsdl'
-//    var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
-//
-//    var requestArgs = {};
-//    var clientOptions = {};
-//    soap.createClient(url, clientOptions, function(err, client) {
-//      var customRequestHeader = {Authorization: 'Basic TE5UMDAxOmxudExOVDJLMTZfMQ=='};
-//      // Custom request header
-//      client.runReport(requestArgs, function(err, result, envelope) {
-//        // Result in SOAP envelope body which is the wrapper element.
-//        // In this case, result object corresponds to GetCityForecastByZIPResponse.
-//        console.log(JSON.stringify(result));
-//      }, null, customRequestHeader);
-//    });
-//}
-
-
 module.exports = function ( req, resp, callback){ 
     var soap = require('soap');
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
@@ -37,6 +18,24 @@ module.exports = function ( req, resp, callback){
         });
     });
 }
+
+//module.exports = function ( req, resp, callback){ 
+//    var soap = require('strong-soap').soap;
+//    // wsdl of the web service this client is going to invoke. For local wsdl you can use, url = './wsdls/stockquote.wsdl'
+//    var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
+//
+//    var requestArgs = {};
+//    var clientOptions = {};
+//    soap.createClient(url, clientOptions, function(err, client) {
+//      var customRequestHeader = {Authorization: 'Basic TE5UMDAxOmxudExOVDJLMTZfMQ=='};
+//      // Custom request header
+//      client.runReport(requestArgs, function(err, result, envelope) {
+//        // Result in SOAP envelope body which is the wrapper element.
+//        // In this case, result object corresponds to GetCityForecastByZIPResponse.
+//        console.log(JSON.stringify(result));
+//      }, null, customRequestHeader);
+//    });
+//}
 
 
 //
