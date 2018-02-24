@@ -88,31 +88,31 @@ module.exports = function ( req, resp, callback){
     
     
     var args = {
-        dataModelUrl :"/Custom/TestDM_g.xdm",
-        notificationTo :"gokul.nair@lntinfotech.com",
-        notifyWhenSuccess :true,
-        notifyWhenWarning :true,
-        deliveryChannels:
+        "dataModelUrl" :"/Custom/TestDM_g.xdm",
+        "notificationTo" :"gokul.nair@lntinfotech.com",
+        "notifyWhenSuccess" :true,
+        "notifyWhenWarning" :true,
+        "deliveryChannels":
         {
-          emailOptions:
+          "emailOptions":
           [{
-            item:
+            "item":
             {
-              emailBody :"Hello Gokul",
-              emailFrom :"gokul.nair@lntinfotech.com",
-              emailServerName :"DefaultEmail",
-              emailSubject :"Opty Report",
-              emailTo :"gokul.nair@lntinfotech.com",
-              emailCC : "gokulgnair94@gmail.com"
+              "emailBody" :"Hello Gokul",
+              "emailFrom" :"gokul.nair@lntinfotech.com",
+              "emailServerName" :"DefaultEmail",
+              "emailSubject" :"Opty Report",
+              "emailTo" :"gokul.nair@lntinfotech.com",
+              "emailCC" : "gokulgnair94@gmail.com"
             }
            
           }]
         
         },
-        reportRequest:
+        "reportRequest":
         {
-          attributeFormat :"HTML",     
-          reportAbsolutePath :"/Custom/TestDM_g.xdo"
+          "attributeFormat" :"HTML",     
+          "reportAbsolutePath" :"/Custom/TestDM_g.xdo"
             },
         "userID" : "LNT001",
         "password" : "lntLNT2K16_1"
