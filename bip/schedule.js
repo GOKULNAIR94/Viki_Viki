@@ -10,25 +10,14 @@ module.exports = function ( req, resp, callback){
 //    };
     
     var args = {
-        bookBindingOutputOption : false,
         dataModelUrl :"/Custom/BIPTest/TestDS.xdm",
         endDate :"2018-03-10",   
-        mergeOutputOption : false,  
         notificationTo :"gokul.nair@lntinfotech.com",
-        notificationUserName :"LNT001",
         notifyWhenFailed :true,
-        notifyWhenSkipped :true,
         notifyWhenSuccess :true,
         notifyWhenWarning :true,    
         repeatCount :"0",
         repeatInterval :"0",
-        saveDataOption :true,
-        saveOutputOption :true,
-        scheduleBurstringOption :false,
-        scheduleBurstingOption :false,
-        schedulePublicOption :true,
-        startDate :"2016-01-29",
-        useUTF8Option :true,
         userJobDesc :"My Template Test",
         userJobName :"MyJob1111",
         deliveryChannels:
@@ -41,12 +30,10 @@ module.exports = function ( req, resp, callback){
               emailBody :"Hello,\nSending you the report in the pdf format\n\nThanks and regards,\nOSC Team\n\n",
 
               emailFrom :"gokul.nair@lntinfotech.com",
-              emailReplyTo :"NA",
               emailServerName :"DefaultEmail",
               emailSubject :"Opty Report",
               emailTo :"gokul.nair@lntinfotech.com",
-              emailCC : "gokulgnair94@gmail.com",
-              emailAttachmentName :"My Opty Report"
+              emailCC : "gokulgnair94@gmail.com"
             }
            
           }]
@@ -60,8 +47,7 @@ module.exports = function ( req, resp, callback){
           byPassCache :true,
           flattenXML : false,
           reportAbsolutePath :"/Custom/BIPTest/TestReport.xdo",  
-          sizeOfDataChunkDownload :"-1",
-            parameterNameValues:{
+          parameterNameValues:{
                 listOfParamNameValues:
                     [{ item: {
                         UIType :"Text",
