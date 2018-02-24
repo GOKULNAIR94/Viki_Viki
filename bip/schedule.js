@@ -90,27 +90,27 @@ module.exports = function ( req, resp, callback){
     
     
     var args = {
-        //"dataModelUrl" :"/Custom/TestDM_g.xdm",
+        "dataModelUrl" :"/Custom/TestDM_g.xdm",
         "notificationTo" :"gokul.nair@lntinfotech.com",
         "notifyWhenSuccess" :true,
         "notifyWhenWarning" :true,
-        "deliveryChannels":
-        {
-          "emailOptions":
-          [{
-            "item":
-            {
-              "emailBody" :"Hello Gokul",
-              "emailFrom" :"gokul.nair@lntinfotech.com",
-              "emailServerName" :"DefaultEmail",
-              "emailSubject" :"Opty Report",
-              "emailTo" :"gokul.nair@lntinfotech.com",
-              "emailCC" : "gokulgnair94@gmail.com"
-            }
-           
-          }]
-        
-        },
+//        "deliveryChannels":
+//        {
+//          "emailOptions":
+//          [{
+//            "item":
+//            {
+//              "emailBody" :"Hello Gokul",
+//              "emailFrom" :"gokul.nair@lntinfotech.com",
+//              "emailServerName" :"DefaultEmail",
+//              "emailSubject" :"Opty Report",
+//              "emailTo" :"gokul.nair@lntinfotech.com",
+//              "emailCC" : "gokulgnair94@gmail.com"
+//            }
+//           
+//          }]
+//        
+//        },
         "reportRequest":
         {
           "attributeFormat" :"HTML",     
