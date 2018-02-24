@@ -74,11 +74,9 @@ module.exports = function ( req, resp, callback){
                           selectAll :"FALSE",
                           templateParam :"FALSE",
                           useNullForAll :"TRUE",
-                        values:{
-                            item:[{
-                                item:"300000006786070"
-                            }]
-                        }
+                        values:[{
+                          item:"300000006786070"
+                        }]
                     }},{ 
                         item: {
                         UIType :"Text",
@@ -91,11 +89,9 @@ module.exports = function ( req, resp, callback){
                           selectAll :"FALSE",
                           templateParam :"FALSE",
                           useNullForAll :"TRUE",
-                        values:{
-                            item:[{
-                                item:"Deals_c"
-                            }]
-                        }
+                        values:[{
+                          item:"Deals_c"
+                        }]
                     }}
                     ]
                     
