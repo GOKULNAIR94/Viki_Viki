@@ -124,7 +124,8 @@ module.exports = function ( req, resp, callback){
     soap.createClient(url, function(err, client) {
 
         client.scheduleReport(args, function(err, result) {
-            console.log( "Schedule : " + result.toString() );
+            console.log( "Schedule : " + JSON.stringify(result) );
+            console.log( "Schedule : " + result.statusCode );
         });
     });
 }

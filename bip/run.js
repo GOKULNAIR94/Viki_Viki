@@ -12,7 +12,8 @@ module.exports = function ( req, resp, callback){
 //        client.setSecurity(new soap.BasicAuthSecurity('LNT001', 'lntLNT2K16_1'));
         client.runReport(args, function(err, result) {
             var reportXML = new Buffer( result.runReportReturn.reportBytes, 'base64');
-            console.log( "Run : " + result.toString() );
+            console.log( "Run : " + JSOn.stringify(result) );
+            console.log( "Run : " + result.statusCode );
             console.log( result.runReportReturn.reportBytes );
 //            var obj = JSON.parse( "{" + result + "}");
 //            console.log("result : " + result.body.req);
