@@ -15,7 +15,7 @@ module.exports = function ( req, resp, callback){
         endDate :"2017-03-10",   
         mergeOutputOption :false,  
         notificationTo :"gokul.nair@lntinfotech.com",
-        notificationUserName :"ranjana",
+        notificationUserName :"LNT001",
         notifyHttpWhenFailed :true,
         notifyHttpWhenSkipped :true,
         notifyHttpWhenSuccess :true,
@@ -106,7 +106,7 @@ module.exports = function ( req, resp, callback){
     
     soap.createClient(url, function(err, client) {
 
-        client.scheduleRequest(args, function(err, result) {
+        client.scheduleReport(args, function(err, result) {
             console.log( result );
         });
     });
