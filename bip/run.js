@@ -7,7 +7,7 @@ module.exports = function ( req, resp, callback){
         client.runReport(args, function(err, result) {
 //            console.log(result);
 //            var obj = JSON.parse( "{" + result + "}");
-            console.log("result : " + result.body);
+            console.log("result : " + result.body.req);
         });
     });
 }
