@@ -7,9 +7,7 @@ module.exports = function ( req, resp, callback){
       "port": null,
       "path": "/xmlpserver/services/PublicReportService?wsdl=",
       "headers": {
-        "content-type": "text/xml",
-        "cache-control": "no-cache",
-        "postman-token": "05fdc3e5-c2f2-753a-d53e-dcfdbed7fb7a"
+        "content-type": "text/xml"
       }
     };
 
@@ -21,8 +19,9 @@ module.exports = function ( req, resp, callback){
       });
 
       res.on("end", function () {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
+          console.log("Body : ");
+          var body = Buffer.concat(chunks);
+          console.log(body.toString());
       });
     });
 
