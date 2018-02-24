@@ -4,9 +4,9 @@ module.exports = function(req, res ) {
     
     var intentName = req.body.result.metadata.intentName;
         
-//    Run( req, res, function(result) {
-//        console.log("Partners Called.");
-//    });
+    Run( req, res, function(result) {
+        console.log("Partners Called.");
+    });
     
     Schedule( req, res, function(result) {
         console.log("Partners Called.");
