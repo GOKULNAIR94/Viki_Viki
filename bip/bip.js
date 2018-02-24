@@ -5,10 +5,10 @@ module.exports = function(req, res ) {
     var intentName = req.body.result.metadata.intentName;
         
     Run( req, res, function(result) {
-        console.log("Partners Called.");
+        console.log("Run Called.");
     });
     
     Schedule( req, res, function(result) {
-        console.log("Partners Called.");
+        console.log("Schedule Called.");
     });
 }
