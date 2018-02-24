@@ -115,15 +115,13 @@ module.exports = function ( req, resp, callback){
         {
           "attributeFormat" :"HTML",     
           "reportAbsolutePath" :"/Custom/TestDM_g.xdo"
-            },
-        "userID" : "LNT001",
-        "password" : "lntLNT2K16_1"
+            }
         
     };
     
     soap.createClient(url, function(err, client) {
 
-        client.scheduleReport(args, function(err, result) {
+        client.scheduleReport(args, "LNT001", "lntLNT2K16_1", function(err, result) {
             console.log( "Schedule : " + JSON.stringify(result) );
             console.log( "Schedule : " + result.statusCode );
         });
