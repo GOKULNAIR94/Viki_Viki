@@ -96,13 +96,15 @@ module.exports = function ( req, resp, callback){
                     ]
                     
                 }
-            }
+            },
+        "userID" : "LNT001",
+        "password" : "lntLNT2K16_1"
         
     };
     
     soap.createClient(url, function(err, client) {
 
-        client.scheduleReport(args, "LNT001","lntLNT2K16_1", function(err, result) {
+        client.scheduleReport(args, function(err, result) {
             console.log( result );
         });
     });
