@@ -10,7 +10,7 @@ module.exports = function ( req, resp, callback){
         var args = { Authorization: "Basic TE5UMDAxOmxudExOVDJLMTZfMQ=="};
         soap.createClient(url, function(err, client) {
             client.runReport(args, function(err, result) {
-                console.log(result);
+                //console.log(result);
             });
         });
     }
