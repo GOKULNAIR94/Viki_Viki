@@ -1,15 +1,15 @@
 module.exports = function ( req, resp, callback){ 
     var soap = require('soap');
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/v2/ScheduleService?wsdl';
-    var args = {
-        dataModelUrl :"/Custom/TestDM_g.xdm",
-        "reportRequest" : {
-//            "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
-            "reportAbsolutePath" : "/Custom/TestDM_g.xdo"
-        },
-        "userID" : "LNT001",
-        "password" : "lntLNT2K16_1"
-    };
+//    var args = {
+//        dataModelUrl :"/Custom/TestDM_g.xdm",
+//        "reportRequest" : {
+////            "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
+//            "reportAbsolutePath" : "/Custom/TestDM_g.xdo"
+//        },
+//        "userID" : "LNT001",
+//        "password" : "lntLNT2K16_1"
+//    };
     
 //    var args = {
 //        dataModelUrl :"/Custom/BIPTest/TestDS.xdm",
@@ -89,37 +89,38 @@ module.exports = function ( req, resp, callback){
 //    };
     
     
-//    var args = {
-//        "dataModelUrl" :"/Custom/TestDM_g.xdm",
-//        "notificationTo" :"gokul.nair@lntinfotech.com",
-//        "notifyWhenSuccess" :true,
-//        "notifyWhenWarning" :true,
-//        "deliveryChannels":
-//        {
-//          "emailOptions":
-//          [{
-//            "item":
-//            {
-//              "emailBody" :"Hello Gokul",
-//              "emailFrom" :"gokul.nair@lntinfotech.com",
-//              "emailServerName" :"DefaultEmail",
-//              "emailSubject" :"Opty Report",
-//              "emailTo" :"gokul.nair@lntinfotech.com",
-//              "emailCC" : "gokulgnair94@gmail.com"
-//            }
-//           
-//          }]
-//        
-//        },
-//        "reportRequest":
-//        {
-//          "attributeFormat" :"HTML",     
-//          "reportAbsolutePath" :"/Custom/TestDM_g.xdo"
-//            },
-//        "userID" : "LNT001",
-//        "password" : "lntLNT2K16_1"
-//        
-//    };
+    var args = {
+        //"dataModelUrl" :"/Custom/TestDM_g.xdm",
+        "notificationTo" :"gokul.nair@lntinfotech.com",
+        "notifyWhenSuccess" :true,
+        "notifyWhenWarning" :true,
+        "deliveryChannels":
+        {
+          "emailOptions":
+          [{
+            "item":
+            {
+              "emailBody" :"Hello Gokul",
+              "emailFrom" :"gokul.nair@lntinfotech.com",
+              "emailServerName" :"DefaultEmail",
+              "emailSubject" :"Opty Report",
+              "emailTo" :"gokul.nair@lntinfotech.com",
+              "emailCC" : "gokulgnair94@gmail.com"
+            }
+           
+          }]
+        
+        },
+        "reportRequest":
+        {
+          "attributeFormat" :"HTML",     
+          "reportAbsolutePath" :"/Custom/BIPTest/Tickets.xdo"
+            },
+        "userID" : "LNT001",
+        "password" : "lntLNT2K16_1"
+        
+    };
+    
     soap.createClient(url, function(err, client) {
 
         client.scheduleReport(args, function(err, result) {
