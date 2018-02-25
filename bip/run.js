@@ -3,7 +3,7 @@ module.exports = function ( req, resp, callback){
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
         "reportRequest" : {
-            "attributeFormat" :"HTML",
+            "attributeFormat" :"pdf",
             "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
         },
         "userID" : "LNT001",
