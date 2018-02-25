@@ -2,12 +2,14 @@ module.exports = function ( req, res, callback){
     var soap = require('soap');
     var base64 = require('file-base64');
     var SendEmail = require("./sendEmail");
+    var reportAbsolutePath = "Custom/BIPTest/Tickets.xdo";
+    var reportName = reportAbsolutePath.substring( reportAbsolutePath.lastIndexOf('/')+1, reportAbsolutePath.lastIndexOf('.xdo'))
 
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
         "reportRequest" : {
             "attributeFormat" :"pdf",
-            "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
+            "reportAbsolutePath" : reportAbsolutePath
         },
         "userID" : "LNT001",
         "password" : "lntLNT2K16_1"
@@ -19,7 +21,7 @@ module.exports = function ( req, res, callback){
             console.log( "Run : " + result.statusCode );
             console.log( result.runReportReturn.reportBytes );
             var base64String = result.runReportReturn.reportBytes;
-            base64.decode(base64String, 'text.new.pdf', function(err, output) {
+            base64.decode(base64String, reportName + '.pdf', function(err, output) {
               console.log('success : ' + output);
             });
             SendEmail(req, res, function(result) {

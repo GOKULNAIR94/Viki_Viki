@@ -8,8 +8,8 @@ module.exports = function(req, res ) {
     //var intentName = req.body.result.metadata.intentName;
         
     Run( req, res, function(result) {
-        console.log("Run Called.");
-        speech = "Job Run : ";
+        console.log("Run Called. : \n" + result);
+        speech = "Job Run.";
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
         });
