@@ -91,7 +91,7 @@ module.exports = function(req, resp, callback) {
 
     var args = {
 //        "dataModelUrl": "/Custom/TestDM_g.xdm",
-        "dataModelUrl": "/Custom/BIPTest/FirstReport/FirstWSDM.xdm",
+//        "dataModelUrl": "/Custom/BIPTest/FirstReport/FirstWSDM.xdm",
         "scheduleRequest": {
             "notificationTo": "gokul.nair@lntinfotech.com",
             "notifyWhenSuccess": true,
@@ -103,8 +103,8 @@ module.exports = function(req, resp, callback) {
                         "emailFrom": "gokul.nair@lntinfotech.com",
                         "emailServerName": "DefaultEmail",
                         "emailSubject": "Opty Report",
-                        "emailTo": "gokul.nair@lntinfotech.com",
-                        "emailCC": "gokulgnair94@gmail.com"
+                        "emailTo": "gokulgnair94@gmail.com",
+                        "emailCC": "gokul.nair@lntinfotech.com"
                     }
 
                 }]
@@ -113,7 +113,7 @@ module.exports = function(req, resp, callback) {
             "reportRequest": {
                 "attributeFormat": "HTML",
 //                "reportAbsolutePath": "/Custom/TestDM_g.xdo",
-                "reportAbsolutePath": "/Custom/BIPTest/FirstReport/FirstWSReport.xdo",
+                "reportAbsolutePath": "/Custom/Kirloskar_Demo/Order+Report.xdo",
                 "sizeOfDataChunkDownload": -1,  
               parameterNameValues:{
                     listOfParamNameValues:
@@ -121,30 +121,15 @@ module.exports = function(req, resp, callback) {
                             UIType :"Text",
                               dataType :"String",
                               fieldSize : "20",
-                              label : "Record Id",
+                              label : "RecordName",
                               multiValuesAllowed : false,
-                              name : "Id",
+                              name : "RecordName",
                               refreshParamOnChange : false,
                               selectAll :false,
                               templateParam :false,
                               useNullForAll :true,
                             values:[{
                               item:"300000006786070"
-                            }]
-                        }},{ 
-                            item: {
-                            UIType :"Text",
-                              dataType :"String",
-                              fieldSize : "20",
-                              label : "Object Name",
-                              multiValuesAllowed : false,
-                              name : "Object_Name",
-                              refreshParamOnChange : false,
-                              selectAll :false,
-                              templateParam :false,
-                              useNullForAll :true,
-                            values:[{
-                              item:"Deals_c"
                             }]
                         }}
                         ]
