@@ -19,8 +19,8 @@ module.exports = function( emailContent, req, res) {
     var to_email = "gokul.nair@lntinfotech.com"; 
 
     speech = emailContent.speech;
-    file = emailContent.file;
-    body = emailContent.body
+    file = "Report.pdf";//emailContent.file;
+    body = emailContent.body;
     subject = emailContent.subject;
     
     console.log(speech);
