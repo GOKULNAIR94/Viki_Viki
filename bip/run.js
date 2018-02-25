@@ -4,6 +4,7 @@ module.exports = function ( req, res, callback){
     var SendEmail = require("./sendEmail");
     var reportAbsolutePath = "Custom/BIPTest/Tickets.xdo";
     var reportName = reportAbsolutePath.substring( reportAbsolutePath.lastIndexOf('/')+1, reportAbsolutePath.lastIndexOf('.xdo'))
+    var fileName = reportName + '.pdf';
 
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
@@ -21,7 +22,7 @@ module.exports = function ( req, res, callback){
             console.log( "Run : " + result.statusCode );
             console.log( result.runReportReturn.reportBytes );
             var base64String = result.runReportReturn.reportBytes;
-            base64.decode(base64String, reportName + '.pdf', function(err, output) {
+            base64.decode(base64String, fileName, function(err, output) {
               console.log('success : ' + output);
             });
             SendEmail(req, res, function(result) {
