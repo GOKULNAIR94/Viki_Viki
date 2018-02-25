@@ -113,7 +113,7 @@ module.exports = function(req, resp, callback) {
             "reportRequest": {
                 "attributeFormat": "HTML",
 //                "reportAbsolutePath": "/Custom/TestDM_g.xdo",
-                "reportAbsolutePath": "/Custom/Kirloskar_Demo/Order%20Report.xdo",
+                "reportAbsolutePath": "/Custom/BIPTest/OrderBIP.xdo",
                 "sizeOfDataChunkDownload": -1,  
               parameterNameValues:{
                     listOfParamNameValues:
