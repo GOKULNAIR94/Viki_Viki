@@ -1,5 +1,7 @@
 module.exports = function ( req, resp, callback){ 
     var soap = require('soap');
+    var base64 = require('file-base64');
+
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
         "reportRequest" : {
@@ -15,9 +17,10 @@ module.exports = function ( req, resp, callback){
             console.log( "Run : " + JSON.stringify(result) );
             console.log( "Run : " + result.statusCode );
             console.log( result.runReportReturn.reportBytes );
-            FileOutputStream fos = new FileOutputStream("/test.pdf");
-            fos.write(Base64.decode(result.runReportReturn.reportBytes, Base64.NO_WRAP));
-            fos.close();
+            var base64String = result.runReportReturn.reportBytes;
+            base64.decode(base64String, 'text.new.pdf', function(err, output) {
+              console.log('success : ' + output);
+            });
 
             callback(result);
         });
