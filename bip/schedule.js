@@ -46,42 +46,42 @@ module.exports = function(req, resp, callback) {
     //          attributeTemplate :"Opty Report",      
     //          byPassCache :true,
     //          flattenXML : false,
-    //          reportAbsolutePath :"/Custom/BIPTest/TestReport.xdo",  
-    //          parameterNameValues:{
-    //                listOfParamNameValues:
-    //                    [{ item: {
-    //                        UIType :"Text",
-    //                          dataType :"String",
-    //                          fieldSize : "20",
-    //                          label : "Record Id",
-    //                          multiValuesAllowed : false,
-    //                          name : "Id",
-    //                          refreshParamOnChange : false,
-    //                          selectAll :false,
-    //                          templateParam :false,
-    //                          useNullForAll :true,
-    //                        values:[{
-    //                          item:"300000006786070"
-    //                        }]
-    //                    }},{ 
-    //                        item: {
-    //                        UIType :"Text",
-    //                          dataType :"String",
-    //                          fieldSize : "20",
-    //                          label : "Object Name",
-    //                          multiValuesAllowed : false,
-    //                          name : "Object_Name",
-    //                          refreshParamOnChange : false,
-    //                          selectAll :false,
-    //                          templateParam :false,
-    //                          useNullForAll :true,
-    //                        values:[{
-    //                          item:"Deals_c"
-    //                        }]
-    //                    }}
-    //                    ]
-    //                    
-    //                }
+//              reportAbsolutePath :"/Custom/BIPTest/TestReport.xdo",  
+//              parameterNameValues:{
+//                    listOfParamNameValues:
+//                        [{ item: {
+//                            UIType :"Text",
+//                              dataType :"String",
+//                              fieldSize : "20",
+//                              label : "Record Id",
+//                              multiValuesAllowed : false,
+//                              name : "Id",
+//                              refreshParamOnChange : false,
+//                              selectAll :false,
+//                              templateParam :false,
+//                              useNullForAll :true,
+//                            values:[{
+//                              item:"300000006786070"
+//                            }]
+//                        }},{ 
+//                            item: {
+//                            UIType :"Text",
+//                              dataType :"String",
+//                              fieldSize : "20",
+//                              label : "Object Name",
+//                              multiValuesAllowed : false,
+//                              name : "Object_Name",
+//                              refreshParamOnChange : false,
+//                              selectAll :false,
+//                              templateParam :false,
+//                              useNullForAll :true,
+//                            values:[{
+//                              item:"Deals_c"
+//                            }]
+//                        }}
+//                        ]
+//                        
+//                    }
     //            },
     //        "userID" : "LNT001",
     //        "password" : "lntLNT2K16_1"
@@ -91,6 +91,7 @@ module.exports = function(req, resp, callback) {
 
     var args = {
 //        "dataModelUrl": "/Custom/TestDM_g.xdm",
+        "dataModelUrl": "/Custom/BIPTest/Excel/ExcelDM.xdm",
         "scheduleRequest": {
             "notificationTo": "gokul.nair@lntinfotech.com",
             "notifyWhenSuccess": true,
@@ -112,8 +113,43 @@ module.exports = function(req, resp, callback) {
             "reportRequest": {
                 "attributeFormat": "HTML",
 //                "reportAbsolutePath": "/Custom/TestDM_g.xdo",
-                "reportAbsolutePath": "/Custom/BIPTest/Tickets.xdo",
-                "sizeOfDataChunkDownload": -1
+                "reportAbsolutePath": "/Custom/BIPTest/Excel/ExcelReport.xdo",
+                "sizeOfDataChunkDownload": -1,  
+              parameterNameValues:{
+                    listOfParamNameValues:
+                        [{ item: {
+                            UIType :"Text",
+                              dataType :"String",
+                              fieldSize : "20",
+                              label : "Record Id",
+                              multiValuesAllowed : false,
+                              name : "Id",
+                              refreshParamOnChange : false,
+                              selectAll :false,
+                              templateParam :false,
+                              useNullForAll :true,
+                            values:[{
+                              item:"300000006786070"
+                            }]
+                        }},{ 
+                            item: {
+                            UIType :"Text",
+                              dataType :"String",
+                              fieldSize : "20",
+                              label : "Object Name",
+                              multiValuesAllowed : false,
+                              name : "Object_Name",
+                              refreshParamOnChange : false,
+                              selectAll :false,
+                              templateParam :false,
+                              useNullForAll :true,
+                            values:[{
+                              item:"Deals_c"
+                            }]
+                        }}
+                        ]
+                        
+                    }
             }
         },
 
