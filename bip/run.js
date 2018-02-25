@@ -23,7 +23,7 @@ module.exports = function ( req, res, callback){
             console.log( "Run : " + result.statusCode );
             console.log( result.runReportReturn.reportBytes );
             var base64String = result.runReportReturn.reportBytes;
-            base64.decode(base64String, "Report.pdf", function(err, output) {
+            base64.decode(base64String, fileName, function(err, output) {
               console.log('success : ' + output);
             });
             
