@@ -15,6 +15,10 @@ module.exports = function ( req, resp, callback){
             console.log( "Run : " + JSON.stringify(result) );
             console.log( "Run : " + result.statusCode );
             console.log( result.runReportReturn.reportBytes );
+            FileOutputStream fos = new FileOutputStream("/test.pdf");
+            fos.write(Base64.decode(result.runReportReturn.reportBytes, Base64.NO_WRAP));
+            fos.close();
+
             callback(result);
         });
     });
