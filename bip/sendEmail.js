@@ -1,4 +1,4 @@
-module.exports = function(req, res) {
+module.exports = function( emailContent, req, res) {
     const express = require('express');
     const bunyan = require('bunyan');
     const nodemailer = require('nodemailer');
@@ -18,18 +18,11 @@ module.exports = function(req, res) {
     });
     var to_email = "gokul.nair@lntinfotech.com"; 
 
-
-    speech = 'Thanks';
-    file = "text.new.pdf";
-    body = '<p><b>Hello,</b></p>' +
-                '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
-                '<p>Thanks,<br><b>Viki</b></p>';
-    subject = 'Departmental Expenses Corporate Report';
+    speech = emailContent.speech;
+    file = emailContent.file;
+    body = emailContent.body
+    subject = emailContent.subject;
     
-    
-    
-    
-
     console.log(speech);
     console.log('SMTP Configured');
     fs.readFile("./" + file, function(err, data) {

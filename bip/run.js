@@ -5,6 +5,7 @@ module.exports = function ( req, res, callback){
     var reportAbsolutePath = "Custom/BIPTest/Tickets.xdo";
     var reportName = reportAbsolutePath.substring( reportAbsolutePath.lastIndexOf('/')+1, reportAbsolutePath.lastIndexOf('.xdo'))
     var fileName = reportName + '.pdf';
+    var emailContent = {};
 
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
@@ -25,7 +26,15 @@ module.exports = function ( req, res, callback){
             base64.decode(base64String, fileName, function(err, output) {
               console.log('success : ' + output);
             });
-            SendEmail(req, res, function(result) {
+            
+            emailContent.speech = "Report has been scheduled.";
+            emailContent.file = fileName;
+            emailContent.subject = "Report "+reportName+" been scheduled.";
+            emailContent.body = '<p><b>Hello,</b></p>' +
+                '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
+                '<p>Thanks,<br><b>Viki</b></p>';
+            
+            SendEmail( emailContent, req, res, function(result) {
                 console.log("SendEmail Called");
             });
 
