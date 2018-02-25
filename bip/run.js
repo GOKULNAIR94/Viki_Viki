@@ -1,6 +1,7 @@
 module.exports = function ( req, resp, callback){ 
     var soap = require('soap');
     var base64 = require('file-base64');
+    var SendEmail = require("./sendEmail");
 
     var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
@@ -21,8 +22,11 @@ module.exports = function ( req, resp, callback){
             base64.decode(base64String, 'text.new.pdf', function(err, output) {
               console.log('success : ' + output);
             });
+            SendEmail(req, res, function(result) {
+                console.log("SendEmail Called");
+            });
 
-            callback(result);
+            //callback(result);
         });
     });
 }
