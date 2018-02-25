@@ -91,7 +91,7 @@ module.exports = function(req, resp, callback) {
 
     var args = {
 //        "dataModelUrl": "/Custom/TestDM_g.xdm",
-        "dataModelUrl": "/Custom/BIPTest/Excel/ExcelDM.xdm",
+        "dataModelUrl": "/Custom/BIPTest/FirstReport/FirstWSDM.xdm",
         "scheduleRequest": {
             "notificationTo": "gokul.nair@lntinfotech.com",
             "notifyWhenSuccess": true,
@@ -113,7 +113,7 @@ module.exports = function(req, resp, callback) {
             "reportRequest": {
                 "attributeFormat": "HTML",
 //                "reportAbsolutePath": "/Custom/TestDM_g.xdo",
-                "reportAbsolutePath": "/Custom/BIPTest/Excel/ExcelReport.xdo",
+                "reportAbsolutePath": "/Custom/BIPTest/FirstReport/FirstWSReport.xdo",
                 "sizeOfDataChunkDownload": -1,  
               parameterNameValues:{
                     listOfParamNameValues:
