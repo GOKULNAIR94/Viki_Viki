@@ -18,10 +18,10 @@ module.exports = function( emailContent, req, res) {
     });
     var to_email = "gokul.nair@lntinfotech.com"; 
 
-    speech = emailContent.speech;
-    file = emailContent.file;//"Report.pdf";
-    body = emailContent.body;
-    subject = emailContent.subject;
+    var speech = emailContent.speech;
+    var file = emailContent.file;//"Report.pdf";
+    var body = emailContent.body;
+    var subject = emailContent.subject;
     
     console.log(speech);
     console.log('SMTP Configured');
