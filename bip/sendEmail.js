@@ -19,7 +19,7 @@ module.exports = function( emailContent, req, res) {
     var to_email = "gokul.nair@lntinfotech.com"; 
 
     var speech = emailContent.speech;
-    var file = emailContent.file;//"Report.pdf";
+    var file = emailContent.file;
     var body = emailContent.body;
     var subject = emailContent.subject;
     
@@ -71,8 +71,7 @@ module.exports = function( emailContent, req, res) {
     });
     return res.json({
         speech: speech,
-        displayText: speech,
-        attachment:file
+        displayText: speech
     });
 
 

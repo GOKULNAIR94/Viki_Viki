@@ -27,7 +27,7 @@ module.exports = function ( req, res, callback){
               console.log('success : ' + output);
             });
             
-            emailContent.speech = "Report has been scheduled. Report : ";
+            emailContent.speech = "Report has been scheduled.";
             emailContent.file = fileName;
             emailContent.subject = "Report "+reportName+" been scheduled.";
             emailContent.body = '<p><b>Hello,</b></p>' +
