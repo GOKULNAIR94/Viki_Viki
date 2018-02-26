@@ -37,9 +37,10 @@ module.exports = function(req, res, callback) {
                 
             }
         }
+        SendResponse(speech, suggests, contextOut, req, res, function() {
+            console.log("Finished!");
+        });
         
     });
-    SendResponse(speech, suggests, contextOut, req, res, function() {
-        console.log("Finished!");
-    });
+    
 }
