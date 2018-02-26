@@ -30,21 +30,20 @@ module.exports = function(req, res, callback) {
         } else {
             speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.items.length + ".";
             
-            for (var i = 0; i < result.length; i++) {
+            for (var i = 0; i < result.items[i].length; i++) {
                 if( HireTerm == "Hire" ){
                     speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Hire Date: " + result.items[i].HireDate;
                 }
                 if( HireTerm == "Term" ){
                     speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Termination Date: " + result.items[i].TerminationDate; 
                 }
-                if( i == result.length ){
-                    SendResponse(speech, suggests, contextOut, req, res, function() {
-                        console.log("Finished!");
-                    });
-                }
                 
             }
         }
+        SendResponse(speech, suggests, contextOut, req, res, function() {
+            console.log("Finished!");
+        });
+        
     });
     
 }
