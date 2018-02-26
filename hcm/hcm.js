@@ -30,7 +30,7 @@ module.exports = function(req, res, callback) {
         } else {
             speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.items.length + ".";
             
-            for (var i = 0; i < result.items[i].length; i++) {
+            for (var i = 0; i < result.items.length; i++) {
                 if( HireTerm == "Hire" ){
                     speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Hire Date: " + result.items[i].HireDate;
                 }
