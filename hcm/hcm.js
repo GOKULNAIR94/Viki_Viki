@@ -25,20 +25,20 @@ module.exports = function(req, res, callback) {
     var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=HireDate%3E" + StartDate + "%20and%20%3C" + EndDate + "&onlyData=true";
 
     Query( qString, req, res, function(result) {
-        if (result.length == 0) {
+        if (result.items.length == 0) {
         speech = "No records found.";
         } else {
-            speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.length + ".";
+            speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.items.length + ".";
             
-//            for (var i = 0; i < result.length; i++) {
-//                if( HireTerm == "Hire" ){
-//                    speech = speech + "\n " + (i + 1) + ". " + result[i].FirstName + " " + result[i].LastName + ", Hire Date: " + result[i].HireDate;
-//                }
-//                if( HireTerm == "Term" ){
-//                    speech = speech + "\n " + (i + 1) + ". " + result[i].FirstName + " " + result[i].LastName + ", Termination Date: " + result[i].TerminationDate; 
-//                }
-//                
-//            }
+            for (var i = 0; i < result.length; i++) {
+                if( HireTerm == "Hire" ){
+                    speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Hire Date: " + result.items[i].HireDate;
+                }
+                if( HireTerm == "Term" ){
+                    speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Termination Date: " + result.items[i].TerminationDate; 
+                }
+                
+            }
         }
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
