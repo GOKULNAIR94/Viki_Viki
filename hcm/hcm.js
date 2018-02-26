@@ -19,8 +19,8 @@ module.exports = function(req, res, callback) {
     var StartDate = dateperiod.split("/")[0];
     var EndDate = dateperiod.split("/")[1];
     
-    console.log("HireTerm :" + HireTerm);
-    console.log("dateperiod :" + dateperiod);
+    console.log("HireTerm : " + HireTerm);
+    console.log("dateperiod : " + dateperiod);
     
     var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=HireDate%3E" + StartDate + "%20and%20%3C" + EndDate + "&onlyData=true";
 
@@ -40,6 +40,7 @@ module.exports = function(req, res, callback) {
                 
             }
         }
+        speech = speech + " What"; 
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
         });
