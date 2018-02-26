@@ -37,14 +37,14 @@ module.exports = function(req, res, callback) {
                 if( HireTerm == "Term" ){
                     speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Termination Date: " + result.items[i].TerminationDate; 
                 }
+                if( i == result.length ){
+                    SendResponse(speech, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
+                }
                 
             }
         }
-        speech = speech + " What"; 
-        SendResponse(speech, suggests, contextOut, req, res, function() {
-            console.log("Finished!");
-        });
-        
     });
     
 }
