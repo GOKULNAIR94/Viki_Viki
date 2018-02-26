@@ -1,4 +1,4 @@
-module.exports = function ( qString, loginEncoded, req, resp, callback){ 
+module.exports = function ( qString, req, resp, callback){ 
     var http = require("https");
     console.log( "qString : " + qString);
 

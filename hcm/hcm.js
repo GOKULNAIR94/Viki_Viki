@@ -1,4 +1,4 @@
-module.exports = function(req, res) {
+module.exports = function(req, res, callback) {
 
     var Query = require("./query");
     var SendResponse = require("./sendResponse");
