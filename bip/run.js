@@ -25,18 +25,19 @@ module.exports = function ( req, res, callback){
             var base64String = result.runReportReturn.reportBytes;
             base64.decode(base64String, fileName, function(err, output) {
               console.log('success : ' + output);
+                emailContent.speech = "Report has been scheduled.";
+                emailContent.file = fileName;
+                emailContent.subject = "Report "+reportName+" been scheduled.";
+                emailContent.body = '<p><b>Hello,</b></p>' +
+                    '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
+                    '<p>Thanks,<br><b>Viki</b></p>';
+
+                SendEmail( emailContent, req, res, function(result) {
+                    console.log("SendEmail Called");
+                });
             });
             
-            emailContent.speech = "Report has been scheduled.";
-            emailContent.file = fileName;
-            emailContent.subject = "Report "+reportName+" been scheduled.";
-            emailContent.body = '<p><b>Hello,</b></p>' +
-                '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
-                '<p>Thanks,<br><b>Viki</b></p>';
             
-            SendEmail( emailContent, req, res, function(result) {
-                console.log("SendEmail Called");
-            });
 
             //callback(result);
         });
