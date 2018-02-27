@@ -1,5 +1,7 @@
 module.exports = function(req, res, callback) {
 
+    var toTitleCase = require("titlecase");
+    
     var Query = require("./query");
     var SendResponse = require("./sendResponse");
     
@@ -16,34 +18,27 @@ module.exports = function(req, res, callback) {
     
     
     console.log("empName : " + empName);
-    console.log("firstName : " + firstName + " " + lastName );
-    speech = "firstName : " + firstName + " " + lastName ;
+    console.log("Name : " + firstName + " " + lastName );
+    speech = "Name : " + firstName + " " + lastName ;
     SendResponse(speech, suggests, contextOut, req, res, function() {
+        console.log("Finished!");
+    });
+    
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName.toUpperCase()=" + firstName + ".toUpperCase();LastName.toUpperCase()=" + lastName + ".toUpperCase();FirstName!=null&onlyData=true";
+
+    Query( qString, req, res, function(result) {
+        if (result.items.length == 0) {
+        speech = "No records found.";
+        } else {
+            speech = "Done. : " + JSON.stringify(result);
+            
+//            for (var i = 0; i < result.items.length; i++) {
+//            }
+        }
+        SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
         });
-    
-//    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=HireDate%3E" + StartDate + "%20and%20%3C" + EndDate + "&onlyData=true";
-//
-//    Query( qString, req, res, function(result) {
-//        if (result.items.length == 0) {
-//        speech = "No records found.";
-//        } else {
-//            speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.items.length + ".";
-//            
-//            for (var i = 0; i < result.items.length; i++) {
-//                if( HireTerm == "Hire" ){
-//                    speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Hire Date: " + result.items[i].HireDate;
-//                }
-//                if( HireTerm == "Term" ){
-//                    speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Termination Date: " + result.items[i].TerminationDate; 
-//                }
-//                
-//            }
-//        }
-//        SendResponse(speech, suggests, contextOut, req, res, function() {
-//            console.log("Finished!");
-//        });
-//        
-//    });
+        
+    });
     
 }
