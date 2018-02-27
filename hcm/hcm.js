@@ -35,7 +35,7 @@ module.exports = function(req, res, callback) {
         } else {
             speech = "Done. : " + JSON.stringify(result);
             for (var i = 0; i < result.items.length; i++) {
-                speech = "Name: " + result.items[i].DisplayName;
+                speech = "" + result.items[i].DisplayName;
                 
                 if( result.items[i].City != null && result.items[i].City != "" )
                     speech = speech + " is located at " + result.items[i].City;
