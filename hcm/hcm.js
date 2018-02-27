@@ -22,8 +22,9 @@ module.exports = function(req, res, callback) {
 //        console.log("Finished!");
 //    });   result.items[i].FirstName
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");upper(LastName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");FirstName!=null&onlyData=true";
-
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName.toUpperCase()=" + firstName + ".toUpperCase();LastName.toUpperCase()=" + lastName + ".toUpperCase();FirstName!=null&onlyData=true";
+//    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");upper(LastName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");FirstName!=null&onlyData=true";
+    
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
         speech = "No records found.";
@@ -32,11 +33,12 @@ module.exports = function(req, res, callback) {
             for (var i = 0; i < result.items.length; i++) {
                 speech = "Name: " + result.items[i].DisplayName;
                 if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
-                    speech = "Work phone: " + result.items[i].WorkPhoneNumber;
+                    speech = speech + "Work phone: " + result.items[i].WorkPhoneNumber;
                 if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
-                    speech = "Work phone: " + result.items[i].WorkPhoneNumber;
+                    speech = speech + "Work phone: " + result.items[i].WorkPhoneNumber;
                 if( result.items[i].City != null && result.items[i].City != "" )
-                    speech = "located at " + result.items[i].City;
+                    speech = speech + "located at " + result.items[i].City;
+                speech = speech +".\n";
             }
         }
         SendResponse(speech, suggests, contextOut, req, res, function() {
