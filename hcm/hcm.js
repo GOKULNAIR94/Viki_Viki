@@ -36,12 +36,14 @@ module.exports = function(req, res, callback) {
             speech = "Done. : " + JSON.stringify(result);
             for (var i = 0; i < result.items.length; i++) {
                 speech = "Name: " + result.items[i].DisplayName;
-                if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
-                    speech = speech + "Work phone: " + result.items[i].WorkPhoneNumber;
-                if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
-                    speech = speech + "Work phone: " + result.items[i].WorkPhoneNumber;
+                
                 if( result.items[i].City != null && result.items[i].City != "" )
-                    speech = speech + "located at " + result.items[i].City;
+                    speech = speech + " is located at " + result.items[i].City;
+                if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
+                    speech = speech + ", \nWork phone: " + result.items[i].WorkPhoneNumber;
+//                if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
+//                    speech = speech + "Work phone: " + result.items[i].WorkPhoneNumber;
+                
                 speech = speech +".\n";
             }
         }
