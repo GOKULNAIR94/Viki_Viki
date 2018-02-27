@@ -19,7 +19,7 @@ module.exports = function(req, res, callback) {
     
     console.log("empName : " + empName);
     console.log("Name : " + firstName + " " + lastName );
-    speech = "Name : " + firstName + " " + lastName ;
+//    speech = "Name : " + firstName + " " + lastName ;
 //    SendResponse(speech, suggests, contextOut, req, res, function() {
 //        console.log("Finished!");
 //    });
