@@ -20,9 +20,9 @@ module.exports = function(req, res, callback) {
     console.log("empName : " + empName);
     console.log("Name : " + firstName + " " + lastName );
     speech = "Name : " + firstName + " " + lastName ;
-    SendResponse(speech, suggests, contextOut, req, res, function() {
-        console.log("Finished!");
-    });
+//    SendResponse(speech, suggests, contextOut, req, res, function() {
+//        console.log("Finished!");
+//    });
     
     var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName.toUpperCase()=" + firstName + ".toUpperCase();LastName.toUpperCase()=" + lastName + ".toUpperCase();FirstName!=null&onlyData=true";
 
