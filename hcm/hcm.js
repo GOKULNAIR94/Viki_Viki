@@ -22,7 +22,7 @@ module.exports = function(req, res, callback) {
 //        console.log("Finished!");
 //    });   result.items[i].FirstName
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in (" + firstName.toUpperCase() + ", " + lastName.toUpperCase() + ");upper(LastName)in (" + firstName.toUpperCase() + ", " + lastName.toUpperCase() + ")&onlyData=true";
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");upper(LastName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ")&onlyData=true";
 
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
