@@ -17,6 +17,8 @@ var DCPData = require("./dcpdata");
 var KIR = require("./osc/kir");
 var BIP = require("./bip/bip");
 var EPM = require("./hyperion/epm");
+var HCM = require("./hcm/hcm");
+
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
 var sendAdhocEmail = require("./sendAdhocEmail");
@@ -285,6 +287,12 @@ restService.post('/inputmsg', function(req, res) {
         if (intentName.indexOf("BIP_") == 0 ){
             BIP(req, res, function(result) {
                 console.log("BIP Called");
+            });
+        }
+        
+        if (intentName.indexOf("hcm_") == 0 ){
+            HCM(req, res, function(result) {
+                console.log("HCM Called");
             });
         }
 
