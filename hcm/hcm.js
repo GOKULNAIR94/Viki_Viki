@@ -1,7 +1,5 @@
 module.exports = function(req, res, callback) {
 
-    var toTitleCase = require("titlecase");
-    
     var Query = require("./query");
     var SendResponse = require("./sendResponse");
     
@@ -22,18 +20,24 @@ module.exports = function(req, res, callback) {
 //    speech = "Name : " + firstName + " " + lastName ;
 //    SendResponse(speech, suggests, contextOut, req, res, function() {
 //        console.log("Finished!");
-//    });
+//    });   result.items[i].FirstName
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName.toUpperCase()=" + firstName + ".toUpperCase();LastName.toUpperCase()=" + lastName + ".toUpperCase();FirstName!=null&onlyData=true";
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in (" + firstName.toUpperCase() + ", " + lastName.toUpperCase() + ");upper(LastName)in (" + firstName.toUpperCase() + ", " + lastName.toUpperCase() + ")&onlyData=true";
 
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
         speech = "No records found.";
         } else {
             speech = "Done. : " + JSON.stringify(result);
-            
-//            for (var i = 0; i < result.items.length; i++) {
-//            }
+            for (var i = 0; i < result.items.length; i++) {
+                speech = "Name: " + result.items[i].DisplayName;
+                if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
+                    speech = "Work phone: " + result.items[i].WorkPhoneNumber;
+                if( result.items[i].WorkPhoneNumber != null && result.items[i].WorkPhoneNumber != "" )
+                    speech = "Work phone: " + result.items[i].WorkPhoneNumber;
+                if( result.items[i].City != null && result.items[i].City != "" )
+                    speech = "located at " + result.items[i].City;
+            }
         }
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
