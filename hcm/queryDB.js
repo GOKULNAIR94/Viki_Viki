@@ -12,13 +12,15 @@ module.exports = function ( qString, req, resp, callback){
         var request = new sql.Request();
         request.query( qString, function(err, output) {
             if (err){ 
-                console.log(err); 
+                console.log(err);
+                sql.close();
                 resp.json({
                     message : "Unable to process your request. Please try again later."
                 });
             }
             else{
                 console.log(output.recordset); // Result in JSON format
+                sql.close();
                 callback( output.recordset );
             } 
         });
