@@ -16,11 +16,11 @@ module.exports = function(req, res, callback) {
     var lastName = toTitleCase(empName.split(" ")[1].toLowerCase()) ;
     console.log("Name : " + firstName + " " + lastName );
     
-    var attribName = "";
-    attribName = req.body.result.contexts[0].parameters['hcm_attrib'];
-    console.log("attribName : " + attribName);
-    var attribName = attribName.split("/")[0];
-    var attribCode = attribName.split("/")[1];
+    var attrib = "";
+    attrib = req.body.result.contexts[0].parameters['hcm_attrib'];
+    console.log("attrib : " + attrib);
+    var attribName = attrib.split("/")[0];
+    var attribCode = attrib.split("/")[1];
     console.log("attribName : " + attribName + " " + attribCode );
     
     var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&onlyData=true&expand=assignments";
