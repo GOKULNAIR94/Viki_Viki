@@ -65,10 +65,10 @@ module.exports = function(req, res, callback) {
                 case (intentName == "hcm_leave_approval"):{
                     speech = "There are the " + result.recordset.length + " leave requests pending your approval:";
                     for(var i=0;i < result.recordset.length; i++){
-                        if( result[i].Date != null ){
-                            speech = speech + "\n" + (i+1) + ": " + result[i].Name + " needs leave on " + result[i].Date.toISOString().split("T")[0] + ".";
-                            if( result[i].Reason != null ){
-                                speech = speech + " Reason : " + result[i].Reason + ".";
+                        if( result.recordset[i].Date != null ){
+                            speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leave on " + result.recordset[i].Date.toISOString().split("T")[0] + ".";
+                            if( result.recordset[i].Reason != null ){
+                                speech = speech + " Reason : " + result.recordset[i].Reason + ".";
                             }
                         }
                     }
