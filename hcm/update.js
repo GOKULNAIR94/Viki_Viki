@@ -28,9 +28,14 @@ module.exports = function ( qString, body, req, res, callback){
 
       resp.on("end", function () {
           var output = Buffer.concat(chunks);
-          console.log(output.toString());
-          console.log("Status Code : " + resp.statusCode);
-          speech = "Value is updated!";
+//          console.log(output.toString());
+          console.log("Status Code : " + output.statusCode);
+          if(resp.statusCode < 300 ){
+              callback(output);
+          }
+          else{
+              speech = "Unable to process request. Please try again later.";
+          }
           SendResponse(speech, suggests, contextOut, req, res, function() {
               console.log("Finished!");
           });
@@ -39,7 +44,7 @@ module.exports = function ( qString, body, req, res, callback){
           
           console.log("Error : " + e);
           
-          speech = "Unable to process request. Try again later.";
+          speech = "Unable to process request. Please try again later.";
           SendResponse(speech, suggests, contextOut, req, res, function() {
               console.log("Finished!");
           });
