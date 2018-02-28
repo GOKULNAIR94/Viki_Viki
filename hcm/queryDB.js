@@ -10,7 +10,7 @@ module.exports = function ( qString, req, resp, callback){
     
     sql.connect(sqlConfig, function(err) {
         var request = new sql.Request();
-        request.query('Select * from Employee', function(err, output) {
+        request.query( qString, function(err, output) {
             if (err){ 
                 console.log(err); 
                 resp.json({
@@ -19,7 +19,7 @@ module.exports = function ( qString, req, resp, callback){
             }
             else{
                 console.log(output.recordset); // Result in JSON format
-                callback( output );
+                callback( output.recordset );
             } 
         });
     });

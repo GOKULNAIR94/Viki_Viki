@@ -2,16 +2,11 @@ module.exports = function(req, res, callback) {
     
     var toTitleCase = require("titlecase");
     
-    var Query = require("./query");
+    var QueryDB = require("./queryDB");
+
     var SendResponse = require("./sendResponse");
     
-    var sql = require("mssql");
-    var sqlConfig = {
-        user: 'viki',
-        password: 'Oracle123',
-        server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
-        database: 'viki'
-    }
+    var qString = "";
     
     var speech = "";
     var suggests = [];
@@ -25,17 +20,15 @@ module.exports = function(req, res, callback) {
     
     console.log("Name : " + firstName + " " + lastName );
     
-    sql.connect(sqlConfig, function(err) {
-        var request = new sql.Request();
-        request.query('Select * from TimeSheets', function(err, recordset) {
-            if (err) console.log(err);
+    qString = "Select * from Employee WHERE FirstName='"+ firstName +"' AND LastName='" + lastName + "'";
 
-            console.log(recordset); // Result in JSON format
+    QueryDB( qString, req, res, function(result) {
+        speech = firstName + " has " + result[0].CasualLeaves + " Casual leaves and " + result[0].SickLeaves + " Sick leaves left."
+        SendResponse(speech, suggests, contextOut, req, res, function() {
+            console.log("Finished!");
         });
     });
-
-    SendResponse(speech, suggests, contextOut, req, res, function() {
-        console.log("Finished!");
-    });
+    
+    
     
 }
