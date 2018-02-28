@@ -16,6 +16,7 @@ module.exports = function(req, res, callback) {
     console.log("req.body.result : " + JSON.stringify(req.body.result));
     var dateperiod = req.body.result.contexts[0].parameters.dateperiod;
     var dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
+    console.log("Date : " + dateperiod);
     var StartDate = dateperiod.split("/")[0];
     var EndDate = dateperiod.split("/")[1];
     
