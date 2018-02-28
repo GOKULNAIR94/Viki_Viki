@@ -39,7 +39,7 @@ module.exports = function(req, res, callback) {
     }
     console.log("attrib : " + attrib + " " + attrib.length );
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&onlyData=true&expand=assignments";
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&expand=assignments";
     
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
