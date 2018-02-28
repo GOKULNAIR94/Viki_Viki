@@ -51,7 +51,8 @@ module.exports = function(req, res, callback) {
                         if( jobName != null && jobName != "" )
                             speech = speech + ",\n" + jobName;
                         if( result.items[0].City != null && result.items[0].City != "" )
-                            speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
+                            speech = speech + ",\n" + result.items[0].City;
+//                        speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
                         if( result.items[0].WorkEmail != null && result.items[0].WorkEmail != "" )
                             speech = speech + ",\n" + result.items[0].WorkEmail;
                         if( result.items[0].WorkPhoneNumber != null && result.items[0].WorkPhoneNumber != "" )
