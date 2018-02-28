@@ -13,6 +13,7 @@ module.exports = function(req, res, callback) {
                 });
                 break;
             }
+            
             case (intentName == "hcm_hire"):
             {
                 HCMhire(req, res, function(result) {
@@ -20,6 +21,7 @@ module.exports = function(req, res, callback) {
                 });
                 break;
             }
+            
             case (intentName.indexOf( "hcm_get_one" ) == 0 ):
             {
                 HCMget(req, res, function(result) {
