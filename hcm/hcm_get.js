@@ -56,7 +56,7 @@ module.exports = function(req, res, callback) {
                         console.log("href! : " + empsId );
                         empsId = empsId.split("emps/")[1];
                         console.log("empsId : " + empsId);
-                        qString = "hcmCoreApi/resources/11.12.1.0/emps/" + empsId; //00020000000EACED00057708000110D9317FA60C0000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000161D9B5680078
+                        qString = "/hcmCoreApi/resources/11.12.1.0/emps/" + empsId; //00020000000EACED00057708000110D9317FA60C0000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000161D9B5680078
                         var attribValue = req.body.result.parameters['attribValue'];
                         var body = {};
                         body[attribCode] = attribValue;
