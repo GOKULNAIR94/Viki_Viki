@@ -34,8 +34,8 @@ module.exports = function(req, res, callback) {
             if (result.items.length == 1) {
                 speech = "" + result.items[0].DisplayName;
                 
-                var manId = result.items[0].assignments.ManagerId;
-                var jobId = result.items[0].assignments.JobId;
+                var manId = result.items[0].assignments[0].ManagerId;
+                var jobId = result.items[0].assignments[0].JobId;
                 qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
                 
 
