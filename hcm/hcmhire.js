@@ -13,7 +13,7 @@ module.exports = function(req, res, callback) {
     var HireTermOG = "";
     HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
         
-    
+    console.log("req.body.result : " + JSON.stringify(req.body.result));
     var dateperiod = req.body.result.contexts[0].parameters.dateperiod;
     var dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
     var StartDate = dateperiod.split("/")[0];
