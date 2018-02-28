@@ -1,10 +1,9 @@
 module.exports = function(req, res, callback) {
     
-    var toTitleCase = require("titlecase");
-    
     var QueryDB = require("./queryDB");
-
     var SendResponse = require("./sendResponse");
+    
+    var intentName = req.body.result.metadata.intentName;
     
     var qString = "";
     
