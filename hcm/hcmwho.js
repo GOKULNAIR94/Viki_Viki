@@ -27,7 +27,10 @@ module.exports = function(req, res, callback) {
     
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
-        speech = "No records found.";
+            speech = "No employee found by name " + empName + ".";
+            SendResponse(speech, suggests, contextOut, req, res, function() {
+                console.log("Finished!");
+            });
         } else {
             if (result.items.length == 1) {
                 speech = "" + result.items[0].DisplayName;
