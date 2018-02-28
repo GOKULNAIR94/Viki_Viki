@@ -28,7 +28,7 @@ module.exports = function(req, res, callback) {
             }
 
             case (intentName == "hcm_leave_approval"):{
-                qString = "Select * from Employee WHERE FirstName='"+ firstName +"' AND LastName='" + lastName + "'";
+                qString = "Select * from LeavesTable WHERE ApprovalStatus='N'";
                 break;
             }
     }
