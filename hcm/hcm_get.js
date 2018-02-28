@@ -71,33 +71,42 @@ module.exports = function(req, res, callback) {
                     }
                 }else{
                     if( attrib.length == 3){
-                        if(attribCode == "JobId"){
-                            var jobId = result.items[0].assignments[0].JobId;
-                            qString = "/hcmCoreSetupApi/resources/11.12.1.0/jobs?q=JobId=" + jobId + "&onlyData=true&&fields=Name";
-                        }
-                            
-                        if( attribCode == "ManagerId"){
-                            var manId = result.items[0].assignments[0].ManagerId;
-                            qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
-                        }
-
-                        Query( qString, req, res, function( collResult) {
-                            
-                            
-                            if(attribCode == "JobId"){
-                                speech =  firstName + "'s " + attribName + ": " + collResult.items[0].Name + ".";
-                            }
-
-                            if( attribCode == "ManagerId"){
-                                speech =  firstName + " reports to " + collResult.items[0].DisplayName + ".";
-                            }
-                            
-
+                        if( intentName == "hcm_get_one_update"){
+                             speech =  "Lets do that in the next version.";
+            //                console.log("result : " + JSON.stringify(result.items[0]));
                             SendResponse(speech, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
                             });
+                        }
+                        else{
+                            if(attribCode == "JobId"){
+                                var jobId = result.items[0].assignments[0].JobId;
+                                qString = "/hcmCoreSetupApi/resources/11.12.1.0/jobs?q=JobId=" + jobId + "&onlyData=true&&fields=Name";
+                            }
 
-                        });
+                            if( attribCode == "ManagerId"){
+                                var manId = result.items[0].assignments[0].ManagerId;
+                                qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
+                            }
+
+                            Query( qString, req, res, function( collResult) {
+
+
+                                if(attribCode == "JobId"){
+                                    speech =  firstName + "'s " + attribName + ": " + collResult.items[0].Name + ".";
+                                }
+
+                                if( attribCode == "ManagerId"){
+                                    speech =  firstName + " reports to " + collResult.items[0].DisplayName + ".";
+                                }
+
+
+                                SendResponse(speech, suggests, contextOut, req, res, function() {
+                                    console.log("Finished!");
+                                });
+
+                            });
+                        }
                     }
                 }
             }
