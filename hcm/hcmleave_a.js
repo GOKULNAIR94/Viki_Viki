@@ -53,7 +53,7 @@ module.exports = function(req, res, callback) {
     
 
     QueryDB( qString, req, res, function(result) {
-        if( result.recordset.length == 0){
+        if( result.rowsAffected == 0){
             speech = "No records found.";
         }else{
             switch (true) {
