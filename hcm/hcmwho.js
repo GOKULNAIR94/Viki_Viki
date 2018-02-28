@@ -39,36 +39,46 @@ module.exports = function(req, res, callback) {
                 var jobId = result.items[0].assignments[0].JobId;
                 console.log("ManagerId : " + manId);
                 console.log("job : " + jobId);
-                qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
                 
-
-                Query( qString, req, res, function( manResult) {
-                    var manName = manResult.items[0].DisplayName;
-                    qString = "/hcmCoreSetupApi/resources/11.12.1.0/jobs?q=JobId=" + jobId + "&onlyData=true&&fields=Name";
-                    
-                    Query( qString, req, res, function( jobResult) {
-                        var jobName = jobResult.items[0].Name;
-                        if( jobName != null && jobName != "" )
-                            speech = speech + ",\n" + jobName;
-                        if( result.items[0].City != null && result.items[0].City != "" )
-                            speech = speech + ",\n" + result.items[0].City;
+                if( result.items[0].City != null && result.items[0].City != "" )
+                    speech = speech + ",\n" + result.items[0].City;
 //                        speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
-                        if( result.items[0].WorkEmail != null && result.items[0].WorkEmail != "" )
-                            speech = speech + ",\n" + result.items[0].WorkEmail;
-                        if( result.items[0].WorkPhoneNumber != null && result.items[0].WorkPhoneNumber != "" )
-                            speech = speech + ",\nPhone: " + result.items[0].WorkPhoneNumber;
-                        if( manName != null && manName != "" )
-                            speech = speech + ",\nReports to " + manName;
+                if( result.items[0].WorkEmail != null && result.items[0].WorkEmail != "" )
+                    speech = speech + ",\n" + result.items[0].WorkEmail;
+                if( result.items[0].WorkPhoneNumber != null && result.items[0].WorkPhoneNumber != "" )
+                    speech = speech + ",\nPhone: " + result.items[0].WorkPhoneNumber;
 
-                        speech = speech +".\n";
+                if( manId != null && manId != "" && jobId != null && jobId != ""){
+                    qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
+                    Query( qString, req, res, function( manResult) {
+                        var manName = manResult.items[0].DisplayName;
+                        qString = "/hcmCoreSetupApi/resources/11.12.1.0/jobs?q=JobId=" + jobId + "&onlyData=true&&fields=Name";
 
-                        SendResponse(speech, suggests, contextOut, req, res, function() {
-                            console.log("Finished!");
+                        Query( qString, req, res, function( jobResult) {
+                            var jobName = jobResult.items[0].Name;
+                            if( jobName != null && jobName != "" )
+                                speech = speech + ",\n" + jobName;
+
+                            if( manName != null && manName != "" )
+                                speech = speech + ",\nReports to " + manName;
+
+                            speech = speech +".\n";
+
+                            SendResponse(speech, suggests, contextOut, req, res, function() {
+                                console.log("Finished!");
+                            });
+
+
                         });
-
-
                     });
-                });
+                }
+                else{
+                    speech = speech +".\n";
+
+                    SendResponse(speech, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
+                }
             }
             
             
