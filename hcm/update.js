@@ -31,7 +31,7 @@ module.exports = function ( qString, body, success, req, res, callback){
 //          console.log(output.toString());
           console.log("Status Code : " + resp.statusCode);
           if(resp.statusCode < 300 ){
-              speech = "Value is updated!";
+              speech = success;
           }
           else{
               speech = "Unable to process request. Please try again later.";
