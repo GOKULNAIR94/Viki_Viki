@@ -1,5 +1,6 @@
 module.exports = function(req, res, callback) {
     var HCMwho = require("./hcmwho");
+    var HCMget = require("./hcm_get");
     
     var intentName = req.body.result.metadata.intentName;
     
@@ -11,9 +12,9 @@ module.exports = function(req, res, callback) {
                 });
                 break;
             }
-            case (intentName == "hcm_getone"):
+            case (intentName == "hcm_get_one"):
             {
-                HCMwho(req, res, function(result) {
+                HCMget(req, res, function(result) {
                     console.log("HCM Called");
                 });
                 break;
