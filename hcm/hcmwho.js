@@ -32,7 +32,7 @@ module.exports = function(req, res, callback) {
                 console.log("Finished!");
             });
         } else {
-            if (result.items.length == 1) {
+            if (result.items.length >= 1) {
                 speech = "" + result.items[0].DisplayName;
                 
                 var manId = result.items[0].assignments[0].ManagerId;
