@@ -40,14 +40,16 @@ module.exports = function(req, res, callback) {
                 console.log("ManagerId : " + manId);
                 console.log("job : " + jobId);
                 
-                if( result.items[0].City != null && result.items[0].City != "" )
-                    speech = speech + ",\n" + result.items[0].City;
-//                        speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
+                
+
                 if( result.items[0].WorkEmail != null && result.items[0].WorkEmail != "" )
-                    speech = speech + ",\n" + result.items[0].WorkEmail;
+                    speech = speech + ",\nEmail: " + result.items[0].WorkEmail;
                 if( result.items[0].WorkPhoneNumber != null && result.items[0].WorkPhoneNumber != "" )
                     speech = speech + ",\nPhone: " + result.items[0].WorkPhoneNumber;
-
+                if( result.items[0].City != null && result.items[0].City != "" )
+                    speech = speech + ",\nLocation: " + result.items[0].City;
+//                        speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
+                
                 if( manId != null && manId != "" && jobId != null && jobId != ""){
                     qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
                     Query( qString, req, res, function( manResult) {
@@ -57,10 +59,10 @@ module.exports = function(req, res, callback) {
                         Query( qString, req, res, function( jobResult) {
                             var jobName = jobResult.items[0].Name;
                             if( jobName != null && jobName != "" )
-                                speech = speech + ",\n" + jobName;
+                                speech = speech + ",\nDesignation :" + jobName;
 
                             if( manName != null && manName != "" )
-                                speech = speech + ",\nReports to " + manName;
+                                speech = speech + ",\nReporting Manager :" + manName;
 
                             speech = speech +".\n";
 
