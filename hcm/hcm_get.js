@@ -33,7 +33,7 @@ module.exports = function(req, res, callback) {
             });
         } else {
             if (result.items.length == 1) {
-                speech =  attribName + ": " + result.items[0].[attribCode];
+                speech =  attribName + ": " + result.items[0][attribCode];
                 console.log("result : " + JSON.stringify(result.items[0]));
                 SendResponse(speech, suggests, contextOut, req, res, function() {
                     console.log("Finished!");
