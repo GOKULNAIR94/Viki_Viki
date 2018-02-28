@@ -15,9 +15,6 @@ module.exports = function(req, res, callback) {
     var firstName = empName.split(" ")[0];
     var lastName = empName.split(" ")[1];
     
-    
-    
-    
     console.log("Name : " + firstName + " " + lastName );
 //    speech = "Name : " + firstName + " " + lastName ;
 //    SendResponse(speech, suggests, contextOut, req, res, function() {
