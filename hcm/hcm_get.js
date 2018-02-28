@@ -19,8 +19,8 @@ module.exports = function(req, res, callback) {
     var attribName = "";
     attribName = req.body.result.contexts[0].parameters['hcm_attrib'];
     console.log("attribName : " + attribName);
-    var attribName = attribName.split(" ")[0];
-    var attribCode = attribName.split(" ")[1];
+    var attribName = attribName.split("/")[0];
+    var attribCode = attribName.split("/")[1];
     console.log("attribName : " + attribName + " " + attribCode );
     
     var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&onlyData=true&expand=assignments";
