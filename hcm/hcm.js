@@ -12,7 +12,7 @@ module.exports = function(req, res, callback) {
                 });
                 break;
             }
-            case (intentName == "hcm_get_one"):
+            case (intentName.indexOf( "hcm_get_one" ) == 0 ):
             {
                 HCMget(req, res, function(result) {
                     console.log("HCM Called");

@@ -1,5 +1,10 @@
 module.exports = function ( qString, body, req, resp, callback){ 
     var http = require("https");
+    var SendResponse = require("./sendResponse");
+    
+    var speech = "";
+    var suggests = [];
+    var contextOut = [];
     console.log( "qString : " + qString);
     
     var options = {
@@ -22,8 +27,13 @@ module.exports = function ( qString, body, req, resp, callback){
       });
 
       res.on("end", function () {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
+          var output = Buffer.concat(chunks);
+          console.log(output.toString());
+          console.log("Status Code : " + res.statusCode);
+          speech = "Value is updated!";
+          SendResponse(speech, suggests, contextOut, req, res, function() {
+              console.log("Finished!");
+          });
       });
     });
 

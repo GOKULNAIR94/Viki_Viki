@@ -3,11 +3,14 @@ module.exports = function(req, res, callback) {
     var toTitleCase = require("titlecase");
     
     var Query = require("./query");
+    var Update = require("./update");
     var SendResponse = require("./sendResponse");
     
     var speech = "";
     var suggests = [];
     var contextOut = [];
+    
+    var intentName = req.body.result.metadata.intentName;
 
     var empName = "";
     empName = req.body.result.contexts[0].parameters['Name'];
@@ -47,11 +50,25 @@ module.exports = function(req, res, callback) {
         } else {
             if (result.items.length == 1) {
                 if(attrib.length == 2){
-                    speech =  firstName + "'s " + attribName + ": " + result.items[0][attribCode] + ".";
-    //                console.log("result : " + JSON.stringify(result.items[0]));
-                    SendResponse(speech, suggests, contextOut, req, res, function() {
-                        console.log("Finished!");
-                    });
+                    if( intentName == "hcm_get_one_update"){
+                        var empsId = result.items[0].links[0].href;
+                        empsId = empsId.split("emps/")[1];
+                        qString = "hcmCoreApi/resources/11.12.1.0/emps/" + empsId; //00020000000EACED00057708000110D9317FA60C0000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000161D9B5680078
+                        var attribValue = req.body.result.contexts[0].parameters['attribValue'];
+                        var body = {
+                            attribCode : attribValue
+                        };
+                        Update( qString, body, req, res, function() {
+                            console.log("Update called");
+                        });
+                    }
+                    else{
+                        speech =  firstName + "'s " + attribName + ": " + result.items[0][attribCode] + ".";
+        //                console.log("result : " + JSON.stringify(result.items[0]));
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                    }
                 }else{
                     if( attrib.length == 3){
                         if(attribCode == "JobId"){
@@ -83,40 +100,6 @@ module.exports = function(req, res, callback) {
                         });
                     }
                 }
-                
-                
-//                var manId = result.items[0].assignments[0].ManagerId;
-//                var jobId = result.items[0].assignments[0].JobId;
-//                console.log("ManagerId : " + manId);
-//                console.log("job : " + jobId);
-//                qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
-
-//                Query( qString, req, res, function( manResult) {
-//                    var manName = manResult.items[0].DisplayName;
-//                    qString = "/hcmCoreSetupApi/resources/11.12.1.0/jobs?q=JobId=" + jobId + "&onlyData=true&&fields=Name";
-//                    
-//                    Query( qString, req, res, function( jobResult) {
-//                        var jobName = jobResult.items[0].Name;
-//                        if( jobName != null && jobName != "" )
-//                            speech = speech + ",\n" + jobName;
-//                        if( result.items[0].City != null && result.items[0].City != "" )
-//                            speech = speech + ",\n" + result.items[0].City;
-////                        speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
-//                        if( result.items[0].WorkEmail != null && result.items[0].WorkEmail != "" )
-//                            speech = speech + ",\n" + result.items[0].WorkEmail;
-//                        if( result.items[0].WorkPhoneNumber != null && result.items[0].WorkPhoneNumber != "" )
-//                            speech = speech + ",\nPhone: " + result.items[0].WorkPhoneNumber;
-//                        if( manName != null && manName != "" )
-//                            speech = speech + ",\nReports to " + manName;
-//
-//                        speech = speech +".\n";
-//
-//                        SendResponse(speech, suggests, contextOut, req, res, function() {
-//                            console.log("Finished!");
-//                        });
-//
-//                    });
-//                });
             }
             
         }
