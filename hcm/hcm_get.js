@@ -61,8 +61,8 @@ module.exports = function(req, res, callback) {
                         var body = {};
                         body[attribCode] = attribValue;
 //                        body["attribName"] = attribName;
-                        
-                        Update( qString, body, req, res, function() {
+                        var success = firstName + "'s " + attribName + " has been updated to " + attribValue;
+                        Update( qString, body, success, req, res, function() {
                             console.log("Update called");
                         });
                     }
