@@ -35,6 +35,15 @@ module.exports = function ( qString, body, req, res, callback){
               console.log("Finished!");
           });
       });
+        resp.on("error", function (e) {
+          
+          console.log("Error : " + e);
+          
+          speech = "Unable to process request. Try again later.";
+          SendResponse(speech, suggests, contextOut, req, res, function() {
+              console.log("Finished!");
+          });
+      });
     });
 
     reqp.write( JSON.stringify(body) );
