@@ -8,7 +8,6 @@ module.exports = function(req, res, callback) {
     var speech = "";
     var suggests = [];
     var contextOut = [];
-    var intentName = req.body.result.metadata.intentName;
 
     var empName = "";
     empName = req.body.result.contexts[0].parameters['Name'];
@@ -58,11 +57,10 @@ module.exports = function(req, res, callback) {
                             speech = speech + ",\nReports to " + manName;
 
                         speech = speech +".\n";
-                        if( i = result.items.length - 1){
-                            SendResponse(speech, suggests, contextOut, req, res, function() {
-                                console.log("Finished!");
-                            });
-                        }
+
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
 
 
                     });
