@@ -36,6 +36,8 @@ module.exports = function(req, res, callback) {
                 
                 var manId = result.items[0].assignments[0].ManagerId;
                 var jobId = result.items[0].assignments[0].JobId;
+                console.log("ManagerId : " + manId);
+                console.log("job : " + jobId);
                 qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
                 
 
