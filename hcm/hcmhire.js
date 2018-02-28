@@ -9,7 +9,7 @@ module.exports = function(req, res, callback) {
     var intentName = req.body.result.metadata.intentName;
 
     var HireTerm = "";
-    HireTerm = req.body.result.contexts[0].parameters['HireTerm'];
+    HireTerm = req.body.result.parameters['HireTerm'];
     var HireTermOG = "";
     HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
         
