@@ -31,7 +31,7 @@ module.exports = function ( qString, body, req, resp, callback){
           console.log(output.toString());
           console.log("Status Code : " + res.statusCode);
           speech = "Value is updated!";
-          SendResponse(speech, suggests, contextOut, req, resp, function() {
+          SendResponse(speech, suggests, contextOut, req, resp, function(output) {
               console.log("Finished!");
           });
       });
