@@ -31,7 +31,7 @@ module.exports = function(req, res, callback) {
                 break;
             }
             
-            case (intentName.indexOf( "hcm_leave_accruals" ) == 0 ):
+            case (intentName.indexOf( "hcm_leave_" ) == 0 ):
             {
                 HCMleave_a(req, res, function(result) {
                     console.log("HCMleave_a Called");
