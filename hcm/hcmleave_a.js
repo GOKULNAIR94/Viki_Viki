@@ -47,7 +47,7 @@ module.exports = function(req, res, callback) {
                 }
                 case (intentName == "hcm_leave_approval"):{
                     speech = "There are the " + result.length + " leave requests pending your approval:";
-                    for(var i=0;i<=result.length; i++){
+                    for(var i=0;i <result.length; i++){
                         speech = "\n" + (i+1) + ": " + result[i].Name + "needs leave on " + result[i].Date + ". Reason : " + result[i].Reason + ".";
                     }
                     break;
