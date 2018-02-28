@@ -12,8 +12,8 @@ module.exports = function(req, res, callback) {
     var empName = "";
     empName = req.body.result.contexts[0].parameters['Name'];
     console.log("empName : " + empName);
-    var firstName = empName.split(" ")[0];
-    var lastName = empName.split(" ")[1];
+    var firstName = toTitleCase(empName.split(" ")[0].toLowerCase());
+    var lastName = toTitleCase(empName.split(" ")[1].toLowerCase()) ;
     
     console.log("Name : " + firstName + " " + lastName );
 //    speech = "Name : " + firstName + " " + lastName ;
@@ -21,7 +21,7 @@ module.exports = function(req, res, callback) {
 //        console.log("Finished!");
 //    });   result.items[0].FirstName
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + toTitleCase(firstName.toLowerCase()) + ";LastName=" + toTitleCase(lastName.toLowerCase()) + "&onlyData=true&expand=assignments";
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&onlyData=true&expand=assignments";
 //    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName.toUpperCase()=" + firstName + ".toUpperCase();LastName.toUpperCase()=" + lastName + ".toUpperCase();FirstName!=null&onlyData=true";
 //    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");upper(LastName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");FirstName!=null&onlyData=true";
     
