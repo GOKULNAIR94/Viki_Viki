@@ -39,17 +39,18 @@ module.exports = function(req, res, callback) {
             speech = "No records found.";
         }else{
             switch (true) {
-            case (intentName == "hcm_leave_accruals"):
-            {
-                speech = firstName + " has " + result[0].CasualLeaves + " Casual leaves and " + result[0].SickLeaves + " Sick leaves left."
-                break;
-            }
-            case (intentName == "hcm_leave_approval"):{
-                speech = "There are the " + result.length + " leave requests pending your approval:";
-                for(var i=0;i<=result.length; i++){
-                    speech = "\n" + (i+1) + ": " + result[i].Name + "needs leave on " + result[i].Date + ". Reason : " + result[i].Reason + ".";
+                case (intentName == "hcm_leave_accruals"):
+                {
+                    speech = firstName + " has " + result[0].CasualLeaves + " Casual leaves and " + result[0].SickLeaves + " Sick leaves left."
+                    break;
                 }
-                break;
+                case (intentName == "hcm_leave_approval"):{
+                    speech = "There are the " + result.length + " leave requests pending your approval:";
+                    for(var i=0;i<=result.length; i++){
+                        speech = "\n" + (i+1) + ": " + result[i].Name + "needs leave on " + result[i].Date + ". Reason : " + result[i].Reason + ".";
+                    }
+                    break;
+                }
             }
             
         }
