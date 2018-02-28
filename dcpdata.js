@@ -4,6 +4,7 @@ module.exports = function(req, res) {
     var jsonQuery = require('json-query');
     
     var DCPHireTerm = require("./dcpHireTerm");
+
     var DCPJVWL = require("./dcpJVWL");
     
     var content;
@@ -129,16 +130,6 @@ module.exports = function(req, res) {
 
 
     
-//        DCPHireTerm(req, res, function(result) {
-//          console.log("EmpData Called");
-//            speech = result.speech;
-//            return res.json({
-//                speech: speech,
-//                displayText: speech,
-//                //source: 'webhook-OSC-oppty'
-//            })
-//        });
-    }
     
     if ( intentName.indexOf( "DCP - JRNL" ) == 0 ) {
         DCPJVWL(req, res, function(result) {
