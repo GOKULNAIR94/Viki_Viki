@@ -20,7 +20,7 @@ module.exports = function(req, res, callback) {
     
     console.log("Name : " + firstName + " " + lastName );
     
-    qString = "Select * from Employee WHERE UPPER(FirstName)='"+ firstName.toUpperCase() +"' AND UPPER(LastName)='" + lastName.toUpperCase() + "'";
+    qString = "Select * from Employee WHERE FirstName='"+ firstName +"' AND LastName='" + lastName + "'";
 
     QueryDB( qString, req, res, function(result) {
         if( result.length == 0){
