@@ -11,12 +11,13 @@ module.exports = function(req, res, callback) {
 
     var empName = "";
     empName = req.body.result.contexts[0].parameters['Name'];
+    console.log("empName : " + empName);
     var firstName = empName.split(" ")[0];
     var lastName = empName.split(" ")[1];
     
     
     
-    console.log("empName : " + empName);
+    
     console.log("Name : " + firstName + " " + lastName );
 //    speech = "Name : " + firstName + " " + lastName ;
 //    SendResponse(speech, suggests, contextOut, req, res, function() {
