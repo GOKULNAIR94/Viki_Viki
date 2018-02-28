@@ -4,7 +4,6 @@ module.exports = function(req, res) {
     var jsonQuery = require('json-query');
     
     var DCPHireTerm = require("./dcpHireTerm");
-    var HCMhire = require("./hcm/hcmhire");
     var DCPJVWL = require("./dcpJVWL");
     
     var content;
@@ -129,10 +128,7 @@ module.exports = function(req, res) {
     }
 
 
-    if ( intentName.indexOf( "DCP - HireTerm" ) == 0 ) {
-        HCMhire(req, res, function(result) {
-            console.log("HCM Called");
-        });
+    
 //        DCPHireTerm(req, res, function(result) {
 //          console.log("EmpData Called");
 //            speech = result.speech;
