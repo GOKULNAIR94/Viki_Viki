@@ -21,7 +21,7 @@ module.exports = function ( qString, req, resp, callback){
             else{
                 console.log(output.recordset); // Result in JSON format
                 sql.close();
-                callback( output.recordset );
+                callback( output );
             } 
         });
     });

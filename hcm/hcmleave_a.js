@@ -29,25 +29,25 @@ module.exports = function(req, res, callback) {
             }
 
             case (intentName == "hcm_leave_approval"):{
-                qString = "Select * from LeavesTable WHERE ApprovalStatus='N'";
+                qString = "Select * from LeavesTable WHERE ApprovalStatus='Pending'";
                 break;
             }
     }
     
 
     QueryDB( qString, req, res, function(result) {
-        if( result.length == 0){
+        if( result.recordset.length == 0){
             speech = "No records found.";
         }else{
             switch (true) {
                 case (intentName == "hcm_leave_accruals"):
                 {
-                    speech = firstName + " has " + result[0].CasualLeaves + " Casual leaves and " + result[0].SickLeaves + " Sick leaves left."
+                    speech = firstName + " has " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left."
                     break;
                 }
                 case (intentName == "hcm_leave_approval"):{
-                    speech = "There are the " + result.length + " leave requests pending your approval:";
-                    for(var i=0;i <result.length; i++){
+                    speech = "There are the " + result.recordset.length + " leave requests pending your approval:";
+                    for(var i=0;i < result.recordset.length; i++){
                         if( result[i].Date != null ){
                             speech = speech + "\n" + (i+1) + ": " + result[i].Name + " needs leave on " + result[i].Date.toISOString().split("T")[0] + ".";
                             if( result[i].Reason != null ){
