@@ -1,4 +1,4 @@
-module.exports = function ( qString, body, req, resp, callback){ 
+module.exports = function ( qString, body, req, res, callback){ 
     var http = require("https");
     var SendResponse = require("./sendResponse");
     
@@ -19,24 +19,24 @@ module.exports = function ( qString, body, req, resp, callback){
       }
     };
 
-    var req = http.request(options, function (res) {
+    var reqp = http.request(options, function (resp) {
       var chunks = [];
 
-      res.on("data", function (chunk) {
+      resp.on("data", function (chunk) {
         chunks.push(chunk);
       });
 
-      res.on("end", function () {
+      resp.on("end", function () {
           var output = Buffer.concat(chunks);
           console.log(output.toString());
-          console.log("Status Code : " + res.statusCode);
+          console.log("Status Code : " + resp.statusCode);
           speech = "Value is updated!";
-          SendResponse(speech, suggests, contextOut, req, resp, function() {
+          SendResponse(speech, suggests, contextOut, req, res, function() {
               console.log("Finished!");
           });
       });
     });
 
-    req.write( body.toString() );
-    req.end();
+    reqp.write( body.toString() );
+    reqp.end();
 }
