@@ -32,6 +32,23 @@ module.exports = function(req, res, callback) {
                 qString = "Select * from LeavesTable WHERE ApprovalStatus='Pending'";
                 break;
             }
+            
+            case (intentName == "hcm_leave_approval_approve"):{    
+                empName = req.body.result.contexts[0].parameters['Name'];
+                console.log("empName : " + empName);
+                
+                qString = "UPDATE LeavesTable SET ApprovalStatus='Approved' WHERE Name LIKE '%" + empName + "%'";
+                break;
+            }
+            case (intentName == "hcm_leave_approval_reject"):{    
+                empName = req.body.result.contexts[0].parameters['Name'];
+                console.log("empName : " + empName);
+                
+                qString = "UPDATE LeavesTable SET ApprovalStatus='Rejected' WHERE Name LIKE '%" + empName + "%'";
+                break;
+            }
+            
+            
     }
     
 
@@ -54,6 +71,18 @@ module.exports = function(req, res, callback) {
                                 speech = speech + " Reason : " + result[i].Reason + ".";
                             }
                         }
+                    }
+                    break;
+                }
+                case (intentName == "hcm_leave_approval_approve"):{    
+                    if( result.rowsAffected[0] > 0 ){
+                        speech = empName + "'s leave has been approved";
+                    }
+                    break;
+                }
+                case (intentName == "hcm_leave_approval_reject"):{    
+                    if( result.rowsAffected[0] > 0 ){
+                        speech = empName + "'s leave has been rejected";
                     }
                     break;
                 }
