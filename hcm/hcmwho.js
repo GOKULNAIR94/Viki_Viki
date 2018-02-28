@@ -21,7 +21,7 @@ module.exports = function(req, res, callback) {
 //        console.log("Finished!");
 //    });   result.items[0].FirstName
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + toTitleCase(firstName) + ";LastName=" + toTitleCase(lastName) + "&onlyData=true";
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + toTitleCase(firstName) + ";LastName=" + toTitleCase(lastName) + "&onlyData=true&expand=assignments";
 //    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName.toUpperCase()=" + firstName + ".toUpperCase();LastName.toUpperCase()=" + lastName + ".toUpperCase();FirstName!=null&onlyData=true";
 //    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=upper(FirstName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");upper(LastName)in(" + firstName.toUpperCase() + "," + lastName.toUpperCase() + ");FirstName!=null&onlyData=true";
     
