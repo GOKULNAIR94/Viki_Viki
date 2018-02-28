@@ -1,5 +1,6 @@
 module.exports = function(req, res, callback) {
     
+    var toTitleCase = require("titlecase");
     var QueryDB = require("./queryDB");
     var SendResponse = require("./sendResponse");
     
@@ -76,13 +77,13 @@ module.exports = function(req, res, callback) {
                 }
                 case (intentName == "hcm_leave_approval_approve"):{    
                     if( result.rowsAffected[0] > 0 ){
-                        speech = empName + "'s leave has been approved";
+                        speech = toTitleCase(empName) + "'s leave has been approved";
                     }
                     break;
                 }
                 case (intentName == "hcm_leave_approval_reject"):{    
                     if( result.rowsAffected[0] > 0 ){
-                        speech = empName + "'s leave has been rejected";
+                        speech = toTitleCase(empName) + "'s leave has been rejected";
                     }
                     break;
                 }
