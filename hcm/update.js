@@ -37,6 +37,6 @@ module.exports = function ( qString, body, req, res, callback){
       });
     });
 
-    reqp.write( body.toString() );
+    reqp.write( JSON.stringify(body) );
     reqp.end();
 }
