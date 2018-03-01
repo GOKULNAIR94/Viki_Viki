@@ -14,12 +14,20 @@ module.exports = function(req, res, callback) {
     var contextOut = [];
 
     var empName = "",firstName="",lastName="";
+    var hours = "",task="";
     
     switch (true) {
             
             case (intentName == "hcm_timesheet_my"):{
                 var dDate = new Date().toISOString().split("T")[0];
                 qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<'" + dDate + "'";
+                break;
+            }
+            case (intentName == "hcm_timesheet_my_fill"):{
+                var dDate = new Date().toISOString().split("T")[0];
+                hours = req.body.result.parameters['hours'];
+                task = req.body.result.parameters['task'];
+                qString = "UPDATE LeavesTable SET ApprovalStatus='Pending',Hours='"+hours+"',RemainingHours='" + (9-hours)+"',Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND ApprovalStatus!='Approved' AND Date<'" + dDate + "'";
                 break;
             }
             
