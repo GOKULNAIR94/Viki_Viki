@@ -27,7 +27,7 @@ module.exports = function(req, res, callback) {
                 var dDate = new Date().toISOString().split("T")[0];
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
-                qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND ApprovalStatus!='Approved' AND Date<'" + dDate + "'";
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<'" + dDate + "'";
                 break;
             }   
     }
