@@ -1,0 +1,62 @@
+module.exports = function(req, res, callback) {
+    
+    var toTitleCase = require("titlecase");
+    
+    var Query = require("./query");
+    var Update = require("./update");
+    var SendResponse = require("./sendResponse");
+    
+    var SendEmail = require("./sendEmail");
+    var createTicket = require("./createTicket");
+    
+    var speech = "";
+    var suggests = [];
+    var contextOut = [];
+    
+    var intentName = req.body.result.metadata.intentName;
+
+    var priority = req.body.result.parameters['ADS_RN_Priority'];
+    var description = req.body.result.parameters['description'];
+    var respon = req.body.result.parameters['PSFTRespName'];
+    
+    var subject = "Required access to PeopleSoft responsibility " + respon;
+    var ticket = {};
+    ticket = {
+        "primaryContact":
+        {
+        "id": 60
+        },
+        "channel": {
+            "id": 8
+        },
+
+        "assignedTo": {
+            "staffGroup": {
+                "lookupName": "Admin"
+            }
+        },
+        "customFields": {
+            "c": {
+                "description": description,
+                "priority": {
+                    "lookupName": priority
+                }
+            }
+        },
+
+
+        "statusWithType": {
+            "status": {
+                "lookupName": "Unresolved"
+            }
+        },
+        "subject": subject
+    };
+    createTicket( ticket, function( tId ) {
+        speech = speech + tId + ".";
+        console.log("Ticket created : " + speech);
+        SendResponse(speech, suggests, contextOut, req, res, function() {
+            console.log("Finished!");
+        });
+    });
+}

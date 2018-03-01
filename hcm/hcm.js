@@ -4,6 +4,7 @@ module.exports = function(req, res, callback) {
     var HCMhire = require("./hcmhire");
     var HCMleave_a = require("./hcmleave_a");
     var HCMtransfer = require("./hcm_transfer");
+    var HCMAccess = require("./hcm_ppstAccess");
     
     var intentName = req.body.result.metadata.intentName;
     
@@ -43,6 +44,13 @@ module.exports = function(req, res, callback) {
             {
                 HCMtransfer(req, res, function(result) {
                     console.log("HCM_transfer Called");
+                });
+                break;
+            }
+            case (intentName == "hcm_Via-PSFTAccessAdd - yes" ):
+            {
+                HCMAccess(req, res, function(result) {
+                    console.log("HCMAccess Called");
                 });
                 break;
             }
