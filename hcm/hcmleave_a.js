@@ -70,6 +70,9 @@ module.exports = function(req, res, callback) {
                             var arrDate = result.recordset[i].date.split(",");
                             if( arrDate.length == 1 ){
                                 speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs a leave on " + arrDate[0].split(" ")[0];
+                                if( result.recordset[0].reason != null ){
+                                    speech = speech + " Reason : " + result.recordset[0].reason + ".";
+                                }
                             }else{
                                 speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days on";
                             
