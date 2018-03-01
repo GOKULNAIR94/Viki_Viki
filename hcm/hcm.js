@@ -5,6 +5,7 @@ module.exports = function(req, res, callback) {
     var HCMleave_a = require("./hcmleave_a");
     var HCMtransfer = require("./hcm_transfer");
     var HCMAccess = require("./hcm_ppstAccess");
+    var HCMtime = require("./hcm_timesheet");
     
     var intentName = req.body.result.metadata.intentName;
     
@@ -51,6 +52,14 @@ module.exports = function(req, res, callback) {
             {
                 HCMAccess(req, res, function(result) {
                     console.log("HCMAccess Called");
+                });
+                break;
+            }
+            
+            case (intentName.indexOf( "hcm_timesheet" ) == 0 ):
+            {
+                HCMtime(req, res, function(result) {
+                    console.log("HCMtime Called");
                 });
                 break;
             }
