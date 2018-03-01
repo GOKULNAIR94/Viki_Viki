@@ -19,40 +19,44 @@ module.exports = function(req, res, callback) {
     var description = req.body.result.parameters['description'];
     var respon = req.body.result.parameters['PSFTRespName'];
     
-    var subject = "Required access to PeopleSoft responsibility " + respon;
+    var shortDesc = "Required access to PeopleSoft responsibility " + respon;
+    
     speech = "Sure. I have put in a Service Now ticket for a support professional to help you with your PeopleSoft Access request. Here is your ticket number: ";
     var ticket = {};
-    ticket = {
-        "primaryContact":
-        {
-        "id": 60
-        },
-        "channel": {
-            "id": 8
-        },
-
-        "assignedTo": {
-            "staffGroup": {
-                "lookupName": "Admin"
-            }
-        },
-        "customFields": {
-            "c": {
-                "description": description,
-                "priority": {
-                    "lookupName": priority
-                }
-            }
-        },
-
-
-        "statusWithType": {
-            "status": {
-                "lookupName": "Unresolved"
-            }
-        },
-        "subject": subject
-    };
+    
+    ticket = {"caller_id":"Kaaman Agarwal","priority":"2","severity":"3","description": description, "short_description" : shortDesc};
+    
+//    ticket = {
+//        "primaryContact":
+//        {
+//        "id": 60
+//        },
+//        "channel": {
+//            "id": 8
+//        },
+//
+//        "assignedTo": {
+//            "staffGroup": {
+//                "lookupName": "Admin"
+//            }
+//        },
+//        "customFields": {
+//            "c": {
+//                "description": description,
+//                "priority": {
+//                    "lookupName": priority
+//                }
+//            }
+//        },
+//
+//
+//        "statusWithType": {
+//            "status": {
+//                "lookupName": "Unresolved"
+//            }
+//        },
+//        "subject": subject
+//    };
     createTicket( ticket, function( tId ) {
         speech = speech + tId + ".";
         console.log("Ticket created : " + speech);
