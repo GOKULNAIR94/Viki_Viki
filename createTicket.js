@@ -4,7 +4,7 @@ module.exports = function( ticket, callback ) {
 
     var request = require("request");
     var output;
-    var varAuth = 'Basic cHBhdGthcjpsbnRMTlQxMjM0';
+    var varAuth = 'Basic cHBhdGthcjpMVElsdGkxMjM=';
 
     var options = {
         method: 'POST',
