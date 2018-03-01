@@ -57,6 +57,35 @@ module.exports = function(req, res, callback) {
                 qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( 111, '"+leDate+"' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" +leReason+ "','Casual', 'Pending')";
                 break;
             }
+            case (intentName == "hcm_leave_apply_more" ):{    
+                var leDates = req.body.result.contexts[0].parameters['date'];
+                var lePeriod = req.body.result.contexts[0].parameters['dateperiod'];
+                var leReason = req.body.result.contexts[0].parameters['reason'];
+                console.log("leDates : " + leDates);
+                console.log("reason : " + leReason);
+                
+                if( leDates != null){
+                    qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( 111, '" + leDates[0] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
+                    for(var d=0; d< leDates.length; d++){
+                        qString = qString + ", ( 111, '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                    }
+                    console.log("leave_more qstring : " + qString);
+                }else{
+                    if( lePeriod != null){
+                        var dDate = new Date();
+                        var StartDate = lePeriod.split("/")[0];
+                        var EndDate = lePeriod.split("/")[1];
+                        qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( 111, '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
+                        while( dDate <= EndDate){
+                            dDate.setDate(StartDate + 1);
+                            qString = qString + ", ( 111, '" + dDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                        }                        
+                    }
+                }
+                    
+                break;
+            }
+            
             
             
     }
