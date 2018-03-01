@@ -3,6 +3,7 @@ module.exports = function(req, res, callback) {
     var HCMget = require("./hcm_get");
     var HCMhire = require("./hcmhire");
     var HCMleave_a = require("./hcmleave_a");
+    var HCMtransfer = require("./hcm_transfer");
     
     var intentName = req.body.result.metadata.intentName;
     
@@ -35,6 +36,13 @@ module.exports = function(req, res, callback) {
             {
                 HCMleave_a(req, res, function(result) {
                     console.log("HCMleave_a Called");
+                });
+                break;
+            }
+            case (intentName.indexOf( "hcm_transfer" ) == 0 ):
+            {
+                HCMleave_a(req, res, function(result) {
+                    console.log("HCM_transfer Called");
                 });
                 break;
             }
