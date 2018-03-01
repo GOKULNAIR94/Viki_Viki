@@ -16,10 +16,9 @@ module.exports = function( emailContent, req, res) {
             pass: 'K@agar55wal'
         }
     });
-    
-    var SendResponse = require("./sendResponse");
-    
-    var toemail = "gokul.nair@lntinfotech.com";
+
+
+    var toemail = "kaaman.agarwal@lntinfotech.com";
     var speech = emailContent.speech;
     var body = emailContent.body;
     var subject = emailContent.subject;
@@ -32,7 +31,7 @@ module.exports = function( emailContent, req, res) {
         // Comma separated list of recipients
         to: toemail,
 
-        bcc: "Gokul.Nair@lntinfotech.com",
+        cc: "Gokul.Nair@lntinfotech.com",
 
         // Subject of the message
         subject: subject, //
@@ -50,31 +49,26 @@ module.exports = function( emailContent, req, res) {
             console.log(error);
         } else {
             console.log('Server is ready to take our messages');
-            console.log('Sending Mail');
-            transporter.sendMail(message, (error, info) => {
-                if (error) {
-                    console.log('Error occurred');
-                    console.log(error.message);
-                    return;
-                }
-                console.log('Message sent successfully!');
-                console.log('Server responded with "%s"', info.response);
-                transporter.close();
-                return res.json({
-                    speech: speech,
-                    displayText: speech,
-                    source: 'webhook-OSC-oppty'
-                });
-//                SendResponse(speech, suggests, contextOut, req, res, function() {
-//                    console.log("Finished!");
-//                });
-                
-            });
-            
         }
     });
 
-    
-    
+    console.log('Sending Mail');
+    setTimeout(function() {
+        transporter.sendMail(message, (error, info) => {
+            if (error) {
+                console.log('Error occurred');
+                console.log(error.message);
+                return;
+            }
+            console.log('Message sent successfully!');
+            console.log('Server responded with "%s"', info.response);
+            transporter.close();
+        });
+        return res.json({
+            speech: speech,
+            displayText: speech,
+            source: 'webhook-OSC-oppty'
+        });
+    }, 4000);
 
 }
