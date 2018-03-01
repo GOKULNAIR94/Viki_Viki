@@ -131,6 +131,9 @@ module.exports = function(req, res, callback) {
 
                             }
                         }
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
                         break;
                     }
                     case (intentName == "hcm_leave_approval_approve"):{    
@@ -183,9 +186,7 @@ module.exports = function(req, res, callback) {
                 }
 
             }
-            SendResponse(speech, suggests, contextOut, req, res, function() {
-                console.log("Finished!");
-            });
+            
         });
     }else{
         speech = "Unable to process your request. Please try again later."
