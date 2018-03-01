@@ -76,9 +76,9 @@ module.exports = function(req, res, callback) {
                         var EndDate = lePeriod.split("/")[1];
                         var dDate = new Date(StartDate);
                         qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
-                        while( dDate <= EndDate){
-                            dDate.setDate(dDate.getDate() + 1);
+                        while( dDate <= new Date(EndDate)){
                             qString = qString + ", ( "+idDate+", '" + dDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                            dDate.setDate(dDate.getDate() + 1);
                         }                        
                     }
                 }
