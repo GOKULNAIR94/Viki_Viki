@@ -134,7 +134,17 @@ module.exports = function(req, res, callback) {
                     }
                     case (intentName == "hcm_leave_approval_approve"):{    
                         if( result.rowsAffected[0] > 0 ){
-                            speech = toTitleCase(empName) + "'s leaves have been approved";
+                            
+                            var emailContent = {};
+                            emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
+                            emailContent.subject = "Report "+reportName+" been scheduled.";
+                            emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                                '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +
+                                '<p>Thanks,<br><b>Viki</b></p>';
+
+                            SendEmail( emailContent, req, res, function(result) {
+                                console.log("SendEmail Called");
+                            });
                         }
                         break;
                     }

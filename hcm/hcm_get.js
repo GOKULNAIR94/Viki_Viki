@@ -61,9 +61,13 @@ module.exports = function(req, res, callback) {
                         var body = {};
                         body[attribCode] = attribValue;
 //                        body["attribName"] = attribName;
-                        var success = firstName + "'s " + attribName + " has been updated to " + attribValue;
-                        Update( qString, body, success, req, res, function() {
+                        
+                        Update( qString, body, success, req, res, function(result) {
                             console.log("Update called");
+                            speech = firstName + "'s " + attribName + " has been updated to " + attribValue;
+                            SendResponse(speech, suggests, contextOut, req, res, function() {
+                                console.log("Finished!");
+                            });
                         });
                     }
                     else{

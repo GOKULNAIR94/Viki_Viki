@@ -1,4 +1,4 @@
-module.exports = function ( qString, body, success, req, res, callback){ 
+module.exports = function ( qString, body, req, res, callback){ 
     var http = require("https");
     var SendResponse = require("./sendResponse");
     
@@ -32,7 +32,7 @@ module.exports = function ( qString, body, success, req, res, callback){
           console.log(output.toString());
           console.log("Status Code : " + resp.statusCode);
           if(resp.statusCode < 300 ){
-              speech = success;
+              callback(output);
           }
           else{
               speech = "Unable to process request. Please try again later.";

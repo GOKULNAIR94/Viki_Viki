@@ -6,6 +6,8 @@ module.exports = function(req, res, callback) {
     var Update = require("./update");
     var SendResponse = require("./sendResponse");
     
+    var SendEmail = require("./sendEmail");
+    
     var speech = "";
     var suggests = [];
     var contextOut = [];
@@ -37,10 +39,19 @@ module.exports = function(req, res, callback) {
             var attribValue = req.body.result.parameters['attribValue'];
             var body = {};
             body.Location = attribValue;
-            
-            var success = firstName + " has been transferred to " + attribValue;
+             
             Update( qString, body, success, req, res, function() {
                 console.log("Update called");
+                var emailContent = {};
+                emailContent.speech = firstName + " has been transferred to " + attribValue;
+                emailContent.subject = "Your Transfer to " +attribValue+ " is processed";
+                emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                    '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +
+                    '<p>Thanks,<br><b>Viki</b></p>';
+
+                SendEmail( emailContent, req, res, function(result) {
+                    console.log("SendEmail Called");
+                });
             });
         }
         
