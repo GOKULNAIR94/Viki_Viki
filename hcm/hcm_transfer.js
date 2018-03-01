@@ -40,7 +40,7 @@ module.exports = function(req, res, callback) {
             var body = {};
             body.Location = attribValue;
              
-            Update( qString, body, success, req, res, function() {
+            Update( qString, body, req, res, function() {
                 console.log("Update called");
                 var emailContent = {};
                 emailContent.speech = firstName + " has been transferred to " + attribValue;
