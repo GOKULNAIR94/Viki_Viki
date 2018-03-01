@@ -48,7 +48,14 @@ module.exports = function(req, res, callback) {
                         for(var i=0;i < result.recordset.length; i++){
                             speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";";
                         }
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                        break;
+                    }
                         
+                    case (intentName == "hcm_timesheet_my_fill"):{
+                        speech = "Your timesheet booking is subitted succesfully:";
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
