@@ -62,6 +62,7 @@ module.exports = function(req, res, callback) {
                 var lePeriod = req.body.result.contexts[0].parameters['dateperiod'];
                 var leReason = req.body.result.contexts[0].parameters['reason'];
                 console.log("leDates : " + leDates);
+                console.log("lePeriod : " + lePeriod);
                 console.log("reason : " + leReason);
                 
                 if( leDates != null){
@@ -69,7 +70,6 @@ module.exports = function(req, res, callback) {
                     for(var d=0; d< leDates.length; d++){
                         qString = qString + ", ( "+idDate+", '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
                     }
-                    console.log("leave_more qstring : " + qString);
                 }else{
                     if( lePeriod != null){
                         var StartDate = lePeriod.split("/")[0];
@@ -90,6 +90,7 @@ module.exports = function(req, res, callback) {
             
     }
     
+    console.log("Qstring : " + qString);
 
     if( qString != null && qString!= ""){
         QueryDB( qString, req, res, function(result) {
