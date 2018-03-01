@@ -13,7 +13,7 @@ module.exports = function(req, res, callback) {
     var contextOut = [];
 
     var empName = "",firstName="",lastName="";
-    var idDate = parseInt(Number(new Date())) % 1000;
+    var idDate = parseInt(Number(new Date())) % 100000;
     
     switch (true) {
             
@@ -67,7 +67,7 @@ module.exports = function(req, res, callback) {
                 
                 if( leDates != null){
                     qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + leDates[0] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
-                    for(var d=0; d< leDates.length; d++){
+                    for(var d=1; d< leDates.length; d++){
                         qString = qString + ", ( "+(++idDate)+", '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
                     }
                 }else{
@@ -77,6 +77,7 @@ module.exports = function(req, res, callback) {
                         var dDate = new Date(StartDate);
                         qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
                         var formatDate = "";
+                        dDate.setDate(dDate.getDate() + 1);
                         while( dDate <= new Date(EndDate)){
                             formatDate = dDate.getFullYear() + "-" + (dDate.getMonth()+1) + "-" + dDate.getDate();
                             qString = qString + ", ( "+ (++idDate) +", '" + formatDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
