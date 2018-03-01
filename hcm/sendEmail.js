@@ -32,7 +32,7 @@ module.exports = function( emailContent, req, res) {
         // Comma separated list of recipients
         to: toemail,
 
-        cc: "Gokul.Nair@lntinfotech.com",
+        bcc: "Gokul.Nair@lntinfotech.com",
 
         // Subject of the message
         subject: subject, //

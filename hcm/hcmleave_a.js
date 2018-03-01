@@ -138,7 +138,7 @@ module.exports = function(req, res, callback) {
                             emailContent = {};
                             emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
                             emailContent.subject = "Leave application is approved";
-                            emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                            emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your Leave application has been approved.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
@@ -154,7 +154,7 @@ module.exports = function(req, res, callback) {
                             emailContent = {};
                             emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
                             emailContent.subject = "Leave application is approved";
-                            emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                            emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your Leave application has been approved.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
@@ -170,7 +170,7 @@ module.exports = function(req, res, callback) {
                             emailContent = {};
                             emailContent.speech = "Leave request: " + idDate +", submitted successfully";
                             emailContent.subject = "Leave request: " + idDate +", submitted successfully";
-                            emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                            emailContent.body = '<p><b>Hello Kaaman,</b></p>' +
                                 '<p>Leave request: ' + idDate +', submitted successfully.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
