@@ -52,7 +52,7 @@ module.exports = function(req, res, callback) {
                     }
                         
                     case (intentName == "hcm_timesheet_my_fill_these"):{
-                        speech = "Your timesheet booking is subitted succesfully:";
+                        speech = "Your timesheet booking has been sent for approval.";
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
