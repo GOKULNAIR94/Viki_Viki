@@ -23,7 +23,7 @@ module.exports = function(req, res, callback) {
                 qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<'" + dDate + "'";
                 break;
             }
-            case (intentName == "hcm_timesheet_my_fill"):{
+            case (intentName == "hcm_timesheet_my_fill_these"):{
                 var dDate = new Date().toISOString().split("T")[0];
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
@@ -54,7 +54,7 @@ module.exports = function(req, res, callback) {
                         break;
                     }
                         
-                    case (intentName == "hcm_timesheet_my_fill"):{
+                    case (intentName == "hcm_timesheet_my_fill_these"):{
                         speech = "Your timesheet booking is subitted succesfully:";
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
