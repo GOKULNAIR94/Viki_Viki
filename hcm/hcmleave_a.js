@@ -80,8 +80,8 @@ module.exports = function(req, res, callback) {
                                     else
                                         speech = speech + ", "
                                 }
-                                if( result.recordset[i].Reason != null ){
-                                    speech = speech + "\nReason : " + result.recordset[i].Reason + ".";
+                                if( result.recordset[i].reason != null ){
+                                    speech = speech + ". Reason : " + result.recordset[i].reason + ".";
                                 }
                             }
                             
