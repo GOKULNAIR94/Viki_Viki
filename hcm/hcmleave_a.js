@@ -142,7 +142,7 @@ module.exports = function(req, res, callback) {
                     }
                     case (intentName == "hcm_leave_apply_one" || intentName == "hcm_leave_apply_more" ):{    
                         if( result.rowsAffected[0] > 0 ){
-                            speech = "Leave request submitted successfully";
+                            speech = "Leave request: " + idDate +", submitted successfully";
                         }
                         break;
                     }
