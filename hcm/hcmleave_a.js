@@ -3,7 +3,8 @@ module.exports = function(req, res, callback) {
     var toTitleCase = require("titlecase");
     var QueryDB = require("./queryDB");
     var SendResponse = require("./sendResponse");
-    
+    var SendEmail = require("./sendEmail");
+    var emailContent = {};
     var intentName = req.body.result.metadata.intentName;
     
     var qString = "";
@@ -134,12 +135,11 @@ module.exports = function(req, res, callback) {
                     }
                     case (intentName == "hcm_leave_approval_approve"):{    
                         if( result.rowsAffected[0] > 0 ){
-                            
-                            var emailContent = {};
+                            emailContent = {};
                             emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
-                            emailContent.subject = "Report "+reportName+" been scheduled.";
+                            emailContent.subject = "Leave application is approved";
                             emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
-                                '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +
+                                '<p>Your Leave application has been approved.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
                             SendEmail( emailContent, req, res, function(result) {
@@ -151,12 +151,32 @@ module.exports = function(req, res, callback) {
                     case (intentName == "hcm_leave_approval_reject"):{    
                         if( result.rowsAffected[0] > 0 ){
                             speech = toTitleCase(empName) + "'s leaves have been rejected";
+                            emailContent = {};
+                            emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
+                            emailContent.subject = "Leave application is approved";
+                            emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                                '<p>Your Leave application has been approved.</p>' +
+                                '<p>Thanks,<br><b>Viki</b></p>';
+
+                            SendEmail( emailContent, req, res, function(result) {
+                                console.log("SendEmail Called");
+                            });
                         }
                         break;
                     }
                     case (intentName == "hcm_leave_apply_one" || intentName == "hcm_leave_apply_more" ):{    
                         if( result.rowsAffected[0] > 0 ){
-                            speech = "Leave request: " + idDate +", submitted successfully";
+                            
+                            emailContent = {};
+                            emailContent.speech = "Leave request: " + idDate +", submitted successfully";
+                            emailContent.subject = "Leave request: " + idDate +", submitted successfully";
+                            emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                                '<p>Leave request: ' + idDate +', submitted successfully.</p>' +
+                                '<p>Thanks,<br><b>Viki</b></p>';
+
+                            SendEmail( emailContent, req, res, function(result) {
+                                console.log("SendEmail Called");
+                            });
                         }
                         break;
                     }

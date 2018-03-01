@@ -5,6 +5,7 @@ module.exports = function(req, res, callback) {
     var Query = require("./query");
     var Update = require("./update");
     var SendResponse = require("./sendResponse");
+    var SendEmail = require("./sendEmail");
     
     var speech = "";
     var suggests = [];
@@ -64,10 +65,24 @@ module.exports = function(req, res, callback) {
                         
                         Update( qString, body, success, req, res, function(result) {
                             console.log("Update called");
-                            speech = firstName + "'s " + attribName + " has been updated to " + attribValue;
-                            SendResponse(speech, suggests, contextOut, req, res, function() {
-                                console.log("Finished!");
-                            });
+                            if( attribName == "Location"){
+                                var emailContent = {};
+                                emailContent.speech = firstName + " has been transferred to " + attribValue;
+                                emailContent.subject = "Your Transfer to " +attribValue+ " is processed";
+                                emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
+                                    '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +
+                                    '<p>Thanks,<br><b>Viki</b></p>';
+
+                                SendEmail( emailContent, req, res, function(result) {
+                                    console.log("SendEmail Called");
+                                });
+                                
+                            }else{
+                                speech = firstName + "'s " + attribName + " has been updated to " + attribValue;
+                                SendResponse(speech, suggests, contextOut, req, res, function() {
+                                    console.log("Finished!");
+                                });
+                            }
                         });
                     }
                     else{
