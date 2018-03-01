@@ -54,7 +54,7 @@ module.exports = function(req, res, callback) {
                 console.log("leDate : " + leDate);
                 console.log("reason : " + leReason);
                 
-                qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( 111, '"+leDate+"' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" +leReason+ "','Casual', 'Pending')";
+                qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+Number(new Date())+", '"+leDate+"' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" +leReason+ "','Casual', 'Pending')";
                 break;
             }
             case (intentName == "hcm_leave_apply_more" ):{    
@@ -65,20 +65,20 @@ module.exports = function(req, res, callback) {
                 console.log("reason : " + leReason);
                 
                 if( leDates != null){
-                    qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( 111, '" + leDates[0] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
+                    qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+Number(new Date())+", '" + leDates[0] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
                     for(var d=0; d< leDates.length; d++){
-                        qString = qString + ", ( 111, '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                        qString = qString + ", ( "+Number(new Date())+", '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
                     }
                     console.log("leave_more qstring : " + qString);
                 }else{
                     if( lePeriod != null){
-                        var dDate = new Date();
                         var StartDate = lePeriod.split("/")[0];
                         var EndDate = lePeriod.split("/")[1];
-                        qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( 111, '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
+                        var dDate = new Date(StartDate);
+                        qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+Number(new Date())+", '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
                         while( dDate <= EndDate){
-                            dDate.setDate(StartDate + 1);
-                            qString = qString + ", ( 111, '" + dDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                            dDate.setDate(dDate.getDate() + 1);
+                            qString = qString + ", ( "+Number(new Date())+", '" + dDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
                         }                        
                     }
                 }
@@ -91,67 +91,74 @@ module.exports = function(req, res, callback) {
     }
     
 
-    QueryDB( qString, req, res, function(result) {
-        if( result.rowsAffected == 0){
-            speech = "No records found.";
-        }else{
-            switch (true) {
-                case (intentName == "hcm_leave_accruals"):
-                {
-                    speech = firstName + " has " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left."
-                    break;
-                }
-                case (intentName == "hcm_leave_approval"):{
-                    speech = "There are " + result.recordset.length + " leave requests pending your approval:";
-                    for(var i=0;i < result.recordset.length; i++){
-                        if( result.recordset[i].date != null ){
-                            var arrDate = result.recordset[i].date.split(",");
-                            if( arrDate.length == 1 ){
-                                speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs a leave on " + arrDate[0].split(" ")[0];
-                            }else{
-                                speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days on";
-                            
-                                for(var j=0;j < arrDate.length; j++){
-                                    speech = speech + " " + arrDate[j].split(" ")[0];
-                                    if( j == arrDate.length - 2)
-                                        speech = speech + " and ";
-                                    else
-                                        speech = speech + ", "
+    if( qString != null && qString!= ""){
+        QueryDB( qString, req, res, function(result) {
+            if( result.rowsAffected == 0){
+                speech = "No records found.";
+            }else{
+                switch (true) {
+                    case (intentName == "hcm_leave_accruals"):
+                    {
+                        speech = firstName + " has " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left."
+                        break;
+                    }
+                    case (intentName == "hcm_leave_approval"):{
+                        speech = "There are " + result.recordset.length + " leave requests pending your approval:";
+                        for(var i=0;i < result.recordset.length; i++){
+                            if( result.recordset[i].date != null ){
+                                var arrDate = result.recordset[i].date.split(",");
+                                if( arrDate.length == 1 ){
+                                    speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs a leave on " + arrDate[0].split(" ")[0];
+                                }else{
+                                    speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days on";
+
+                                    for(var j=0;j < arrDate.length; j++){
+                                        speech = speech + " " + arrDate[j].split(" ")[0];
+                                        if( j == arrDate.length - 2)
+                                            speech = speech + " and ";
+                                        else
+                                            speech = speech + ", "
+                                    }
                                 }
+                                if( result.recordset[i].reason != null ){
+                                    speech = speech + " Reason : " + result.recordset[i].reason + ".";
+                                }
+
                             }
-                            if( result.recordset[i].reason != null ){
-                                speech = speech + " Reason : " + result.recordset[i].reason + ".";
-                            }
-                            
                         }
+                        break;
                     }
-                    break;
-                }
-                case (intentName == "hcm_leave_approval_approve"):{    
-                    if( result.rowsAffected[0] > 0 ){
-                        speech = toTitleCase(empName) + "'s leaves have been approved";
+                    case (intentName == "hcm_leave_approval_approve"):{    
+                        if( result.rowsAffected[0] > 0 ){
+                            speech = toTitleCase(empName) + "'s leaves have been approved";
+                        }
+                        break;
                     }
-                    break;
-                }
-                case (intentName == "hcm_leave_approval_reject"):{    
-                    if( result.rowsAffected[0] > 0 ){
-                        speech = toTitleCase(empName) + "'s leaves have been rejected";
+                    case (intentName == "hcm_leave_approval_reject"):{    
+                        if( result.rowsAffected[0] > 0 ){
+                            speech = toTitleCase(empName) + "'s leaves have been rejected";
+                        }
+                        break;
                     }
-                    break;
-                }
-                case (intentName == "hcm_leave_apply_one" || intentName == "hcm_leave_apply_more" ):{    
-                    if( result.rowsAffected[0] > 0 ){
-                        speech = "Leave request submitted successfully";
+                    case (intentName == "hcm_leave_apply_one" || intentName == "hcm_leave_apply_more" ):{    
+                        if( result.rowsAffected[0] > 0 ){
+                            speech = "Leave request submitted successfully";
+                        }
+                        break;
                     }
-                    break;
                 }
+
             }
-            
-        }
+            SendResponse(speech, suggests, contextOut, req, res, function() {
+                console.log("Finished!");
+            });
+        });
+    }else{
+        speech = "Unable to process your request. Please try again later."
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
         });
-    });
+    }
     
     
     
