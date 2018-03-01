@@ -13,7 +13,7 @@ module.exports = function(req, res, callback) {
     var contextOut = [];
 
     var empName = "",firstName="",lastName="";
-    var idDate = parseInt(Number(new Date()));
+    var idDate = parseInt(Number(new Date())) % 10000;
     
     switch (true) {
             
