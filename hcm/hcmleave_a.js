@@ -81,7 +81,7 @@ module.exports = function(req, res, callback) {
                                         speech = speech + ", "
                                 }
                                 if( result.recordset[i].reason != null ){
-                                    speech = speech + ". Reason : " + result.recordset[i].reason + ".";
+                                    speech = speech + " Reason : " + result.recordset[i].reason + ".";
                                 }
                             }
                             
