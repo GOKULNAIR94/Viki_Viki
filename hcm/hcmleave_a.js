@@ -67,32 +67,37 @@ module.exports = function(req, res, callback) {
                     speech = "There are " + result.recordset.length + " leave requests pending your approval:";
                     for(var i=0;i < result.recordset.length; i++){
                         if( result.recordset[i].date != null ){
-                            speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days, on";
-                            
                             var arrDate = result.recordset[i].date.split(",");
-                            for(var j=0;j < arrDate.length; j++){
-                                speech = speech + " " + arrDate[j].split(" ")[0];
-                                if( j == arrDate.length - 2)
-                                    speech = speech + " and ";
-                                else
-                                    speech = speech + ", "
+                            if( arrDate.length == 1 ){
+                                speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs a leave on " + arrDate[0].split(" ")[0];
+                            }else{
+                                speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days on";
+                            
+                                for(var j=0;j < arrDate.length; j++){
+                                    speech = speech + " " + arrDate[j].split(" ")[0];
+                                    if( j == arrDate.length - 2)
+                                        speech = speech + " and ";
+                                    else
+                                        speech = speech + ", "
+                                }
+                                if( result.recordset[i].Reason != null ){
+                                    speech = speech + "\nReason : " + result.recordset[i].Reason + ".";
+                                }
                             }
-                            if( result.recordset[i].Reason != null ){
-                                speech = speech + "\nReason : " + result.recordset[i].Reason + ".";
-                            }
+                            
                         }
                     }
                     break;
                 }
                 case (intentName == "hcm_leave_approval_approve"):{    
                     if( result.rowsAffected[0] > 0 ){
-                        speech = toTitleCase(empName) + "'s leave has been approved";
+                        speech = toTitleCase(empName) + "'s leaves have been approved";
                     }
                     break;
                 }
                 case (intentName == "hcm_leave_approval_reject"):{    
                     if( result.rowsAffected[0] > 0 ){
-                        speech = toTitleCase(empName) + "'s leave has been rejected";
+                        speech = toTitleCase(empName) + "'s leaves have been rejected";
                     }
                     break;
                 }
