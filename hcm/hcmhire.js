@@ -25,10 +25,10 @@ module.exports = function(req, res, callback) {
     
     var qString = "";
     if( HireTerm == "Hire" ){
-        qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=HireDate%3E" + StartDate + "%20and%20%3C" + EndDate + "&onlyData=true";
+        qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=HireDate%3E%3D" + StartDate + "%20and%20%3C%3D" + EndDate + "&onlyData=true";
     }
     if( HireTerm == "Term" ){
-        qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=TerminationDate%3E" + StartDate + "%20and%20%3C" + EndDate + "&onlyData=true";
+        qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=TerminationDate%3E%3D" + StartDate + "%20and%20%3C%3D" + EndDate + "&onlyData=true";
     }
 
     Query( qString, req, res, function(result) {
