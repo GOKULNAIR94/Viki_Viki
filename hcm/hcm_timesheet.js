@@ -37,7 +37,7 @@ module.exports = function(req, res, callback) {
             }else{
                 switch (true) {
                     case (intentName == "hcm_timesheet_my"):{
-                        result = JSON.parse(result);
+                        result = JSON.parse(JSON.stringify(result));
                         speech = "Your timesheet booking is not done for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
                             speech = speech + "" + result.recordset[i].Date.toString().split("T")[0] + ";";
