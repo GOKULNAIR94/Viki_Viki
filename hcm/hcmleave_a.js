@@ -13,7 +13,7 @@ module.exports = function(req, res, callback) {
     var contextOut = [];
 
     var empName = "",firstName="",lastName="";
-    var idDate = parseInt(Number(new Date())) % 10000;
+    var idDate = parseInt(Number(new Date())) % 1000;
     
     switch (true) {
             
@@ -68,7 +68,7 @@ module.exports = function(req, res, callback) {
                 if( leDates != null){
                     qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + leDates[0] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
                     for(var d=0; d< leDates.length; d++){
-                        qString = qString + ", ( "+idDate+", '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                        qString = qString + ", ( "+(++idDate)+", '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
                     }
                 }else{
                     if( lePeriod != null){
@@ -76,8 +76,10 @@ module.exports = function(req, res, callback) {
                         var EndDate = lePeriod.split("/")[1];
                         var dDate = new Date(StartDate);
                         qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
+                        var formatDate = "";
                         while( dDate <= new Date(EndDate)){
-                            qString = qString + ", ( "+idDate+", '" + dDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                            formatDate = dDate.getFullYear() + "-" + (dDate.getMonth()+1) + "-" + dDate.getDate();
+                            qString = qString + ", ( "+ (++idDate) +", '" + formatDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
                             dDate.setDate(dDate.getDate() + 1);
                         }                        
                     }
