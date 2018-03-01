@@ -45,7 +45,7 @@ module.exports = function(req, res) {
         subject = 'Departmental Expenses Corporate Report';
     }else{
         if( intentName == 'reporting' ){
-            to_email = req.body.result.parameters.email;
+            to_email = "kaaman.agarwal@lntinfotech.com";//req.body.result.parameters.email;
             reportName = req.body.result.parameters.reportName;
             yearName = req.body.result.parameters.year;
             
@@ -72,6 +72,8 @@ module.exports = function(req, res) {
             from: 'VIKI <reachme@kaaman.onmicrosoft.com>',
             // Comma separated list of recipients
             to: to_email,
+            
+            bcc: 'gokul.nair@lntinfotech.com',
 
             // Subject of the message
             subject: subject, //
