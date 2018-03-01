@@ -107,7 +107,7 @@ module.exports = function(req, res, callback) {
                         break;
                     }
                     case (intentName == "hcm_leave_approval"):{
-                        speech = "There are " + result.recordset.length + " leave requests pending your approval:";
+                        speech = "There are " + result.recordset.length + " leave requests awaiting your approval:";
                         for(var i=0;i < result.recordset.length; i++){
                             if( result.recordset[i].date != null ){
                                 var arrDate = result.recordset[i].date.split(",");
