@@ -36,10 +36,11 @@ module.exports = function ( qString, body, req, res, callback){
           }
           else{
               speech = "Unable to process request. Please try again later.";
+              SendResponse(speech, suggests, contextOut, req, res, function() {
+                  console.log("Finished!");
+              });
           }
-          SendResponse(speech, suggests, contextOut, req, res, function() {
-              console.log("Finished!");
-          });
+          
       });
         resp.on("error", function (e) {
           
