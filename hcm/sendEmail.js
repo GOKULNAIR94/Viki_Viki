@@ -60,9 +60,15 @@ module.exports = function( emailContent, req, res) {
                 console.log('Message sent successfully!');
                 console.log('Server responded with "%s"', info.response);
                 transporter.close();
-                SendResponse(speech, suggests, contextOut, req, res, function() {
-                    console.log("Finished!");
+                return res.json({
+                    speech: speech,
+                    displayText: speech,
+                    source: 'webhook-OSC-oppty'
                 });
+//                SendResponse(speech, suggests, contextOut, req, res, function() {
+//                    console.log("Finished!");
+//                });
+                
             });
             
         }
