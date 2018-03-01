@@ -48,6 +48,15 @@ module.exports = function(req, res, callback) {
                 qString = "UPDATE LeavesTable SET ApprovalStatus='Rejected' WHERE Name LIKE '%" + empName + "%'";
                 break;
             }
+            case (intentName == "hcm_leave_apply_one" ):{    
+                var leDate = req.body.result.contexts[0].parameters['date'];
+                var leReason = req.body.result.contexts[0].parameters['reason'];
+                console.log("leDate : " + leDate);
+                console.log("reason : " + leReason);
+                
+                qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( GETDATE(), '"+leDate+"' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" +leReason+ "','Casual', 'Pending')";
+                break;
+            }
             
             
     }
@@ -101,6 +110,12 @@ module.exports = function(req, res, callback) {
                 case (intentName == "hcm_leave_approval_reject"):{    
                     if( result.rowsAffected[0] > 0 ){
                         speech = toTitleCase(empName) + "'s leaves have been rejected";
+                    }
+                    break;
+                }
+                case (intentName == "hcm_leave_apply_one" || intentName == "hcm_leave_apply_more" ):{    
+                    if( result.rowsAffected[0] > 0 ){
+                        speech = "Leave request submitted successfully";
                     }
                     break;
                 }
