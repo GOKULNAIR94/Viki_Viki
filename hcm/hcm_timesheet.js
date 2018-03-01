@@ -40,7 +40,7 @@ module.exports = function(req, res, callback) {
                         
                         speech = "Your timesheet booking is not done for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
-                            speech = speech + "" + result.recordset[i].Date.split("T")[0] + ";";
+                            speech = speech + "" + result.recordset[i].Date.toString().split("T")[0] + ";";
                         }
                         
                         SendResponse(speech, suggests, contextOut, req, res, function() {
