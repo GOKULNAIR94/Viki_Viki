@@ -6,6 +6,7 @@ module.exports = function ( qString, body, success, req, res, callback){
     var suggests = [];
     var contextOut = [];
     console.log( "qString : " + qString);
+    console.log( "body : " + JSON.stringify(body));
     
     var options = {
       "method": "PATCH",
