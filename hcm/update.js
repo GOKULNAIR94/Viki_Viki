@@ -28,7 +28,7 @@ module.exports = function ( qString, body, success, req, res, callback){
 
       resp.on("end", function () {
           var output = Buffer.concat(chunks);
-//          console.log(output.toString());
+          console.log(output.toString());
           console.log("Status Code : " + resp.statusCode);
           if(resp.statusCode < 300 ){
               speech = success;
