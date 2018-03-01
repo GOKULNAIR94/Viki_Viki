@@ -23,7 +23,8 @@ module.exports = function( ticket, callback ) {
       res.on("end", function () {
         var body = Buffer.concat(chunks);
         console.log(body.toString());
-          callback( body.result.number );
+          var output = JSON.parse(body);
+          callback( output.result.number );
       });
     });
 
