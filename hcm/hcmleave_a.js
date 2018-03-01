@@ -112,9 +112,9 @@ module.exports = function(req, res, callback) {
                             if( result.recordset[i].date != null ){
                                 var arrDate = result.recordset[i].date.split(",");
                                 if( arrDate.length == 1 ){
-                                    speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs a leave on " + arrDate[0].split(" ")[0];
+                                    speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs a leave on " + arrDate[0].split(" ")[0] + ".";
                                 }else{
-                                    speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days on,";
+                                    speech = speech + "\n" + (i+1) + ": " + result.recordset[i].Name + " needs leaves for " + result.recordset[i].lcount + " days on ";
 
                                     for(var j=0;j < arrDate.length; j++){
                                         speech = speech + " " + arrDate[j].split(" ")[0];
