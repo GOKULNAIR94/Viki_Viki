@@ -41,7 +41,7 @@ module.exports = function(req, res, callback) {
             }
             case (intentName.indexOf( "hcm_transfer" ) == 0 ):
             {
-                HCMleave_a(req, res, function(result) {
+                HCMtransfer(req, res, function(result) {
                     console.log("HCM_transfer Called");
                 });
                 break;
