@@ -7,7 +7,7 @@ module.exports = function ( qString, req, resp, callback){
         server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
         database: 'viki'
     }
-    
+    console.log("Qstring : " + qString);
     sql.connect(sqlConfig, function(err) {
         var request = new sql.Request();
         request.query( qString, function(err, output) {
