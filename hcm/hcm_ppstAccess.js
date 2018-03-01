@@ -20,6 +20,7 @@ module.exports = function(req, res, callback) {
     var respon = req.body.result.parameters['PSFTRespName'];
     
     var subject = "Required access to PeopleSoft responsibility " + respon;
+    speech = "Sure. I have put in a Service Now ticket for a support professional to help you with your PeopleSoft Access request. Here is your ticket number: ";
     var ticket = {};
     ticket = {
         "primaryContact":
