@@ -49,23 +49,22 @@ module.exports = function( emailContent, req, res) {
             console.log(error);
         } else {
             console.log('Server is ready to take our messages');
-            transporter.sendMail(message, (error, info) => {
-                if (error) {
-                    console.log('Error occurred');
-                    console.log(error.message);
-                    return;
-                }
-                console.log('Message sent successfully!');
-                console.log('Server responded with "%s"', info.response);
-                transporter.close();
-            });
         }
     });
 
     
     console.log('Sending Mail');
     setTimeout(function() {
-        
+        transporter.sendMail(message, (error, info) => {
+            if (error) {
+                console.log('Error occurred');
+                console.log(error.message);
+                return;
+            }
+            console.log('Message sent successfully!');
+            console.log('Server responded with "%s"', info.response);
+            transporter.close();
+        });
         return res.json({
             speech: speech,
             displayText: speech,
