@@ -18,8 +18,7 @@ module.exports = function(req, res, callback) {
     switch (true) {
             
             case (intentName == "hcm_timesheet_my"):{
-                var dDate = new Date();
-                dDate = dDate.getFullYear() + "-" + (dDate.getMonth()+1) + "-" + dDate.getDate();
+                var dDate = new Date().toISOString().split("T")[0];
                 qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<'" + dDate + "'";
                 break;
             }
@@ -37,10 +36,9 @@ module.exports = function(req, res, callback) {
             }else{
                 switch (true) {
                     case (intentName == "hcm_timesheet_my"):{
-                        result = JSON.parse(JSON.stringify(result));
                         speech = "Your timesheet booking is not done for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
-                            speech = speech + "" + result.recordset[i].Date.toString().split("T")[0] + ";";
+                            speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";";
                         }
                         
                         SendResponse(speech, suggests, contextOut, req, res, function() {
