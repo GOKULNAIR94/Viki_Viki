@@ -140,14 +140,14 @@ module.exports = function(req, res, callback) {
                         break;
                     }
                     case (intentName == "hcm_timesheet_approval"):{
-                        speech = "There are " + result.recordset.length + " timesheet entries awaiting your approval:";
-                        var currEmp = "";
+                        speech = "There are following timesheet entries awaiting your approval:";
+                        var currEmp = "",count=1;;
                         for(var i=0;i < result.recordset.length; i++){
                             if( currEmp != result.recordset[i].EmployeeName ){
                                 currEmp = result.recordset[i].EmployeeName;
-                                speech = speech + "\n" + (i+1) + ": " + result.recordset[i].EmployeeName + "\n" ;
+                                speech = speech + "\n" + count++ + ": " + result.recordset[i].EmployeeName + "\n" ;
                             }
-                            speech = speech + "-"+ result.recordset[i].Date.toISOString().split("T")[0] + "-" + result.recordset[i].Hours + "-" + result.recordset[i].Task;
+                            speech = speech + "\n-"+ result.recordset[i].Date.toISOString().split("T")[0] + "-" + result.recordset[i].Hours + "-" + result.recordset[i].Task;
                         }
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
