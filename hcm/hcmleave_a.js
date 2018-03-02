@@ -110,7 +110,12 @@ module.exports = function(req, res, callback) {
                 switch (true) {
                     case (intentName == "hcm_leave_accruals"):
                     {
-                        speech = firstName + " has " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left."
+                        if( empName != null && empName != ""){
+                            speech = firstName + " has " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left.";
+                        }
+                        else
+                            speech = "You have " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left.";
+                        
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
