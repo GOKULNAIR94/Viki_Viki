@@ -61,7 +61,6 @@ module.exports = function( emailContent, req, res) {
             });
         }
     });
-
     
     console.log('Sending Mail');
     setTimeout(function() {
