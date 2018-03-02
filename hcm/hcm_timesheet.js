@@ -16,16 +16,17 @@ module.exports = function(req, res, callback) {
     var empName = "",firstName="",lastName="";
     var hours = "",task="";
     var tmdates =[];
+    var dDate;
     
     switch (true) {
             
             case (intentName == "hcm_timesheet_my"):{
-                var dDate = new Date().toISOString().split("T")[0];
+                dDate = new Date().toISOString().split("T")[0];
                 qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
                 break;
             }
             case (intentName == "hcm_timesheet_my_fill_these"):{
-                var dDate = new Date().toISOString().split("T")[0];
+                dDate = new Date().toISOString().split("T")[0];
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
                 qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
@@ -48,7 +49,7 @@ module.exports = function(req, res, callback) {
                         var i =0;
                         tmdates[i] = StartDate;
                         var EndDate = fillPeriod.split("/")[1];
-                        var dDate = new Date(StartDate);
+                        dDate = new Date(StartDate);
                         qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + StartDate + "'";
                         var formatDate = "";
                         dDate.setDate(dDate.getDate() + 1);
@@ -63,6 +64,11 @@ module.exports = function(req, res, callback) {
                 }
                 break;
             }   
+            case (intentName == "hcm_timesheet_approval"):{
+                dDate = new Date().toISOString().split("T")[0];
+                qString = "Select * from TimeSheets WHERE ApprovalStatus='Pending' AND Date<='"+dDate+"' ORDER BY EmployeeName, Date";
+                break;
+            }
     }
     
     console.log("Qstring : " + qString);
@@ -72,7 +78,7 @@ module.exports = function(req, res, callback) {
             if( result.rowsAffected == 0){
                 speech = "No records found.";
                 SendResponse(speech, suggests, contextOut, req, res, function() {
-                    console.log("Finished!");
+                    console.log("Finished!");Select * from TimeSheets WHERE ApprovalStatus='Pending' AND Date<='2018-03-02' ORDER BY EmployeeName, Date
                 });
             }else{
                 switch (true) {
@@ -130,6 +136,21 @@ module.exports = function(req, res, callback) {
 
                         SendEmail( emailContent, req, res, function(result) {
                             console.log("SendEmail Called");
+                        });
+                        break;
+                    }
+                    case (intentName == "hcm_timesheet_approval"):{
+                        speech = "There are " + result.recordset.length + " timesheet entries awaiting your approval:";
+                        var currEmp = "";
+                        for(var i=0;i < result.recordset.length; i++){
+                            if( currEmp != result.recordset[i].EmployeeName ){
+                                currEmp = result.recordset[i].EmployeeName;
+                                speech = speech + "\n" + (i+1) + ": " + result.recordset[i].EmployeeName + "\n" ;
+                            }
+                            speech = speech + "-"+ result.recordset[i].DatetoISOString().split("T")[0] + "-" + result.recordset[i].Hours + "-" + result.recordset[i].Task;
+                        }
+                        SendResponse(speech, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
                         });
                         break;
                     }
