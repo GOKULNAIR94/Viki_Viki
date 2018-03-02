@@ -74,8 +74,8 @@ module.exports = function(req, res, callback) {
                             } 
                         }
                         var emailBody = "<style>table{font-family:arial,sans-serif;border-collapse:collapse;width:60%}td,th{border:1px solid #dddddd;text-align:center;padding:8px}tr:nth-child(even){background-color:#dddddd}</style>" +
-                                "<p><b>Hello Rhea,</b></p>" +
-                            "<p>Kaaman Agarwal has sent the following timesheet entries for you approval:</p>" +
+                                "<p><b>Hello Gokul,</b></p>" +
+                            "<p>Kaaman Agarwal has sent the following timesheet entries for your approval:</p>" +
                             "<p><table ><tr><th>Date</th><th>Task</th><th>Hours</th></tr>";
                         for(var j=0; j< tmdates.length; j++){
                             emailBody = emailBody + '<tr><td>'+tmdates[j]+'</td><td>'+task+'</td><td>'+hours+'</td></tr>';
