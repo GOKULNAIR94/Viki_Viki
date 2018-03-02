@@ -78,7 +78,7 @@ module.exports = function(req, res, callback) {
             if( result.rowsAffected == 0){
                 speech = "No records found.";
                 SendResponse(speech, suggests, contextOut, req, res, function() {
-                    console.log("Finished!");Select * from TimeSheets WHERE ApprovalStatus='Pending' AND Date<='2018-03-02' ORDER BY EmployeeName, Date
+                    console.log("Finished!");
                 });
             }else{
                 switch (true) {
