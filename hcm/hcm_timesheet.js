@@ -73,12 +73,19 @@ module.exports = function(req, res, callback) {
                                 break;
                             } 
                         }
-                        var emailBody = '<p><b>Hello Rhea,</b></p>' +
-                            '<p>Kaaman Agarwal has sent the following timesheet for you approval:</p><p>';
+                        var emailBody = "text-align: left; padding: 8px; }tr:nth-child(even) { background-color: #dddddd; } </style><p><table ><tr><th>Date</th><th>Task</th><th>Hours</th></tr>";
                         for(var j=0; j< tmdates.length; j++){
-                            emailBody = emailBody + ''+ tmdates[j] +'; ';
+                            emailBody = emailBody + '<tr><td>'+tmdates[j]+'</td><td>'+task+'</td><td>'+hours+'</td></tr>';
                         }
-                        emailBody = emailBody + '</p>';
+                        emailBody = emailBody + '</table></p><p>Thanks,<br><b>Viki</b></p>';
+                        
+//                            '<p><b>Hello Rhea,</b></p>' +
+//                            '<p>Kaaman Agarwal has sent the following timesheet entries for you approval:</p><p>';
+//                        for(var j=0; j< tmdates.length; j++){
+//                            emailBody = emailBody + ''+  +', Task : ' + task +', Hours : ' + hours + '; ';
+//                        }
+//                        emailBody = emailBody + '</p><p>Thanks,<br><b>Viki</b></p>';
+//                        
                         emailContent = {};
                         emailContent.speech = "Your timesheet booking has been sent to Rhea for approval.";
                         emailContent.subject = "Timesheet sent for your approval";
