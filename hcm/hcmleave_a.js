@@ -106,6 +106,9 @@ module.exports = function(req, res, callback) {
         QueryDB( qString, req, res, function(result) {
             if( result.rowsAffected == 0){
                 speech = "No records found.";
+                SendResponse(speech, suggests, contextOut, req, res, function() {
+                    console.log("Finished!");
+                });
             }else{
                 switch (true) {
                     case (intentName == "hcm_leave_accruals"):
