@@ -73,14 +73,14 @@ module.exports = function(req, res, callback) {
                 empName = req.body.result.contexts[0].parameters['Name'];
                 console.log("empName : " + empName);
                 
-                qString = "UPDATE TimeSheets SET ApprovalStatus='Approved' WHERE Name LIKE '%" + empName + "%'";
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Approved' WHERE EmployeeName LIKE '%" + empName + "%'";
                 break;
             }
             case (intentName == "hcm_timesheet_approval_reject"):{    
                 empName = req.body.result.contexts[0].parameters['Name'];
                 console.log("empName : " + empName);
                 
-                qString = "UPDATE TimeSheets SET ApprovalStatus='Rejected' WHERE Name LIKE '%" + empName + "%'";
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Rejected' WHERE EmployeeName LIKE '%" + empName + "%'";
                 break;
             }
     }
