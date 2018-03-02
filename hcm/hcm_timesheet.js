@@ -147,7 +147,7 @@ module.exports = function(req, res, callback) {
                                 currEmp = result.recordset[i].EmployeeName;
                                 speech = speech + "\n" + (i+1) + ": " + result.recordset[i].EmployeeName + "\n" ;
                             }
-                            speech = speech + "-"+ result.recordset[i].DatetoISOString().split("T")[0] + "-" + result.recordset[i].Hours + "-" + result.recordset[i].Task;
+                            speech = speech + "-"+ result.recordset[i].Date.toISOString().split("T")[0] + "-" + result.recordset[i].Hours + "-" + result.recordset[i].Task;
                         }
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
