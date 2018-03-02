@@ -69,6 +69,20 @@ module.exports = function(req, res, callback) {
                 qString = "Select * from TimeSheets WHERE ApprovalStatus='Pending' AND Date<='"+dDate+"' ORDER BY EmployeeName, Date";
                 break;
             }
+            case (intentName == "hcm_timesheet_approval_approve"):{    
+                empName = req.body.result.contexts[0].parameters['Name'];
+                console.log("empName : " + empName);
+                
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Approved' WHERE Name LIKE '%" + empName + "%'";
+                break;
+            }
+            case (intentName == "hcm_timesheet_approval_reject"):{    
+                empName = req.body.result.contexts[0].parameters['Name'];
+                console.log("empName : " + empName);
+                
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Rejected' WHERE Name LIKE '%" + empName + "%'";
+                break;
+            }
     }
     
     console.log("Qstring : " + qString);
@@ -152,6 +166,37 @@ module.exports = function(req, res, callback) {
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
+                        break;
+                    }
+                        case (intentName == "hcm_timesheet_approval_approve"):{    
+                        if( result.rowsAffected[0] > 0 ){
+                            emailContent = {};
+                            emailContent.speech = toTitleCase(empName) + "'s timesheet has been approved";
+                            emailContent.subject = "Timesheet Entry has been approved";
+                            emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
+                                '<p>Your timesheet entry has been approved.</p>' +
+                                '<p>Thanks,<br><b>Viki</b></p>';
+
+                            SendEmail( emailContent, req, res, function(result) {
+                                console.log("SendEmail Called");
+                            });
+                        }
+                        break;
+                    }
+                    case (intentName == "hcm_timesheet_approval_reject"):{    
+                        if( result.rowsAffected[0] > 0 ){
+                            speech = toTitleCase(empName) + "'s timesheet has been rejected";
+                            emailContent = {};
+                            emailContent.speech = toTitleCase(empName) + "'s timesheet has been rejected";
+                            emailContent.subject = "Timesheet Entry has been rejected";
+                            emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
+                                '<p>Your timesheet entry has been rejected.</p>' +
+                                '<p>Thanks,<br><b>Viki</b></p>';
+
+                            SendEmail( emailContent, req, res, function(result) {
+                                console.log("SendEmail Called");
+                            });
+                        }
                         break;
                     }
                 }

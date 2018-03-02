@@ -158,10 +158,10 @@ module.exports = function(req, res, callback) {
                         if( result.rowsAffected[0] > 0 ){
                             speech = toTitleCase(empName) + "'s leaves have been rejected";
                             emailContent = {};
-                            emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
-                            emailContent.subject = "Leave application is approved";
+                            emailContent.speech = toTitleCase(empName) + "'s leaves have been rejected";
+                            emailContent.subject = "Leave application is rejected";
                             emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
-                                '<p>Your Leave application has been approved.</p>' +
+                                '<p>Your Leave application has been rejected.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
                             SendEmail( emailContent, req, res, function(result) {
