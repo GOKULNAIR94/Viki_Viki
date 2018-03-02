@@ -21,14 +21,42 @@ module.exports = function(req, res, callback) {
             
             case (intentName == "hcm_timesheet_my"):{
                 var dDate = new Date().toISOString().split("T")[0];
-                qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<'" + dDate + "'";
+                qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
                 break;
             }
             case (intentName == "hcm_timesheet_my_fill_these"):{
                 var dDate = new Date().toISOString().split("T")[0];
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
-                qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<'" + dDate + "'";
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
+                break;
+            }  
+            case (intentName == "hcm_timesheet_my_fill_more"):{
+                var fillDates = req.body.result.parameters['dates'];
+                var fillPeriod = req.body.result.parameters['dateperiod'];
+                hours = req.body.result.parameters['hours'];
+                task = req.body.result.parameters['task'];
+                if( fillDates != null){
+                    qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + fillDates[0] + "'";
+                    for(var d=1; d< fillDates.length; d++){
+                        qString = qString + " OR Date='" + fillDates[d] + "'";
+                    }
+                    qString = qString + " )";
+                }else{
+                    if( fillPeriod != null){
+                        var StartDate = fillPeriod.split("/")[0];
+                        var EndDate = fillPeriod.split("/")[1];
+                        var dDate = new Date(StartDate);
+                        qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + StartDate + "'";
+                        var formatDate = "";
+                        dDate.setDate(dDate.getDate() + 1);
+                        while( dDate <= new Date(EndDate)){
+                            formatDate = dDate.getFullYear() + "-" + (dDate.getMonth()+1) + "-" + dDate.getDate();
+                            qString = qString + " OR Date='" + formatDate + "'";
+                            dDate.setDate(dDate.getDate() + 1);
+                        }                        
+                    }
+                }
                 break;
             }   
     }
