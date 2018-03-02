@@ -159,7 +159,7 @@ module.exports = function(req, res, callback) {
                                 '<p>Your Leave application has been approved.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
                             
-                            qString = "UPDATE Employee SET CasualLeaves =CasualLeaves-1 WHERE FirstName='Kaaman'";
+                            qString = "UPDATE Employee SET CasualLeaves = CasualLeaves-1 WHERE DisplayName LIKE '%"+empName+"%'";
                             QueryDB( qString, req, res, function(qresult) {
                                 SendEmail( emailContent, req, res, function(eresult) {
                                     console.log("SendEmail Called");
