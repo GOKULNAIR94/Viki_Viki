@@ -32,28 +32,32 @@ module.exports = function(req, res, callback) {
                 break;
             }  
             case (intentName == "hcm_timesheet_my_fill_more"):{
-                var fillDates = req.body.result.parameters['dates'];
+                tmdates = req.body.result.parameters['dates'];
                 var fillPeriod = req.body.result.parameters['dateperiod'];
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
-                if( fillDates != null){
-                    qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + fillDates[0] + "'";
-                    for(var d=1; d< fillDates.length; d++){
-                        qString = qString + " OR Date='" + fillDates[d] + "'";
+                if( tmdates != null){
+                    qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + tmdates[0] + "'";
+                    for(var d=1; d< tmdates.length; d++){
+                        qString = qString + " OR Date='" + tmdates[d] + "'";
                     }
                     qString = qString + " )";
                 }else{
                     if( fillPeriod != null){
                         var StartDate = fillPeriod.split("/")[0];
+                        var i =0;
+                        tmdates[i] = StartDate;
                         var EndDate = fillPeriod.split("/")[1];
                         var dDate = new Date(StartDate);
                         qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + StartDate + "'";
                         var formatDate = "";
                         dDate.setDate(dDate.getDate() + 1);
+                        i++;
                         while( dDate <= new Date(EndDate)){
                             formatDate = dDate.getFullYear() + "-" + (dDate.getMonth()+1) + "-" + dDate.getDate();
+                            tmdates[i] = formatDate;
                             qString = qString + " OR Date='" + formatDate + "'";
-                            dDate.setDate(dDate.getDate() + 1);
+                            dDate.setDate(dDate.getDate() + 1); i++;
                         }                        
                     }
                 }
@@ -92,7 +96,7 @@ module.exports = function(req, res, callback) {
                         break;
                     }
                         
-                    case (intentName == "hcm_timesheet_my_fill_these"):{
+                    case (intentName == "hcm_timesheet_my_fill_these" || intentName == "hcm_timesheet_my_fill_more"):{
                         var array = req.body.result.contexts;
                         for( var key in array ){
                             console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
