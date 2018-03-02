@@ -55,8 +55,8 @@ module.exports = function( emailContent, req, res) {
                     console.log(error.message);
                     return;
                 }
-                console.log('Message sent successfully!');
-                console.log('Server responded with "%s"', info.response);
+//                console.log('Message sent successfully!');
+//                console.log('Server responded with "%s"', info.response);
                 transporter.close();
             });
         }
@@ -80,6 +80,6 @@ module.exports = function( emailContent, req, res) {
             displayText: speech,
             source: 'webhook-OSC-oppty'
         });
-    }, 2000);
+    }, 3000);
 
 }
