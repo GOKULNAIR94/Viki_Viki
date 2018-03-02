@@ -15,6 +15,7 @@ module.exports = function(req, res, callback) {
 
     var empName = "",firstName="",lastName="";
     var hours = "",task="";
+    var tmdates =[];
     
     switch (true) {
             
@@ -44,10 +45,19 @@ module.exports = function(req, res, callback) {
             }else{
                 switch (true) {
                     case (intentName == "hcm_timesheet_my"):{
+                        
                         speech = "Your timesheet booking is not done for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
                             speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";";
+                            tmdates[i] = result.recordset[i].Date.toISOString().split("T")[0];
                         }
+                        contextOut = [{
+                            "name": "tmdates",
+                            "lifespan": 1,
+                            "parameters": {
+                                "tmdates": tmdates
+                            }
+                        }];
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -55,9 +65,27 @@ module.exports = function(req, res, callback) {
                     }
                         
                     case (intentName == "hcm_timesheet_my_fill_these"):{
-                        speech = "Your timesheet booking has been sent for approval.";
-                        SendResponse(speech, suggests, contextOut, req, res, function() {
-                            console.log("Finished!");
+                        var array = req.body.result.contexts;
+                        for( var key in array ){
+                            console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
+                            if( array[key].name == "tmdates"){
+                                tmdates = array[key].parameters["tmdates"];
+                                break;
+                            } 
+                        }
+                        var emailBody = '<p><b>Hello Rhea,</b></p>' +
+                            '<p>Kaaman Agarwal has sent the following timesheet for you approval:</p><p>';
+                        for(var j=0; j< result.recordset.length; j++){
+                            emailBody = emailBody + ''+ tmdates[j] +'; ';
+                        }
+                        emailBody = emailBody + '</p>';
+                        emailContent = {};
+                        emailContent.speech = "Your timesheet booking has been sent for approval.";
+                        emailContent.subject = "Timesheet sent for your approval";
+                        emailContent.body =  emailBody;
+
+                        SendEmail( emailContent, req, res, function(result) {
+                            console.log("SendEmail Called");
                         });
                         break;
                     }
