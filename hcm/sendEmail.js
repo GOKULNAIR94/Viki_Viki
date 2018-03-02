@@ -77,8 +77,7 @@ module.exports = function( emailContent, req, res) {
 //        });
         return res.json({
             speech: speech,
-            displayText: speech,
-            source: 'webhook-OSC-oppty'
+            displayText: speech
         });
     }, 3000);
 
