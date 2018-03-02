@@ -147,9 +147,12 @@ module.exports = function(req, res, callback) {
                             emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your Leave application has been approved.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
-
-                            SendEmail( emailContent, req, res, function(result) {
-                                console.log("SendEmail Called");
+                            
+                            qString = "UPDATE Employee SET CasualLeaves =CasualLeaves-1 WHERE FirstName='Kaaman'";
+                            QueryDB( qString, req, res, function(qresult) {
+                                SendEmail( emailContent, req, res, function(eresult) {
+                                    console.log("SendEmail Called");
+                                });
                             });
                         }
                         break;
@@ -164,7 +167,7 @@ module.exports = function(req, res, callback) {
                                 '<p>Your Leave application has been rejected.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
-                            SendEmail( emailContent, req, res, function(result) {
+                            SendEmail( emailContent, req, res, function(eresult) {
                                 console.log("SendEmail Called");
                             });
                         }
@@ -180,7 +183,7 @@ module.exports = function(req, res, callback) {
                                 '<p>Leave request: ' + idDate +', submitted successfully.</p>' +
                                 '<p>Thanks,<br><b>Viki</b></p>';
 
-                            SendEmail( emailContent, req, res, function(result) {
+                            SendEmail( emailContent, req, res, function(eresult) {
                                 console.log("SendEmail Called");
                             });
                         }
