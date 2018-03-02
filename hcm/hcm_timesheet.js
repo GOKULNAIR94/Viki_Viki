@@ -73,7 +73,7 @@ module.exports = function(req, res, callback) {
                                 break;
                             } 
                         }
-                        var emailBody = "text-align: left; padding: 8px; }tr:nth-child(even) { background-color: #dddddd; } </style><p><table ><tr><th>Date</th><th>Task</th><th>Hours</th></tr>";
+                        var emailBody = "<style>table{font-family:arial,sans-serif;border-collapse:collapse;width:100%}td,th{border:1px solid #ddd;text-align:left;padding:8px}tr:nth-child(even){background-color:#ddd}</style><p><table ><tr><th>Date</th><th>Task</th><th>Hours</th></tr>";
                         for(var j=0; j< tmdates.length; j++){
                             emailBody = emailBody + '<tr><td>'+tmdates[j]+'</td><td>'+task+'</td><td>'+hours+'</td></tr>';
                         }
