@@ -21,9 +21,15 @@ module.exports = function(req, res, callback) {
             case (intentName == "hcm_leave_accruals"):{
                 empName = "";
                 empName = req.body.result.contexts[0].parameters['Name'];
-                console.log("empName : " + empName);
-                firstName = toTitleCase(empName.split(" ")[0].toLowerCase());
-                lastName = toTitleCase(empName.split(" ")[1].toLowerCase()) ;
+                if( empName != null && empName != ""){
+                    console.log("empName : " + empName);
+                    firstName = toTitleCase(empName.split(" ")[0].toLowerCase());
+                    lastName = toTitleCase(empName.split(" ")[1].toLowerCase()) ;
+                }
+                else{
+                    firstName = "Kaaman";
+                    lastName = "Agarwal";
+                }
                 console.log("Name : " + firstName + " " + lastName );
                 
                 qString = "Select * from Employee WHERE FirstName='"+ firstName +"' AND LastName='" + lastName + "'";
