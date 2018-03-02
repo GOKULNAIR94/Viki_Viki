@@ -80,7 +80,7 @@ module.exports = function(req, res, callback) {
                         }
                         emailBody = emailBody + '</p>';
                         emailContent = {};
-                        emailContent.speech = "Your timesheet booking has been sent for approval.";
+                        emailContent.speech = "Your timesheet booking has been sent to Rhea for approval.";
                         emailContent.subject = "Timesheet sent for your approval";
                         emailContent.body =  emailBody;
 
