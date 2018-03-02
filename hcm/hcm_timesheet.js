@@ -46,7 +46,7 @@ module.exports = function(req, res, callback) {
                 switch (true) {
                     case (intentName == "hcm_timesheet_my"):{
                         
-                        speech = "Your timesheet booking is not done for the following dates:";
+                        speech = "Your timesheet booking is pending for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
                             speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";";
                             tmdates[i] = result.recordset[i].Date.toISOString().split("T")[0];
@@ -75,7 +75,7 @@ module.exports = function(req, res, callback) {
                         }
                         var emailBody = '<p><b>Hello Rhea,</b></p>' +
                             '<p>Kaaman Agarwal has sent the following timesheet for you approval:</p><p>';
-                        for(var j=0; j< result.recordset.length; j++){
+                        for(var j=0; j< tmdates.length; j++){
                             emailBody = emailBody + ''+ tmdates[j] +'; ';
                         }
                         emailBody = emailBody + '</p>';
@@ -83,6 +83,8 @@ module.exports = function(req, res, callback) {
                         emailContent.speech = "Your timesheet booking has been sent to Rhea for approval.";
                         emailContent.subject = "Timesheet sent for your approval";
                         emailContent.body =  emailBody;
+                        
+                        console.log("email body :" + emailBody);
 
                         SendEmail( emailContent, req, res, function(result) {
                             console.log("SendEmail Called");
