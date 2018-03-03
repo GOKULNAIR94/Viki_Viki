@@ -32,7 +32,7 @@ module.exports = function(req, res, callback) {
                 qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
                 break;
             }  
-            case (intentName == "hcm_timesheet_my_fill_more"):{
+            case (intentName == "hcm_timesheet_my_fill_more" || intentName == "hcm_timesheet_my_fill_more_loop"):{
                 tmdates = req.body.result.parameters['dates'];
                 var fillPeriod = req.body.result.parameters['dateperiod'];
                 hours = req.body.result.parameters['hours'];
@@ -116,7 +116,7 @@ module.exports = function(req, res, callback) {
                         break;
                     }
                         
-                    case (intentName == "hcm_timesheet_my_fill_these" || intentName == "hcm_timesheet_my_fill_more"):{
+                    case (intentName == "hcm_timesheet_my_fill_these" || intentName == "hcm_timesheet_my_fill_more" || intentName == "hcm_timesheet_my_fill_more_loop"):{
                         var array = req.body.result.contexts;
                         for( var key in array ){
                             console.log("**************************\narray "+ key +" : " + JSON.stringify(array[key]));
