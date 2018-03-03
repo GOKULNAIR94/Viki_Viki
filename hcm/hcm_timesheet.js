@@ -143,6 +143,9 @@ module.exports = function(req, res, callback) {
 //                        
                         emailContent = {};
                         emailContent.speech = "Your timesheet booking has been sent for approval.";
+                        if( intentName == "hcm_timesheet_my_fill_more" || intentName == "hcm_timesheet_my_fill_more_loop" ){
+                            emailContent.speech = "Your timesheet booking has been sent for approval. \nWould you like to add more timesheet entries?";
+                        }
                         emailContent.subject = "Timesheet sent for your approval";
                         emailContent.body =  emailBody;
                         
