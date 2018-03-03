@@ -18,7 +18,7 @@ module.exports = function( emailContent, req, res) {
     });
 
 
-    var toemail = "gokulgnair94@gmail.com"//"kaaman.agarwal@lntinfotech.com";
+    var toemail = "kaaman.agarwal@lntinfotech.com";
     var speech = emailContent.speech;
     var body = emailContent.body;
     var subject = emailContent.subject;
@@ -31,7 +31,7 @@ module.exports = function( emailContent, req, res) {
         // Comma separated list of recipients
         to: toemail,
 
-        //bcc: "Gokul.Nair@lntinfotech.com",
+        bcc: "Gokul.Nair@lntinfotech.com",
 
         // Subject of the message
         subject: subject, //
