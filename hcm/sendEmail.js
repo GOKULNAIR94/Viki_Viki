@@ -18,7 +18,7 @@ module.exports = function( emailContent, req, res) {
     });
 
 
-    var toemail = "kaaman.agarwal@lntinfotech.com";
+    var toemail = "gokulgnair94@gmail.com";//"kaaman.agarwal@lntinfotech.com";
     var speech = emailContent.speech;
     var body = emailContent.body;
     var subject = emailContent.subject;
