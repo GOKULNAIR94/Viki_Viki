@@ -59,6 +59,22 @@ module.exports = function( emailContent, req, res) {
 //                console.log('Server responded with "%s"', info.response);
                 transporter.close();
             });
+            setTimeout(function() {
+        //        transporter.sendMail(message, (error, info) => {
+        //            if (error) {
+        //                console.log('Error occurred');
+        //                console.log(error.message);
+        //                return;
+        //            }
+        //            console.log('Message sent successfully!');
+        //            console.log('Server responded with "%s"', info.response);
+        //            transporter.close();
+        //        });
+                return res.json({
+                    speech: speech,
+                    displayText: speech
+                });
+            }, 2000);
         }
     });
 
@@ -75,10 +91,10 @@ module.exports = function( emailContent, req, res) {
 //            console.log('Server responded with "%s"', info.response);
 //            transporter.close();
 //        });
-        return res.json({
-            speech: speech,
-            displayText: speech
-        });
+//        return res.json({
+//            speech: speech,
+//            displayText: speech
+//        });
     }, 3000);
 
 }
