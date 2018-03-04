@@ -56,7 +56,7 @@ module.exports = function( emailContent, req, res) {
                     return;
                 }
 //                console.log('Message sent successfully!');
-//                console.log('Server responded with "%s"', info.response);
+                console.log('Server responded with "%s"', info.response);
                 transporter.close();
             });
         }
