@@ -104,7 +104,10 @@ module.exports = function(req, res, callback) {
                 body = "";
                 Get( qString, body, req, res, function(result) {
                     try{
-                      speech = "Status of job (Id: " + jobId + ") is " + result.descriptiveStatus + ", \n" + "JobName: " + result.jobName + ", \nDetails : " + result.details;
+                      speech = "Status of job (Id: " + jobId + ") is " + result.descriptiveStatus + ", \n" + "JobName: " + result.jobName;
+                        if( result.descriptiveStatus == "Error"){
+                            speech = speech + ", \nDetails : " + result.details;
+                        }
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
