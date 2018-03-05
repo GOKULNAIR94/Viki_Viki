@@ -87,8 +87,14 @@ module.exports = function(req, resp, callback) {
         client.scheduleReport(args, function(err, result) {
 //            console.log(result);
 //            console.log("Schedule : " + JSON.stringify(result));
-            console.log("Schedule : " + result.statusCode);
-            callback(result);
+            if(err){
+                console.log("Schedule err: " + err);
+                callback(result);
+            }else{
+                console.log("Schedule op: " + JSON.stringify(result));
+                callback(result);
+            }
+            
         });
     });
 }
