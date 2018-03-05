@@ -149,6 +149,7 @@ module.exports = function(req, res, callback) {
 
                             }
                         }
+                        speech = speech + " \nPlease let me know if you want to approve/reject any request."
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -157,7 +158,7 @@ module.exports = function(req, res, callback) {
                     case (intentName == "hcm_leave_approval_approve"):{    
                         if( result.rowsAffected[0] > 0 ){
                             emailContent = {};
-                            emailContent.speech = toTitleCase(empName) + "'s leaves have been approved";
+                            emailContent.speech = toTitleCase(empName) + "'s leaves have been approved. \nAnything else I can help you with?";
                             emailContent.subject = "Leave application is approved";
                             emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your Leave application has been approved.</p>' +
@@ -176,7 +177,7 @@ module.exports = function(req, res, callback) {
                         if( result.rowsAffected[0] > 0 ){
                             speech = toTitleCase(empName) + "'s leaves have been rejected";
                             emailContent = {};
-                            emailContent.speech = toTitleCase(empName) + "'s leaves have been rejected";
+                            emailContent.speech = toTitleCase(empName) + "'s leaves have been rejected. \nIs there anything else I can assist you with?";
                             emailContent.subject = "Leave application is rejected";
                             emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your Leave application has been rejected.</p>' +
@@ -192,7 +193,7 @@ module.exports = function(req, res, callback) {
                         if( result.rowsAffected[0] > 0 ){
                             
                             emailContent = {};
-                            emailContent.speech = "Leave request: " + idDate +", submitted successfully";
+                            emailContent.speech = "Leave request: " + idDate +", submitted successfully. \nCan I help you with anything else?";
                             emailContent.subject = "Leave request: " + idDate +", submitted successfully";
                             emailContent.body = '<p><b>Hello Kaaman,</b></p>' +
                                 '<p>Leave request: ' + idDate +', submitted successfully.</p>' +

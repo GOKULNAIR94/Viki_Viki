@@ -103,7 +103,7 @@ module.exports = function(req, res, callback) {
                         
                         speech = "Your timesheet booking is pending for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
-                            speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";" +os.EOL;
+                            speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + "; \n";
                             tmdates[i] = result.recordset[i].Date.toISOString().split("T")[0];
                         }
                         contextOut = [{
@@ -113,6 +113,7 @@ module.exports = function(req, res, callback) {
                                 "tmdates": tmdates
                             }
                         }];
+                        speech = speech + " \nPlease let me know if you want to fill any timesheets."
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -169,6 +170,7 @@ module.exports = function(req, res, callback) {
                             }
                             speech = speech + "-"+ result.recordset[i].Date.toISOString().split("T")[0] + " - " + result.recordset[i].Task + " - " + result.recordset[i].Hours + " hours\n";
                         }
+                        speech = speech + " \n Please let me know if you want to approve or reject any request."
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -177,7 +179,7 @@ module.exports = function(req, res, callback) {
                         case (intentName == "hcm_timesheet_approval_approve"):{    
                         if( result.rowsAffected[0] > 0 ){
                             emailContent = {};
-                            emailContent.speech = toTitleCase(empName) + "'s timesheet has been approved";
+                            emailContent.speech = toTitleCase(empName) + "'s timesheet has been approved. \nIs there anything else I can help you with? ";
                             emailContent.subject = "Timesheet Entry has been approved";
                             emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your timesheet entry has been approved.</p>' +
@@ -193,7 +195,7 @@ module.exports = function(req, res, callback) {
                         if( result.rowsAffected[0] > 0 ){
                             speech = toTitleCase(empName) + "'s timesheet has been rejected";
                             emailContent = {};
-                            emailContent.speech = toTitleCase(empName) + "'s timesheet has been rejected";
+                            emailContent.speech = toTitleCase(empName) + "'s timesheet has been rejected. \nAnything else I can hep you with?";
                             emailContent.subject = "Timesheet Entry has been rejected";
                             emailContent.body = '<p><b>Hello ' + toTitleCase(empName) +',</b></p>' +
                                 '<p>Your timesheet entry has been rejected.</p>' +
