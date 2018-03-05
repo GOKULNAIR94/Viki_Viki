@@ -28,8 +28,9 @@ module.exports = function ( qString, body, req, resp, callback){
               callback( resObj );
           }
           catch(e){
+              callback("Error: " + e  );
               resp.json({
-                message : "Error: " + e 
+                speech: "Unble to process your request. Please try again later."
             });
           }
       });
