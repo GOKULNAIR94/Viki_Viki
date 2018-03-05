@@ -17,7 +17,7 @@ module.exports = function(req, res, callback) {
     var hours = "",task="";
     var tmdates =[];
     var dDate;
-    
+    var os = require("os");
     switch (true) {
             
             case (intentName == "hcm_timesheet_my"):{
@@ -100,7 +100,7 @@ module.exports = function(req, res, callback) {
                         
                         speech = "Your timesheet booking is pending for the following dates:";
                         for(var i=0;i < result.recordset.length; i++){
-                            speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";";
+                            speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + ";" +os.EOL;
                             tmdates[i] = result.recordset[i].Date.toISOString().split("T")[0];
                         }
                         contextOut = [{
