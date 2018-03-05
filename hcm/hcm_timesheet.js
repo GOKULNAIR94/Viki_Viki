@@ -157,7 +157,7 @@ module.exports = function(req, res, callback) {
                         break;
                     }
                     case (intentName == "hcm_timesheet_approval"):{
-                        speech = "There are following timesheet entries awaiting your approval:";
+                        speech = "Following timesheet entries awaiting your approval:";
                         var currEmp = "",count=1;;
                         for(var i=0;i < result.recordset.length; i++){
                             if( currEmp != result.recordset[i].EmployeeName ){
