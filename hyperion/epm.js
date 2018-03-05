@@ -49,8 +49,11 @@ module.exports = function(req, res, callback) {
             
         case (intentName == "EPM_Jobs"):
             {
-                qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs";
-                body = "jobType=CUBE_REFRESH&jobName=RefreshCube";
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/ITOH/jobs";
+                body = {
+                    "jobType" : "CUBE_REFRESH",
+                    "jobName": "CubeRefresh"
+                    };
                 Query( qString, body, req, res, function(result) {
                     try{
                       //speech = "Job Status has been updated to " + result.descriptiveStatus + ".\nJob Id: " + result.jobId + ".";
