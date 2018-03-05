@@ -14,7 +14,7 @@ module.exports = function ( qString, body, req, resp, callback){
     };
 
     var req = http.request(options, function (res) {
-      var chunks = [],resObj;
+      var chunks = [],resObj ={};
 
       res.on("data", function (chunk) {
         chunks.push(chunk);
@@ -22,9 +22,9 @@ module.exports = function ( qString, body, req, resp, callback){
 
       res.on("end", function () {
           try{
-              var body = Buffer.concat(chunks);
-              console.log(body.toString());
-              resObj = JSON.parse(body.toString());
+              var result = Buffer.concat(chunks);
+              console.log(result.toString());
+              resObj = JSON.parse(result.toString());
               callback( resObj );
           }
           catch(e){
@@ -35,6 +35,6 @@ module.exports = function ( qString, body, req, resp, callback){
       });
     });
 
-    req.write(body.toString());
+    req.write(JSON.stringify(body));
     req.end();
 }
