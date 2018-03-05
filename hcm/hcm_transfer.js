@@ -21,7 +21,7 @@ module.exports = function(req, res, callback) {
     var lastName = toTitleCase(empName.split(" ")[1].toLowerCase()) ;
     console.log("Name : " + firstName + " " + lastName );
     
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&expand=assignments";
+    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName;
     
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
