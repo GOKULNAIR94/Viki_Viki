@@ -1,6 +1,9 @@
 module.exports = function ( qString, body, req, resp, callback){ 
+    var http = require("https");
+    
     console.log( "qString : " + qString);
-    var http = require("http");
+    console.log( "body : " + JSON.stringify(body));
+    
 
     var options = {
       "method": "POST",
