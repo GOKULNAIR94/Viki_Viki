@@ -13,7 +13,7 @@ module.exports = function(req, resp, callback) {
                 "emailOptions": [{
                     "item": {
                         "emailBody": "Hi Kaaman,\n\nSending you the payslip for week " + week + " of " + month + " " + year + ".\n\nRegards,\nViki",
-                        "emailFrom": "Viki@Future.com",
+                        "emailFrom": "viki@kaaman.onmicrosoft.com",
                         "emailServerName": "DefaultEmail",
                         "emailSubject": "Payslip for the Month of " + month+" " + year,
                         "emailTo": "gokulgnair94@gmail.com",
