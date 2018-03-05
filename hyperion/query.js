@@ -28,7 +28,7 @@ module.exports = function ( qString, body, req, resp, callback){
               callback( resObj );
           }
           catch(e){
-              console("Error: " + e  );
+              console.log("Error: " + e  );
               resp.json({
                 speech: "Unble to process your request. Please try again later."
             });
