@@ -8,7 +8,7 @@ module.exports = function ( qString, body, req, resp, callback){
 //      "port": "9001",
       "path": qString, //"/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1",
       "headers": {
-        "authorization": "Basic d2VibG9naWM6QWRtaW4xMjM=",
+        "authorization": "Basic YTE3ODk0LmJodW1pa2Euc2hpdmFsaUBsbnRpbmZvdGVjaC5jb206RGVjQDIwMTc=",
         "cache-control": "no-cache"
       }
     };
