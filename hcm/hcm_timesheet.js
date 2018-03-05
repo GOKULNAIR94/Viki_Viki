@@ -29,7 +29,7 @@ module.exports = function(req, res, callback) {
                 dDate = new Date().toISOString().split("T")[0];
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
-                qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
+                qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Date<='" + dDate + "'";
                 break;
             }  
             case (intentName == "hcm_timesheet_my_fill_more" || intentName == "hcm_timesheet_my_fill_more_loop"):{
@@ -38,7 +38,7 @@ module.exports = function(req, res, callback) {
                 hours = req.body.result.parameters['hours'];
                 task = req.body.result.parameters['task'];
                 if( tmdates != null){
-                    qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + tmdates[0] + "'";
+                    qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND (Date='" + tmdates[0] + "'";
                     for(var d=1; d< tmdates.length; d++){
                         qString = qString + " OR Date='" + tmdates[d] + "'";
                     }
@@ -50,7 +50,7 @@ module.exports = function(req, res, callback) {
                         tmdates[i] = StartDate;
                         var EndDate = fillPeriod.split("/")[1];
                         dDate = new Date(StartDate);
-                        qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND (Date='" + StartDate + "'";
+                        qString = "UPDATE TimeSheets SET ApprovalStatus='Pending', Hours='"+hours+"', RemainingHours='" + (9-hours)+"', Task='"+task+"' WHERE EmployeeName LIKE '%Kaaman%' AND (Date='" + StartDate + "'";
                         var formatDate = "";
                         dDate.setDate(dDate.getDate() + 1);
                         i++;

@@ -27,7 +27,7 @@ module.exports = function( emailContent, req, res) {
     console.log('SMTP Configured');
 
     let message = {
-        from: 'VIKI <reachme@kaaman.onmicrosoft.com>',
+        from: 'VIKI <viki@kaaman.onmicrosoft.com>',
         // Comma separated list of recipients
         to: toemail,
 
