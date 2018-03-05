@@ -79,6 +79,6 @@ module.exports = function( emailContent, req, res) {
             speech: speech,
             displayText: speech
         });
-    }, 3000);
+    }, 1000);
 
 }

@@ -20,7 +20,7 @@ module.exports = function(req, res, callback) {
             
             case (intentName == "hcm_leave_accruals"):{
                 empName = "";
-                empName = req.body.result.contexts[0].parameters['Name'];
+                empName = req.body.result.parameters['Name'];
                 if( empName != null && empName != ""){
                     console.log("empName : " + empName);
                     firstName = toTitleCase(empName.split(" ")[0].toLowerCase());
