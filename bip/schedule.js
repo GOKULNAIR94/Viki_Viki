@@ -2,7 +2,7 @@ module.exports = function(req, resp, callback) {
     var soap = require('soap');
     var url = 'https://hcm-aufsn4x0cma.oracleoutsourcing.com/xmlpserver/services/v2/ScheduleService?wsdl';
   
-    
+    var month = req.body.result.parameters.month, week = req.body.result.parameters.week, year = req.body.result.parameters.year;
     var args = {
         "dataModelUrl": "/Custom/KaamanAgarwal/Payslip.xdm",
         "scheduleRequest": {
@@ -12,10 +12,10 @@ module.exports = function(req, resp, callback) {
             "deliveryChannels": {
                 "emailOptions": [{
                     "item": {
-                        "emailBody": "Hello Gokul",
+                        "emailBody": "Hi Kaaman,\n\nSendin you the payslip for week " + week + " of " + month + " " + year,
                         "emailFrom": "Viki@Future.com",
                         "emailServerName": "DefaultEmail",
-                        "emailSubject": "Opty Report",
+                        "emailSubject": "Payslip for the Month of " + month+" " + year,
                         "emailTo": "gokulgnair94@gmail.com",
                         "emailCC": "gokul.nair@lntinfotech.com",
                         "emailAttachmentName": "Kaaman_Agarwal_Payslip",
