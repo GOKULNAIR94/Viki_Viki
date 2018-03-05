@@ -57,7 +57,7 @@ module.exports = function(req, res, callback) {
                 Query( qString, body, req, res, function(result) {
                     try{
                       //speech = "Job Status has been updated to " + result.descriptiveStatus + ".\nJob Id: " + result.jobId + ".";
-                      speech = "Job (Id: " + result.jobId + ") submitted for Cube Refresh (Application – Vision) with a current status of " + result.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
+                      speech = "Job (Id: " + result.jobId + ") submitted for Cube Refresh (Application – ITOH) with a current status of " + result.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
                         contextOut = [{
                                 "name": "jobid",
                                 "lifespan": 1,
