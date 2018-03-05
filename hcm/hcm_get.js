@@ -67,7 +67,7 @@ module.exports = function(req, res, callback) {
                             console.log("Update called");
                             if( attribName == "Location"){
                                 var emailContent = {};
-                                emailContent.speech = firstName + " has been transferred to " + attribValue;
+                                emailContent.speech = firstName + " has been transferred to " + attribValue + ". \nAnything else I can help with?";
                                 emailContent.subject = "Your Transfer to " +attribValue+ " is processed";
                                 emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
                                     '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +

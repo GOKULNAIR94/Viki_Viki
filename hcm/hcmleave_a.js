@@ -119,6 +119,7 @@ module.exports = function(req, res, callback) {
                         else
                             speech = "You have " + result.recordset[0].CasualLeaves + " Casual leaves and " + result.recordset[0].SickLeaves + " Sick leaves left.";
                         
+                        speech = speech + " \n Is there anything help I can help you with?";
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
