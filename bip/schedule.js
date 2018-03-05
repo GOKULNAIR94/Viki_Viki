@@ -12,7 +12,7 @@ module.exports = function(req, resp, callback) {
             "deliveryChannels": {
                 "emailOptions": [{
                     "item": {
-                        "emailBody": "Hi Kaaman,\n\nSendin you the payslip for week " + week + " of " + month + " " + year,
+                        "emailBody": "Hi Kaaman,\n\nSendin you the payslip for week " + week + " of " + month + " " + year + ".\n\nRegards,\nViki",
                         "emailFrom": "Viki@Future.com",
                         "emailServerName": "DefaultEmail",
                         "emailSubject": "Payslip for the Month of " + month+" " + year,
