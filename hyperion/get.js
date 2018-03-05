@@ -9,7 +9,8 @@ module.exports = function ( qString, body, req, resp, callback){
       "path": qString, //"/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1",
       "headers": {
         "authorization": "Basic YTE3ODk0LmJodW1pa2Euc2hpdmFsaUBsbnRpbmZvdGVjaC5jb206RGVjQDIwMTc=",
-        "cache-control": "no-cache"
+        "content-type": "application/json",
+          "cache-control": "no-cache"
       }
     };
 
