@@ -1,5 +1,5 @@
 module.exports = function ( qString, body, req, resp, callback){ 
-    var http = require("http");
+    var http = require("https");
     console.log( "qString : " + qString);
 
     var options = {
