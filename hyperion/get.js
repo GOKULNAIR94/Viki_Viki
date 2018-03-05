@@ -4,7 +4,7 @@ module.exports = function ( qString, body, req, resp, callback){
 
     var options = {
       "method": "GET",
-      "hostname": "kaamanagarwal.ddns.net",
+      "hostname": "planning-a17894.pbcs.ap1.oraclecloud.com",
       "port": "9001",
       "path": qString, //"/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1",
       "headers": {
