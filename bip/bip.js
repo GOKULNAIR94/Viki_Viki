@@ -17,7 +17,7 @@ module.exports = function(req, res ) {
     
     Schedule( req, res, function(result) {
         console.log("Schedule Called.");
-        speech = "Report has been scheduled. Job Id : " + result.scheduleReportReturn;
+        speech = "You request has been scheduled. Job Id : " + result.scheduleReportReturn + ". The payslip will be generated and mailed to you in a couple of minutes. Anything else I help you with?";
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
         });

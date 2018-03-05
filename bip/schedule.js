@@ -89,7 +89,11 @@ module.exports = function(req, resp, callback) {
 //            console.log("Schedule : " + JSON.stringify(result));
             if(err){
                 console.log("Schedule err: " + err);
-                callback(result);
+                speech = "Unable to process your request. Please try again later.";
+                resp.json({
+                    speech: speech,
+                    displayText: speech
+                });
             }else{
                 console.log("Schedule op: " + JSON.stringify(result));
                 callback(result);
