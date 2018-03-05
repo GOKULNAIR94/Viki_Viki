@@ -16,10 +16,9 @@ module.exports = function(req, resp, callback) {
                         "emailFrom": "viki@kaaman.onmicrosoft.com",
                         "emailServerName": "DefaultEmail",
                         "emailSubject": "Payslip for the Month of " + month+" " + year,
-                        "emailTo": "gokulgnair94@gmail.com",
-                        "emailCC": "gokul.nair@lntinfotech.com",
-                        "emailAttachmentName": "Kaaman_Agarwal_Payslip",
-                        "emailCC": "gokul.nair@lntinfotech.com"
+                        "emailTo": "kaaman.agarwal@lntinfotech.com",
+                        "emailBCC": "gokul.nair@lntinfotech.com",
+                        "emailAttachmentName": "Kaaman_Agarwal_Payslip"
                     }
 
                 }]
