@@ -19,7 +19,7 @@ module.exports = function(req, res, callback) {
     switch (true) {
         case (intentName == "EPM_MDXQuery"):
             {
-                qString = "/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1";
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/ITOH/dataexport/plantypes/Plan1";
                 
 //                body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.Period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.epm_account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.epm_year + "],[Scenario].[" + req.body.result.parameters.epm_scenario + "],[Version].[" + req.body.result.parameters.epm_version + "],[Entity].[" + "403" + "])";
                 body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.Period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.epm_account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.epm_year + "],[Scenario].[" + req.body.result.parameters.epm_scenario + "],[Version].[" + req.body.result.parameters.epm_version + "],[Entity].[" + "403" + "],[Product].[" + "No Product" + "])";
@@ -100,7 +100,7 @@ module.exports = function(req, res, callback) {
                     }
                 
                 console.log("jobid : " + jobId);
-                qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs/" + jobId;
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/ITOH/jobs/" + jobId;
                 body = "";
                 Get( qString, body, req, res, function(result) {
                     try{
