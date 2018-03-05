@@ -110,8 +110,9 @@ module.exports = function(req, res, callback) {
                         });
                   }
                   catch(e){
+                      console.log("Error: " + e);
                       res.json({
-                        message : "Error: " + e 
+                        speech: "Unble to process your request. Please try again later."
                     });
                   }
                     
