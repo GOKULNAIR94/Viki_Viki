@@ -59,10 +59,10 @@ module.exports = function(req, res, callback) {
                         Query( qString, req, res, function( jobResult) {
                             var jobName = jobResult.items[0].Name;
                             if( jobName != null && jobName != "" )
-                                speech = speech + ",\nDesignation :" + jobName;
+                                speech = speech + ",\nDesignation: " + jobName;
 
                             if( manName != null && manName != "" )
-                                speech = speech + ",\nReporting Manager :" + manName;
+                                speech = speech + ",\nReporting Manager: " + manName;
 
                             speech = speech +".\n";
 
