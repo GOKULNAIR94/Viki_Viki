@@ -64,7 +64,7 @@ module.exports = function(req, res, callback) {
                             if( manName != null && manName != "" )
                                 speech = speech + ",\nReporting Manager: " + manName;
 
-                            speech = speech +".\n";
+                            speech = speech +".\n Is there anything else I can help you with?";
 
                             SendResponse(speech, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
@@ -75,7 +75,7 @@ module.exports = function(req, res, callback) {
                     });
                 }
                 else{
-                    speech = speech +".\n";
+                    speech = speech +".\n Is there anything else I can help you with?";
 
                     SendResponse(speech, suggests, contextOut, req, res, function() {
                         console.log("Finished!");

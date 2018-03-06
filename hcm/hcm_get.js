@@ -45,6 +45,7 @@ module.exports = function(req, res, callback) {
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
             speech = "No employee found by name " + empName + ".";
+            speech = speech + " \nAnything else I can help you with?";
             SendResponse(speech, suggests, contextOut, req, res, function() {
                 console.log("Finished!");
             });
@@ -79,6 +80,7 @@ module.exports = function(req, res, callback) {
                                 
                             }else{
                                 speech = firstName + "'s " + attribName + " has been updated to " + attribValue;
+                                speech = speech + " \nAnything else I can help you with?";
                                 SendResponse(speech, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });
@@ -88,6 +90,7 @@ module.exports = function(req, res, callback) {
                     else{
                         speech =  firstName + "'s " + attribName + ": " + result.items[0][attribCode] + ".";
         //                console.log("result : " + JSON.stringify(result.items[0]));
+                        speech = speech + " \nAnything else I can help you with?";
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -96,6 +99,7 @@ module.exports = function(req, res, callback) {
                     if( attrib.length == 3){
                         if( intentName == "hcm_get_one_update"){
                              speech =  "Lets do that in the next version.";
+                            speech = speech + " \nAnything else I can help you with?";
             //                console.log("result : " + JSON.stringify(result.items[0]));
                             SendResponse(speech, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
@@ -123,7 +127,7 @@ module.exports = function(req, res, callback) {
                                     speech =  firstName + " reports to " + collResult.items[0].DisplayName + ".";
                                 }
 
-
+                                speech = speech + " \nAnything else I can help you with?";
                                 SendResponse(speech, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });

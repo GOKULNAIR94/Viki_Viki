@@ -43,7 +43,7 @@ module.exports = function(req, res, callback) {
             Update( qString, body, req, res, function() {
                 console.log("Update called");
                 var emailContent = {};
-                emailContent.speech = firstName + " has been transferred to " + attribValue;
+                emailContent.speech = firstName + " has been transferred to " + attribValue + ". \n Is there anything else I can assist you with?";
                 emailContent.subject = "Your Transfer to " +attribValue+ " is processed";
                 emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
                     '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +
