@@ -25,6 +25,7 @@ module.exports = function(req, res, callback) {
                 var lastWeek = new Date();
                 lastWeek.setDate(new Date() - 6);
                 lastWeek = lastWeek.toISOString().split("T")[0];
+                console.log("lastWeek : " + lastWeek);
                 qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "' AND Date >='" + lastWeek + "'";
                 break;
             }
