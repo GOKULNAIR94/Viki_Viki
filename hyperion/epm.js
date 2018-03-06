@@ -19,7 +19,7 @@ module.exports = function(req, res, callback) {
     switch (true) {
         case (intentName == "EPM_MDXQuery"):
             {
-                qString = "/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1";
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/ITOH/dataexport/plantypes/Plan1";
                 
 //                body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.Period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.epm_account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.epm_year + "],[Scenario].[" + req.body.result.parameters.epm_scenario + "],[Version].[" + req.body.result.parameters.epm_version + "],[Entity].[" + "403" + "])";
                 body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.Period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.epm_account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.epm_year + "],[Scenario].[" + req.body.result.parameters.epm_scenario + "],[Version].[" + req.body.result.parameters.epm_version + "],[Entity].[" + "403" + "],[Product].[" + "No Product" + "])";
@@ -49,12 +49,15 @@ module.exports = function(req, res, callback) {
             
         case (intentName == "EPM_Jobs"):
             {
-                qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs";
-                body = "jobType=CUBE_REFRESH&jobName=RefreshCube";
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/ITOH/jobs";
+                body = {
+                    "jobType" : "CUBE_REFRESH",
+                    "jobName": "CubeRefresh"
+                    };
                 Query( qString, body, req, res, function(result) {
                     try{
                       //speech = "Job Status has been updated to " + result.descriptiveStatus + ".\nJob Id: " + result.jobId + ".";
-                      speech = "Job (Id: " + result.jobId + ") submitted for Cube Refresh (Application – Vision) with a current status of " + result.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
+                      speech = "Job (Id: " + result.jobId + ") submitted for Cube Refresh (Application – ITOH) with a current status of " + result.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
                         contextOut = [{
                                 "name": "jobid",
                                 "lifespan": 1,
@@ -97,18 +100,22 @@ module.exports = function(req, res, callback) {
                     }
                 
                 console.log("jobid : " + jobId);
-                qString = "/HyperionPlanning/rest/11.1.2.4/applications/Vision/jobs/" + jobId;
+                qString = "/HyperionPlanning/rest/11.1.2.4/applications/ITOH/jobs/" + jobId;
                 body = "";
                 Get( qString, body, req, res, function(result) {
                     try{
-                      speech = "Status of job (Id: " + jobId + ") is " + result.descriptiveStatus + ".";
+                      speech = "Status of job (Id: " + jobId + ") is " + result.descriptiveStatus + ", \n" + "JobName: " + result.jobName;
+                        if( result.descriptiveStatus == "Error"){
+                            speech = speech + ", \nDetails : " + result.details;
+                        }
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
                   }
                   catch(e){
+                      console.log("Error: " + e);
                       res.json({
-                        message : "Error: " + e 
+                        speech: "Unble to process your request. Please try again later."
                     });
                   }
                     

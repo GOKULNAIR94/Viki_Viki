@@ -1,15 +1,16 @@
 module.exports = function ( qString, body, req, resp, callback){ 
-    var http = require("http");
+    var http = require("https");
     console.log( "qString : " + qString);
 
     var options = {
       "method": "GET",
-      "hostname": "kaamanagarwal.ddns.net",
-      "port": "9001",
+      "hostname": "planning-a17894.pbcs.ap1.oraclecloud.com",
+//      "port": "9001",
       "path": qString, //"/HyperionPlanning/rest/11.1.2.4/applications/vision/dataexport/plantypes/Plan1",
       "headers": {
-        "authorization": "Basic d2VibG9naWM6QWRtaW4xMjM=",
-        "cache-control": "no-cache"
+        "authorization": "Basic YTE3ODk0LmJodW1pa2Euc2hpdmFsaUBsbnRpbmZvdGVjaC5jb206RGVjQDIwMTc=",
+        "content-type": "application/json",
+          "cache-control": "no-cache"
       }
     };
 
@@ -28,8 +29,9 @@ module.exports = function ( qString, body, req, resp, callback){
               callback( resObj );
           }
           catch(e){
+              console.log("Error: " + e  );
               resp.json({
-                message : "Error: " + e 
+                speech: "Unble to process your request. Please try again later."
             });
           }
       });

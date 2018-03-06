@@ -17,6 +17,8 @@ var DCPData = require("./dcpdata");
 var KIR = require("./osc/kir");
 var BIP = require("./bip/bip");
 var EPM = require("./hyperion/epm");
+var HCM = require("./hcm/hcm");
+
 var ADSData = require("./adsdata");
 var SendEmail = require("./sendEmail");
 var sendAdhocEmail = require("./sendAdhocEmail");
@@ -217,37 +219,38 @@ restService.post('/inputmsg', function(req, res) {
                 speech = "Sure. I have put in a Service Now ticket for a support professional to help you with the MS Office. Here is your ticket number: ";
             } 
             
-            ticket = {
-                "primaryContact":
-                {
-                "id": 63
-                },
-                "channel": {
-			        "id": 8
-			    },
-
-                "assignedTo": {
-                    "staffGroup": {
-                        "lookupName": "Admin"
-                    }
-                },
-                "customFields": {
-                    "c": {
-                        "description": description,
-                        "priority": {
-                            "lookupName": priority
-                        }
-                    }
-                },
-
-
-                "statusWithType": {
-                    "status": {
-                        "lookupName": "Unresolved"
-                    }
-                },
-                "subject": subject
-            };
+            ticket = {"caller_id":"Kaaman Agarwal","priority":"2","severity":"3","description": description, "short_description" : subject};
+//            ticket = {
+//                "primaryContact":
+//                {
+//                "id": 60
+//                },
+//                "channel": {
+//			        "id": 8
+//			    },
+//
+//                "assignedTo": {
+//                    "staffGroup": {
+//                        "lookupName": "Admin"
+//                    }
+//                },
+//                "customFields": {
+//                    "c": {
+//                        "description": description,
+//                        "priority": {
+//                            "lookupName": priority
+//                        }
+//                    }
+//                },
+//
+//
+//                "statusWithType": {
+//                    "status": {
+//                        "lookupName": "Unresolved"
+//                    }
+//                },
+//                "subject": subject
+//            };
             createTicket( ticket, function( tId ) {
                 speech = speech + tId + ".";
                 console.log("Ticket created : " + speech);
@@ -285,6 +288,12 @@ restService.post('/inputmsg', function(req, res) {
         if (intentName.indexOf("BIP_") == 0 ){
             BIP(req, res, function(result) {
                 console.log("BIP Called");
+            });
+        }
+        
+        if (intentName.indexOf("hcm_") == 0 ){
+            HCM(req, res, function(result) {
+                console.log("HCM Called");
             });
         }
 

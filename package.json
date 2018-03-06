@@ -23,11 +23,13 @@
     "fast-csv": "^2.4.0",
     "file-base64": "^1.0.0",
     "json-query": "^2.2.2",
+    "mssql": "^4.1.0",
     "nodemailer": "^4.1.0",
     "request": "^2.76.0",
     "soap": "^0.23.0",
     "strong-soap": "^1.5.0",
-    "titlecase": "^1.1.2"
+    "titlecase": "^1.1.2",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {},
   "description": ""

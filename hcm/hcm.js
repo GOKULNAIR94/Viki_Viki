@@ -1,49 +1,68 @@
 module.exports = function(req, res, callback) {
-
-    var Query = require("./query");
-    var SendResponse = require("./sendResponse");
+    var HCMwho = require("./hcmwho");
+    var HCMget = require("./hcm_get");
+    var HCMhire = require("./hcmhire");
+    var HCMleave_a = require("./hcmleave_a");
+    var HCMtransfer = require("./hcm_transfer");
+    var HCMAccess = require("./hcm_ppstAccess");
+    var HCMtime = require("./hcm_timesheet");
     
-    var speech = "";
-    var suggests = [];
-    var contextOut = [];
     var intentName = req.body.result.metadata.intentName;
-
-    var HireTerm = "";
-    HireTerm = req.body.result.contexts[0].parameters['HireTerm'];
-    var HireTermOG = "";
-    HireTermOG = req.body.result.contexts[0].parameters['HireTerm.original'];
-        
     
-    var dateperiod = req.body.result.contexts[0].parameters.dateperiod;
-    var dateperiodOG = req.body.result.contexts[0].parameters['dateperiod.original'];
-    var StartDate = dateperiod.split("/")[0];
-    var EndDate = dateperiod.split("/")[1];
-    
-    console.log("HireTerm : " + HireTerm);
-    console.log("dateperiod : " + dateperiod);
-    
-    var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=HireDate%3E" + StartDate + "%20and%20%3C" + EndDate + "&onlyData=true";
-
-    Query( qString, req, res, function(result) {
-        if (result.items.length == 0) {
-        speech = "No records found.";
-        } else {
-            speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.items.length + ".";
-            
-            for (var i = 0; i < result.items.length; i++) {
-                if( HireTerm == "Hire" ){
-                    speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Hire Date: " + result.items[i].HireDate;
-                }
-                if( HireTerm == "Term" ){
-                    speech = speech + "\n " + (i + 1) + ". " + result.items[i].FirstName + " " + result.items[i].LastName + ", Termination Date: " + result.items[i].TerminationDate; 
-                }
-                
+    switch (true) {
+            case (intentName == "hcm_whois"):
+            {
+                HCMwho(req, res, function(result) {
+                    console.log("HCM who Called");
+                });
+                break;
             }
-        }
-        SendResponse(speech, suggests, contextOut, req, res, function() {
-            console.log("Finished!");
-        });
-        
-    });
+            
+            case (intentName == "hcm_hire"):
+            {
+                HCMhire(req, res, function(result) {
+                    console.log("HCM who Called");
+                });
+                break;
+            }
+            
+            case (intentName.indexOf( "hcm_get_one" ) == 0 ):
+            {
+                HCMget(req, res, function(result) {
+                    console.log("HCM Called");
+                });
+                break;
+            }
+            
+            case (intentName.indexOf( "hcm_leave_" ) == 0 ):
+            {
+                HCMleave_a(req, res, function(result) {
+                    console.log("HCMleave_a Called");
+                });
+                break;
+            }
+            case (intentName.indexOf( "hcm_transfer" ) == 0 ):
+            {
+                HCMtransfer(req, res, function(result) {
+                    console.log("HCM_transfer Called");
+                });
+                break;
+            }
+            case (intentName == "hcm_Via-PSFTAccessAdd - yes" ):
+            {
+                HCMAccess(req, res, function(result) {
+                    console.log("HCMAccess Called");
+                });
+                break;
+            }
+            
+            case (intentName.indexOf( "hcm_timesheet" ) == 0 ):
+            {
+                HCMtime(req, res, function(result) {
+                    console.log("HCMtime Called");
+                });
+                break;
+            }
+    }
     
 }

@@ -7,19 +7,19 @@ module.exports = function(req, res ) {
     var speech = "";
     //var intentName = req.body.result.metadata.intentName;
         
-    Run( req, res, function(result) {
-        console.log("Run Called. : \n" + result);
-        speech = "Job Run.";
-        SendResponse(speech, suggests, contextOut, req, res, function() {
-            console.log("Finished!");
-        });
-    });
-    
-//    Schedule( req, res, function(result) {
-//        console.log("Schedule Called.");
-//        speech = "Report has been scheduled. Job Id : " + result.scheduleReportReturn;
+//    Run( req, res, function(result) {
+//        console.log("Run Called. : \n" + result);
+//        speech = "Job Run.";
 //        SendResponse(speech, suggests, contextOut, req, res, function() {
 //            console.log("Finished!");
 //        });
 //    });
+    
+    Schedule( req, res, function(result) {
+        console.log("Schedule Called.");
+        speech = "You request has been scheduled. Job Id : " + result.scheduleReportReturn + ". The payslip will be generated and mailed to you in a couple of minutes. Anything else I help you with?";
+        SendResponse(speech, suggests, contextOut, req, res, function() {
+            console.log("Finished!");
+        });
+    });
 }

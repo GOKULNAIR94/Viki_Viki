@@ -1,97 +1,10 @@
 module.exports = function(req, resp, callback) {
     var soap = require('soap');
-    var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/v2/ScheduleService?wsdl';
-    //    var args = {
-    //        dataModelUrl :"/Custom/TestDM_g.xdm",
-    //        "reportRequest" : {
-    ////            "reportAbsolutePath" : "Custom/BIPTest/Tickets.xdo"
-    //            "reportAbsolutePath" : "/Custom/TestDM_g.xdo"
-    //        },
-    //        "userID" : "LNT001",
-    //        "password" : "lntLNT2K16_1"
-    //    };
-
-    //    var args = {
-    //        dataModelUrl :"/Custom/BIPTest/TestDS.xdm",
-    //        endDate :"2018-03-10",   
-    //        notificationTo :"gokul.nair@lntinfotech.com",
-    //        notifyWhenFailed :true,
-    //        notifyWhenSuccess :true,
-    //        notifyWhenWarning :true,    
-    //        repeatCount :"0",
-    //        repeatInterval :"0",
-    //        userJobDesc :"My Template Test",
-    //        userJobName :"MyJob1111",
-    //        deliveryChannels:
-    //        {
-    //          emailOptions:
-    //          [{
-    //            item:
-    //            {
-    //              emailBody :"Hello,\nSending you the report in the pdf format\n\nThanks and regards,\nOSC Team\n\n",
-    //              emailFrom :"gokul.nair@lntinfotech.com",
-    //              emailServerName :"DefaultEmail",
-    //              emailSubject :"Opty Report",
-    //              emailTo :"gokul.nair@lntinfotech.com",
-    //              emailCC : "gokulgnair94@gmail.com"
-    //            }
-    //           
-    //          }]
-    //        
-    //        },
-    //        reportRequest:
-    //        {
-    //          attributeCalendar :"Gregorian",
-    //          attributeFormat :"HTML",     
-    //          attributeTemplate :"Opty Report",      
-    //          byPassCache :true,
-    //          flattenXML : false,
-//              reportAbsolutePath :"/Custom/BIPTest/TestReport.xdo",  
-//              parameterNameValues:{
-//                    listOfParamNameValues:
-//                        [{ item: {
-//                            UIType :"Text",
-//                              dataType :"String",
-//                              fieldSize : "20",
-//                              label : "Record Id",
-//                              multiValuesAllowed : false,
-//                              name : "Id",
-//                              refreshParamOnChange : false,
-//                              selectAll :false,
-//                              templateParam :false,
-//                              useNullForAll :true,
-//                            values:[{
-//                              item:"300000006786070"
-//                            }]
-//                        }},{ 
-//                            item: {
-//                            UIType :"Text",
-//                              dataType :"String",
-//                              fieldSize : "20",
-//                              label : "Object Name",
-//                              multiValuesAllowed : false,
-//                              name : "Object_Name",
-//                              refreshParamOnChange : false,
-//                              selectAll :false,
-//                              templateParam :false,
-//                              useNullForAll :true,
-//                            values:[{
-//                              item:"Deals_c"
-//                            }]
-//                        }}
-//                        ]
-//                        
-//                    }
-    //            },
-    //        "userID" : "LNT001",
-    //        "password" : "lntLNT2K16_1"
-    //        
-    //    };
-
-
+    var url = 'https://hcm-aufsn4x0cma.oracleoutsourcing.com/xmlpserver/services/v2/ScheduleService?wsdl';
+  
+    var month = req.body.result.parameters.month, week = req.body.result.parameters.week, year = req.body.result.parameters.year;
     var args = {
-//        "dataModelUrl": "/Custom/TestDM_g.xdm",
-//        "dataModelUrl": "/Custom/BIPTest/FirstReport/FirstWSDM.xdm",
+        "dataModelUrl": "/Custom/KaamanAgarwal/Payslip.xdm",
         "scheduleRequest": {
             "notificationTo": "gokul.nair@lntinfotech.com",
             "notifyWhenSuccess": true,
@@ -99,37 +12,62 @@ module.exports = function(req, resp, callback) {
             "deliveryChannels": {
                 "emailOptions": [{
                     "item": {
-                        "emailBody": "Hello Gokul",
-                        "emailFrom": "gokul.nair@lntinfotech.com",
+                        "emailBody": "Hi Kaaman,\n\nSending you the payslip for week " + week + " of " + month + " " + year + ".\n\nRegards,\nViki",
+                        "emailFrom": "viki@kaaman.onmicrosoft.com",
                         "emailServerName": "DefaultEmail",
-                        "emailSubject": "Opty Report",
-                        "emailTo": "gokulgnair94@gmail.com",
-                        "emailCC": "gokul.nair@lntinfotech.com"
+                        "emailSubject": "Payslip for the Month of " + month+" " + year,
+                        "emailTo": "kaaman.agarwal@lntinfotech.com",
+                        "emailBCC": "gokul.nair@lntinfotech.com",
+                        "emailAttachmentName": "Kaaman_Agarwal_Payslip"
                     }
 
                 }]
 
             },
             "reportRequest": {
-                "attributeFormat": "HTML",
-//                "reportAbsolutePath": "/Custom/TestDM_g.xdo",
-                "reportAbsolutePath": "/Custom/BIPTest/OrderBIP.xdo",
+                "attributeFormat": "pdf",
+                "reportAbsolutePath": "/Custom/KaamanAgarwal/Payslip.xdo",
                 "sizeOfDataChunkDownload": -1,  
               parameterNameValues:{
                     listOfParamNameValues:
                         [{ item: {
                             UIType :"Text",
                               dataType :"String",
-                              fieldSize : "20",
-                              label : "RecordName",
-                              multiValuesAllowed : false,
-                              name : "RecordName",
-                              refreshParamOnChange : false,
-                              selectAll :false,
-                              templateParam :false,
-                              useNullForAll :true,
+                              fieldSize : "120",
+                              label : "Week",
+                              name : "Week",
                             values:[{
-                              item:"O-0000009-180118"
+                              item:"1"
+                            }]
+                        }},
+                         { item: {
+                            UIType :"Text",
+                              dataType :"String",
+                              fieldSize : "120",
+                              label : "Year",
+                              name : "Year",
+                            values:[{
+                              item:"2018"
+                            }]
+                        }},
+                         { item: {
+                            UIType :"Text",
+                              dataType :"String",
+                              fieldSize : "120",
+                              label : "Employee Name",
+                              name : "EmployeeName",
+                            values:[{
+                              item:"Kaaman Agarwal"
+                            }]
+                        }},
+                         { item: {
+                            UIType :"Text",
+                              dataType :"String",
+                              fieldSize : "120",
+                              label : "Month",
+                              name : "Month",
+                            values:[{
+                              item:"January"
                             }]
                         }}
                         ]
@@ -138,8 +76,8 @@ module.exports = function(req, resp, callback) {
             }
         },
 
-        "userID": "LNT001",
-        "password": "lntLNT2K16_1"
+        "userID": "Kaaman.Agarwal",
+        "password": "Oracle123"
 
     };
 
@@ -148,8 +86,18 @@ module.exports = function(req, resp, callback) {
         client.scheduleReport(args, function(err, result) {
 //            console.log(result);
 //            console.log("Schedule : " + JSON.stringify(result));
-            console.log("Schedule : " + result.statusCode);
-            callback(result);
+            if(err){
+                console.log("Schedule err: " + err);
+                speech = "Unable to process your request. Please try again later.";
+                resp.json({
+                    speech: speech,
+                    displayText: speech
+                });
+            }else{
+                console.log("Schedule op: " + JSON.stringify(result));
+                callback(result);
+            }
+            
         });
     });
 }

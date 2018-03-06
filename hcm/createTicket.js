@@ -1,6 +1,6 @@
 module.exports = function( ticket, callback ) {
-
     var http = require("https");
+
     var options = {
       "method": "POST",
       "hostname": "dev38652.service-now.com",
@@ -30,7 +30,7 @@ module.exports = function( ticket, callback ) {
 
     req.write(JSON.stringify(ticket));
     req.end();
-    
+
 //    console.log("Crete Tkt: ticket : " + JSON.stringify(ticket));
 //
 //    var request = require("request");
@@ -54,7 +54,7 @@ module.exports = function( ticket, callback ) {
 //        output = JSON.parse(body);
 //        console.log(output.id);
 //        console.log(output.lookupName);
-//        return callback( output.lookupName );
+//        callback( output.lookupName );
 //    });
 
 }
