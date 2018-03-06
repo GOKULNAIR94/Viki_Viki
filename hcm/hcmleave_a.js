@@ -87,7 +87,7 @@ module.exports = function(req, res, callback) {
                         dDate.setDate(dDate.getDate() + 1);
                         while( dDate <= new Date(EndDate)){
                             formatDate = dDate.getFullYear() + "-" + (dDate.getMonth()+1) + "-" + dDate.getDate();
-                            qString = qString + ", ( "+ (++idDate) +", '" + formatDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')"
+                            qString = qString + ", ( "+ (++idDate) +", '" + formatDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
                             dDate.setDate(dDate.getDate() + 1);
                         }                        
                     }
