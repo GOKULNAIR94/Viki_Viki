@@ -61,7 +61,7 @@ module.exports = function(req, res, callback) {
                 console.log("leDate : " + leDate);
                 console.log("reason : " + leReason);
                 
-                qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '"+leDate+"' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" +leReason+ "','Casual', 'Pending')";
+                qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '"+leDate+"' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" +leReason.replace("'", "\'") + "','Casual', 'Pending')";
                 break;
             }
             case (intentName == "hcm_leave_apply_more" ):{    
@@ -73,16 +73,16 @@ module.exports = function(req, res, callback) {
                 console.log("reason : " + leReason);
                 
                 if( leDates != null){
-                    qString = 'INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( '+idDate+', "' + leDates[0] + '" ,"Kaaman Agarwal"," 300000000000000","300000000000000","' + leReason + '","Casual", "Pending")';
+                    qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + leDates[0] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason.replace("'", "\'") + "','Casual', 'Pending')";
                     for(var d=1; d< leDates.length; d++){
-                        qString = qString + ', ( '+(++idDate)+', "' + leDates[d] + '" ,"Kaaman Agarwal"," 300000000000000","300000000000000","' + leReason + '","Casual", "Pending")';
+                        qString = qString + ", ( "+(++idDate)+", '" + leDates[d] + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
                     }
                 }else{
                     if( lePeriod != null){
                         var StartDate = lePeriod.split("/")[0];
                         var EndDate = lePeriod.split("/")[1];
                         var dDate = new Date(StartDate);
-                        qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason + "','Casual', 'Pending')";
+                        qString = "INSERT INTO LeavesTable ( ID, Date, Name, EmployeeID, ApproverID, Reason, ReasonCategory, ApprovalStatus) VALUES ( "+idDate+", '" + StartDate + "' ,'Kaaman Agarwal',' 300000000000000','300000000000000','" + leReason.replace("'", "\'") + "','Casual', 'Pending')";
                         var formatDate = "";
                         dDate.setDate(dDate.getDate() + 1);
                         while( dDate <= new Date(EndDate)){
