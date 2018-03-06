@@ -21,10 +21,21 @@ module.exports = function( ticket, callback ) {
       });
 
       res.on("end", function () {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
-          var output = JSON.parse(body);
-          callback( output.result.number );
+        
+          try{
+            var body = Buffer.concat(chunks);
+            console.log(body.toString());
+              var output = JSON.parse(body);
+              callback( output.result.number );
+        }
+          catch(e){
+              console.log( "Error : " + e);
+              speech = "Unable to process your request. Please try again later.";
+              res.json({
+                    speech: speech,
+                    displayText: speech
+                });
+          }
       });
     });
 
