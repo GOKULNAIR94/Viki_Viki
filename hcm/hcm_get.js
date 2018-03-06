@@ -49,7 +49,7 @@ module.exports = function(req, res, callback) {
                 console.log("Finished!");
             });
         } else {
-            if (result.items.length == 1) {
+            if (result.items.length >= 1) {
                 if(attrib.length == 2){
                     if( intentName == "hcm_get_one_update"){
                         console.log("Update : " + result.toString() );
