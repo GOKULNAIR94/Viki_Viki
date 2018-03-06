@@ -23,7 +23,7 @@ module.exports = function(req, res, callback) {
             case (intentName == "hcm_timesheet_my"):{
                 dDate = new Date().toISOString().split("T")[0];
                 
-                qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "' AND ORDER BY Date ASC";
+                qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "' ORDER BY Date ASC";
                 break;
             }
             case (intentName == "hcm_timesheet_my_fill_these"):{
