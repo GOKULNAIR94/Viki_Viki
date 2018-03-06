@@ -47,6 +47,7 @@ module.exports = function(req, res, callback) {
                 
             }
         }
+        speech = speech +". \nIs there anything else I can assist you with?";
         SendResponse(speech, suggests, contextOut, req, res, function() {
             console.log("Finished!");
         });

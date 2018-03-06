@@ -79,6 +79,7 @@ module.exports = function(req, res, callback) {
                                 
                             }else{
                                 speech = firstName + "'s " + attribName + " has been updated to " + attribValue;
+                                speech = speech + " \nAnything else I can help you with?";
                                 SendResponse(speech, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });
@@ -87,6 +88,7 @@ module.exports = function(req, res, callback) {
                     }
                     else{
                         speech =  firstName + "'s " + attribName + ": " + result.items[0][attribCode] + ".";
+                        speech = speech + " \n Anything else I can help you with?";
         //                console.log("result : " + JSON.stringify(result.items[0]));
                         SendResponse(speech, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
@@ -123,7 +125,7 @@ module.exports = function(req, res, callback) {
                                     speech =  firstName + " reports to " + collResult.items[0].DisplayName + ".";
                                 }
 
-
+                                speech = speech + " \nAnything else I can help you with?";
                                 SendResponse(speech, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });

@@ -26,6 +26,7 @@ module.exports = function(req, res, callback) {
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
             speech = "No employee found by name " + empName + ".";
+            speech = speech +". \nIs there anything else I can help you with?";
             SendResponse(speech, suggests, contextOut, req, res, function() {
                 console.log("Finished!");
             });
@@ -43,12 +44,12 @@ module.exports = function(req, res, callback) {
             Update( qString, body, req, res, function() {
                 console.log("Update called");
                 var emailContent = {};
-                emailContent.speech = firstName + " has been transferred to " + attribValue;
+                emailContent.speech = firstName + " has been transferred to " + attribValue + ". \nAnything else I can help you with?";
                 emailContent.subject = "Your Transfer to " +attribValue+ " is processed";
                 emailContent.body = '<p><b>Hello ' +firstName+',</b></p>' +
                     '<p>Your Transfer is processed. Please raise a request on IT Helpdesk for Domain Change.</p>' +
                     '<p>Thanks,<br><b>Viki</b></p>';
-
+                
                 SendEmail( emailContent, req, res, function(result) {
                     console.log("SendEmail Called");
                 });

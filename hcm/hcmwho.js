@@ -28,6 +28,7 @@ module.exports = function(req, res, callback) {
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
             speech = "No employee found by name " + empName + ".";
+            speech = speech +". \nAnything else I can help you with?";
             SendResponse(speech, suggests, contextOut, req, res, function() {
                 console.log("Finished!");
             });
@@ -64,8 +65,8 @@ module.exports = function(req, res, callback) {
                             if( manName != null && manName != "" )
                                 speech = speech + ",\nReporting Manager: " + manName;
 
-                            speech = speech +".\n";
-
+                           
+                            speech = speech +". \nAnything else I can help you with?";
                             SendResponse(speech, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
                             });
@@ -75,8 +76,7 @@ module.exports = function(req, res, callback) {
                     });
                 }
                 else{
-                    speech = speech +".\n";
-
+                    speech = speech +". \nAnything else I can help you with?";
                     SendResponse(speech, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
                     });
