@@ -23,7 +23,7 @@ module.exports = function(req, res, callback) {
             case (intentName == "hcm_timesheet_my"):{
                 dDate = new Date().toISOString().split("T")[0];
                 
-                qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "'";
+                qString = "Select * from TimeSheets WHERE EmployeeName LIKE '%Kaaman%' AND Hours='0' AND Date<='" + dDate + "' AND ORDER BY Date ASC";
                 break;
             }
             case (intentName == "hcm_timesheet_my_fill_these"):{
@@ -99,7 +99,7 @@ module.exports = function(req, res, callback) {
                 switch (true) {
                     case (intentName == "hcm_timesheet_my"):{
                         
-                        speech = "Your timesheet booking is pending for the following dates:";
+                        speech = "Your timesheet booking is pending for the following dates:\n";
                         for(var i=0;i < result.recordset.length; i++){
                             speech = speech + "" + result.recordset[i].Date.toISOString().split("T")[0] + "; \n";
                             tmdates[i] = result.recordset[i].Date.toISOString().split("T")[0];
