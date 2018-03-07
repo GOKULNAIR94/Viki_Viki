@@ -16,6 +16,7 @@ module.exports = function(req, res, callback) {
     var intentName = req.body.result.metadata.intentName;
     var locValue = req.body.result.parameters['attribValue'];
     var locationId ="";
+    console.log("locValue : " + locValue);
 
     var empName = "";
     
