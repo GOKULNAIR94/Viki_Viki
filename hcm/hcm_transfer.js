@@ -26,7 +26,7 @@ module.exports = function(req, res, callback) {
     var lastName = toTitleCase(empName.split(" ")[1].toLowerCase()) ;
     console.log("Name : " + firstName + " " + lastName );
     
-    qString = "/hcmCoreSetupApi/resources/11.12.1.0/locations?q=LocationName="+ encodeURIComponent(locValue);
+    qString = "/hcmCoreSetupApi/resources/11.12.1.0/locations?q=LocationName="+ encodeURIComponent(locValue) + "ields=LocationName,LocationId&limit=400&onlyData=true";
     
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
