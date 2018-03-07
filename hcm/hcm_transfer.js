@@ -36,7 +36,7 @@ module.exports = function(req, res, callback) {
                 });
             } else {
                 locationId = result.items[0].LocationId;
-                qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName;
+                qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&expand=assignments";
 
                 Query( qString, req, res, function(result) {
                     if (result.items.length == 0) {
