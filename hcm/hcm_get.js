@@ -111,7 +111,7 @@ module.exports = function(req, res, callback) {
                                     qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
                                 }
                                 
-                                if( attribCode == "ManagerId"){
+                                if( attribCode == "LocationId"){
                                     var locId = result.items[0].assignments[0].LocationId;
                                     qString = "/hcmCoreApi/resources/11.12.1.0/locations?q=LocationId=" + locId + "&fields=LocationName&onlyData=true";
                                 }
