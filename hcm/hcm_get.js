@@ -117,8 +117,7 @@ module.exports = function(req, res, callback) {
                                 }
 
                                 Query( qString, req, res, function( collResult) {
-
-
+                                    console.log("Col Results: " + collResult);
                                     if(attribCode == "JobId"){
                                         speech =  firstName + "'s " + attribName + ": " + collResult.items[0].Name + ".";
                                     }
