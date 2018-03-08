@@ -1,6 +1,6 @@
 module.exports = function ( speech, suggests, contextOut, req, res, callback){ 
 
-    if (req.body.originalRequest.source == "google") {
+    if (req.body.originalRequest.source == "google" || req.body.originalRequest.source == "facebook") {
                 res.json({
                     speech: speech,
                     displayText: speech,
@@ -18,6 +18,20 @@ module.exports = function ( speech, suggests, contextOut, req, res, callback){
                                     }
                                 }],
                                 "suggestions": suggests
+                            }
+                        },
+                        facebook: {
+                            'expectUserResponse': true,
+                            'isSsml': false,
+                            'noInputPrompts': [],
+                            'richResponse': {
+                                'items': [{
+                                    'simpleResponse': {
+                                        'textToSpeech': speech,
+                                        'displayText': speech
+                                    }
+                                }],
+                                "suggestions": [{"title": "0"},{"title": "1"}]
                             }
                         }
                     }
