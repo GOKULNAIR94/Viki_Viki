@@ -52,7 +52,7 @@ module.exports = function(req, res, callback) {
                 
 //                        speech = speech + ",\n" + result.items[0].AddressLine1 +  ", " + result.items[0].City +  ", " + result.items[0].Country;
                 if(locId != null && locId != ""){
-                    qString = "/hcmCoreApi/resources/11.12.1.0/locations?q=LocationId=" + locId + "&fields=LocationName&onlyData=true";
+                    qString = "/hcmCoreSetupApi/resources/11.12.1.0/locations?q=LocationId=" + locId + "&fields=LocationName&onlyData=true";
                     Query( qString, req, res, function( locResult) {
                         var locName = locResult.items[0].LocationName;
                         console.log("Location: "+ locName);
