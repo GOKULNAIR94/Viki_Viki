@@ -38,7 +38,7 @@ module.exports = function(req, res, callback) {
                 
                 var manId = result.items[0].assignments[0].ManagerId;
                 var jobId = result.items[0].assignments[0].JobId;
-                var locIdlocId = result.items[0].assignments[0].LocationId;
+                var locId = result.items[0].assignments[0].LocationId;
                 console.log("ManagerId : " + manId);
                 console.log("job : " + jobId);
                 console.log("locId : " + locId);
