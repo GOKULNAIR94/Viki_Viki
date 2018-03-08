@@ -41,7 +41,7 @@ module.exports = function(req, res, callback) {
     }
     console.log("attrib : " + attrib + " " + attrib.length );
     
-    if( attribName != "Location"){
+    
         
         
         var qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=FirstName=" + firstName + ";LastName=" + lastName + "&expand=assignments";
@@ -87,11 +87,18 @@ module.exports = function(req, res, callback) {
                     }else{
                         if( attrib.length == 3){
                             if( intentName == "hcm_get_one_update"){
-                                 speech =  "Lets do that in the next version.";
-                //                console.log("result : " + JSON.stringify(result.items[0]));
-                                SendResponse(speech, suggests, contextOut, req, res, function() {
-                                    console.log("Finished!");
-                                });
+                                if( attribName != "Location"){
+                                    speech =  "Lets do that in the next version.";
+                    //                console.log("result : " + JSON.stringify(result.items[0]));
+                                    SendResponse(speech, suggests, contextOut, req, res, function() {
+                                        console.log("Finished!");
+                                    });
+                                }else{
+                                    HCMtransfer(req, res, function(result) {
+                                        console.log("HCM_transfer Called");
+                                    });
+                                }
+                                 
                             }
                             else{
                                 if(attribCode == "JobId"){
@@ -103,6 +110,11 @@ module.exports = function(req, res, callback) {
                                     var manId = result.items[0].assignments[0].ManagerId;
                                     qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
                                 }
+                                
+                                if( attribCode == "ManagerId"){
+                                    var locId = result.items[0].assignments[0].LocationId;
+                                    qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + locId + "&fields=LocationName&onlyData=true";
+                                }
 
                                 Query( qString, req, res, function( collResult) {
 
@@ -113,6 +125,9 @@ module.exports = function(req, res, callback) {
 
                                     if( attribCode == "ManagerId"){
                                         speech =  firstName + " reports to " + collResult.items[0].DisplayName + ".";
+                                    }
+                                    if( attribCode == "LocationId"){
+                                        speech =  firstName + " is located at " + collResult.items[0].LocationName + ".";
                                     }
 
                                     speech = speech + " \nAnything else I can help you with?";
@@ -131,10 +146,6 @@ module.exports = function(req, res, callback) {
 
         });
         
-    }else{
-        HCMtransfer(req, res, function(result) {
-            console.log("HCM_transfer Called");
-        });
-    }
+    
     
 }
