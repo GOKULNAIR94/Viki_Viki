@@ -55,6 +55,7 @@ module.exports = function(req, res, callback) {
                     qString = "/hcmCoreApi/resources/11.12.1.0/locations?q=LocationId=" + locId + "&fields=LocationName&onlyData=true";
                     Query( qString, req, res, function( locResult) {
                         var locName = locResult.items[0].LocationName;
+                        console.log("Location: "+ locName);
                         if( locName != null && locName != "" )
                                 speech = speech + ",\Location: " + locName;
                         
