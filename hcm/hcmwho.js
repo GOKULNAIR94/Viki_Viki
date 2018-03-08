@@ -57,7 +57,7 @@ module.exports = function(req, res, callback) {
                         var locName = locResult.items[0].LocationName;
                         console.log("Location: "+ locName);
                         if( locName != null && locName != "" )
-                                speech = speech + ",\Location: " + locName;
+                                speech = speech + ",\nLocation: " + locName;
                         
                         if( manId != null && manId != "" && jobId != null && jobId != ""){
                             qString = "/hcmCoreApi/resources/11.12.1.0/emps?q=PersonId=" + manId + "&fields=DisplayName&onlyData=true";
