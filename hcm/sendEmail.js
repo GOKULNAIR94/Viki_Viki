@@ -49,15 +49,18 @@ module.exports = function( emailContent, req, res) {
         if (error) {
             console.log( "Error : " + error);
             speech = "Unable to send mail. Please try again later.";
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-        setTimeout(function() {
             return res.json({
                 speech: speech,
                 displayText: speech
             });
-        }, 1000);
+        } else {
+            console.log('Email sent: ' + info.response);
+            return res.json({
+                speech: speech,
+                displayText: speech
+            });
+        }
+            
     });
 
 //    transporter.verify(function(error, success) {
