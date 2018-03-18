@@ -52,10 +52,12 @@ module.exports = function( emailContent, req, res) {
         } else {
             console.log('Email sent: ' + info.response);
         }
-        return res.json({
-            speech: speech,
-            displayText: speech
-        });
+        setTimeout(function() {
+            return res.json({
+                speech: speech,
+                displayText: speech
+            });
+        }, 1000);
     });
 
 //    transporter.verify(function(error, success) {
