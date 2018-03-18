@@ -33,7 +33,7 @@ module.exports = function(req, res, callback) {
 
     Query( qString, req, res, function(result) {
         if (result.items.length == 0) {
-        speech = "No records found.";
+        speech = "No "+HireTermOG+" " +dateperiodOG+ ".";
         } else {
             speech = "Number of " + HireTermOG + " " + dateperiodOG + " : " + + result.items.length + ".";
             

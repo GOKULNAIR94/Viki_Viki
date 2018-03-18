@@ -91,7 +91,7 @@ module.exports = function(req, res, callback) {
     if( qString != null && qString!= ""){
         QueryDB( qString, req, res, function(result) {
             if( result.rowsAffected == 0){
-                speech = "No records found.";
+                speech = "No pending timesheet booking.";
                 SendResponse(speech, suggests, contextOut, req, res, function() {
                     console.log("Finished!");
                 });
