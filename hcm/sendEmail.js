@@ -67,12 +67,12 @@ module.exports = function( emailContent, req, res) {
                     console.log('Sending Mail');
                 }   
             });
-            setTimeout(function() {
+//            setTimeout(function() {
                 return res.json({
                     speech: speech,
                     displayText: speech
                 });
-            }, 1000);
+//            }, 1000);
         }
     });
 
