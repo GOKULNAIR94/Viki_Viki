@@ -29,11 +29,9 @@ module.exports = function( emailContent, req, res) {
     var message = {
         from: 'VIKI <viki@kaaman.onmicrosoft.com>',
         // Comma separated list of recipients
-//        to: toemail,
-        
-        to : "gokulgnair94@gmail.com",
+        to: toemail,
 
-//        bcc: "gokul.nair@lntinfotech.com",
+        bcc: "gokul.nair@lntinfotech.com",
 
         // Subject of the message
         subject: subject, //
