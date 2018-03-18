@@ -91,6 +91,12 @@ module.exports = function(req, res, callback) {
                         }
                     });
                 }
+                else{
+                    speech = speech +". \nAnything else I can help you with?";
+                    SendResponse(speech, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
+                }
                 
                 
             }
