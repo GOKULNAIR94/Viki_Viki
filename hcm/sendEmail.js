@@ -47,24 +47,32 @@ module.exports = function( emailContent, req, res) {
     transporter.verify(function(error, success) {
         if (error) {
             console.log(error);
+            speech = "Unable to send mail. Please try again later.";
+            return res.json({
+                speech: speech,
+                displayText: speech
+            });
         } else {
             console.log('Server is ready to take our messages');
             transporter.sendMail(message, (error, info) => {
                 if (error) {
                     console.log('Error occurred');
                     console.log(error.message);
-                    return;
+                    speech = "Unable to send mail. Please try again later.";
                 }
-//                console.log('Message sent successfully!');
-                console.log('Server responded with "%s"', info.response);
-                transporter.close();
-                
-                console.log('Sending Mail');
+                else{
+                    console.log('Message sent successfully!');
+                    console.log('Server responded with "%s"', info.response);
+                    transporter.close();
+                    console.log('Sending Mail');
+                }   
+            });
+            setTimeout(function() {
                 return res.json({
                     speech: speech,
                     displayText: speech
                 });
-            });
+            }, 1000);
         }
     });
 
