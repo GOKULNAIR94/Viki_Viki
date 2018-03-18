@@ -9,7 +9,7 @@ module.exports = function( emailContent, req, res) {
     console.log(intent_name);
     console.log("Inside");
     // Create a SMTP transporter object
-    let transporter = nodemailer.createTransport({
+    var transporter = nodemailer.createTransport({
         service: 'Outlook365', // no need to set host or port etc.
         auth: {
             user: 'viki@kaaman.onmicrosoft.com',//'reachme@kaaman.onmicrosoft.com',
@@ -56,19 +56,27 @@ module.exports = function( emailContent, req, res) {
             });
         } else {
             console.log('Server is ready to take our messages');
-            transporter.sendMail(message, (error, info) => {
+            transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
-                    console.log('Error occurred');
-                    console.log(error.message);
+                    console.log( "Error : " + error);
                     speech = "Unable to send mail. Please try again later.";
+                } else {
+                    console.log('Email sent: ' + info.response);
                 }
-                else{
-                    console.log('Message sent successfully!');
-                    console.log('Server responded with "%s"', info.response);
-                    transporter.close();
-                    console.log('Sending Mail');
-                }   
             });
+//            transporter.sendMail(message, (error, info) => {
+//                if (error) {
+//                    console.log('Error occurred');
+//                    console.log(error.message);
+//                    speech = "Unable to send mail. Please try again later.";
+//                }
+//                else{
+//                    console.log('Message sent successfully!');
+//                    console.log('Server responded with "%s"', info.response);
+//                    transporter.close();
+//                    console.log('Sending Mail');
+//                }   
+//            });
 //            setTimeout(function() {
                 return res.json({
                     speech: speech,
