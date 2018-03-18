@@ -9,7 +9,7 @@ module.exports = function( emailContent, req, res) {
     console.log(intent_name);
     console.log("Inside");
     // Create a SMTP transporter object
-    var transporter = nodemailer.createTransport({
+    let transporter = nodemailer.createTransport({
         service: 'Outlook365', // no need to set host or port etc.
         auth: {
             user: 'viki@kaaman.onmicrosoft.com',//'reachme@kaaman.onmicrosoft.com',
@@ -26,7 +26,7 @@ module.exports = function( emailContent, req, res) {
     console.log(speech);
     console.log('SMTP Configured');
 
-    let message = {
+    var message = {
         from: 'VIKI <viki@kaaman.onmicrosoft.com>',
         // Comma separated list of recipients
 //        to: toemail,
@@ -45,25 +45,29 @@ module.exports = function( emailContent, req, res) {
         watchHtml: '<b>Hello</b> to myself'
 
     };
-
-    transporter.verify(function(error, success) {
+    transporter.sendMail(message, function(error, info){
         if (error) {
-            console.log(error);
+            console.log( "Error : " + error);
             speech = "Unable to send mail. Please try again later.";
-            return res.json({
-                speech: speech,
-                displayText: speech
-            });
         } else {
-            console.log('Server is ready to take our messages');
-            transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                    console.log( "Error : " + error);
-                    speech = "Unable to send mail. Please try again later.";
-                } else {
-                    console.log('Email sent: ' + info.response);
-                }
-            });
+            console.log('Email sent: ' + info.response);
+        }
+        return res.json({
+            speech: speech,
+            displayText: speech
+        });
+    });
+
+//    transporter.verify(function(error, success) {
+//        if (error) {
+//            console.log(error);
+//            speech = "Unable to send mail. Please try again later.";
+//            return res.json({
+//                speech: speech,
+//                displayText: speech
+//            });
+//        } else {
+//            console.log('Server is ready to take our messages');
 //            transporter.sendMail(message, (error, info) => {
 //                if (error) {
 //                    console.log('Error occurred');
@@ -77,14 +81,14 @@ module.exports = function( emailContent, req, res) {
 //                    console.log('Sending Mail');
 //                }   
 //            });
-//            setTimeout(function() {
-                return res.json({
-                    speech: speech,
-                    displayText: speech
-                });
-//            }, 1000);
-        }
-    });
+////            setTimeout(function() {
+//                return res.json({
+//                    speech: speech,
+//                    displayText: speech
+//                });
+////            }, 1000);
+//        }
+//    });
 
 //    setTimeout(function() {
 ////        transporter.sendMail(message, (error, info) => {
