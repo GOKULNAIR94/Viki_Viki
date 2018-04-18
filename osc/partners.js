@@ -16,7 +16,7 @@ module.exports = function(req, res, callback) {
             {
 
 
-                qString = "/salesApi/resources/latest/partners?onlyData=true";
+                qString = "/crmRestApi/resources/latest/partners?onlyData=true";
                 Query(qString, loginEncoded, req, res, function(result) {
                     if (result.items.length <= 0) {
                         speech = "No records found";
@@ -42,7 +42,7 @@ module.exports = function(req, res, callback) {
             {
 
                 var partnerName = req.body.result.contexts[0].parameters["partnerName.original"];
-                qString = "/salesApi/resources/latest/opportunities?onlyData=true&q=PrimaryPartnerOrgPartyName=" + encodeURIComponent(partnerName);
+                qString = "/crmRestApi/resources/latest/opportunities?onlyData=true&q=PrimaryPartnerOrgPartyName=" + encodeURIComponent(partnerName);
 
                 Query(qString, loginEncoded, req, res, function(result) {
                     if (result.items.length <= 0) {
@@ -69,7 +69,7 @@ module.exports = function(req, res, callback) {
             {
 
                 var optyName = req.body.result.contexts[0].parameters["optyName.original"];
-                qString = "/salesApi/resources/latest/Quote_c?q=OpportunityName_c=" + encodeURIComponent(optyName);
+                qString = "/crmRestApi/resources/latest/Quote_c?q=OpportunityName_c=" + encodeURIComponent(optyName);
 
                 Query(qString, loginEncoded, req, res, function(result) {
                     if (result.items.length <= 0) {
@@ -96,7 +96,7 @@ module.exports = function(req, res, callback) {
             {
 
                 var quoteName = req.body.result.contexts[0].parameters["quoteName.original"];
-                qString = "/salesApi/resources/latest/Quote_c?q=RecordName=" + quoteName;
+                qString = "/crmRestApi/resources/latest/Quote_c?q=RecordName=" + quoteName;
 
                 Query(qString, loginEncoded, req, res, function(result) {
                     if (result.items.length <= 0) {
@@ -181,7 +181,7 @@ module.exports = function(req, res, callback) {
                     "method": "POST",
                     "hostname": "acs.crm.ap2.oraclecloud.com",
                     "port": null,
-                    "path": "/salesApi/resources/latest/Quote_c/" + quoteId,
+                    "path": "/crmRestApi/resources/latest/Quote_c/" + quoteId,
                     "headers": {
                         "content-type": "application/vnd.oracle.adf.action+json",
                         "authorization": "Basic TG50MDAxOmxudExOVDJLMTZfMQ=="
