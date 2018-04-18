@@ -179,7 +179,7 @@ module.exports = function(req, res, callback) {
 
                 var options = {
                     "method": "POST",
-                    "hostname": "acs.crm.ap2.oraclecloud.com",
+                    "hostname": "acs.fa.ap2.oraclecloud.com",
                     "port": null,
                     "path": "/crmRestApi/resources/latest/Quote_c/" + quoteId,
                     "headers": {

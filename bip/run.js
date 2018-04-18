@@ -7,7 +7,7 @@ module.exports = function ( req, res, callback){
     var fileName = reportName + '.pdf';
     var emailContent = {};
 
-    var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
+    var url = 'https://acs.fa.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
     var args = {
         "reportRequest" : {
             "attributeFormat" :"pdf",
@@ -47,7 +47,7 @@ module.exports = function ( req, res, callback){
 //module.exports = function ( req, res, callback){ 
 //    var soap = require('strong-soap').soap;
 //    // wsdl of the web service this client is going to invoke. For local wsdl you can use, url = './wsdls/stockquote.wsdl'
-//    var url = 'https://acs.fs.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
+//    var url = 'https://acs.fa.ap2.oraclecloud.com/xmlpserver/services/PublicReportService?wsdl';
 //
 //    var requestArgs = {};
 //    var clientOptions = {};
@@ -69,7 +69,7 @@ module.exports = function ( req, res, callback){
 //
 //    var options = {
 //      "method": "POST",
-//      "hostname": "acs.fs.ap2.oraclecloud.com",
+//      "hostname": "acs.fa.ap2.oraclecloud.com",
 //      "port": null,
 //      "path": "/xmlpserver/services/PublicReportService?wsdl=",
 //      "headers": {
