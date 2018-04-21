@@ -69,7 +69,7 @@ module.exports = function(req, res) {
     fs.readFile("./" + file, function(err, data) {
         // Message object
         let message = {
-            from: 'VIKI <viki@kaaman.onmicrosoft.com>',
+            from: 'VIKI <' + req.body.headers.emailuser+ '>',
             // Comma separated list of recipients
             to: to_email,
             

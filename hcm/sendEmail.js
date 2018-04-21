@@ -23,11 +23,12 @@ module.exports = function( emailContent, req, res) {
     var body = emailContent.body;
     var subject = emailContent.subject;
 
+
     console.log(speech);
     console.log('SMTP Configured');
 
     var message = {
-        from: 'VIKI <viki@kaaman.onmicrosoft.com>',
+        from: 'VIKI <' + req.body.headers.emailuser+ '>',
         // Comma separated list of recipients
         to: toemail,
 

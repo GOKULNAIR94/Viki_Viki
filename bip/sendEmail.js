@@ -18,6 +18,7 @@ module.exports = function( emailContent, req, res) {
     });
     var to_email = "gokul.nair@lntinfotech.com"; 
 
+
     var speech = emailContent.speech;
     var file = emailContent.file;
     var body = emailContent.body;
@@ -28,7 +29,7 @@ module.exports = function( emailContent, req, res) {
     fs.readFile("./" + file, function(err, data) {
         // Message object
         let message = {
-            from: 'VIKI <viki@kaaman.onmicrosoft.com>',
+            from: 'VIKI <' + req.body.headers.emailuser+ '>',
             // Comma separated list of recipients
             to: to_email,
 

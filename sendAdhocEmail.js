@@ -25,13 +25,14 @@ module.exports = function(req, res) {
 
 
 
+
     var speech = "Jobs has been triggered to push the data for the current year FY17 from " + sourceApp + " to " + targetApp + " for the Scenario " + scenario + ". This is the job ID JB76278124. You will receive a data push completion email in approx 10 mins.";
 
     console.log(speech);
     console.log('SMTP Configured');
 
     let message = {
-        from: 'VIKI <viki@kaaman.onmicrosoft.com>',
+        from: 'VIKI <' + req.body.headers.emailuser+ '>',
         // Comma separated list of recipients
         to: to_email,
 
