@@ -13,8 +13,8 @@ module.exports = function ( req, res, callback){
             "attributeFormat" :"pdf",
             "reportAbsolutePath" : reportAbsolutePath
         },
-        "userID" : "LNT001",
-        "password" : "lntLNT2K16_1"
+        "userID" : req.body.headers.oscuser,
+        "password" : req.body.headers.oscpw
     };
     soap.createClient(url, function(err, client) {
 //        client.setSecurity(new soap.BasicAuthSecurity('LNT001', 'lntLNT2K16_1'));
