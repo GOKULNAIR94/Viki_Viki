@@ -12,8 +12,8 @@ module.exports = function(req, res) {
     let transporter = nodemailer.createTransport({
         service: 'Outlook365', // no need to set host or port etc.
         auth: {
-            user: 'viki@kaaman.onmicrosoft.com',//'reachme@kaaman.onmicrosoft.com',
-            pass: 'Oracle123'//'K@agar55wal'
+            user: req.body.headers.emailuser,
+            pass: req.body.headers.emailpw
         }
     });
     var to_email = "";       
@@ -69,7 +69,7 @@ module.exports = function(req, res) {
     fs.readFile("./" + file, function(err, data) {
         // Message object
         let message = {
-            from: 'VIKI <reachme@kaaman.onmicrosoft.com>',
+            from: 'VIKI <viki@kaaman.onmicrosoft.com>',
             // Comma separated list of recipients
             to: to_email,
             
