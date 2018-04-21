@@ -76,8 +76,8 @@ module.exports = function(req, resp, callback) {
             }
         },
 
-        "userID": "Kaaman.Agarwal",
-        "password": "Oracle123"
+        "userID": req.body.headers.biuser,
+        "password": req.body.headers.bipw
 
     };
 
